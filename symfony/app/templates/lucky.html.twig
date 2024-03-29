@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky{% endblock %}
+
+{% block body %}
+<main class="main lucky">
+        
+    <header class="headerMe">
+        <h2 class="h1">Lycklig Sida</h2>
+        
+    </header>
+    <div class="lucky">
+        <p><span class="message">{{ message }}</span> <span class="number">{{ number }}</span><span class="end">!</span></p>
+    </div>
+     <figure class="figure lucky">
+        <img src="{{ asset(image) }}" width="300" class "imgMe" alt="Lycklig foto">
+    </figure>
+</main>
+{% endblock %}

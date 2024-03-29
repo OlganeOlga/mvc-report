@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Api{% endblock %}
+
+{% block body %}
+<main class="main routers">
+    <header class="headerMe">
+        <h2>All routers</h2>
+    </header>
+    <table>
+        <tr class='th'>
+            <th>Namn</th>
+            <th>Path</th>
+            <th>Controller</th>
+        </tr>
+        {% for dataItem in data %}
+            <tr>
+                <td>{{ dataItem[0] }}</td>
+                <td>{{ dataItem[1] }}</td>
+                <td>{{ dataItem[2] }}</td>
+            </tr>
+    {% endfor %}
+</main>
+{% endblock %}
