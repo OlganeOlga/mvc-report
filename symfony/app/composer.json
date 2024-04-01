@@ -1,4 +1,7 @@
 {
+    "name": "mvc/oleg22",
+    "description": "report project for kurs objektorienterande programmering in PHP, made on base of symfony",
+    "version": "1.0.0",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -85,7 +88,9 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src",
+        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src --dry-run -v"
     },
     "conflict": {
         "symfony/symfony": "*"

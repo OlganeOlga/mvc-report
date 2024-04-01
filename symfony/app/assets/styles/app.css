@@ -1,5 +1,5 @@
 body {
-    background-color: #848f93;
+    background-color: #d5dfe2;
     display: grid;
     /* grid-template-rows: 2fr 6fr 1fr; */
     grid-template-rows: 250px 4fr 10px;
@@ -30,8 +30,9 @@ header nav {
 
 header nav ul {
     width: auto;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
     font-size: 1.8em;
     color: #172327;
 }
@@ -60,6 +61,10 @@ main.lucky {
     grid-row: 2;
     display: flex;
     flex-direction: column;
+}
+
+main.cort {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 main .headerMe {
@@ -149,6 +154,10 @@ main.citat p.quote {
     grid-column: span 2;
 }
 
+main.cort p {
+    font-size: 2em;
+    grid-column: span 2;
+}
 aside {
     display: flex;
     flex-direction: column;

@@ -97,7 +97,7 @@ class LuckyControllerTwig extends AbstractController
     //     // return $response;
 
     //     //return new JsonResponse($data);
-        
+
     //     $response = new JsonResponse($data);
     //     $response->setEncodingOptions(
     //         $response->getEncodingOptions() | JSON_PRETTY_PRINT
