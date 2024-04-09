@@ -19,18 +19,16 @@
             <nav>
                 <ul>
                     <li><a href="{{ path('me') }}">Det är jag</a></li>
-                    <li><a href="{{ path('about') }}">About</a></li>
-                    <li><a href="{{ path('report') }}">Report</a></li>
-                    <li><a href="{{ path('lucky') }}">Lucky: galen sida</a></li>
-                    <li><a href="{{ path('api') }}">Alla routes</a></li>
-                    <li><a href="{{ path('api.quote') }}">Dagens citat</a></li>
-                    <li><a href="{{ path('games') }}">Games</a></li>
-                    <li><a href="{{ path('pig_init_get')}}">Play 'Kasta Gris'</a></li>
-                    <li><a href="{{ path('card_play') }}">Fransk-engelsk kortspel</a></li>
+                    <li><a href="{{ path('pig_start') }}">Test Kasta gris</a></li>
+                    <li><a href="{{ path('card_play') }}">Test Fransk-engelsk kortspel</a></li>
                 </ul>
             </nav>
         </header>
-        {% block body %}{% endblock %}
+
+        <main class="mainreport game">
+        {% block main %}{% endblock %}
+
+        </main>
         <footer>
             <p class="author">&copy; Olga Egorova, uppdaterad <time datetime="2022-06-29">2024-03-28</time>.</p>
         </footer> 

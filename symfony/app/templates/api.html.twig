@@ -7,18 +7,23 @@
     <header class="headerMe">
         <h2>All routers</h2>
     </header>
-    <table>
+    <table class="router">
         <tr class='th'>
             <th>Namn</th>
             <th>Path</th>
             <th>Controller</th>
+            <th>Funktion</th>
         </tr>
-        {% for dataItem in data %}
+        {% for route in data %}
+        {% if route.custom_annotation %}
             <tr>
-                <td>{{ dataItem[0] }}</td>
-                <td>{{ dataItem[1] }}</td>
-                <td>{{ dataItem[2] }}</td>
+                <td>{{ route.name }}</td>
+                <td>{{ route.path }}</td>
+                <td>{{ route.controller }}</td>
+                <td>{{ route.custom_annotation }}</td>
             </tr>
-    {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </table>
 </main>
 {% endblock %}

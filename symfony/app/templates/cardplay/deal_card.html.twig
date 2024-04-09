@@ -1,0 +1,35 @@
+{% extends "base_card.html.twig" %}
+
+{% block title %}Fransk-engelsk kortspel{% endblock %}
+
+{% block main %}
+
+    <header class="headerMe">
+        <h2>Kort delas ut till {{ numberPlayers }} spelare!</h2>
+    </header>
+
+    <dev class="players">
+        <h4>Spelare har följande kort i hand</h4>
+        {% for player in PlayersHands %}
+        <ul class="hand">
+        <p class="player">Player nummer {{ player[0] }}</p>
+            {% for card in player[1] %}
+            <li class='{{ card[1] }}'>{{ card[0] }}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </dev>
+    <h4>Nu är {{ cardsInDesk }} kort kavar i spellet</h4>
+
+    <p>Du kan dela ut
+    <a href="{{ path('deal_cards', {player: 3, cards: 7}) }}">7 kort till 3 spelare</a>
+    eller 
+    <a href="{{ path('deal_cards', {player: 4, cards: 5}) }}">5 kort till 4 spelare</a>
+    kort.
+</p>
+    <p><a href="{{ path('shufle_card')}}">Shuffle kortspel</a></p>
+
+    <p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
+
+    <p> <a href="{{ path('delete_session') }}">Rensa session</a> </p>
+{% endblock %}

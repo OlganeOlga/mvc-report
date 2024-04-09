@@ -154,10 +154,45 @@ main.citat p.quote {
     grid-column: span 2;
 }
 
+main.game {
+    grid-template-rows: auto;
+}
+
+main.game p {
+    grid-column: span 2;
+}
+
+main.game ul.dice {
+    grid-column: span 2;
+    display: inline;
+}
+
+main.game ul.dice li,
+main.game p span.die {
+    font-size: 4em;
+}
+
 main.cort p {
     font-size: 2em;
     grid-column: span 2;
 }
+main.game ul.desk,
+main.game ul.kort,
+main.game h4 {
+    grid-column: span 2;
+}
+main.game ul.desk,
+main.game ul.hand {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+}
+
+main.game ul li.red{
+    color: red;
+}
+
 aside {
     display: flex;
     flex-direction: column;
@@ -179,4 +214,41 @@ footer {
 footer p {
     margin: 1em;
     justify-content: center;
+}
+
+.flash-notice {
+    grid-column: span 2;
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    grid-column: span 2;
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul.desk li,
+ul.kort li,
+ul.hand li {
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    font-size: 1em;
+    height: 70px;
+    width: 50px;
+    align-content: center;
 }
