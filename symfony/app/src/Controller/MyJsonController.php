@@ -88,7 +88,7 @@ class MyJsonController extends AbstractController
 
             try {
                 $data = $session->get('desk');
-                if (count($desk) < 52) {
+                if ($data == null || count($data) < 52) {
                     $newDesk = new Desk();
                     $data = $desk->getDesk();
                 }
@@ -117,7 +117,7 @@ class MyJsonController extends AbstractController
 
             try {
                 $data = $session->get('desk');
-                if (count($data) < 52) {
+                if ($data == null || count($data) < 52) {
                     $newDesk = new Desk();
                     $data = $desk->getDesk();
                 }
@@ -145,7 +145,7 @@ class MyJsonController extends AbstractController
 
             try {
                 $data = $session->get('desk');
-                if (count($data) < 52) {
+                if ($data == null || count($data) < 52) {
                     $desk = new Desk();
                     $data = $desk->getDesk();
                 }
@@ -185,7 +185,7 @@ class MyJsonController extends AbstractController
 
         try {
             $data = $session->get('desk');
-            if (count($data) < 52) {
+            if ($data == null || count($data) < 52) {
                 $desk = new Desk();
                 $data = $desk->getDesk();
             }
@@ -214,21 +214,23 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
-    #[Route('api/deck/deal/{player}/{cards}', name: "api_desk_deal", methods:['POST'])]
+    #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
     #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDealCard(
         SessionInterface $session,
-        Request $request
+        Request $request,
+        int $play,
+    int $cards
         ): Response {
         $data;
         $players = [];
         $response = new Response();
-        $numCard = $request->request->get('cards');
-        $numSub = $request->request->get('player');
+        // $numCard = $request->request->get('cards');
+        // $numSub = $request->request->get('player');
 
         try {
             $data = $session->get('desk');
-            if (count($data) < 52) {
+            if ($data == null || count($data) < 52) {
                 $desk = new Desk();
                 $data = $desk->getDesk();
             }
@@ -238,23 +240,21 @@ class MyJsonController extends AbstractController
         }
 
         shuffle($data);
-        for($k = 0; $k < $numSub; $k++) {
+        for($k = 0; $k < $play; $k++) {
             $hand = [];
-            for($i = 0; $i < $numCard; $i++) {
+            for($i = 0; $i < $cards; $i++) {
                 $element = array_rand($data);
                 $card = $data[$element];
                 $hand[] = $card;
                 unset($data[$element]);
             }
-            $players[] = $hand;
+            $players[(string)($k + 1)] = $hand;
         }
         
         $number = count($data);
         $result = [
-            'playersbefor' => $numSub,
-            'cardeach' => $numCard,
             'players' => $players,
-            'number' => $number
+            'number cards left' => $number,
         ];
 
         $session->set('players', $players);

@@ -260,3 +260,7 @@ ul.hand li {
     width: 50px;
     align-content: center;
 }
+
+aside label.smal {
+    font-size: 10px;
+}

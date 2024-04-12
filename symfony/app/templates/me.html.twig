@@ -39,6 +39,7 @@
             <li>
                 <form action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawManyForm" 
                         method="post" onsubmit="updateCards()">
+                    <lable class="smal" for="num_card">Kort</lable>
                     <input type="number" name="num_card" id="num_card_input" value="" min="1" max="51">
                     <input type="submit" value="Dra flera kort">
                 </form>
@@ -55,23 +56,25 @@
 
             </li>
             <li>
-                <form action="{{ path('api_desk_deal', {'player': 1, 'cards': 1}) }}" id="dealForm" 
+                <form action="" id="dealForm" 
                         method="post" onsubmit="updatePlay()">
+                    <lable class="smal" for="num_players">Spelare</lable>
+                    <input type="number" name="num_players" id="players_input" value="" min="1" max="5">
+                    <lable class="smal" for="num_card">Kort</lable>
                     <input type="number" name="num_card" id="cards_input" value="" min="1" max="10">
-                     <input type="number" name="num_players" id="players_input" value="" min="1" max="5">
                     <input type="submit" value="Dela kort">
                 </form>
 
                 <script>
-                    function updatePlay() {
+                    function updatePlay() {                  
                         var numCards = document.getElementById('cards_input').value;
                         var numPlayers = document.getElementById('players_input').value;
-                        var formAction = "{{ path('api_desk_deal', {'player': 1, 'cards': 1})  }}";
                         
-                        formAction = formAction.replace('placeholder', numPlayers);
-                        formAction = formAction.replace('placeholder', numCards);
-                        document.getElementById('drawManyForm').action = formAction;
-                        return true;
+                        var formAction = "{{ path('api_desk_deal', {'play': 'placeholder1', 'cards': 'placeholder2'}) }}";
+                        formAction = formAction.replace('placeholder1', numPlayers);
+                        formAction = formAction.replace('placeholder2', numCards);
+                        document.getElementById('dealForm').action = formAction;
+                        document.getElementById('dealForm').submit();
                     }
                 </script>
             </li>
