@@ -1,16 +1,22 @@
 <?php
 
 namespace App\Controller;
+use App\Card\Desk;
 
-use App\CustomAnnotation;
+//use App\Api\CustomAnnotation;
+use ReflectionClass;
+use ReflectionMethod;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
+
 
 class MyJsonController extends AbstractController
 {
@@ -22,47 +28,242 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('/api', name: "api")]
-    #[Annotation("This route shows all routes with path and their functions.")]
-    public function apiIndex(Request $request)
+    #[CustomAnnotation("This route shows all routes with path and their functions.")]
+    public function apiIndex(Request $request, KernelInterface $kernel)
     {
-        // $allAttributes = $request->attributes->all();
-        // $routeName = $request->attributes->get('_route');
-        // $routeParameters = $request->attributes->get('_route_params');
-        // var_dump($allAttributes);
         $routes = $this->router->getRouteCollection()->all();
+        //var_dump($routes);
+        $jsonFile = $kernel->getProjectDir() . '/public/content/routerannotation.json';
+        $jsonContent =  file_get_contents($jsonFile);
+        $annotations = json_decode($jsonContent, true);
         $data = [];
-
+        $response = new Response();
+        
         foreach ($routes as $routeName => $route) {
-            if ($routeName == "api") {
-                $annotation = $request->attributes->get('_route_params');
-                var_dump($annotation);
+            
+            if (substr($routeName, 0, 1) !== '_') {
+                // Populate data array
+                $data[$routeName] = [
+                    'name' => $routeName,
+                    'path' => $route->getPath(),
+                    'controller' => $route->getDefault('_controller'),
+                    'annotation' => $annotations[$routeName],
+                ];
             }
-            // Get custom annotation from route options
-            $annotation = $request->attributes->get('_route_params')['customAnnotation'] ?? null;
-
-            // Populate data array
-            $data[$routeName] = [
-                'name' => $routeName,
-                'path' => $route->getPath(),
-                'controller' => $route->getDefault('_controller'),
-                'custom_annotation' => $annotation,
-            ];
         }
-
-        return $this->render('api.html.twig', ['data' => $data]);
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+        // return $this->render('api/api.html.twig', ['data' => $data, 'annot' => $annotations]);
+        // $response->setEncodingOptions(
+        //     $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        // );
+        return $response;
     }
 
     #[Route('/api/quote', name: "api.quote")]
+    #[CustomAnnotation("Give a randome quote from 5 existing.")]
     public function geQuote(KernelInterface $kernel): Response
     {
         $jsonFile = $kernel->getProjectDir() . '/public/content/quote.json';
         $jsonContent =  file_get_contents($jsonFile);
+
+        $response = new Response();
+        
         $data = json_decode($jsonContent, true);
 
         $quoteIndex = random_int(0, count($data) - 1);
         $randomQuote = $data[$quoteIndex];
+        $response->setContent(json_encode($randomQuote));
+
+        //return $this->render('api_quote.html.twig', $randomQuote);
+        return $response;
+    }
+
+    #[Route('/api/desk', name: "api_desk", methods:['GET'])]
+    #[CustomAnnotation("Shows all cards from card play.")]
+    public function apiDesk( 
+        SessionInterface $session
+        ): Response {
+            $data;
+
+            try {
+                $data = $session->get('desk');
+                if (count($desk) < 52) {
+                    $newDesk = new Desk();
+                    $data = $desk->getDesk();
+                }
+            } catch (error) {
+                $desk = new Desk();
+                $data = $desk->getDesk();
+            }
+
+        $session->set('desk', $data);
+
+        $response = new Response();
+        $response->setContent($data);
+
+        return $response;
+        // //return $this->render('cardplay/home.html.twig');
+        // return $this->render('api/card_desk.html.twig', ['data' => $data]);
+    }
 
 
-        return $this->render('api_quote.html.twig', $randomQuote);
+    #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
+    #[CustomAnnotation("Suffle card play.")]
+    public function apiShuffleDesk(
+        SessionInterface $session
+        ): Response {
+            $data;
+
+            try {
+                $data = $session->get('desk');
+                if (count($data) < 52) {
+                    $newDesk = new Desk();
+                    $data = $desk->getDesk();
+                }
+            } catch (error) {
+                $desk = new Desk();
+                $data = $desk->getDesk();
+            }
+
+        shuffle($data);
+        $session->set('desk', $data);
+        $response = new Response();
+        
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+
+    #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
+    #[CustomAnnotation("Shows all cards from card play.")]
+    public function apiDrawDesk(SessionInterface $session
+        ): Response {
+            $data;
+
+            try {
+                $data = $session->get('desk');
+                if (count($data) < 52) {
+                    $desk = new Desk();
+                    $data = $desk->getDesk();
+                }
+            } catch (error) {
+                $desk = new Desk();
+                $data = $desk->getDesk();
+            }
+
+        $element = array_rand($data);
+        $card = $data[$element];
+        unset($data[$element]);
+        $number = count($data);
+        $result = [
+            'card' => $card,
+            'number' => $number,
+        ];
+
+        $session->set('drawed', $result);
+        $session->set('desk', $data);
+        $response = new Response();
+        $response->setContent(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+    
+        return $response;
+    }
+
+    #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
+    #[CustomAnnotation("Shows all cards from card play.")]
+    public function apiDrawFleraDesk(
+        SessionInterface $session,
+        Request $request
+        ): Response {
+        $response = new Response();
+        $numCard = $request->request->get('num_card');
+        $data = [];
+        $hand = [];
+
+        try {
+            $data = $session->get('desk');
+            if (count($data) < 52) {
+                $desk = new Desk();
+                $data = $desk->getDesk();
+            }
+        } catch (error) {
+            $desk = new Desk();
+            $data = $desk->getDesk();
+        }
+
+        for($i = 0; $i < $numCard; $i++) {
+            $element = array_rand($data);
+            $card = $data[$element];
+            $hand[] = $card;
+            unset($data[$element]);
+        }
+        $number = count($data);
+        $result = [
+            'drown' => $hand,
+            'number' => $number,
+        ];
+
+        $session->set('desk', $data);
+        $session->set('hand', $hand);
+        $response->setContent(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+    
+        return $response;
+    }
+
+    #[Route('api/deck/deal/{player}/{cards}', name: "api_desk_deal", methods:['POST'])]
+    #[CustomAnnotation("Shows all cards from card play.")]
+    public function apiDealCard(
+        SessionInterface $session,
+        Request $request
+        ): Response {
+        $data;
+        $players = [];
+        $response = new Response();
+        $numCard = $request->request->get('cards');
+        $numSub = $request->request->get('player');
+
+        try {
+            $data = $session->get('desk');
+            if (count($data) < 52) {
+                $desk = new Desk();
+                $data = $desk->getDesk();
+            }
+        } catch (error) {
+            $desk = new Desk();
+            $data = $desk->getDesk();
+        }
+
+        shuffle($data);
+        for($k = 0; $k < $numSub; $k++) {
+            $hand = [];
+            for($i = 0; $i < $numCard; $i++) {
+                $element = array_rand($data);
+                $card = $data[$element];
+                $hand[] = $card;
+                unset($data[$element]);
+            }
+            $players[] = $hand;
+        }
+        
+        $number = count($data);
+        $result = [
+            'playersbefor' => $numSub,
+            'cardeach' => $numCard,
+            'players' => $players,
+            'number' => $number
+        ];
+
+        $session->set('players', $players);
+        $session->set('desk', $data);
+        
+        $response = new Response();
+        $response->setContent(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+    
+        return $response;
     }
 }

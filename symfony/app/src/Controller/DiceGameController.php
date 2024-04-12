@@ -15,18 +15,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class DiceGameController extends AbstractController
 {
     #[Route("/games", name: "games")]
+    #[CustomAnnotation("Move to games.")]
     public function games(): Response
     {
         return $this->render('games.html.twig');
     }
 
     #[Route("/game/pig", name: "pig_start")]
+    #[CustomAnnotation("Start game pig.")]
     public function home(): Response
     {
         return $this->render('pig/home.html.twig');
     }
 
     #[Route("/game/pig/test/roll", name: "test_roll_dice")]
+    #[CustomAnnotation("Game pig: Tests to roll one dice.")]
     public function testRollDice(): Response
     {
         $die = new GraphicDice();
@@ -40,6 +43,7 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/test/roll/{num<\d+>}", name: "test_roll_num_dices")]
+    #[CustomAnnotation("game pig: Tests to roll several.")]
     public function testRollDices(int $num): Response
     {
         if ($num > 12) {
@@ -60,8 +64,9 @@ class DiceGameController extends AbstractController
 
         return $this->render('pig/test/roll_many.html.twig', $data);
     }
-    
+
     #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
+    #[CustomAnnotation("Game pig: Tests to roll a hand dice.")]
     public function testDiceHand(int $num): Response
     {
         if ($num > 99) {
@@ -88,17 +93,19 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/init", name: "pig_init_get", methods: ['GET'])]
+    #[CustomAnnotation("Game pig: initiates game.")]
     public function init(): Response
     {
         return $this->render('pig/init.html.twig');
     }
 
     #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
+    #[CustomAnnotation("Game pig: starts playing with given amount of hands"
+    + "and given amount of dice in each hand.")]
     public function initCallback(
         Request $request,
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $numDice = $request->request->get('num_dices');
 
         $hand = new HandDice();
@@ -117,10 +124,10 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
+    #[CustomAnnotation("Game pig: opens play.")]
     public function play(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $dicehand = $session->get("pig_dicehand");
 
         $data = [
@@ -128,17 +135,17 @@ class DiceGameController extends AbstractController
             "pigRound" => $session->get("pig_round"),
             "pigTotal" => $session->get("game_total"),
             "roundTotal" => $session->get("round_total"),
-            "diceValues" => $dicehand->getString() 
+            "diceValues" => $dicehand->getString()
         ];
 
         return $this->render('pig/play.html.twig', $data);
     }
 
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
+    #[CustomAnnotation("Game pig: rolls dice in one hand.")]
     public function roll(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $hand = $session->get("pig_dicehand");
         $hand->roll();
 
@@ -149,7 +156,7 @@ class DiceGameController extends AbstractController
             if ($value === 1) {
                 $round = 0;
                 $roundTotal = 0;
-                
+
 
                 $this->addFlash(
                     'warning',
@@ -162,21 +169,21 @@ class DiceGameController extends AbstractController
 
         $session->set("pig_round", $round);
         $session->set("round_total", $roundTotal + $round);
-        
+
         return $this->redirectToRoute('pig_play');
     }
 
     #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]
+    #[CustomAnnotation("Game pig: saves the tirn in the game.")]
     public function save(
         SessionInterface $session
-    ): Response
-    {
+    ): Response {
         $roundTotal = $session->get("pig_round");
         $gameTotal = $session->get("game_total");
 
         $session->set("pig_round", 0);
         $session->set("game_total", $gameTotal + $roundTotal);
-        
+
         $this->addFlash(
             'notice',
             'Your round was saved to the total!'

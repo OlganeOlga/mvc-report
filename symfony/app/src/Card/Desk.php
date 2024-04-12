@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Card;
 
 use App\Card\CardGraphics;
@@ -6,12 +7,12 @@ use App\Card\CardGraphics;
 class Desk
 {
     private $play = [];
-    
+
     public function __construct()
     {
         for ($i = 0; $i < 4; $i++) {
             for ($k = 0; $k < 13; $k++) {
-                $new_card = new CardGraphics;
+                $new_card = new CardGraphics();
                 $new_card->set($k, $i);
                 $this->play[] = $new_card;
             };
@@ -34,7 +35,8 @@ class Desk
     //     return $this->play;
     // }
 
-    public function shufleDesk(): array{
+    public function shufleDesk(): array
+    {
         return shuffle($this->play);
     }
 

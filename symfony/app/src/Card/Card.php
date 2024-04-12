@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Card;
 
 class Card
 {
-    protected $face, $suit, $card;
+    protected $face;
+    protected $suit;
+    protected $card;
 
     public function __construct()
     {
@@ -14,7 +17,8 @@ class Card
         $this->card = [$this->face, $this->suit];
     }
 
-    public function set($a_fase, $a_sute) {
+    public function set($a_fase, $a_sute)
+    {
         $this->face = $a_fase;
         $this->sute = $a_sute;
 

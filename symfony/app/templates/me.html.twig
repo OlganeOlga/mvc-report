@@ -24,7 +24,58 @@
     </main>
     <aside class="aside">
         <h2 class="aside-right">This is aside</h2>
-        <p>Jag kan placera här några länkar</p>
+        <ul>
+            <li><a href="{{ path('api') }}">Alla routes</a></li>
+            <li><a href="{{ path('api.quote') }}">Dagens citat</a></li>
+            <li><a href="{{ path('api_desk') }}">Json kortspel</a></li>
+            <li> <form method="post" action=""><form action="{{ path('api_desk_shuffle') }}" method="post">
+                <input type="submit" value="Shuffle Deck"></input>
+            </form>
+            <li> <form action='' method="post">
+                <input type="submit" value="Dra ett kort" 
+                        onClick="this.form.action="{{ path('api_desk_draw') }}" style="width: 200px"></input>
+                </form>
+            </li>
+            <li>
+                <form action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawManyForm" 
+                        method="post" onsubmit="updateCards()">
+                    <input type="number" name="num_card" id="num_card_input" value="" min="1" max="51">
+                    <input type="submit" value="Dra flera kort">
+                </form>
+
+                <script>
+                    function updateCards() {
+                        var numCard = document.getElementById('num_card_input').value;
+                        var formAction = "{{ path('api_desk_draw_flera', {'num_card': 'placeholder'}) }}";
+                        formAction = formAction.replace('placeholder', numCard);
+                        document.getElementById('drawManyForm').action = formAction;
+                        return true;
+                    }
+                </script>
+
+            </li>
+            <li>
+                <form action="{{ path('api_desk_deal', {'player': 1, 'cards': 1}) }}" id="dealForm" 
+                        method="post" onsubmit="updatePlay()">
+                    <input type="number" name="num_card" id="cards_input" value="" min="1" max="10">
+                     <input type="number" name="num_players" id="players_input" value="" min="1" max="5">
+                    <input type="submit" value="Dela kort">
+                </form>
+
+                <script>
+                    function updatePlay() {
+                        var numCards = document.getElementById('cards_input').value;
+                        var numPlayers = document.getElementById('players_input').value;
+                        var formAction = "{{ path('api_desk_deal', {'player': 1, 'cards': 1})  }}";
+                        
+                        formAction = formAction.replace('placeholder', numPlayers);
+                        formAction = formAction.replace('placeholder', numCards);
+                        document.getElementById('drawManyForm').action = formAction;
+                        return true;
+                    }
+                </script>
+            </li>
+        </ul>
     </aside>
       
     

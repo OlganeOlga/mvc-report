@@ -33,3 +33,6 @@ yarn-error.log
 
 # Ignor development tools
 /tools/
+/tools/**/vendor/
+/tools/**/composer.lock
+.php-cs-fixer.cache
