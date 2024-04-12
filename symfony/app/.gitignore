@@ -32,4 +32,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 # Ignor development tools
-tools/
+/tools/
