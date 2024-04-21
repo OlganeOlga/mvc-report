@@ -1,0 +1,16 @@
+
+{% extends "base_card.html.twig" %}
+
+{% block title %}Fransk-engelsk kortspel{% endblock %}
+
+{% block main %}
+
+<p>Här ser du kortet.</p>
+
+<ul class="kort">
+    <li class='{{color}}'>{{ cardString }}</li>
+</ul>
+
+<p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
+
+{% endblock %}

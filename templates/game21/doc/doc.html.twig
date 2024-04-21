@@ -1,0 +1,12 @@
+{% extends "base21_card.html.twig" %}
+
+{% block title %}Kortspel 21{% endblock %}
+{% block main %}
+<h1>Game 21 dokumentation</h1>
+    <div class="pdf-doc">
+        <p><a href="{{ path('docFlodeschema') }}">Flödesschema</a></p>
+        <p><a href="{{ path('docPseudo') }}">Pseudocode</a></p>
+        <p><a href="{{ path('docClass') }}">Klasser</a></p>
+        
+    </div>
+{% endblock %}

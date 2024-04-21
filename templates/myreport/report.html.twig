@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+
+{% block body %}
+<main class="mainreport">
+    <header class="headerMe">
+        <h2 class="h1">Reportsidan för kurs MVC</h2>
+        
+    </header>
+    <div class="link">
+        <ul>
+            <li><a href="#kmom01">kmom01</a></li>
+            <li><a href="#kmom02">kmom02</a></li>
+            <li><a href="#kmom03">kmom03</a></li>
+            <li><a href="#kmom04">kmom04</a></li>
+            <li><a href="#kmom05">kmom05</a></li>
+            <li><a href="#kmom06">kmom06</a></li>
+            <li><a href="#kmom07-10">kmom07 - Kmom10</a></li>
+        </ul>
+    </div>
+    <div class="report">
+        <h2 class="kmom" id="#kmom01">kmom01</h2>
+        <p>
+            Det är första moment i kurs MVC. Kursen handlar om objektorienterande programmering in PHP. Det är redan fjärde programmerings språk där jag lär objektorienterande sätt att programmera. Jag gjorde det med Java, Python, JavaScript. Så objektorienterande programmering är inte något nytt för mig. 
+        </p>
+        <p>
+            Objekt är en instans av en klass. Varje klass har egenskaper (variabler och kanske konstanter) och metoder (funktioner). Klass oftast har en konstruktör, som definierar egenskaper av skapande objekt. Sedan objekt kan funktionera med hjälp av metoder.
+        </p>
+        <p>
+            Båda egenskaper och metoder kan vara publika. Publik metod eller variabel kan uppropas utifrån klassen. Variabler och egenskaper kan vara privata. I så fall de kan inte uppropas utanför klassen och ”icke synbara”. Det finns möjlighet att använda ”protected” visibilitet. Dessa metoder och egenskaper kan användas av både klassen och deras subklasser.
+        </p>
+        <p>
+            Artikeln ”PHP The Right Way” innehåller många användbara tips och mycket informativt. Den hjälpte mig att förstå vad gör jag under övningen. Och jag läste lite mera om klasser i PHP och kodstandarter.
+        </p>
+        <p>
+            I kmom01 börjar vi att bygga projekt med hjälp av källkodsramverk ” Symfony”. Symfony tillåter att dela koden i olika komponenter. Det hjälper med att dela koden i mindre moduler och att redigera den.
+        </p>
+        
+        <h2 class="kmom" id="#kmom02">kmom02</h2>
+        <p>
+                I andra kursmoment fortsätter ve med att skapa objekt i PHP. Vi arbetar med child-klasser som arver från föräldrar-klass både konstruktör, properties och metoder. För att ange att klass arver från en andra klass används ”extends”-ord. Vid komposition en klass arver inte från den andra men använder den andra klass, som t.ex. klass Hand använder class Die.
+        </p>
+        <p>
+                Det finns möjlighet att skappa ett sätt metoders namn som använder olika klasser. Dessa klasser behöver inte ärva från varandra i så fall men ändå använda samma metoder. Interface tillåter klaser definiera metoder själv och oberoende från varandra.
+        </p>
+        <p>
+                Trait är ett annat sätt att skriva mindre kod. Trait can definiera metoder som olika klasser använder.
+        </p>
+        <p>
+                För att lösa uppgiften skaffade jag tre klasser: Card, CardGraphics och Desk. Alla de ligger i src/Card, Jag skaffade controllers i CardPlayController.php. Templates ligger i templates/cardplay och använder base_card.html.twig. Det finns några routes för att debugga kortspel, och de använder base_card_debug.html.twig. Tuvärr har jag ingen tir att skaffa fina bilder för kort.
+        </p>
+        <p>
+                Json-routes finns i MyJsonController.php.
+        </p>
+        <p>
+                Det är intressant att arbeta objektorienterad. Eftersom det var redan objekten i andra kurser, så börjar jag förstå de på djupare sätt. Tuvär är Simfony ett tillräckligt tungt ramverk för min gamla dator. Den blev den otroligt seg. Det hindrar arbetet. 
+        </p>
+        <p>Jag började använda JavaSkript inuti html som känns ganska bra.  </p>
+    
+
+        <h2 class="kmom" id="#kmom03">kmom03</h2>
+        <h2 class="kmom" id="#kmom04">kmom04</h2>
+        <h2 class="kmom" id="#kmom05">kmom05</h2>
+        <h2 class="kmom" id="#kmom06">kmom06</h2>
+        <h2 class="kmom" id="#kmom07-10">kmom07 - kmom10</h2>
+    </div>
+</main>
+
+    
+{% endblock %}

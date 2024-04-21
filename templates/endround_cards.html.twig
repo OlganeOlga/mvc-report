@@ -1,0 +1,20 @@
+{# shows cards for endround.html.twig #}
+{% block cards %}
+    
+    <ul class="desk">
+        <h4>Dina kort:</h4>
+        {% for card in playerCards %}
+            <form class="cardGame21" action="">
+                <input class="card" value="{{ card[0] }}" style="color:{{ card[1] }}"></input>
+            </form>
+        {% endfor %}
+        {% if bankCards|length > 0 %}
+            <h4>Bsnkkort:</h4>
+            {% for card in bankCards %}
+                <form class="cardGame21" action="">
+                    <input class="card" value="{{ card[0] }}" style="color:{{ card[1] }}"></input>
+                </form>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endblock %}
