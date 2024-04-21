@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+ <main class="main">
+        
+    <header class="headerMe">
+        <h2 class="h1">Om kurs MVC</h2>
+        
+    </header>
+    <figure class="figure right">
+        <img src="{{ asset('img/img/Symfony.png') }}" width="500" class "imgMe" alt="Symfony">
+        <figcaption>Istället av Me</figcaption>
+    </figure>
+    <div class="om">
+        <p>I kurs MVC fortsätter vi programmera med PHP. Nu är det dags att skaffa PHP-objekter.</p>
+        <p>Kurser använder ramverk Symfony som hjälper att strukturera och  
+        organisera koden och hantera sådana uppgifter som routing och databasinteraktion.</p>
+    </div>
+</main>
+<aside class="aside">
+    <h2 class="aside-right">Alla länkar</h2>
+    <ul>
+        <li><a href="https://github.com/dbwebb-se/mvc/tree/main">MVC Gitrepo</a></li>
+        <li><a href="https://github.com/OlganeOlga/mvc-report/">Min Gitrepo för MVC</a></li>
+    </ul>
+</aside>
+    
+{% endblock %}

@@ -1,0 +1,21 @@
+{
+    "debug_cardplay": {
+       "quote": "quote1"
+    },
+
+    "delete_session": {
+        "quote": "quote2"
+     },
+
+    "card_play": {
+        "quote": "quote3"
+     },
+
+    "one_card": {
+        "quote": "quote4"
+     },
+
+    "desk_of_cards": {
+        "quote": "quote5"
+     }
+    }

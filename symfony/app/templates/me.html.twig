@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Me{% endblock %}
+
+{% block body %}
+    <main class="main">
+        
+            <header class="headerMe">
+                <h2 class="h1">Det är jag</h2>
+                
+            </header>
+            <figure class="figure right">
+                <img src="{{ asset('img/img/meOlga.jpg') }}" width="300" class "imgMe" alt="Bild på mig">
+                <figcaption>Istället av Me</figcaption>
+            </figure>
+            <div class="om">
+                <p>Jag var född vid en största världs flöde och växte i en av de största världsstäder.</p>
+                <p>Jag tycker om färg och jag tycker om färgfulla grejer.</p>
+                <p>Mest av all tycker jag om att resa och se nya platser.</p>
+                <p>Jag har varit i större delen av Europa, jag har varit i Nordamerika och jag har rest i Asien.</p>
+                <p>Men jag gillar också att försöka återskapa det jag ser. Jag gillar att måla. De bilder jag skapar är min dagbok.<p>
+            </div>
+    
+    </main>
+    <aside class="aside">
+        <h2 class="aside-right">This is aside</h2>
+        <p>Jag kan placera här några länkar</p>
+    </aside>
+      
+    
+{% endblock %}
