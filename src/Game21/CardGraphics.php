@@ -32,7 +32,7 @@ class CardGraphics extends Card
         parent::__construct();
     }
 
-    public function ToString(): string
+    public function toString(): string
     {
         return $this->facerepresentation[$this->face][1] . " " .
         $this->suterepresentation[$this->sute][0];

@@ -64,7 +64,7 @@ class Game21
      * @param {session} Session
      * @return {data}: array
      */
-    public function SecondState(Session $session): array
+    public function secondState(Session $session): array
     {
         $this->set($session);
         $this->desk->shuffleDesk();
@@ -87,7 +87,7 @@ class Game21
      * @param {bet} integer: bet of the player
      * @return {data}: array
      */
-    public function ThirdState(Session $session, int $bet): array
+    public function thirdState(Session $session, int $bet): array
     {
         $this->set($session);
         $this->player->doBet($bet);
@@ -143,12 +143,11 @@ class Game21
         $this->set($session);
         $this->bank->takeCards($this->desk);
         $points = $this->bank->points();
+        $this->status = "compare";
         if($points > 21){
             $this->status = "fat bank";
         } elseif ($points == 21) {
             $this->status = "bank wins";
-        } else {
-            $this->status = "compare";
         }
         $this->toSession($session);
         $data = [

@@ -36,10 +36,10 @@ class Game21PDFController extends AbstractController
             $response->headers->set('Content-Disposition', 'inline; filename="Flodesschema.drawio.pdf"');
 
             return $response;
-        } else {
-            // Handle file not found
-            throw $this->createNotFoundException('The PDF file could not be found.');
-        }
+        } 
+        
+        throw $this->createNotFoundException('The PDF file could not be found.');
+        
     }
 
     #[Route("/game/Classes", name: "docClass")] //Show classses for game 21
@@ -55,10 +55,8 @@ class Game21PDFController extends AbstractController
             $response->headers->set('Content-Disposition', 'inline; filename="classes.pdf"');
 
             return $response;
-        } else {
-            // Handle file not found
-            throw $this->createNotFoundException('The PDF file could not be found.');
         }
+        throw $this->createNotFoundException('The PDF file could not be found.');
     }
 
     #[Route("/game/pseudocode", name: "docPseudo")] //show pseudocode for Game21
@@ -74,10 +72,8 @@ class Game21PDFController extends AbstractController
             $response->headers->set('Content-Disposition', 'inline; filename="pseudocode.pdf"');
 
             return $response;
-        } else {
-            // Handle file not found
-            throw $this->createNotFoundException('The PDF file could not be found.');
         }
+        throw $this->createNotFoundException('The PDF file could not be found.');
     }
 
  }

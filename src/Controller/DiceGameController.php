@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Dice\Dice;
 use App\Dice\GraphicDice;
 use App\Dice\HandDice;
+use Exception;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,21 +16,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class DiceGameController extends AbstractController
 {
     #[Route("pig/games", name: "games")]
-    #[CustomAnnotation("Move to games.")]
     public function games(): Response
     {
         return $this->render('pig/games.html.twig');
     }
 
     #[Route("/game/pig", name: "pig_start")]
-    #[CustomAnnotation("Start game pig.")]
     public function home(): Response
     {
         return $this->render('pig/home.html.twig');
     }
 
     #[Route("/game/pig/test/roll", name: "test_roll_dice")]
-    #[CustomAnnotation("Game pig: Tests to roll one dice.")]
     public function testRollDice(): Response
     {
         $die = new GraphicDice();
@@ -43,11 +41,11 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/test/roll/{num<\d+>}", name: "test_roll_num_dices")]
-    #[CustomAnnotation("game pig: Tests to roll several.")]
     public function testRollDices(int $num): Response
     {
+        $exception = "Can not roll more than 12 dices!";
         if ($num > 12) {
-            throw new \Exception("Can not roll more than 12 dices!");
+            throw $exception;
         }
 
         $diceRoll = [];
@@ -66,20 +64,16 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
-    #[CustomAnnotation("Game pig: Tests to roll a hand dice.")]
     public function testDiceHand(int $num): Response
     {
+        $exception = "Can not roll more than 99 dices!";
         if ($num > 99) {
-            throw new \Exception("Can not roll more than 99 dices!");
+            throw $exception;
         }
 
         $hand = new HandDice();
         for ($i = 1; $i <= $num; $i++) {
-            if ($i % 2 === 1) {
-                $hand->add(new GraphicDice());
-            } else {
-                $hand->add(new Dice());
-            }
+            $i % 2 == 1 ? $hand->add(new GraphicDice()) : $hand->add(new Dice());
         }
 
         $hand->roll();
@@ -93,14 +87,12 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/init", name: "pig_init_get", methods: ['GET'])]
-    #[CustomAnnotation("Game pig: initiates game.")]
     public function init(): Response
     {
         return $this->render('pig/init.html.twig');
     }
 
     #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
-    #[CustomAnnotation("Game pig: starts playing with given amount of hands and given amount of dice in each hand.")]
     public function initCallback(
         Request $request,
         SessionInterface $session
@@ -123,7 +115,6 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
-    #[CustomAnnotation("Game pig: opens play.")]
     public function play(
         SessionInterface $session
     ): Response {
@@ -141,7 +132,6 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
-    #[CustomAnnotation("Game pig: rolls dice in one hand.")]
     public function roll(
         SessionInterface $session
     ): Response {
@@ -173,7 +163,6 @@ class DiceGameController extends AbstractController
     }
 
     #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]
-    #[CustomAnnotation("Game pig: saves the tirn in the game.")]
     public function save(
         SessionInterface $session
     ): Response {
@@ -190,4 +179,3 @@ class DiceGameController extends AbstractController
         return $this->redirectToRoute('pig_play');
     }
 }
-

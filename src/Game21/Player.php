@@ -52,9 +52,9 @@ class Player
         return $this->hand->getPoints();
     }
 
-    public function doBet(int $i)
+    public function doBet(int $bet)
     {
-        $this->bet = $i;
+        $this->bet = $bet;
     }
 
     public function getBet(): int

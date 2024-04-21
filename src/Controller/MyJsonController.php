@@ -29,10 +29,9 @@ class MyJsonController extends AbstractController
 
     #[Route('/api', name: "api")]
     #[CustomAnnotation("This route shows all routes with path and their functions.")]
-    public function apiIndex(Request $request, KernelInterface $kernel)
+    public function apiIndex(KernelInterface $kernel)
     {
         $routes = $this->router->getRouteCollection()->all();
-        //var_dump($routes);
         $jsonFile = $kernel->getProjectDir() . '/public/json/routerannotation.json';
         $jsonContent =  file_get_contents($jsonFile);
         $annotations = json_decode($jsonContent, true);
@@ -112,7 +111,6 @@ class MyJsonController extends AbstractController
         try {
             $data = $session->get('desk');
             if ($data == null || count($data) < 52) {
-                $newDesk = new Desk();
                 $data = $desk->getDesk();
             }
         } catch (Exception $e) {
@@ -213,7 +211,6 @@ class MyJsonController extends AbstractController
     #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDealCard(
         SessionInterface $session,
-        Request $request,
         int $play,
         int $cards
     ): Response {

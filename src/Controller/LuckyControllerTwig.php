@@ -10,14 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class LuckyControllerTwig extends AbstractController
 {
     #[Route('/', name: "me")]
-    #[CustomAnnotation("Give presentation about my selg with a picture.")]
     public function me(): Response
     {
         return $this->render('myreport/me.html.twig');
     }
 
     #[Route('/about', name: "about")]
-    #[CustomAnnotation("Tell about the cours and its perpouse.")]
     public function about(): Response
     {
         return $this->render('myreport/about.html.twig');

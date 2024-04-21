@@ -12,9 +12,9 @@ class Desk
     {
         for ($i = 0; $i < 4; $i++) {
             for ($k = 0; $k < 13; $k++) {
-                $new_card = new CardGraphics();
-                $new_card->set($k, $i);
-                $this->play[] = $new_card;
+                $newCard = new CardGraphics();
+                $newCard->set($k, $i);
+                $this->play[] = $newCard;
             };
         };
     }

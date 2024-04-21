@@ -17,10 +17,10 @@ class Card
         $this->card = [$this->face, $this->suit];
     }
 
-    public function set($a_fase, $a_sute)
+    public function set($aFase, $aSute)
     {
-        $this->face = $a_fase;
-        $this->sute = $a_sute;
+        $this->face = $aFase;
+        $this->sute = $aSute;
 
         return $this->card;
     }

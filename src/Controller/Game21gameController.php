@@ -9,13 +9,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-// use App\Game21\CardGraphics;
 use App\Game21\Bank;
 use App\Game21\Desk;
-// use App\Game21\Hand;
 use App\Game21\Player;
 use App\Game21\Game21;
-
 
 class Game21gameController extends AbstractController
 {
@@ -53,7 +50,7 @@ class Game21gameController extends AbstractController
     #[Route("/game21/bankBet", name: "bankBet_card21")] //Ask bank to do bet
     public function bankBet21( SessionInterface $session ): Response
     {
-        $data = $this->game->SecondState($session);
+        $data = $this->game->secondState($session);
         return $this->render('game21/player_bet.html.twig', $data);
     }
 
@@ -63,7 +60,7 @@ class Game21gameController extends AbstractController
         Request $request
     ): Response {
         $bet = $request->request->get('playersBet');
-        $data = $this->game->ThirdState($session, $bet);
+        $data = $this->game->thirdState($session, $bet);
         return $this->render('game21/card_to_player.html.twig', $data);
     }
 
@@ -74,9 +71,8 @@ class Game21gameController extends AbstractController
         $data = $this->game->playerNewCard($session);
         if($data['Status'] == "fat player" | $data['Status'] == "player wins") {
             return $this->render('game21/endround.html.twig', $data);
-        } else {
-            return $this->render('game21/card_to_player.html.twig', $data);
         }
+        return $this->render('game21/card_to_player.html.twig', $data);
     }
 
     #[Route("/game21/cardToBank", name: "bank_get_cards21")]

@@ -13,13 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 class CardPlayController extends AbstractController
 {
     #[Route("/session", name: "debug_cardplay")]
     #[CustomAnnotation("Shows all content of the session.")]
     public function debug(
-        Request $request,
         SessionInterface $session
     ): Response {
         // Hämta alla variabler i sessionen
@@ -125,11 +125,12 @@ class CardPlayController extends AbstractController
         int $num,
         SessionInterface $session
     ): Response {
+        $exception = "Can not take more card than int the card desk!";
         $desk = $session->get('desk');
         $hand = [];
 
         if ($num < 1 || $num > count($desk)) {
-            throw new \Exception("Can not take more card than int the card desk!");
+            throw $exception;
         }
 
         for($i = 0; $i < $num; $i++) {
@@ -152,7 +153,7 @@ class CardPlayController extends AbstractController
 
 
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
-    public function DealCards(
+    public function dealCards(
         int $player,
         int $cards,
         SessionInterface $session
