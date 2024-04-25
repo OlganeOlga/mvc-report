@@ -1,0 +1,26 @@
+{% extends "base_card_debug.html.twig" %}
+
+{% block title %}Fransk-engelsk kortspel{% endblock %}
+
+{% block main %}
+<header class="headerMe">
+    <h2>Debug kortspel, visa session</h2>
+</header>
+
+<div class="session">  
+    <h3>Här kan jag se session.</h3>
+    {% if data %}
+    {% for key, value in data %}
+        <p>{{ key }}: {{ dump(value) }}</p>
+    {% endfor %}
+    {% endif %}
+</div>
+{{ include('flash.html.twig') }}
+
+<p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
+
+<p> <a href="{{ path('delete_session') }}">Rensa session</a> </p>
+
+
+
+{% endblock %}

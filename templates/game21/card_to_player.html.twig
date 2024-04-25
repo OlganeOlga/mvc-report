@@ -1,0 +1,25 @@
+{% extends "base21_card.html.twig" %}
+
+{% block title %}Kortspel 21{% endblock %}
+
+{% block main %}
+    <header class="headerMe">
+        <h2>Du spelar 21</h2>
+    </header>
+        
+    <ul class="desk">
+    
+    {% for card in playerCards %}
+    <form class="cardGame21" action="">
+        <input class="card" value="{{ card[0] }}" style="color:{{ card[1] }}"></input>
+    </form>
+    {% endfor %}
+    </ul>
+    <div class="functions">
+    <p>Dina poäng är: {{PlayerPoints}}</p>
+    <p><a class="linkForm" href="{{ path('player_get_card21')}}">Ta du en kort till?</a></p>
+    <p><a class="linkForm" href="{{ path('bank_get_cards21')}}">Är du nöjd?</a></p>
+    </div>
+ 
+
+{% endblock %}

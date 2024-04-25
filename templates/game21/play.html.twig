@@ -1,0 +1,20 @@
+{% extends "base21_card.html.twig" %}
+{% block title %}Kortspel 21{% endblock %}
+
+{% block main %}
+    <header class="headerMe">
+        <h2>Du spelar 21</h2>
+    </header>
+    
+    <ul class="desk">
+    
+    {% for card in desk %}
+    <form class="cardGame21" action="">
+        <input class="card" value="{{ card[0] }}" style="color:{{ card[1] }}"></input>
+    </form>
+    {% endfor %}
+    </ul>
+    <div class="functions">
+    <p><a class="linkForm" href="{{ path('bankBet_card21')}}">Shuffle kortspel och tvinga Bank göra sats och få första kort</a></p>
+    </div>
+{% endblock %}

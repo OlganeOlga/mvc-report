@@ -1,0 +1,300 @@
+body {
+    background-color: #d5dfe2;
+    display: grid;
+    /* grid-template-rows: 2fr 6fr 1fr; */
+    grid-template-rows: 250px 4fr 10px;
+    grid-template-columns: 4fr 1fr;
+}
+
+header {
+    grid-row: 1;
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* background-color: #570757; */
+    background-size: cover;
+    color: #172327;
+}
+
+.site-title {
+    grid-column: 1;
+    margin: 2em;
+    font-size: 3em;
+    font-weight: 700;
+    text-shadow: 2px 2px 2px azure;
+}
+
+header nav {
+    grid-column: 2;
+}
+
+header nav ul {
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    font-size: 1.8em;
+    color: #172327;
+}
+
+header nav ul a:visited {
+    color: #e1ffd0;
+}
+
+main {
+    grid-column: 1;
+    grid-row: 2;
+    margin-left: 60px;
+    margin-right: 60px;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-columns: 1fr 3fr;
+    /* border: solid 7px azure; */
+}
+
+main.mainreport,
+main.routers,
+main.lucky {
+    grid-column: span 2;
+}
+
+main.lucky {
+    /* grid-row: 2; */
+    display: flex;
+    flex-direction: column;
+}
+
+main.cort {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+main .headerMe {
+    grid-row: 1;
+    grid-column: span 2;
+    display: block;
+    width: 100%;
+    text-shadow: 2px 2px 2px azure;
+    font-size: 2em;
+}
+
+main .headerMe h2 {
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 2px 2px azure;
+}
+
+.lucky .headerMe h2 {
+    color: #ffef1edb;
+    font-size: 3em;
+    transform: rotate(320deg);
+    text-shadow: 2px 2px 2px azure;
+    display: flex;
+    position: fixed;
+    top: 350px;
+    left: 400px;
+}
+
+.lucky .lucky {
+    transform: rotate(35deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lucky .lucky p {
+    display: flex;
+    font-size: 2em;
+    color: #430c43;
+}
+
+.lucky .lucky p .message {
+    text-shadow: 2px 2px 2px red;
+    color: green;
+    /* transform: rotate(25deg); */
+}
+
+.lucky .lucky p .number {
+    text-shadow: 2px 2px 2px red;
+    color: rgb(207, 204, 9);
+    transform: rotate(125deg);
+}
+
+.lucky .lucky p .end {
+    font-size: 7em;
+    font-size: 4em;
+    color: blueviolet;
+}
+
+.lucky .lucky figure {
+    grid-column: 1;
+    width: 300px;
+    height: 150px;
+    transform: rotate(35deg);
+}
+
+main figure.lucky {
+    width: 300px;
+    height: 150px;
+    grid-row: 2;
+    grid-column: 1;
+}
+
+main figure figcaption {
+    margin: 4px;
+}
+
+main .om {
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 1.5em;
+}
+
+main.routers table {
+    grid-column: span 2;
+    border-collapse: collapse;
+    border: solid 3px aliceblue;
+    margin-bottom: 30px;
+    background: #edcaca;
+}
+
+main.routers table tr {
+    border: solid 3px aliceblue;
+}
+
+main.citat p.quote {
+    font-family: cursive;
+    font-size: 2em;
+    grid-column: span 2;
+}
+
+main.game {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-column-gap: 40px;
+}
+
+main.game p {
+    grid-column: span 2;
+}
+
+main.game ul.dice,
+main.api ul.desk {
+    grid-column: span 2;
+    display: inline;
+}
+
+main.game ul.dice li,
+main.game p span.die {
+    font-size: 4em;
+}
+
+main.cort p {
+    font-size: 2em;
+    grid-column: span 2;
+}
+
+ul.desk {
+    background-color: green;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+main.api ul.desk,
+main.game ul.desk,
+main.game ul.kort,
+main.game h4 {
+    grid-column: span 2;
+}
+
+main.api ul.desk,
+main.game ul.desk,
+main.game ul.hand {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: repeat(9, auto);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+}
+
+main.game div.functions {
+    grid-column: 2;
+}
+
+main.game ul li.red,
+main.api ul li.red{
+    color: red;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    grid-row: 2;
+    padding: 10px;
+    font-size: 2em;
+    text-shadow: 2px 2px 2px azure;
+    border-left: solid 7px azure;
+}
+
+footer {
+    grid-column: span 2;
+    grid-row: 3;
+    height: 100px;
+    border: unset;
+    border-top: 7px solid azure;
+}
+
+footer p {
+    margin: 1em;
+    justify-content: center;
+}
+
+.flash-notice {
+    grid-column: span 2;
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    grid-column: span 2;
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+.flash-warning:before {
+    content: "⚠";
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul.desk li,
+ul.kort li,
+ul.hand li {
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    font-size: 1em;
+    height: 70px;
+    width: 50px;
+    align-content: center;
+}
+
+form.cardGame21 input.card {
+    height: 100px;
+    width: 60px;
+}
+
+aside.asideMe form.lableForm {
+    border: solid 2px rgb(129, 126, 126);
+}
+
+aside.asideMe label.smal {
+    font-size: 10px;
+}

@@ -1,0 +1,15 @@
+{% extends "base_gris.html.twig" %}
+
+{% block title %}Pig Game{% endblock %}
+
+{% block main %}
+<header class="headerMe">
+    <h2>Roll a dice</h2>
+    <p>Back to <a href="{{ path('pig_start') }}">Kasta gris</a></p>
+</header>
+<p>Here is the value of the dice.</p>
+
+<ul class="dice">
+    <li>{{ diceString }}</li>
+</ul>
+{% endblock %}
