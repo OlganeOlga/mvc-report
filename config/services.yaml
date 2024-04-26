@@ -22,3 +22,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    #Make router public: 
+    App\Controller\MyJsonController:
+        public: true
+
+    # #Create broshures dir
+    # parameters:
+    # brochures_directory: '%kernel.project_dir%/public/uploads/brochures' 

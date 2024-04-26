@@ -7,34 +7,28 @@ use App\Game21\Hand;
 
 class Player
 {
-    protected Hand $hand;
-    protected int $bet;
-    protected int $profit;
-    protected string $status;
+    protected $hand;
+    protected $bet;
+    protected $profit;
+    protected $status;
 
     public function __construct()
     {
-        $this->hand = new Hand();
+        $this->hand = new Hand;
         $this->bet = 0;
         $this->profit = 0;
         $this->status = "start";// status chenges in the game
     }
 
-    /**
-     *
-     * @param CardGraphics $card
-     */
-    public function getCard(CardGraphics $card): void
+    public function getCard(CardGraphics $card)
     {
         $this->hand->addCard($card);
     }
 
-    /**
-     *
-     * @return array<array<array<int>, int, int>>
-     */
     public function toArray(): array
     {
+        $array;
+
         $array = [
             'hand' => $this->hand !== null ? $this->hand->toArray() : null,
             'bet' => $this->bet,
@@ -44,45 +38,25 @@ class Player
         return $array;
     }
 
-    /**
-     *
-     * @param array{hand: array<int, array{0: int, 1: int}>, bet: int, set: int} $arr
-     */
-    public function set(?array $arr): void
+    public function set(array $arr)
     {
-        $hand = new Hand();
-
-        $hand = new Hand();
-        if (isset($arr['hand']) !== null) {
-            $hand->set($arr['hand']);
-        }
-        $this->hand = $hand;
-        $this->bet = $arr['bet'] ?? 0;
-        $this->profit = $arr['profit'] ?? 0;
+        $hand = new Hand;
+        
+        $this->hand = $arr['hand'] !== null ? $hand->set($arr['hand']) : new Hand();
+        $this->bet = $arr['bet'];
+        $this->profit = $arr['profit'];
+        //$this->status = $arr['status'];
     }
 
-    /**
-     *
-     * @return int points
-     */
-    public function points(): int
-    {
+    public function points() {
         return $this->hand->getPoints();
     }
 
-    /**
-     *
-     * @param int bet
-     */
-    public function doBet(int $bet): void
+    public function doBet(int $bet)
     {
         $this->bet = $bet;
     }
 
-    /**
-     *
-     * @return int bet
-     */
     public function getBet(): int
     {
         return $this->bet;
@@ -98,10 +72,6 @@ class Player
     //     $this->profit -= $this->bet;
     // }
 
-    /**
-     *
-     * @return array<array<array<int>, int, int>>
-     */
     public function getHand(): array
     {
         return $this->hand->toString();

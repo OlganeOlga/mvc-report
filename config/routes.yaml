@@ -3,3 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# app_pdf_view:
+#     path: /view-pdf/{fileName}
+#     controller: App\Controller\PdfController::viewPdf

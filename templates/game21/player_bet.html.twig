@@ -22,7 +22,7 @@
         {% endfor %}
 
         <p>Vill du satsa på spellet?</p>
-        <form class="playerbet" method="post" action="{{ path('player_bet21') }}">
+        <form class="playerbet" method="post" action="{{ path('player_bet') }}">
             <input type="number" min="1" max="{{bankBet}}" name="playersBet" value="">
             <input type="submit" name="do_it" value="Satsa">
         </form>

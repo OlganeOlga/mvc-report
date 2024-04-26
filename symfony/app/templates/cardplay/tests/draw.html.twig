@@ -1,0 +1,22 @@
+{% extends "base_card.html.twig" %}
+
+{% block title %}Fransk-engelsk kortspel{% endblock %}
+
+{% block main %}
+
+    <header class="headerMe">
+        <h2>Dra ett kort</h2>
+    </header>
+
+    <dev class="kort">
+        <h4>Du drog detta kort</h4>
+        <ul class="desk"><li class='{{ card[1] }}'>{{ card[0] }}</li></ul>
+    </dev>
+    <h4>Nu är {{ number }} kort kavar i spellet</h4>
+
+    <p><a href="{{ path('shufle_card')}}">Shuffle kortspel</a></p>
+
+    <p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
+
+    <p> <a href="{{ path('delete_session') }}">Rensa session</a> </p>
+{% endblock %}

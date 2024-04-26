@@ -6,7 +6,7 @@ use App\Card\CardGraphics;
 
 class Desk
 {
-    private array $play;
+    private $play = [];
 
     public function __construct()
     {
@@ -19,63 +19,46 @@ class Desk
         };
     }
 
-    /**
-     * @return  array<int, array<int, mixed>>
-     */
     public function getDesk(): array
     {
         $values = [];
-        foreach ($this->play as $cart) {
-            $cartstring = $cart->getAsString();
-            $cartcolor = $cart->getCollor();
-            $values[] = [$cartstring, $cartcolor];
+        foreach ($this->play as $cort) {
+            $cortstring = $cort->getAsString();
+            $cortcolor = $cort->getCollor();
+            $values[] = [$cortstring, $cortcolor];
         }
         return $values;
     }
 
-    /**
-     * @return array<array<CardGraphics>>
-     */
     public function getDeskArray(): array
     {
         return $this->play;
     }
 
-    /**
-     * @return array<App\Card\CardGraphics|array<int, int>>
-     */
     public function toArray(): array
     {
         $intArray = [];
-        foreach ($this->play as $card) {
-            $intArray[] = $card->toArray();
+        foreach ($this->play as $cort) {
+            $intArray[] = $cort.toArray();
         }
         return $intArray;
     }
 
-    /**
-     * @param array<array<int, int>>
-     * @return  array<int<0, max>, App\Card\CardGraphics>
-     */
-    public function setDesk($arr): array
+    public function setDesk($arr): object
     {
         $play = [];
-        for ($i = 0; $i < count($arr); $i++) {
-            $card = new CardGraphics();
-            $card->set($arr[$i][0], $arr[$i][1]);
+        for ($i = 0; $i < $arr.length(); $i++) {
+            $card = new CardGraphics;
+            $card.set($arr[$i][0], $arr[$i][1]);
             $play[] = $card;
         }
         $this->play = $play;
         return $this->play;
     }
 
-    /**
-     * @return bool
-     */
-    public function shufleDesk(): bool
+    public function shufleDesk(): array
     {
         return shuffle($this->play);
     }
-
 
 }

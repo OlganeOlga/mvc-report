@@ -85,21 +85,17 @@ main .headerMe h2 {
 
 .lucky .headerMe h2 {
     color: #ffef1edb;
+    position: absolute;
+    top: 500px;
+    left: 0px;
     font-size: 3em;
     transform: rotate(320deg);
     text-shadow: 2px 2px 2px azure;
-    display: flex;
-    position: fixed;
-    top: 350px;
-    left: 400px;
 }
 
 .lucky .lucky {
     transform: rotate(35deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    grid-column: 2;
 }
 
 .lucky .lucky p {
@@ -111,7 +107,7 @@ main .headerMe h2 {
 .lucky .lucky p .message {
     text-shadow: 2px 2px 2px red;
     color: green;
-    /* transform: rotate(25deg); */
+    transform: rotate(25deg);
 }
 
 .lucky .lucky p .number {
@@ -194,20 +190,17 @@ main.cort p {
     grid-column: span 2;
 }
 
-/* ul.desk {
+ul.desk {
     background-color: green;
     justify-content: center;
     padding: 20px 0;
-} */
+}
 
 main.api ul.desk,
 main.game ul.desk,
 main.game ul.kort,
 main.game h4 {
     grid-column: span 2;
-    background: green;
-    padding: 30px;
-    justify-self: center;
 }
 
 main.api ul.desk,

@@ -6,14 +6,14 @@ use App\Game21\CardGraphics;
 
 class Desk
 {
-    protected array $play;
+    protected $play;
 
     public function __construct()
     {
         $this->play = [];
     }
 
-    public function freshDesk(): void
+    public function freshDesk()
     {
         for ($i = 0; $i < 4; $i++) {
             for ($k = 0; $k < 13; $k++) {
@@ -24,10 +24,6 @@ class Desk
         };
     }
 
-    /**
-     *
-     * @return array<array<int>>
-     */
     public function toArray(): array
     {
         $values = [];
@@ -37,26 +33,20 @@ class Desk
         return $values;
     }
 
-    /**
-     *
-     * @param array<array<int>>
-     */
-    public function set(array $arr = []): void
+    public function set(
+        array $arr = []
+        )
     {
         $this->play = [];
         foreach ($arr as $c) {
             if (isset($c[0]) && isset($c[1])) {
                 $card = new CardGraphics();
-                $card->set((int)$c[0], (int)$c[1]);
+                $card->set($c[0], $c[1]);
                 $this->play[] = $card;
             }
         }
     }
 
-    /**
-     *
-     * @return array<CardGraphics>
-     */
     public function getDesk(): array
     {
         $values = [];
@@ -68,21 +58,17 @@ class Desk
         return $values;
     }
 
-    public function shuffleDesk(): void
+    public function shuffleDesk()
     {
         shuffle($this->play);
     }
 
-    /**
-     *
-     * @return CardGraphics $card
-     */
     public function takeCard(): CardGraphics
     {
         $randomKey = array_rand($this->play);
         $card = $this->play[$randomKey];
         unset($this->play[$randomKey]);
-
+        
         return $card;
     }
 }
