@@ -54,7 +54,7 @@ class Game21gameController extends AbstractController
         return $this->render('game21/player_bet.html.twig', $data);
     }
 
-    #[Route("/game21/playersBet", name: "player_bet", methods: ['POST'])] //Ask player to do bet
+    #[Route("/game21/playersBet", name: "player_bet21", methods: ['POST'])] //Ask player to do bet
     public function playersBet(
         SessionInterface $session,
         Request $request

@@ -56,9 +56,9 @@ class Desk
         return $this->play;
     }
 
-    public function shufleDesk(): array
+    public function shuffleDesk(): void
     {
-        return shuffle($this->play);
+        shuffle($this->play);
     }
 
 }

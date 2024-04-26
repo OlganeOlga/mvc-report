@@ -20,7 +20,7 @@
         </ul>
     </div>
     <div class="report">
-        <h2 class="kmom" id="#kmom01">kmom01</h2>
+        <h2 class="kmom" id="kmom01">kmom01</h2>
         <p>
             Det är första moment i kurs MVC. Kursen handlar om objektorienterande programmering in PHP. Det är redan fjärde programmerings språk där jag lär objektorienterande sätt att programmera. Jag gjorde det med Java, Python, JavaScript. Så objektorienterande programmering är inte något nytt för mig. 
         </p>
@@ -37,7 +37,7 @@
             I kmom01 börjar vi att bygga projekt med hjälp av källkodsramverk ” Symfony”. Symfony tillåter att dela koden i olika komponenter. Det hjälper med att dela koden i mindre moduler och att redigera den.
         </p>
         
-        <h2 class="kmom" id="#kmom02">kmom02</h2>
+        <h2 class="kmom" id="kmom02">kmom02</h2>
         <p>
                 I andra kursmoment fortsätter ve med att skapa objekt i PHP. Vi arbetar med child-klasser som arver från föräldrar-klass både konstruktör, properties och metoder. För att ange att klass arver från en andra klass används ”extends”-ord. Vid komposition en klass arver inte från den andra men använder den andra klass, som t.ex. klass Hand använder class Die.
         </p>
@@ -59,11 +59,48 @@
         <p>Jag började använda JavaSkript inuti html som känns ganska bra.  </p>
     
 
-        <h2 class="kmom" id="#kmom03">kmom03</h2>
-        <h2 class="kmom" id="#kmom04">kmom04</h2>
-        <h2 class="kmom" id="#kmom05">kmom05</h2>
-        <h2 class="kmom" id="#kmom06">kmom06</h2>
-        <h2 class="kmom" id="#kmom07-10">kmom07 - kmom10</h2>
+        <h2 class="kmom" id="kmom03">kmom03</h2>
+         </p>
+        <p>
+            I Kmom03 fortsätt vi arbeta med Symfony ramverk och objektorienterande programmering i PHP. V
+            i skulle skaffa ett kortspel. Första steg var planering med hjälp av flödesdiagram och pseudokod. Jag välde att arbeta med kortspel 21.
+            Detta steg blev en bra hjälp för mig, för att det hjälpte mig att skaffa en inre förståelse för hur jag ska går tillväg. Jag kan erkänna att jag inte har tittat på pseudokod eller på flödesschema efteråt, under arbetet med koden.
+         </p>
+        <p>    
+            Jag skaffade följande klasser: Card, CardGraphics, Desk, Hand, Player, Bank och Game21.
+        </p>
+        <ul>
+            <li> 
+                Class Card presenterar en kort med: face, kostym och värde. Ess har värde 1.
+            </li>
+            <li>
+                CardGraphics kan visa grafiska kort.
+            </li>
+            <li>
+                Class Hand innehåller noll till flera kort, hand kan bifoga flera kort till sig själv, visa sina kort och kalkylera sitt värde.
+            </li>
+            <li>
+                Class Desk inhaler 52 to noll kort, kan visa alla sina kort och shuffle kort.
+            </li>
+            <li>
+                Class Player har egenskaper: hand, bet och profit. Player kan få ett kort I taget, can satsa på spelet vintvinna eller förora.
+            </li>
+            <li>
+                Class Bank är barnklass för Player. Bank har extra funktionalitet: dela ut kort från Desk (ett i taget), och ta kort från Desk (en i taget).
+            </li>
+        </ul>
+        <p>
+            Alla dessa objektera kan förvandlas till arreyer och skaffas tilbacka från arrayer.
+        </p>
+        <p>
+            Sedan jag började skaffa routes, men för att få mindre kod i routes jag skaffade även klass Game21, som sköter alla steg i spelet.
+        </p>
+        <p>Efter åt detta kmom känner jag mig ganska säkert med Symfony.
+
+        <h2 class="kmom" id="kmom04">kmom04</h2>
+        <h2 class="kmom" id="kmom05">kmom05</h2>
+        <h2 class="kmom" id="kmom06">kmom06</h2>
+        <h2 class="kmom" id="kmom07-10">kmom07 - kmom10</h2>
     </div>
 </main>
 

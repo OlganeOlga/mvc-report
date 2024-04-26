@@ -15,11 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DiceGameController extends AbstractController
 {
-    #[Route("pig/games", name: "games")]
-    public function games(): Response
-    {
-        return $this->render('pig/games.html.twig');
-    }
+    // #[Route("pig/games", name: "games")]
+    // public function games(): Response
+    // {
+    //     return $this->render('pig/games.html.twig');
+    // }
 
     #[Route("/game/pig", name: "pig_start")]
     public function home(): Response

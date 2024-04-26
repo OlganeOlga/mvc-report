@@ -16,6 +16,7 @@
     "pig_roll": "Game pig: rolls dice in one hand.",
     "pig_save": "Game pig: saves the tirn in the game",
     "debug_cardplay": "debugs cardplay.",
+    "get_session": "se all variables saved in the session",
     "delete_session": "Clean the session.",
     "card_play": "Initiate the session för cardplay.",
     "one_card": "shows one card, a ranndom card from the paly.",
@@ -38,7 +39,7 @@
     "bankBet_card21": "Shuffles desk, bank does bet and gives first card to the player, change session",
     "player_bet21": "Take input, define palyers bet, send play to the next step",
     "player_get_card21": "Player get the next card",
-    "play21_bank_card": "The bank get card",
+    "bank_get_cards21": "The bank get card",
     "card_to_player_card21": "Fa kort från bank in cardplay 21",
     "followplay21": "Start next round"
 }

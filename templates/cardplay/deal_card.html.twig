@@ -6,6 +6,7 @@
 
     <header class="headerMe">
         <h2>Kort delas ut till {{ numberPlayers }} spelare!</h2>
+        <h3>Sidan fungerar oberoende av session</h3>
     </header>
 
     <dev class="players">
@@ -27,7 +28,7 @@
     <a href="{{ path('deal_cards', {player: 4, cards: 5}) }}">5 kort till 4 spelare</a>
     kort.
 </p>
-    <p><a href="{{ path('shufle_card')}}">Shuffle kortspel</a></p>
+    <p><a href="{{ path('shuffle_card')}}">Shuffle kortspel</a></p>
 
     <p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
 
