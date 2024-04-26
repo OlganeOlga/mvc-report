@@ -194,17 +194,20 @@ main.cort p {
     grid-column: span 2;
 }
 
-ul.desk {
+/* ul.desk {
     background-color: green;
     justify-content: center;
     padding: 20px 0;
-}
+} */
 
 main.api ul.desk,
 main.game ul.desk,
 main.game ul.kort,
 main.game h4 {
     grid-column: span 2;
+    background: green;
+    padding: 30px;
+    justify-self: center;
 }
 
 main.api ul.desk,

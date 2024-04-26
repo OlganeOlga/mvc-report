@@ -14,10 +14,10 @@ class Bank extends Player
 
     /**
      * deal one card for each player in array
-     * @param {$desk} Desk object 
-     * @param {palyers} array of objekts Player
+     * @param Desk $desk
+     * @param array<Palyer, players> array of objekts Player
      */
-    public function dealCards(Desk $desk, array $players)
+    public function dealCards(Desk $desk, array $players): void
     {
         foreach($players as $player) {
             $card = $desk->takeCard();
@@ -25,7 +25,10 @@ class Bank extends Player
         }
     }
 
-    public function takeCards(Desk $desk)
+    /**
+     * @param Desk $desk
+     */
+    public function takeCards(Desk $desk): void
     {
         while($this->hand->getPoints() < 17) {
             $card = $desk->takeCard();

@@ -11,12 +11,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class Game21
 {
-    protected $desk, $player, $bank, $status;
+    protected $desk;
+    protected $player;
+    protected $bank;
+    protected $status;
 
     public function __construct(Desk $desk, Bank $bank, Player $player)
     {
-        if($desk->toArray() === [])
-        {
+        if($desk->toArray() === []) {
             $desk->freshDesk();
         }
 
@@ -50,7 +52,7 @@ class Game21
     public function firstState(Session $session): array
     {
         $this->set($session);
-        $this->toSession($session); 
+        $this->toSession($session);
         $data = [
             //'Status' => $this->status,
             'desk' => $this->desk->getDesk(),
@@ -113,7 +115,7 @@ class Game21
         $this->set($session);
         $this->bank->dealCards($this->desk, [$this->player]);
         $points = $this->player->points();
-        if($points > 21){
+        if($points > 21) {
             $this->status = "fat player";
         } elseif ($points == 21) {
             $this->status = "player wins";
@@ -144,7 +146,7 @@ class Game21
         $this->bank->takeCards($this->desk);
         $points = $this->bank->points();
         $this->status = "compare";
-        if($points > 21){
+        if($points > 21) {
             $this->status = "fat bank";
         } elseif ($points == 21) {
             $this->status = "bank wins";

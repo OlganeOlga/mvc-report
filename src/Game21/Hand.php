@@ -6,30 +6,39 @@ use App\Game21\CardGraphics;
 
 class Hand
 {
-    protected $cards;
-
-    protected $points;
+    protected array $cards;
+    protected int $points;
 
     public function __construct()
     {
         $this->cards = [];
-
         $this->points = 0;
-
-        $this->hand = [$this->cards, $this->points];
+        //$this->hand = [$this->cards, $this->points];
     }
 
-    public function addCard(CardGraphics $card)
+    /**
+     *
+     * @param CardGraphics $card
+     */
+    public function addCard(CardGraphics $card): void
     {
         $this->cards[] = $card;
         $this->points += $card->getValue();
     }
 
+    /**
+     *
+     * @return int points
+     */
     public function getPoints(): int
     {
         return $this->points;
     }
 
+    /**
+     *
+     * @return array<array<int>>
+     */
     public function toArray(): array
     {
         $cardArray = [];
@@ -44,6 +53,10 @@ class Hand
         return $array;
     }
 
+    /**
+     *
+     * @return array<array<string>>
+     */
     public function toString(): array
     {
         $cardArr = [];
@@ -55,6 +68,10 @@ class Hand
         return $cardArr;
     }
 
+    /**
+     *
+     * @return array<array<int>
+     */
     public function getHand(): array
     {
         $cardArr = [];
@@ -66,12 +83,15 @@ class Hand
         return $cardArr;
     }
 
-
+    /**
+     * @param array<array<int>>
+     * @return Hand $hand
+     */
     public function set(array $handArr): self
     {
         $this->cards = [];
         foreach ($handArr['cards'] as $c) {
-            $card = new CardGraphics;
+            $card = new CardGraphics();
             $this->cards[] = $card->set($c[0], $c[1]);
         }
         $this->points = $handArr['points'];

@@ -8,6 +8,7 @@ use App\Dice\HandDice;
 use Exception;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -45,7 +46,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 12 dices!";
         if ($num > 12) {
-            throw $exception;
+            throw new BadRequestHttpException($exception);
         }
 
         $diceRoll = [];
@@ -68,7 +69,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 99 dices!";
         if ($num > 99) {
-            throw $exception;
+            throw throw new BadRequestHttpException($exception);
         }
 
         $hand = new HandDice();

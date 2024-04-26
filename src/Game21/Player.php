@@ -14,17 +14,25 @@ class Player
 
     public function __construct()
     {
-        $this->hand = new Hand;
+        $this->hand = new Hand();
         $this->bet = 0;
         $this->profit = 0;
         $this->status = "start";// status chenges in the game
     }
 
+    /**
+     *
+     * @param CardGraphics $card
+     */
     public function getCard(CardGraphics $card): void
     {
         $this->hand->addCard($card);
     }
 
+    /**
+     *
+     * @return array<array<array<int>, int, int>>
+     */
     public function toArray(): array
     {
         $array = [
@@ -36,26 +44,45 @@ class Player
         return $array;
     }
 
-    public function set(array $arr): void
+    /**
+     *
+     * @param array{hand: array<int, array{0: int, 1: int}>, bet: int, set: int} $arr
+     */
+    public function set(?array $arr): void
     {
-        $hand = new Hand;
-        
-        $this->hand = $arr['hand'] !== null ? $hand->set($arr['hand']) : new Hand();
-        $this->bet = $arr['bet'];
-        $this->profit = $arr['profit'];
-        //$this->status = $arr['status'];
+        $hand = new Hand();
+
+        $hand = new Hand();
+        if (isset($arr['hand']) !== null) {
+            $hand->set($arr['hand']);
+        }
+        $this->hand = $hand;
+        $this->bet = $arr['bet'] ?? 0;
+        $this->profit = $arr['profit'] ?? 0;
     }
 
+    /**
+     *
+     * @return int points
+     */
     public function points(): int
     {
         return $this->hand->getPoints();
     }
 
+    /**
+     *
+     * @param int bet
+     */
     public function doBet(int $bet): void
     {
         $this->bet = $bet;
     }
 
+    /**
+     *
+     * @return int bet
+     */
     public function getBet(): int
     {
         return $this->bet;
@@ -71,6 +98,10 @@ class Player
     //     $this->profit -= $this->bet;
     // }
 
+    /**
+     *
+     * @return array<array<array<int>, int, int>>
+     */
     public function getHand(): array
     {
         return $this->hand->toString();

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -27,53 +28,56 @@ class Game21PDFController extends AbstractController
     public function viewPdf(KernelInterface $kernel): Response
     {
         $pdfPath = $kernel->getProjectDir() . '/public/pdf/Flodesschema.drawio.pdf';
+        $pdfContent = file_get_contents($pdfPath);
 
-        if (file_exists($pdfPath)) {
-            $response = new Response(file_get_contents($pdfPath));
-
+        if ($pdfContent !== false) {
+            $response = new Response($pdfContent);
+        
             // Set the Content-Type header to indicate it's a PDF file
             $response->headers->set('Content-Type', 'application/pdf');
             $response->headers->set('Content-Disposition', 'inline; filename="Flodesschema.drawio.pdf"');
-
+        
             return $response;
-        } 
-        
-        throw $this->createNotFoundException('The PDF file could not be found.');
-        
+        } else {
+            throw $this->createNotFoundException('The PDF file could not be found.');
+        }
     }
 
     #[Route("/game/Classes", name: "docClass")] //Show classses for game 21
     public function viewClass(KernelInterface $kernel): Response
     {
         $pdfPath = $kernel->getProjectDir() . '/public/pdf/classes.pdf';
+        $pdfContent = file_get_contents($pdfPath);
 
-        if (file_exists($pdfPath)) {
-            $response = new Response(file_get_contents($pdfPath));
-
+        if ($pdfContent !== false) {
+            $response = new Response($pdfContent);
+        
             // Set the Content-Type header to indicate it's a PDF file
             $response->headers->set('Content-Type', 'application/pdf');
-            $response->headers->set('Content-Disposition', 'inline; filename="classes.pdf"');
-
+            $response->headers->set('Content-Disposition', 'inline; filename="Flodesschema.drawio.pdf"');
+        
             return $response;
+        } else {
+            throw $this->createNotFoundException('The PDF file could not be found.');
         }
-        throw $this->createNotFoundException('The PDF file could not be found.');
     }
 
     #[Route("/game/pseudocode", name: "docPseudo")] //show pseudocode for Game21
     public function viewPseudo(KernelInterface $kernel): Response
     {
         $pdfPath = $kernel->getProjectDir() . '/public/pdf/pseudocode.pdf';
+        $pdfContent = file_get_contents($pdfPath);
 
-        if (file_exists($pdfPath)) {
-            $response = new Response(file_get_contents($pdfPath));
-
+        if ($pdfContent !== false) {
+            $response = new Response($pdfContent);
+        
             // Set the Content-Type header to indicate it's a PDF file
             $response->headers->set('Content-Type', 'application/pdf');
-            $response->headers->set('Content-Disposition', 'inline; filename="pseudocode.pdf"');
-
+            $response->headers->set('Content-Disposition', 'inline; filename="Flodesschema.drawio.pdf"');
+        
             return $response;
+        } else {
+            throw $this->createNotFoundException('The PDF file could not be found.');
         }
-        throw $this->createNotFoundException('The PDF file could not be found.');
     }
-
- }
+}

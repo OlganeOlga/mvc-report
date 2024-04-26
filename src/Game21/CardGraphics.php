@@ -4,7 +4,7 @@ namespace App\Game21;
 
 class CardGraphics extends Card
 {
-    public $facerepresentation = [
+    public array $facerepresentation = [
         [1, 'Ess'],
         [2, '2'],
         [3, '3'],
@@ -20,7 +20,7 @@ class CardGraphics extends Card
         [13, 'Kung']
     ];
 
-    public $suterepresentation = [
+    public array $suterepresentation = [
         ['♠︎', 'black'],
         ['♥︎', 'red'],
         ['♦︎', 'red'],
@@ -32,12 +32,19 @@ class CardGraphics extends Card
         parent::__construct();
     }
 
+    /**
+     * @return string
+     */
     public function toString(): string
     {
         return $this->facerepresentation[$this->face][1] . " " .
         $this->suterepresentation[$this->sute][0];
     }
 
+    /**
+     *
+     * @return string
+     */
     public function getCollor(): string
     {
         return $this->suterepresentation[$this->sute][1];

@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
+use Exception;
 
 class MyJsonController extends AbstractController
 {
@@ -28,7 +29,6 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('/api', name: "api")]
-    #[CustomAnnotation("This route shows all routes with path and their functions.")]
     public function apiIndex(KernelInterface $kernel)
     {
         $routes = $this->router->getRouteCollection()->all();
@@ -56,7 +56,6 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('/api/quote', name: "api.quote")]
-    #[CustomAnnotation("Give a randome quote from 5 existing.")]
     public function geQuote(KernelInterface $kernel): Response
     {
         $jsonFile = $kernel->getProjectDir() . '/public/json/quote.json';
@@ -75,11 +74,10 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('/api/desk', name: "api_desk", methods:['GET'])]
-    #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDesk(
         SessionInterface $session
     ): Response {
-        $data;
+        $data = [];
 
         try {
             $data = $session->get('desk');
@@ -102,11 +100,10 @@ class MyJsonController extends AbstractController
 
 
     #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
-    #[CustomAnnotation("Suffle card play.")]
     public function apiShuffleDesk(
         SessionInterface $session
     ): Response {
-        $data;
+        $data = [];
 
         try {
             $data = $session->get('desk');
@@ -130,11 +127,10 @@ class MyJsonController extends AbstractController
 
 
     #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
-    #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDrawDesk(
         SessionInterface $session
     ): Response {
-        $data;
+        $data = [];
 
         try {
             $data = $session->get('desk');
@@ -166,7 +162,6 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
-    #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDrawFleraDesk(
         SessionInterface $session,
         Request $request
@@ -208,7 +203,6 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
-    #[CustomAnnotation("Shows all cards from card play.")]
     public function apiDealCard(
         SessionInterface $session,
         int $play,
@@ -262,8 +256,7 @@ class MyJsonController extends AbstractController
     #[Route('/session', name: 'get_session')] // get all frome session
     public function apiGetSession(
         SessionInterface $session
-    )
-    {
+    ) {
         $data = [];
 
         foreach ($session->all() as $key => $value) {

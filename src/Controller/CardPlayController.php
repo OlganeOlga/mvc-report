@@ -8,7 +8,6 @@ use App\Card\CardGraphics;
 use App\Card\Desk;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-//use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,7 +17,6 @@ use Exception;
 class CardPlayController extends AbstractController
 {
     #[Route("/session", name: "debug_cardplay")]
-    #[CustomAnnotation("Shows all content of the session.")]
     public function debug(
         SessionInterface $session
     ): Response {
@@ -31,7 +29,6 @@ class CardPlayController extends AbstractController
     }
 
     #[Route("/session/delete", name: "delete_session")]
-    #[CustomAnnotation("Shows all paly that is not in hands.")]
     public function delete(
         SessionInterface $session
     ): Response {
@@ -46,19 +43,18 @@ class CardPlayController extends AbstractController
     }
 
     #[Route("/card", name: "card_play")]
-    #[CustomAnnotation("Shows all cards that is not in hands.")]
     public function home(
         SessionInterface $session
     ): Response {
         $desk = new Desk();
         $data = $desk->getDesk();
         $session->set('desk', $data);
-        $session->set('players', []);
+        //$session->set('players', []);
+        $session->set('cards', []);
         return $this->render('cardplay/home.html.twig');
     }
 
     #[Route("/card/desk/test/card", name: "one_card")]
-    #[CustomAnnotation("Shows one card.")]
     public function testCard(): Response
     {
         $oneCard = new CardGraphics();
@@ -73,7 +69,6 @@ class CardPlayController extends AbstractController
     }
 
     #[Route("/card/desk", name: "desk_of_cards")]
-    #[CustomAnnotation("Shows all paly that is not in hands.")]
     public function desk(
         SessionInterface $session
     ): Response {
@@ -81,22 +76,18 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/tests/desk.html.twig', ['data' => $desk]);
     }
 
-    #[Route("card/deck", name: "shuffle_card")]
-    #[CustomAnnotation("Shows all paly that is not in hands.")]
+    #[Route("/card/deck/shuffle", name: "shuffle_card")]
     public function shufle(
         SessionInterface $session
     ): Response {
-        $desk = $session->get('desk');
-
-        if (count($desk) < 52) {
-            $newDesk = new Desk();
-            $desk = $newDesk->getDesk();
-            $session->set('desk', $desk);
-        }
+        $newDesk = new Desk();
+        $desk = $newDesk->getDesk();
+        $session->set('desk', $desk);
 
         shuffle($desk);
         $session->set('desk', $desk);
-        $session->set('players', []);
+        //$session->set('players', []);
+        $session->set('cards', []);
         return $this->render('cardplay/tests/desk.html.twig', ['data' => $desk]);
     }
 
@@ -105,19 +96,25 @@ class CardPlayController extends AbstractController
         SessionInterface $session
     ): Response {
         $desk = $session->get('desk');
+        $cards = $session->get('cards');
+        //$players = $session->get('players');
 
         $element = array_rand($desk);
-        $card = $desk[$element];
+        $cards[] = $desk[$element];
         unset($desk[$element]);
         $number = count($desk);
         $data = [
-            'card' => $card,
-            'number' => $number,
+            'palyers' => $players,
+            'cards' => $cards,
+            'desk' => $desk,
+            'number' => $number
         ];
 
         $session->set('desk', $desk);
+        //$session->set('players', $players);
+        $session->set('cards', $cards);
 
-        return $this->render('cardplay/tests/draw.html.twig', $data);
+        return $this->render('cardplay/draw.html.twig', $data);
     }
 
     #[Route('/card/desk/draw/{num<\d+>}', name: 'draw_several_card')]
@@ -127,6 +124,7 @@ class CardPlayController extends AbstractController
     ): Response {
         $exception = "Can not take more card than int the card desk!";
         $desk = $session->get('desk');
+        $cards = $session->get('cards');
         $hand = [];
 
         if ($num < 1 || $num > count($desk)) {
@@ -136,6 +134,7 @@ class CardPlayController extends AbstractController
         for($i = 0; $i < $num; $i++) {
             $element = array_rand($desk);
             $card = $desk[$element];
+            $cards[] = $card;
             $hand[] = $card;
             unset($desk[$element]);
         }
@@ -148,25 +147,29 @@ class CardPlayController extends AbstractController
         ];
 
         $session->set('desk', $desk);
+        $session->set('cards', $cards);
         return $this->render('cardplay/draw_many.html.twig', $data);
     }
 
 
-    #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
+    #[Route('card/deck/deal/{nPlayers}/{nCards}', name: 'deal_cards')]
     public function dealCards(
-        int $player,
-        int $cards,
+        int $nPlayers,
+        int $nCards,
         SessionInterface $session
     ): Response {
-        $desk = $session->get('desk');
-        // var_dump($desk[0]);
-        $players = [];
-
-        for($p = 0; $p < $player; $p++) {
+        // $desk = $session->get('desk');
+        // // var_dump($desk);
+        // $cards = $session->get('cards');
+        // $players = [];
+        $newDesk = new Desk();
+        $desk = $newDesk->getDesk();
+        for($p = 0; $p < $nPlayers; $p++) {
             $one = [];
-            for($i = 0; $i < $cards; $i++) {
+            for($i = 0; $i < $nCards; $i++) {
                 $element = array_rand($desk);
                 $card = $desk[$element];
+                //$cards[] = $card;
                 $one[] = $card;
                 unset($desk[$element]);
             }
@@ -176,12 +179,14 @@ class CardPlayController extends AbstractController
         $number = count($desk);
         $data = [
             'PlayersHands' => $players,
-            'numberPlayers' => $player,
+            'numberPlayers' => $nPlayers,
             'cardsInDesk' => $number,
+            'desk' => $desk
         ];
 
-        $session->set('desk', $desk);
-        $session->set('players', $players);
+        // $session->set('desk', $desk);
+        // $session->set('players', $players);
+        // $session->set('cards', $cards);
         return $this->render('cardplay/deal_card.html.twig', $data);
     }
 }
