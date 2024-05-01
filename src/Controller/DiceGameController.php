@@ -45,7 +45,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 12 dices!";
         if ($num > 12) {
-            throw new \InvalidArgumentException($exception);
+            throw new InvalidArgumentException($exception);
         }
 
         $diceRoll = [];
@@ -68,7 +68,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 99 dices!";
         if ($num > 99) {
-            throw new \InvalidArgumentException($exception);
+            throw new InvalidArgumentException($exception);
         }
 
         $hand = new HandDice();

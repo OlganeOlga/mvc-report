@@ -4,20 +4,32 @@ namespace App\Game21;
 
 use App\Game21\CardGraphics;
 
+/**
+ * Represents the deck of cards used in the game.
+ * 
+ * This class manages a deck of cards, which can be freshly initialized, shuffled,
+ * and manipulated. It utilizes instances of the CardGraphics class to represent each card.
+ * The deck can be represented as an array of CardGraphics objects.
+ */
 class Desk
 {
-    /** @var array<CardGraphics> */
+    /** 
+     * @var array<CardGraphics> An array containing CardGraphics objects representing the deck of cards.
+    */
     protected array $play;
 
+    /**
+     * Constructor method that initializes an empty deck.
+     */
     public function __construct()
     {
         $this->play = [];
     }
 
     /**
-     * FreshDesk method description.
+     * Initializes a fresh deck of 52 cards, with each card represented by a CardGraphics object.
      *
-     * @return array<CardGraphics> representation of whal (52) desk of cards in the play
+     * @return array<CardGraphics> An array containing CardGraphics objects representing the freshly initialized deck.
      */
     public function freshDesk(): array
     {
@@ -32,9 +44,9 @@ class Desk
     }
 
     /**
-     * ToArray method description.
+     * Returns an array representation of all cards in the deck.
      *
-     * @return array<int[]> array of integer representation all cards in the desk.
+     * @return array<int[]> An array of integer arrays representing the values of all cards in the deck.
      */
     public function toArray(): array
     {
@@ -45,10 +57,10 @@ class Desk
         return $values;
     }
 
-    /**
-     * Set method description.
+     /**
+     * Sets the contents of the deck based on the provided array representation of card values.
      *
-     * @param array<int[]> $arr An array of integer arrays representing card values.
+     * @param array<int[]> $arr An array of integer arrays representing the values of the cards.
      * @return void
      */
     public function set(
@@ -66,9 +78,9 @@ class Desk
     }
 
     /**
-     * GetDesk method description.
+     * Returns an array representation of all cards in the deck, with their string representations and colors.
      *
-     * @return array<string[]> array of string representation of all cards in the desk.
+     * @return array<string[]> An array of string arrays containing the string representation and color of each card.
      */
     public function getDesk(): array
     {
@@ -82,8 +94,7 @@ class Desk
     }
     
     /**
-     * ShuffleDesk method description: shuffle all cards in the array
-     * $this->play
+     * Shuffles all cards in the deck.
      *
      * @return void
      */
@@ -93,9 +104,9 @@ class Desk
     }
 
     /**
-     * TakeCard method description.
+     * Removes and returns a random card from the deck.
      *
-     * @return CardGraphics.
+     * @return CardGraphics A CardGraphics object representing the removed card.
      */
     public function takeCard(): CardGraphics
     {

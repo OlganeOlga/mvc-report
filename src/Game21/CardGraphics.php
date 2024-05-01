@@ -2,9 +2,14 @@
 
 namespace App\Game21;
 
+/**
+ * Represents grafic card child class to Card
+ */
 class CardGraphics extends Card
 {
-    /** @var mixed[] */
+    /**
+     *  @var mixed[] $facerepresentation represent fases and fases values
+     */
     public array $facerepresentation = [
         [1, 'Ess'],
         [2, '2'],
@@ -21,7 +26,9 @@ class CardGraphics extends Card
         [13, 'Kung']
     ];
 
-    /** @var array<string[]> */
+    /** 
+     * @var array<string[]> $suterepresentation represents sutes and their colors
+     */
     public array $suterepresentation = [
         ['♠︎', 'black'],
         ['♥︎', 'red'],
@@ -29,15 +36,18 @@ class CardGraphics extends Card
         ['♣︎', 'black'],
     ];
 
+    /**
+     * Constructor method that calls the parent constructor.
+     */
     public function __construct()
     {
         parent::__construct();
     }
 
     /**
-     * ToString method description.
+     * ToString method returns a string representation of the card.
      *
-     * @return string string representation of the card
+     * @return string A string representation of the card.
      */
     public function toString(): string
     {
@@ -48,10 +58,10 @@ class CardGraphics extends Card
         $this->suterepresentation[$this->sute][0];
     }
 
-    /**
-     * GetCollor method description.
+     /**
+     * GetCollor method returns the color of the suit.
      *
-     * @return string string representation of the collor
+     * @return string The color of the suit.
      */
     public function getCollor(): string
     {

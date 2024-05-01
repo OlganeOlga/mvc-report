@@ -3,30 +3,40 @@
 namespace App\Game21;
 
 /**
- * Class Card represent a card frome France-English cardplay
+ * Class Card represent a playing card in France-English card game
  */
 class Card
 {
+    /**
+     * @var int|null Represents the face value of the card.
+     */
     protected ?int $face = null;
+
+    /**
+     * @var nt|null Represents the sute of the card.
+     */
     protected ?int $sute = null;
 
-    /** @var int[] */
+    /** 
+     * @var int|null Represents the face value of the card.
+     */
     protected array $card;
 
+    /**
+     * Constructor method
+     */
     public function __construct()
     {
-        // $this-> face = null;
-
-        // $this->sute = null;
-
+        // Initialize the card array with default face and suit values
         $this->card = [$this->face, $this->sute];
     }
 
     /**
-     * GetString method description.
+     * Sets the face and suit values of the card.
      *
-     * @return Card object of type Card
-     * given card with integers.
+     * @param int $face The face value of the card.
+     * @param int $suit The suit value of the card.
+     * @return self Returns the Card object.
      */
     public function set(int $fase, int $sute): self
     {
@@ -36,10 +46,9 @@ class Card
     }
 
     /**
-     * Chose method description.
+     * Randomly chooses a face and suit value for the card.
      *
-     * @return array<int> Array containing representation of
-     * random card with integers.
+     * @return array<int> An array containing the chosen face and suit values.
      */
     public function chose(): array
     {
@@ -50,9 +59,9 @@ class Card
     }
 
     /**
-     * GetString method description.
+     * Returns the card as an array containing its face and suit values.
      *
-     * @return array<int> Array containing representation of the card with integers.
+     * @return array<int> An array containing the face and suit values of the card.
      */
     public function toArray(): array
     {
@@ -60,9 +69,9 @@ class Card
     }
 
     /**
-     * GetAsString method description.
+     * Returns a string representation of the card.
      *
-     * @return string representation of card as string.
+     * @return string A string representation of the card.
      */
     public function getAsString(): string
     {
@@ -71,9 +80,9 @@ class Card
     }
 
     /**
-     * GetValue method description.
+     * Returns the value of the card.
      *
-     * @return int|null value of the cars or null if card is not set
+     * @return int|null The value of the card, or null if the card is not set.
      */
     public function getValue(): ?int
     {

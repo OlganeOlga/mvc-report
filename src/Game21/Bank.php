@@ -5,8 +5,16 @@ namespace App\Game21;
 use App\Game21\CardGraphics;
 use App\Game21\Hand;
 
+/**
+ * Class repreents bank in the Play21
+ * 
+ * Chaild class to Player
+ */
 class Bank extends Player
 {
+    /**
+     * Composer is parent composer
+     */
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +35,7 @@ class Bank extends Player
     }
 
     /**
-     * TakeCards method description.
+     * Take a random cards from the desk and add to the Bank hand.
      *
      * @param Desk    $desk    Desk object from which cards are dealt.
      * @return void.

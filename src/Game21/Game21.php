@@ -3,19 +3,46 @@
 namespace App\Game21;
 
 use App\Game21\CardGraphics;
-//use App\Game21\Hand;
 use App\Game21\Desk;
 use App\Game21\Player;
 use App\Game21\Bank;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class Game21 represents the game logic for a simplified version of the card game 21.
+ * 
+ * The game involves a desk of cards, a player, and a bank. The game progresses through various states
+ * such as initial setup, dealing cards, player actions, and bank actions.
+ */
 class Game21
 {
+    /**
+     * @var Desk The desk of cards used in the game.
+     */
     protected Desk $desk;
+
+    /**
+     * @var Player The player participating in the game.
+     */
     protected Player $player;
+
+    /**
+     * @var Band The Band participating in the game.
+     */
     protected Bank $bank;
+
+    /**
+     * @var string represents state of the game.
+     */
     protected string $status;
 
+    /**
+     * Constructor method that initializes the game with default objects and sets the initial game status.
+     *
+     * @param Desk $desk The desk of cards used in the game.
+     * @param Bank $bank The bank or dealer in the game.
+     * @param Player $player The player participating in the game.
+     */
     public function __construct(Desk $desk = new Desk, Bank $bank = new Bank, Player $player = new Player)
     {
         $this->desk = $desk;
@@ -26,8 +53,9 @@ class Game21
     }
 
     /**
-     * ToSession method saves the game state in the SessionInterfase
-     * 
+     * Saves the current game state in the session interface.
+     *
+     * @param SessionInterface $session The session interface used to store game state.
      * @return void
      */
     public function toSession(SessionInterface $session): void
@@ -38,9 +66,9 @@ class Game21
     }
 
     /**
-     * Set method change properties of this according the values
-     * get fromSessionInterfase $session
-     * 
+     * Sets the game state based on the data retrieved from the session interface.
+     *
+     * @param SessionInterface $session The session interface used to retrieve game state data.
      * @return void
      */
     public function set(SessionInterface $session): void
@@ -51,11 +79,10 @@ class Game21
     }
 
     /**
-     * function start game: shows desk, shows the desk, changes status of play
-     * change session
+     * Initiates the game by setting up the initial state and returning the desk of cards.
      *
-     * @param SessionInterface $session
-     * @return array<string, mixed> Key-value array with key 'desk' and an array value.
+     * @param SessionInterface $session The session interface used to store and retrieve game state.
+     * @return array<string, mixed> An array containing the desk of cards.
      */
     public function firstState(SessionInterface $session): array     
     {
@@ -69,10 +96,10 @@ class Game21
     }
 
     /**
-     * function follows game: Shuffles desk, bank does bet and gives first card to the player
-     * change session
-     * @param SessionInterface $session
-     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'playerCards'
+     * Shuffles the desk of cards and initiates the first round of the game by making a bet and dealing cards.
+     *
+     * @param SessionInterface $session The session interface used to store and retrieve game state.
+     * @return array<string, mixed> An array containing the desk of cards, bank's bet, and player's cards.
      */
     public function secondState(SessionInterface $session): array
     {
@@ -82,7 +109,6 @@ class Game21
         $this->bank->dealCards($this->desk, [$this->player]);
         $this->toSession($session);
         $data = [
-            //'Status' => $this->status,
             'desk' => $this->desk->getDesk(),
             'bankBet' => $this->bank->getBet(),
             'playerCards' => $this->player->getHand()
@@ -91,11 +117,11 @@ class Game21
     }
 
     /**
-     * function follows game: take players bet
-     * change session
-     * @param SessionInterface $session
-     * @param int $bet represents bet of the player
-     * @return array<string, mixed> key-value array with keys 'desk', 'playerPoints', 'playerCards'
+     * Processes the player's bet and updates the game state accordingly.
+     *
+     * @param SessionInterface $session The session interface used to store and retrieve game state.
+     * @param int|null $bet The bet amount placed by the player.
+     * @return array<string, mixed> An array containing the player's cards and points.
      */
     public function thirdState(SessionInterface $session, ?int $bet): array
     {
@@ -103,7 +129,6 @@ class Game21
         $this->player->doBet($bet);
         $this->toSession($session);
         $data = [
-            //'Status' => $this->status,
             'playerCards' => $this->player->getHand(),
             'PlayerPoints' => $this->player->points(),
         ];
@@ -111,13 +136,10 @@ class Game21
     }
 
     /**
-     * function follows game: gives player one card,
-     * changes game status if players points >= 21;
-     *  changes $sesion
-     * change session
-     * @param SessionInterface $session
-     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'bankCards',
-     * 'playerCards', 'playerBet', 'bankPoints'
+     * Deals an additional card to the player and determines the game status based on the player's points.
+     *
+     * @param SessionInterface $session The session interface used to store and retrieve game state.
+     * @return array<string, mixed> An array containing the game status, player's cards, bank's cards, and points.
      */
     public function playerNewCard(SessionInterface $session): array
     {
@@ -142,13 +164,10 @@ class Game21
     }
 
     /**
-     * function follows game: gives bank cards (while bank points < 17),
-     * changes game status if banks points >= 21;
-     * changes $sesion
-     * change session
-     * @param SessionInterface $session
-     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'playerCards'
-     * 'bankCards', 'playerBet', 'playerPoints', 'bankPoints'
+     * Initiates the bank's turn by dealing cards until the bank's points reach a certain threshold.
+     *
+     * @param SessionInterface $session The session interface used to store and retrieve game state.
+     * @return array<string, mixed> An array containing the game status, bank's bet, player's cards, bank's cards, and points.
      */
     public function bankGetCards(SessionInterface $session): array
     {
