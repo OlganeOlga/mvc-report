@@ -4,7 +4,8 @@ namespace App\Dice;
 
 class GraphicDice extends Dice
 {
-    private $representation = [
+    /** @var string[] */
+    private array $representation = [
         '⚀',
         '⚁',
         '⚂',

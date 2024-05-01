@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Card\Desk;
 
-//use App\Api\CustomAnnotation;
 use ReflectionClass;
 use ReflectionMethod;
+use Exception;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -20,7 +20,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 class MyJsonController extends AbstractController
 {
-    public $router;
+    public RouterInterface $router;
 
     public function __construct(RouterInterface $router)
     {
@@ -28,7 +28,7 @@ class MyJsonController extends AbstractController
     }
 
     #[Route('/api', name: "api")]
-    public function apiIndex(KernelInterface $kernel)
+    public function apiIndex(KernelInterface $kernel): Response
     {
         $routes = $this->router->getRouteCollection()->all();
         $jsonFile = $kernel->getProjectDir() . '/public/json/routerannotation.json';
@@ -76,7 +76,7 @@ class MyJsonController extends AbstractController
     public function apiDesk(
         SessionInterface $session
     ): Response {
-        $data;
+        $data = [];
 
         try {
             $data = $session->get('desk');
@@ -99,9 +99,8 @@ class MyJsonController extends AbstractController
 
 
     #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
-    public function apiShuffleDesk(
-        SessionInterface $session
-    ): Response {
+    public function apiShuffleDesk( ): Response
+    {
         $desk = new Desk();
         $desk->getDesk();
         $desk->shuffleDesk();
@@ -119,7 +118,7 @@ class MyJsonController extends AbstractController
     public function apiDrawDesk(
         SessionInterface $session
     ): Response {
-        $data;
+        $data = [];
 
         try {
             $data = $session->get('desk');
@@ -197,7 +196,7 @@ class MyJsonController extends AbstractController
         int $play,
         int $cards
     ): Response {
-        $data;
+        $data = [];
         $players = [];
         $response = new Response();
         // $numCard = $request->request->get('cards');
@@ -245,7 +244,7 @@ class MyJsonController extends AbstractController
     #[Route('/session', name: 'get_session')] // get all frome session
     public function apiGetSession(
         SessionInterface $session
-    )
+    ): JsonResponse
     {
         $data = [];
 

@@ -7,33 +7,43 @@ use App\Game21\CardGraphics;
 use App\Game21\Desk;
 use App\Game21\Player;
 use App\Game21\Bank;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class Game21
 {
-    protected $desk, $player, $bank, $status;
+    protected Desk $desk;
+    protected Player $player;
+    protected Bank $bank;
+    protected string $status;
 
-    public function __construct(Desk $desk, Bank $bank, Player $player)
+    public function __construct(Desk $desk = new Desk, Bank $bank = new Bank, Player $player = new Player)
     {
-        if($desk->toArray() === [])
-        {
-            $desk->freshDesk();
-        }
-
         $this->desk = $desk;
+        $this->desk->freshDesk();
         $this->bank = $bank;
         $this->player = $player;
         $this->status = "start";
     }
 
-    public function toSession(Session $session)
+    /**
+     * ToSession method saves the game state in the SessionInterfase
+     * 
+     * @return void
+     */
+    public function toSession(SessionInterface $session): void
     {
         $session->set('desk', $this->desk->toArray());
         $session->set('bank', $this->bank->toArray());
         $session->set('player', $this->player->toArray());
     }
 
-    public function set(Session $session)
+    /**
+     * Set method change properties of this according the values
+     * get fromSessionInterfase $session
+     * 
+     * @return void
+     */
+    public function set(SessionInterface $session): void
     {
         $this->desk->set($session->get('desk'));
         $this->bank->set($session->get('bank'));
@@ -41,13 +51,13 @@ class Game21
     }
 
     /**
-     * //FROM PLAY
      * function start game: shows desk, shows the desk, changes status of play
      * change session
-     * @param {session} Session
-     * @return {data}: array
+     *
+     * @param SessionInterface $session
+     * @return array<string, mixed> Key-value array with key 'desk' and an array value.
      */
-    public function firstState(Session $session): array
+    public function firstState(SessionInterface $session): array     
     {
         $this->set($session);
         $this->toSession($session); 
@@ -61,10 +71,10 @@ class Game21
     /**
      * function follows game: Shuffles desk, bank does bet and gives first card to the player
      * change session
-     * @param {session} Session
-     * @return {data}: array
+     * @param SessionInterface $session
+     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'playerCards'
      */
-    public function secondState(Session $session): array
+    public function secondState(SessionInterface $session): array
     {
         $this->set($session);
         $this->desk->shuffleDesk();
@@ -83,11 +93,11 @@ class Game21
     /**
      * function follows game: take players bet
      * change session
-     * @param {session} Session
-     * @param {bet} integer: bet of the player
-     * @return {data}: array
+     * @param SessionInterface $session
+     * @param int $bet represents bet of the player
+     * @return array<string, mixed> key-value array with keys 'desk', 'playerPoints', 'playerCards'
      */
-    public function thirdState(Session $session, int $bet): array
+    public function thirdState(SessionInterface $session, ?int $bet): array
     {
         $this->set($session);
         $this->player->doBet($bet);
@@ -105,10 +115,11 @@ class Game21
      * changes game status if players points >= 21;
      *  changes $sesion
      * change session
-     * @param {session} Session
-     * @return {data}: array
+     * @param SessionInterface $session
+     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'bankCards',
+     * 'playerCards', 'playerBet', 'bankPoints'
      */
-    public function playerNewCard(Session $session): array
+    public function playerNewCard(SessionInterface $session): array
     {
         $this->set($session);
         $this->bank->dealCards($this->desk, [$this->player]);
@@ -135,10 +146,11 @@ class Game21
      * changes game status if banks points >= 21;
      * changes $sesion
      * change session
-     * @param {session} Session
-     * @return {data}: array
+     * @param SessionInterface $session
+     * @return array<string, mixed> key-value array with keys 'desk', 'bankBet', 'playerCards'
+     * 'bankCards', 'playerBet', 'playerPoints', 'bankPoints'
      */
-    public function bankGetCards(Session $session): array
+    public function bankGetCards(SessionInterface $session): array
     {
         $this->set($session);
         $this->bank->takeCards($this->desk);

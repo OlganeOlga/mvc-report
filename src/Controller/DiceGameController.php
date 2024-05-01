@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Dice\Dice;
 use App\Dice\GraphicDice;
 use App\Dice\HandDice;
-use Exception;
+use InvalidArgumentException;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +45,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 12 dices!";
         if ($num > 12) {
-            throw $exception;
+            throw new \InvalidArgumentException($exception);
         }
 
         $diceRoll = [];
@@ -68,7 +68,7 @@ class DiceGameController extends AbstractController
     {
         $exception = "Can not roll more than 99 dices!";
         if ($num > 99) {
-            throw $exception;
+            throw new \InvalidArgumentException($exception);
         }
 
         $hand = new HandDice();

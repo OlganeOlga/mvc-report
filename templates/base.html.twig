@@ -62,7 +62,6 @@
                                             var form = document.createElement("form");
                                             form.setAttribute("method", "post");
                                             form.setAttribute("action", "{{ path('api_desk_draw') }}");
-
                                             document.body.appendChild(form);
                                             form.submit();
                                         });
@@ -75,7 +74,7 @@
                                 <form class="linkForm" action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawManyForm" 
                                         method="post" onsubmit="updateCards()">
                                 
-                                    <input type="number" name="num_card" id="num_card_input" value="" min="1" max="51" 
+                                    <input type="number" name="num_card" id="num_card_input" value="1" min="1" max="51" 
                                     placeholder="välj antal" style="width: 100px">
                                     <input type="submit" value="Dra">
                                 </form>
@@ -96,10 +95,10 @@
                                 <form action="" id="dealForm" 
                                         method="post" onsubmit="updatePlay()">
                                     
-                                    <input type="number" name="num_players" id="players_input" value="" min="1" max="5" 
+                                    <input type="number" name="num_players" id="players_input" value="1" min="1" max="5" 
                                     placeholder="antal kort" style="width: 80px">
                         
-                                    <input type="number" name="num_card" id="cards_input" value="" min="1" max="10" 
+                                    <input type="number" name="num_card" id="cards_input" value="1" min="1" max="10" 
                                     placeholder="antal spelare" style="width: 80px">
                                     <input type="submit" value="Dela">
                                 </form>

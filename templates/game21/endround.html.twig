@@ -8,7 +8,7 @@
 
     {% if Status == "fat player" %}
         {{ include('endround_cards.html.twig') }}
-        <p>Du blev 'fet' med {{PlayerPoints}} poäng</p>
+        <p>Du blev 'tjock' med {{PlayerPoints}} poäng</p>
         <p>Du förlorar din insats {{playerBet}} peng till banken</p>
     {% elseif Status == "player wins" %}
         {{ include('endround_cards.html.twig') }}
@@ -16,7 +16,7 @@
         <p>Du vinner din insats {{playerBet}} peng från banken</p>   
     {% elseif Status == "fat bank" %}
         {{ include('endround_cards.html.twig') }}
-        <p>Bank blev 'fet' med {{BankPoints}} poäng</p>
+        <p>Bank blev 'tjock' med {{BankPoints}} poäng</p>
         <p>Du vinner din insats {{playerBet}} peng från banken</p>
     {% elseif Status == "bank wins" %}
         {{ include('endround_cards.html.twig') }}

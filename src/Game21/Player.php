@@ -7,59 +7,95 @@ use App\Game21\Hand;
 
 class Player
 {
-    protected $hand;
-    protected $bet;
-    protected $profit;
-    protected $status;
+    protected Hand $hand;
+    protected int $bet;
+    protected int $profit;
 
     public function __construct()
     {
         $this->hand = new Hand;
         $this->bet = 0;
         $this->profit = 0;
-        $this->status = "start";// status chenges in the game
     }
 
-    public function getCard(CardGraphics $card)
+    /**
+     * GetBet method description
+     *
+     * @return int.
+     */
+    public function getBet(): int
+    {
+        return $this->bet;
+    }
+
+     /**
+     * GetPoints method description
+     *
+     * @return int.
+     */
+    public function getProfit(): int
+    {
+        return $this->profit;
+    }
+
+     /**
+     * GetBet method description
+     * @param CardGraphics $card
+     * @return void.
+     */
+    public function getCard(CardGraphics $card): void
     {
         $this->hand->addCard($card);
     }
 
+    /**
+     * ToArray method description
+     *
+     * @return array<string, mixed>.
+     */
     public function toArray(): array
     {
-        $array;
-
         $array = [
-            'hand' => $this->hand !== null ? $this->hand->toArray() : null,
+            'hand' => $this->hand->toArray(),
             'bet' => $this->bet,
             'profit' => $this->profit,
-            //'status' => $this->status
         ];
         return $array;
     }
 
-    public function set(array $arr)
+    /**
+     * ToArray method description
+     *
+     * @param array<string, mixed> $arr represents variables to set hand
+     * @return void.
+     */
+    public function set(array $arr): void
     {
         $hand = new Hand;
         
         $this->hand = $arr['hand'] !== null ? $hand->set($arr['hand']) : new Hand();
         $this->bet = $arr['bet'];
         $this->profit = $arr['profit'];
-        //$this->status = $arr['status'];
     }
 
-    public function points() {
+    /**
+     * Points method description
+     *
+     * @return int points of the hand.
+     */
+    public function points(): int
+    {
         return $this->hand->getPoints();
     }
 
-    public function doBet(int $bet)
+    /**
+     * Points method description
+     * @param int $bet the bet of the player
+     * @return void.
+     */
+    public function doBet(int $bet): void
     {
         $this->bet = $bet;
-    }
-
-    public function getBet(): int
-    {
-        return $this->bet;
     }
 
     // public function win()
@@ -72,6 +108,11 @@ class Player
     //     $this->profit -= $this->bet;
     // }
 
+    /**
+     * getHand method description
+     *
+     * @return array<string[]> string representation of the hand.
+     */
     public function getHand(): array
     {
         return $this->hand->toString();

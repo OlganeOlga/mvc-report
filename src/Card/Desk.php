@@ -6,7 +6,8 @@ use App\Card\CardGraphics;
 
 class Desk
 {
-    private $play = [];
+    /** @var int[] */
+    private array $play = [];
 
     public function __construct()
     {
@@ -19,42 +20,44 @@ class Desk
         };
     }
 
+    /**
+     * GetDesk method description
+     * 
+     * @return array<string[]> Array contains strings: card reprresentation and color
+     */
     public function getDesk(): array
     {
         $values = [];
-        foreach ($this->play as $cort) {
-            $cortstring = $cort->getAsString();
-            $cortcolor = $cort->getCollor();
-            $values[] = [$cortstring, $cortcolor];
+        foreach ($this->play as $card) { 
+            $cardstring = $card->getAsString();
+            $cardcolor = $card->getCollor();
+            $values[] = [$cardstring, $cardcolor];  
         }
+        
         return $values;
     }
 
+    /**
+     * GetDeskArray method description.
+     *
+     * @return array<int> Array containing array representation of card elements.
+     */
     public function getDeskArray(): array
     {
         return $this->play;
     }
 
-    public function toArray(): array
-    {
-        $intArray = [];
-        foreach ($this->play as $cort) {
-            $intArray[] = $cort.toArray();
-        }
-        return $intArray;
-    }
-
-    public function setDesk($arr): object
-    {
-        $play = [];
-        for ($i = 0; $i < $arr.length(); $i++) {
-            $card = new CardGraphics;
-            $card.set($arr[$i][0], $arr[$i][1]);
-            $play[] = $card;
-        }
-        $this->play = $play;
-        return $this->play;
-    }
+    // public function setDesk($arr): object
+    // {
+    //     $play = [];
+    //     for ($i = 0; $i < count($arr); $i++) {
+    //         $card = new CardGraphics;
+    //         $card.set($arr[$i][0], $arr[$i][1]);
+    //         $play[] = $card;
+    //     }
+    //     $this->play = $play;
+    //     return $this->play;
+    // }
 
     public function shuffleDesk(): void
     {

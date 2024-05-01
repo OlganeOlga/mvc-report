@@ -13,11 +13,12 @@ class Bank extends Player
     }
 
     /**
-     * deal one card for each player in array
-     * @param {$desk} Desk object 
-     * @param {palyers} array of objekts Player
+     * Deal one card for each player in array.
+     *
+     * @param Desk    $desk    Desk object from which cards are dealt.
+     * @param Player[] $players Array of Player objects.
      */
-    public function dealCards(Desk $desk, array $players)
+    public function dealCards(Desk $desk, array $players): void
     {
         foreach($players as $player) {
             $card = $desk->takeCard();
@@ -25,7 +26,13 @@ class Bank extends Player
         }
     }
 
-    public function takeCards(Desk $desk)
+    /**
+     * TakeCards method description.
+     *
+     * @param Desk    $desk    Desk object from which cards are dealt.
+     * @return void.
+     */
+    public function takeCards(Desk $desk): void
     {
         while($this->hand->getPoints() < 17) {
             $card = $desk->takeCard();

@@ -6,30 +6,45 @@ use App\Game21\CardGraphics;
 
 class Hand
 {
-    protected $cards;
+    /** @var CardGraphics[] */
+    protected array $cards;
 
-    protected $points;
+    protected int $points;
 
     public function __construct()
     {
         $this->cards = [];
 
         $this->points = 0;
-
-        $this->hand = [$this->cards, $this->points];
     }
 
-    public function addCard(CardGraphics $card)
+    /**
+     * AddCard method description
+     * 
+     * @param CardGraphics $card
+     * @return void.
+     */
+    public function addCard(CardGraphics $card): void
     {
         $this->cards[] = $card;
         $this->points += $card->getValue();
     }
 
+    /**
+     * GetPoints method description
+     * 
+     * @return int points of the hand.
+     */
     public function getPoints(): int
     {
         return $this->points;
     }
 
+    /**
+     * toArray method description
+     *
+     * @return array<string, mixed[]>.
+     */
     public function toArray(): array
     {
         $cardArray = [];
@@ -44,6 +59,11 @@ class Hand
         return $array;
     }
 
+    /**
+     * ToString method description
+     *
+     * @return array<string[]>.
+     */
     public function toString(): array
     {
         $cardArr = [];
@@ -55,6 +75,11 @@ class Hand
         return $cardArr;
     }
 
+    /**
+     * ToString method description
+     *
+     * @return array<string[]>.
+     */
     public function getHand(): array
     {
         $cardArr = [];
@@ -66,13 +91,20 @@ class Hand
         return $cardArr;
     }
 
-
+    /**
+     * Set method description.
+     *
+     * @param array<string, mixed> $handArr An array where each element
+     * is an integer array representing card values.
+     * @return self
+     */
     public function set(array $handArr): self
     {
         $this->cards = [];
         foreach ($handArr['cards'] as $c) {
             $card = new CardGraphics;
-            $this->cards[] = $card->set($c[0], $c[1]);
+            $card->set($c[0], $c[1]);
+            $this->cards[] = $card;
         }
         $this->points = $handArr['points'];
 

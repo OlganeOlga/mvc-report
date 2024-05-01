@@ -4,9 +4,10 @@ namespace App\Dice;
 
 use App\Dice\Dice;
 
-class HandDice
-{
-    private $hand = [];
+class HandDice{
+
+    /** @var Dice[] */
+    private array $hand = [];
 
     public function add(Dice $die): void
     {
@@ -25,6 +26,11 @@ class HandDice
         return count($this->hand);
     }
 
+    /**
+     * GetValues method description.
+     *
+     * @return array<int> Array containing representation of dice values.
+     */
     public function getValues(): array
     {
         $values = [];
@@ -34,6 +40,11 @@ class HandDice
         return $values;
     }
 
+    /**
+     * GetString method description.
+     *
+     * @return array<string> Array containing representation of dice as strings.
+     */
     public function getString(): array
     {
         $values = [];

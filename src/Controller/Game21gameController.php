@@ -16,11 +16,11 @@ use App\Game21\Game21;
 
 class Game21gameController extends AbstractController
 {
-    private $game;
+    private Game21 $game;
 
     public function __construct()
     {
-        $this->game = new Game21(new Desk, new Bank, new Player);
+        $this->game = new Game21();
     }
 
     #[Route("/game", name: "gamekmom03")] // Start route for Game21

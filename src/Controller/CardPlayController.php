@@ -13,12 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
+use InvalidArgumentException;
 
 class CardPlayController extends AbstractController
 {
     #[Route("/session", name: "debug_cardplay")]
-    #[CustomAnnotation("Shows all content of the session.")]
     public function debug(
         SessionInterface $session
     ): Response {
@@ -128,7 +127,7 @@ class CardPlayController extends AbstractController
         $hand = [];
 
         if ($num < 1 || $num > count($desk)) {
-            throw Exception($exception);
+            throw new \InvalidArgumentException($exception);
         }
 
         for($i = 0; $i < $num; $i++) {
@@ -156,8 +155,7 @@ class CardPlayController extends AbstractController
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
     public function dealCards(
         int $player,
-        int $cards,
-        SessionInterface $session
+        int $cards
     ): Response {
         $newDesk = new Desk();
         $desk = $newDesk->getDesk();

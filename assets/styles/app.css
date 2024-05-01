@@ -2,7 +2,7 @@ body {
     background-color: #d5dfe2;
     display: grid;
     /* grid-template-rows: 2fr 6fr 1fr; */
-    grid-template-rows: 250px 4fr 10px;
+    grid-template-rows: 250px 4fr 1fr;
     grid-template-columns: 4fr 1fr;
 }
 
@@ -113,7 +113,7 @@ main.lucky {
 
 main.lucky {
     /* grid-row: 2; */
-    display: flex;
+    display: grid;
     flex-direction: column;
 }
 
@@ -139,7 +139,7 @@ main .headerMe h2 {
 .lucky .headerMe h2 {
     color: #ffef1edb;
     position: absolute;
-    top: 500px;
+    top: 50px;
     left: 0px;
     font-size: 3em;
     transform: rotate(320deg);
@@ -148,6 +148,7 @@ main .headerMe h2 {
 
 .lucky .lucky {
     transform: rotate(35deg);
+    justify-content: center;
     grid-column: 2;
 }
 
@@ -170,6 +171,9 @@ main .headerMe h2 {
 }
 
 .lucky .lucky p .end {
+    position: absolute;
+    right: 20px;
+    top: -200px;
     font-size: 7em;
     font-size: 4em;
     color: blueviolet;
