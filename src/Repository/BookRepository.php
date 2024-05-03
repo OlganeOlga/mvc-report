@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Library;
+use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Library>
+ * @extends ServiceEntityRepository<Book>
  */
-class LibraryRepository extends ServiceEntityRepository
+class BookRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Library::class);
+        parent::__construct($registry, Book::class);
     }
 
     //    /**
-    //     * @return Library[] Returns an array of Library objects
+    //     * @return Book[] Returns an array of Book objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class LibraryRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Library
+    //    public function findOneBySomeField($value): ?Book
     //    {
     //        return $this->createQueryBuilder('l')
     //            ->andWhere('l.exampleField = :val')

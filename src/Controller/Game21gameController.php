@@ -57,7 +57,7 @@ class Game21gameController extends AbstractController
     #[Route("/game21/playersBet", name: "player_bet21", methods: ['POST'])] //Ask player to do bet
     public function playersBet(
         SessionInterface $session,
-        Request $request
+       
     ): Response {
         $bet = $request->request->get('playersBet');
         $data = $this->game->thirdState($session, $bet);

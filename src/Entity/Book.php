@@ -6,7 +6,7 @@ use App\Repository\LibraryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LibraryRepository::class)]
-class Library
+class Book
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,18 +28,6 @@ class Library
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -78,14 +66,14 @@ class Library
         return $this;
     }
 
-    public function getсщ�cover(): ?string
+    public function getcover(): ?string
     {
-        return $this->сщ�cover;
+        return $this->cover;
     }
 
-    public function setсщ�cover(?string $сщ�cover): static
+    public function setcover(?string $cover): static
     {
-        $this->сщ�cover = $сщ�cover;
+        $this->cover = $cover;
 
         return $this;
     }
