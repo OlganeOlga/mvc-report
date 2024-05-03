@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\Request; // Import Request class
+use Symfony\Component\VarDumper\VarDumper;
+
 use App\Entity\Book;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\BookRepository; // Import BookRepository
@@ -41,6 +43,7 @@ class LibraryController extends AbstractController
 
         return new Response('Saved new book with id '.$book->getId());
     }
+
     #[Route('/library/create', name: 'create_book', methods: ['GET', 'POST'])]
     public function handleBookForm(
         ManagerRegistry $doctrine,
@@ -77,55 +80,54 @@ class LibraryController extends AbstractController
         return $this->render('library/create.html.twig');
     }
 
-    // #[Route('/library/create', name: 'create_book_get')]
-    // public function readBook(
-    //     // ManagerRegistry $doctrine
-    // ): Response {
-    //     // $entityManager = $doctrine->getManager();
+    #[Route('/library/read/{id}', name: 'read_one')]
+    public function readOneBook(
+        BookRepository $bookRepository,
+        int $id,
+        // ManagerRegistry $doctrine,
+        // Request $request,
+        // BookRepository $bookRepository
+    ): Response {
+        $book = $bookRepository->find($id);
+        return $this->json($book);
+        //return $this->render('library/read_one.html.twig', $data);
+    }
 
-    //     // $book = new Book();
+    #[Route('/library/read/one/', name: 'read_chosen', methods: ['POST'])]
+    public function readChosenBook(
+        BookRepository $bookRepository,
+        Request $request,
+    ): Response {
+        $id = intval($request->request->get('bookid'));
+        $title = $request->request->get('title');
+        $book;
+        if($id) {
+            $book = $bookRepository->find($id);
+            if($title) {
+                try {
+                    $title === $book->getTitle();
+                } catch(Exceptoin $e) {
+                    throw $this->createNotFoundException(
+                        'No books found for title '.$title
+                    );
+                }
+            }
+        } else {
+            throw $this->createNotFoundException(
+                'No books found for id '.$id
+            );
+        }
 
-    //     // $entityManager->persist($book);
+        $data = [
+            'id' => $id,
+            'title' => $book->getTitle(),
+            'author' => $book->getBookAuthor(),
+            'cover' => $book->getCover(),
+            'isbn' => $book->getIsbn(),
+        ];
 
-    //     // $entityManager->flush();
-
-    //     // $bookid = $book->getId();
-    //     // return $this->render('library/create.html.twig', ['bookid' => $bookid]);
-    //     return $this->render('library/create.html.twig');
-    // }
-
-    // #[Route('/library/create', name: 'create_book_post', methods: ['POST'])]
-    // public function createBook(
-    //     ManagerRegistry $doctrine,
-    //     Request $request,
-    //     BookRepository $bookRepository
-    // ): Response {
-    //     $entityManager = $doctrine->getManager();
-
-    //     //crete new book object
-    //     $book = new Book();
-    //     $entityManager->persist($book);
-
-    //     $entityManager->flush();
-
-    //     // get boks info from request
-    //     $title = $request->request->get('title');
-    //     $isbn = $request->request->get('isbn');
-    //     $author = $request->request->get('author');
-    //     $cover = $request->request->get('cover');
-
-    //     $book->setTitle($title);
-    //     $book->setIsbn(intval($isbn));
-    //     $book->setAuthor($author);
-    //     $book->setCover($cover);
-
-    //     $entityManager->persist($book);
-
-    //     // Persist changes to the database
-    //     $entityManager->flush();
-
-    //     return $this->redirectToRoute('app_library');
-    //     // return $this->render('library/index.html.twig');
-    //     //return new Response('Saved new product with id '.$book->getId());
-    // }
+        VarDumper::dump($data);
+        //return $this->json($book);
+        return $this->render('library/read.one.html.twig', $data);
+    }
 }

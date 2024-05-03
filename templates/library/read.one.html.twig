@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block body %}
+<main class="library">
+    {% dump 'ID: ' ~ id %}
+    {% dump  'Title: ' ~title %}
+    {% dump author %}
+    {% dump cover %}
+    {% dump isbn %}
+    <fig class="book">
+        <img src="{{ cover }}" alt="book cover">
+    </fig>
+   
+    <h4 class="bookTitle">{{ title }}</h4>
+    <p class="isbn">{{ isbn }}</p>
+    <p class="author">{{ author }}</p>
+        
+</main>
+{% endblock %}

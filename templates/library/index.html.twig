@@ -18,7 +18,17 @@
     </ul>
     <ul>
         <li><a href="{{ path('create_book') }}">Bifoga en bok till biblioteket</a></li>
-        <li><a href="">Granska en bok från bibliotek</a></li>
+        <li><a href="">Ser en bok från bibliotek</a></li>
+        <form class="linkForm" action="{{ path('read_chosen') }}" method="post"> 
+            <label for="bookid">Id:</label>                  
+            <input type="number" name="bookid" value="" min="1" 
+                        placeholder="id" style="width: 100px">
+            <input type="text" name="title" value="" 
+                        placeholder="välj book namn" style="width: 100px">
+            <input type="submit" value="Visa book">
+        </form>
+        
+
         <li><a href="">Redigera en bok från bibliotek</a></li>
     </ul>
 </div>
