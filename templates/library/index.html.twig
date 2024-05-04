@@ -21,11 +21,17 @@
         <li><a href="{{ path('se_library') }}">Visa alla böcker</a></li>
         <form class="linkForm" action="{{ path('read_chosen') }}" method="post"> 
             <label for="bookid">Visa en book med id:</label>                  
-            <input type="number" name="bookid" value="" min="1" 
+            <input class="number" type="number" name="bookid" value="" min="1" 
                         placeholder="id" style="width: 100px">
             <input type="submit" value="Visa book">
         </form>
 
+        <form class="linkForm" action="{{ path('update_book') }}" method="post"> 
+            <label for="bookid">Updatera en book med id:</label>                  
+            <input class="number" type="number" name="bookid" value="" min="1" 
+                        placeholder="id" style="width: 100px">
+            <input type="submit" value="Visa book">
+        </form>
         <li><a href="">Uppdatera en book</a></li>
     </ul>
 </div>

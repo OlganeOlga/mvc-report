@@ -122,8 +122,10 @@ main.cort {
 }
 
 main.library {
+    grid-column: span 2;
     align-items: start;
     justify-items: center;
+    padding-top: 2em;
 }
 
 main .headerMe {
@@ -348,6 +350,10 @@ form.cardGame21 input.card {
     height: 100px;
     width: 60px;
 }
+main.library h2 {
+    grid-row: 1;
+    grid-column: span 2;
+}
 
 main.library form.book {
     margin-top: 100px;
@@ -360,6 +366,11 @@ main.library form.book {
 }
 
 main.library form.book input {
+    margin: 10px 0;
+    width: 90em;
+}
+
+main.library form.linkForm input.number {
     margin: 10px 0;
     width: 2em;
 }

@@ -4,8 +4,11 @@
 
 {% block body %}
 <main class="library">
-    <form class="book" method="post" action="{{ path('create_book') }}">
+    <h2>Updatera info för en book med id: {{ id }}.</h2> 
+    <form class="book" method="post" action="{{ path('change_the_book') }}">
    
+        <input type="number" name="id" style="display: none;" value="{{ id }}">
+
         <label for="title">Books title:</label>
         <input type="text" name="title" value="{{ title }}">
         
@@ -16,7 +19,7 @@
         <input type="text" name="author" value="{{ author }}">
         
         <label for="cover">Bild på book:</label>
-        <input type="url" name="cover" value="{{ url }}">
+        <input type="url" name="cover" value="{{ cover }}">
 
         <input type="submit" name="do_it" value="updatera boken">
     </form>

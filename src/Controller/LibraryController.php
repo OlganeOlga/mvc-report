@@ -132,7 +132,7 @@ class LibraryController extends AbstractController
         return $this->render('library/read.many.html.twig', ['books' => $data]);
     }
 
-    #[Route('library/update/book', name: 'update_book', methods: ['GET', 'POST'])]
+    #[Route('library/update/book', name: 'update_book', methods: ['POST'])]
     public function updateBook(
         ManagerRegistry $doctrine,
         Request $request,
@@ -140,35 +140,53 @@ class LibraryController extends AbstractController
     )
     {
         $entityManager = $doctrine->getManager();
-
-        // Check if the request is a POST request
-        if ($request->isMethod('POST')) {
-            $id = intval($request->request->get('bookid'));
-            try {
-                $book = $bookRepository->find($id);
-            } catch (Exception $e) {
-                throw $this->createNotFoundException(
-                    'No books found for id '.$id
-                );
-            }
-            
-            $entityManager->persist($book);
-
-            // Get book info from the request
-            $title = $request->request->get('title');
-            $isbn = $request->request->get('isbn');
-            $author = $request->request->get('author');
-            $cover = $request->request->get('cover');
-
-            $book->setTitle($title);
-            $book->setIsbn(intval($isbn));
-            $book->setAuthor($author);
-            $book->setCover($cover);
-
-            // Persist changes to the database
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_library');
+        $id = intval($request->request->get('bookid'));
+        $data = [];
+        try {
+            $book = $bookRepository->find($id);
+            $data = [
+                'id' => $id,
+                'title' => $book->getTitle(),
+                'author' => $book->getBookAuthor(),
+                'cover' => $book->getCover(),
+                'isbn' => $book->getIsbn(),
+            ];
+        } catch (Exception $e) {
+            throw $this->createNotFoundException(
+                'No books found for id '.$id
+            );
         }
+
+        return $this->render('library/update.html.twig', $data);
+    }
+
+    #[Route('library/cnahge/book', name: 'change_the_book', methods: ['POST'])]
+    public function changeBook(
+        ManagerRegistry $doctrine,
+        Request $request,
+        BookRepository $bookRepository
+    )
+    {
+        $entityManager = $doctrine->getManager();
+        $id = intval($request->request->get('id'));
+        $title = $request->request->get('title');
+        $author = $request->request->get('author');
+        $cover = $request->request->get('cover');
+        $isbn = $request->request->get('isbn');
+        $book = $bookRepository->find($id);
+
+        $book->setTitle($title);
+        $book->setIsbn(intval($isbn));
+        $book->setAuthor($author);
+        $book->setCover($cover);
+
+            
+        $entityManager->persist($book);
+
+
+        // Persist changes to the database
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_library');
     }
 }

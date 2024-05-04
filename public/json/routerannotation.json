@@ -53,7 +53,11 @@
     "product_by_minimum_value": "Show one row form tabell 'product' with given id",
     "product_view_minimum_value": "View one row form tabell 'product' with value bigger than",
     "app_library": "Redirect to tabell 'book' interfece",
-    "create_book_get": "Create a new row in table 'book' and redirect to form that get books info",
-    "create_book_post": "Post form that get books info and change row with given Id in tabell 'book'",
-    "library_create": "A json-route that creates new row in the tabell with fast values"
+    "create_book": "Show the form to crate book and create a new row in table 'book' and redirect to app_library. GET and POST methods.",
+    "library_create": "A json-route that creates new row in the tabell with fast values",
+    "reed_chosen": "",
+    "se_library": "",
+    "update_book": "Get a book ID and show form that can get bookinfo to change an row with given Id in tabell 'book'",
+    "change_the_book": "Get info from 'update_book' and changes row in the table 'book' of databas 'data.db'",
+    "": ""
 }
