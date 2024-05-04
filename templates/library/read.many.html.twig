@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block body %}
+<main class="library">
+    {% for book in books %} 
+        <fig class="book">
+            <img src="{{ book.cover }}" alt="book cover">
+        </fig>
+    
+        <h4 class="bookTitle">{{ book.title }}</h4>
+        <p class="isbn">{{ book.isbn }}</p>
+        <p class="author">{{ book.author }}</p>
+    {% endfor %}   
+</main>
+{% endblock %}

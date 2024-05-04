@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LibraryController!{% endblock %}
+
+{% block body %}
+<main class="library">
+    <form class="book" method="post" action="{{ path('create_book') }}">
+   
+        <label for="title">Books title:</label>
+        <input type="text" name="title" value="{{ title }}">
+        
+        <label for="isbn">Books ISBN:</label>
+        <input type="text" name="isbn" value="{{ isbn }}">
+        
+        <label for="author">Books forfattare:</label>
+        <input type="text" name="author" value="{{ author }}">
+        
+        <label for="cover">Bild på book:</label>
+        <input type="url" name="cover" value="{{ url }}">
+
+        <input type="submit" name="do_it" value="updatera boken">
+    </form>
+</main>
+{% endblock %}

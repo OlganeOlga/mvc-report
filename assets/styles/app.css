@@ -361,6 +361,7 @@ main.library form.book {
 
 main.library form.book input {
     margin: 10px 0;
+    width: 2em;
 }
 
 main.library h4 {
