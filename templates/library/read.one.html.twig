@@ -5,13 +5,31 @@
 {% block body %}
 <main class="library">
     <fig class="book">
-    
-        <img src="{{ cover }}" alt="book cover">
+        {% if cover != "" || cover != null %}
+            <img src="{{ cover }}" alt="book cover">
+        {% else %}
+            <p>Ingen bild tillagd för book med id {{ id }}</p>
+        {% endif %}
     </fig>
-   
-    <h4 class="bookTitle">{{ title }}</h4>
-    <p class="isbn">{{ isbn }}</p>
-    <p class="author">{{ author }}</p>
+
+    {% if title != "" || title != null %}
+        <h4 class="bookTitle">{{ title }}</h4>
+    {% else %}
+        <p>Ingen title tillagd för book med id {{ id }}</p>
+    {% endif %}
+    
+    {% if isbn != "" || isbn != null %}
+        <p class="isbn">{{ isbn }}</p>
+    {% else %}
+        <p>Ingen isbn tillagd för book med id {{ id }}</p>
+    {% endif %}
+    
+    {% if author != "" || author != null %}
+        <p class="author">{{ author }}</p>
+    {% else %}
+        <p>Ingen author tillagd för book med id {{ id }}</p>
+    {% endif %}
+    
         
 </main>
 {% endblock %}

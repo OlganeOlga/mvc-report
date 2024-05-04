@@ -6,12 +6,30 @@
 <main class="library">
     {% for book in books %} 
         <fig class="book">
-            <img src="{{ book.cover }}" alt="book cover">
+            {% if book.cover != "" || book.cover != null %}
+                <img src="{{ book.cover }}" alt="book book.cover">
+            {% else %}
+                <p>Ingen bild tillagd för book med id {{ book.id }}</p>
+            {% endif %}
         </fig>
-    
-        <h4 class="bookTitle">{{ book.title }}</h4>
-        <p class="isbn">{{ book.isbn }}</p>
-        <p class="author">{{ book.author }}</p>
+
+        {% if book.title != "" || book.title != null %}
+            <h4 class="bookbook.title">{{ book.title }}</h4>
+        {% else %}
+            <p>Ingen book.title tillagd för book med id {{ book.id }}</p>
+        {% endif %}
+        
+        {% if book.isbn != "" || book.isbn != null %}
+            <p class="book.isbn">{{ book.isbn }}</p>
+        {% else %}
+            <p>Ingen book.isbn tillagd för book med id {{ book.id }}</p>
+        {% endif %}
+        
+        {% if book.author != "" || book.author != null %}
+            <p class="book.author">{{ book.author }}</p>
+        {% else %}
+            <p>Ingen book.author tillagd för book med id {{ book.id }}</p>
+        {% endif %}
     {% endfor %}   
 </main>
 {% endblock %}
