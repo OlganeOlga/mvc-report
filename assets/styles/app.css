@@ -65,6 +65,7 @@ header nav ul .dropbtn {
 header nav ul .dropdown-content {
     display: none;
     position: absolute;
+    padding: 5px;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -77,6 +78,10 @@ header nav ul .dropdown-content a {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+
+header nav ul .dropdown-content li {
+    font-size: 0.5em;
 }
 
 /* Change color of dropdown links on hover */
@@ -139,7 +144,7 @@ main.library.delete form.book {
 
 main.library.delete form.book input[type="number"],
 main.library.delete form.book input[type="submit"] {
-    
+
 }
 
 main .headerMe {

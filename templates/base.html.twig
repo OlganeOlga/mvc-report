@@ -72,13 +72,13 @@
                                 </script>
                             </li>
                             
-                            <li style="font-size: 20px; margin-top: 15px">Dra flera kort:</li>
+                            <li style="margin: 15px">Dra flera kort:</li>
                             <li>
                                 <form class="linkForm" action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawManyForm" 
                                         method="post" onsubmit="updateCards()">
                                 
-                                    <input type="number" name="num_card" id="num_card_input" value="1" min="1" max="51" 
-                                    placeholder="välj antal" style="width: 100px">
+                                    <input type="number" name="num_card" id="num_card_input" value="kort" min="1" max="51" 
+                                    placeholder="kort" style="width: 50px; margin: 0 10px;">
                                     <input type="submit" value="Dra">
                                 </form>
 
@@ -93,17 +93,17 @@
                                 </script>
 
                             </li>
-                            <li style="font-size: 20px; margin-top: 15px">Dela ut för flera spelare:</li>
+                            <li style="margin: 15px">Dela ut för flera spelare:</li>
                             <li>
                                 <form action="" id="dealForm" 
                                         method="post" onsubmit="updatePlay()">
                                     
-                                    <input type="number" name="num_players" id="players_input" value="1" min="1" max="5" 
-                                    placeholder="antal kort" style="width: 80px">
+                                    <input type="number" name="num_players" id="players_input" value="person" min="1" max="5" 
+                                    placeholder="person" style="width: 60px; margin: 0 5px 3px 0;">
                         
-                                    <input type="number" name="num_card" id="cards_input" value="1" min="1" max="10" 
-                                    placeholder="antal spelare" style="width: 80px">
-                                    <input type="submit" value="Dela">
+                                    <input type="number" name="num_card" id="cards_input" value="kort" min="1" max="10" 
+                                    placeholder="kort" style="width: 50px; margin: 0 5px;">
+                                    <input type="submit" value="Dela" style="margin: 0 5px 3px 0;">
                                 </form>
 
                                 <script>
@@ -119,6 +119,7 @@
                                     }
                                 </script>
                             </li>
+                            <li><a href="{{  path('json_cardplay21') }}">Visa kortspel 21 status</a></li>
                         </div>
                     </div>
                 </ul>

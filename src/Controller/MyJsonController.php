@@ -199,9 +199,6 @@ class MyJsonController extends AbstractController
         $data = [];
         $players = [];
         $response = new Response();
-        // $numCard = $request->request->get('cards');
-        // $numSub = $request->request->get('player');
-
         try {
             $data = $session->get('desk');
             if ($data == null || count($data) < 52) {
@@ -256,18 +253,27 @@ class MyJsonController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('api/game', name: 'get_session')] // get all frome session
+    #[Route('api/game', name: 'json_cardplay21')] // get all frome session
     public function apiGetGameStatus(
         SessionInterface $session
-    ): JsonResponse
+    ): Response
     {
         $data = [];
 
         foreach ($session->all() as $key => $value) {
-            $data[$key] = $value;
+            if($key == "desk" | $key == "bank" | $key == "player") {
+                $data[$key] = $value;
+            }
         }
 
-        // Return the session data as JSON
-        return $this->json($data);
+        if(count($data) == 0) {
+            $data["status"] = "cardplay was not initiated";
+        }
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
     }
 }

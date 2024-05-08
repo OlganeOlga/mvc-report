@@ -59,6 +59,6 @@
     "see_library": "Displays all books in the library",
     "update_book": "Get a book ID and displays form that can get bookinfo to change an row with given Id in tabell 'book'",
     "change_the_book": "Get info from 'update_book' and changes row in the table 'book' of databas 'data.db'",
-    "api/game": "Displays the current state of the game in a JSON structure",
+    "json_cardplay21": "Displays the current state of the game in a JSON structure",
     "delete_book": "Displays the form to choos a book that should be deleted and delete this book"
 }
