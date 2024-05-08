@@ -120,6 +120,28 @@
                                 </script>
                             </li>
                             <li><a href="{{  path('json_cardplay21') }}">Visa kortspel 21 status</a></li>
+                            <li><a href="{{  path('json_library') }}">Visa alla böcker</a></li>
+                            <li>Sök en book med ISBN</li>
+                            <li>
+                                <form action="" id="isbnForm" 
+                                        method="post" onsubmit="updateIsbn()">
+                                    
+                                    <input type="number" name="isbn" id="isbn" value="isbn" pattern="[0-9]{9}" 
+                                    placeholder="isbn" title="Please enter exactly 9 digits"     style="width: 100px; margin: 0 3px 3px 0;">
+                                    <input type="submit" value="Söka" style="margin: 0 3px 3px 0;">
+                                </form>
+
+                                <script>
+                                    function updateIsbn() {                  
+                                        var isbn = document.getElementById('isbn').value;
+                                        
+                                        var formAction = "{{ path('json_book_by_isbn', {'isbn': 'placeholder'}) }}";
+                                        formAction = formAction.replace('placeholder', isbn);
+                                        document.getElementById('isbnForm').action = formAction;
+                                        document.getElementById('isbnForm').submit();
+                                    }
+                                </script>
+                            </li>
                         </div>
                     </div>
                 </ul>

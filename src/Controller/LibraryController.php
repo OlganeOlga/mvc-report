@@ -80,15 +80,6 @@ class LibraryController extends AbstractController
         return $this->render('library/create.html.twig');
     }
 
-    // #[Route('/library/read/{id}', name: 'read_one')]
-    // public function readOneBook(
-    //     BookRepository $bookRepository,
-    //     int $id,
-    // ): Response {
-    //     $book = $bookRepository->find($id);
-    //     return $this->json($book);
-    // }
-
     #[Route('/library/read/one/', name: 'read_chosen', methods: ['POST'])]
     public function readChosenBook(
         BookRepository $bookRepository,

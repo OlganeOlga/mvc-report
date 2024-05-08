@@ -41,4 +41,21 @@ class BookRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Find a book having gven ISBN.
+     * @param int {$isbn} ISBN number with 9 digits
+     * 
+     * @return Book[] Returns array of Book objects
+     */
+    public function findByIsbn($isbn): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.isbn = :isbn')
+            ->setParameter('isbn', $isbn)
+            ->orderBy('b.isbn', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

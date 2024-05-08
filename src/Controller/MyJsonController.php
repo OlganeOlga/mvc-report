@@ -18,6 +18,12 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
+//use Symfony\Component\VarDumper\VarDumper;
+
+// use App\Entity\Book;
+// use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\BookRepository; // Import BookRepository
+
 class MyJsonController extends AbstractController
 {
     public RouterInterface $router;
@@ -253,7 +259,7 @@ class MyJsonController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('api/game', name: 'json_cardplay21')] // get all frome session
+    #[Route('api/game', name: 'json_cardplay21')]
     public function apiGetGameStatus(
         SessionInterface $session
     ): Response
@@ -275,5 +281,23 @@ class MyJsonController extends AbstractController
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
         );
         return $response;
+    }
+
+    #[Route('api/library/books', name: 'json_library')]
+    public function jsonLibrary(
+        BookRepository $bookRepository
+    ): Response {
+        $books = $bookRepository->findAll();
+        return $this->json($books);
+    }
+
+    #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn')]
+    public function jsonBookByIsbn(
+        BookRepository $bookRepository,
+        $isbn
+    ): Response {
+        $book = $bookRepository->findByIsbn($isbn);
+
+        return $this->json($book);
     }
 }
