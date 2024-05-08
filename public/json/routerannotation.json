@@ -57,6 +57,7 @@
     "library_create": "A json-route that creates new row in the tabell with fast values",
     "reed_chosen": "Deisplays book wiht chosen id",
     "see_library": "Displays all books in the library",
+    "see_one": "Display one book from the library shown in the 'see_library'.",
     "update_book": "Get a book ID and displays form that can get bookinfo to change an row with given Id in tabell 'book'",
     "change_the_book": "Get info from 'update_book' and changes row in the table 'book' of databas 'data.db'",
     "json_cardplay21": "Displays the current state of the game in a JSON structure",

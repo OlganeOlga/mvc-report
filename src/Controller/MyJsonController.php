@@ -18,10 +18,6 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-//use Symfony\Component\VarDumper\VarDumper;
-
-// use App\Entity\Book;
-// use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\BookRepository; // Import BookRepository
 
 class MyJsonController extends AbstractController
@@ -31,6 +27,13 @@ class MyJsonController extends AbstractController
     public function __construct(RouterInterface $router)
     {
         $this->router = $router;
+    }
+
+    #[Route('/json1', name: "json_ladning")]
+    public function apiLadning(): Response
+    {
+        //return new Response('Hello from the apiLadning() method!');
+        return $this->render('myreport/json.html.twig');
     }
 
     #[Route('/api', name: "api")]
@@ -291,11 +294,19 @@ class MyJsonController extends AbstractController
         return $this->json($books);
     }
 
-    #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn')]
+    #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]
     public function jsonBookByIsbn(
         BookRepository $bookRepository,
         $isbn
     ): Response {
+        $isbnString = (string) $isbn;
+        if(strlen($isbnString) != 13) {
+            $this->addFlash(
+                'warning',
+                'You enter too few or too many numbers for ISBN!'
+            );
+            return $this->redirectToRoute('json_ladning');
+        }
         $book = $bookRepository->findByIsbn($isbn);
 
         return $this->json($book);

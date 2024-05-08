@@ -128,9 +128,38 @@ main.cort {
 
 main.library {
     grid-column: span 2;
+    grid-template-columns: 1fr 1fr;
     align-items: start;
     justify-items: center;
     padding-top: 2em;
+}
+
+main.library.all {
+    display: flex;
+    flex-direction: column;
+}
+
+main.library.all header {
+    display: flex;
+    align-self: center;
+}
+
+main.library.all div.book {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: self-start;
+    justify-items: self-start;
+}
+
+main.library.all div.book h4 {
+    margin: 0;
+    font-size: 2em;
+    justify-self: center;
+    align-self: center;
+}
+
+main.library.all div.book fig.book {
+    padding: 2em;
 }
 
 main.library.delete {

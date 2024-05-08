@@ -1,20 +1,25 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Hello LibraryController!{% endblock %}
 
 {% block body %}
-<main class="library">
-    {% for book in books %} 
+<main class="library all">
+<header>
+    <h2 style="font-size: 2.5em;">Alla böcker i biblioteket</h2>
+</header>
+    {% for book in books %}
+    <div class="book">
         <fig class="book">
             {% if book.cover is not empty %}
-                <img src="{{ book.cover }}" alt="book book.cover">
+                <img src="{{ book.cover }}" style="width:100px"alt="book book.cover">
             {% else %}
                 <p>Ingen bild tillagd för book med id {{ book.id }}</p>
             {% endif %}
         </fig>
 
         {% if book.title is not empty %}
-            <h4 class="bookbook.title">{{ book.title }}</h4>
+            <h4 class="bookbook.title"><a href="{{ path('see_one', {'id': book.id}) }}">{{ book.title }}</a></h4>
         {% else %}
             <p>Ingen book.title tillagd för book med id {{ book.id }}</p>
         {% endif %}
@@ -30,6 +35,7 @@
         {% else %}
             <p>Ingen book.author tillagd för book med id {{ book.id }}</p>
         {% endif %}
+    </div>
     {% endfor %}   
 </main>
 {% endblock %}

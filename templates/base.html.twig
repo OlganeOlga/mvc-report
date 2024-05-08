@@ -24,7 +24,9 @@
                     <li><a href="{{ path('lucky') }}">Lucky: galen sida</a></li>
                 </ul>
                 <ul>
+                    <li><a href="{{ path('json_ladning') }}">JsonControllers</a></li>
                     <li><a href="{{ path('app_library') }}">Bibliotek databas</a></li>
+
                 </ul>
                 <ul>
                     <li><a href="{{ path('pig_start')}}">'Kasta Gris'</a></li>
@@ -126,8 +128,8 @@
                                 <form action="" id="isbnForm" 
                                         method="post" onsubmit="updateIsbn()">
                                     
-                                    <input type="number" name="isbn" id="isbn" value="isbn" pattern="[0-9]{9}" 
-                                    placeholder="isbn" title="Please enter exactly 9 digits"     style="width: 100px; margin: 0 3px 3px 0;">
+                                    <input type="number" name="isbn" id="isbn" value="0" pattern="[0-9]{13}" 
+                                    placeholder="XXXXXXXXXXXXX" title="Please enter exactly 13 digits" style="width: 120px; margin: 0 3px 3px 0;">
                                     <input type="submit" value="Söka" style="margin: 0 3px 3px 0;">
                                 </form>
 

@@ -40,6 +40,10 @@ class LibraryController extends AbstractController
 
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
+        // $this->addFlash(
+        //     "notice",
+        //     "You successfully create a new book with id {$book->getId()}"
+        // );
 
         return new Response('Saved new book with id '.$book->getId());
     }
@@ -72,6 +76,10 @@ class LibraryController extends AbstractController
 
             // Persist changes to the database
             $entityManager->flush();
+            $this->addFlash(
+                "notice",
+                "You successfully create a new book with id {$book->getId()}"
+            );
 
             return $this->redirectToRoute('app_library');
         }
@@ -87,13 +95,31 @@ class LibraryController extends AbstractController
     ): Response {
         $id = intval($request->request->get('bookid'));
         $book;
-        if($id) {
+        try {
             $book = $bookRepository->find($id);
-        } else {
-            throw $this->createNotFoundException(
-                'No books found for id '.$id
+            $data = [
+                'id' => $id,
+                'title' => $book->getTitle(),
+                'author' => $book->getBookAuthor(),
+                'cover' => $book->getCover(),
+                'isbn' => $book->getIsbn(),
+            ];
+            return $this->render('library/read.one.html.twig', $data);
+        } catch (Exception $e) {
+            $this->addFlash(
+                "warning",
+                "No books found for id: {$id}"
             );
+            return $this->redirectToRoute('app_library');
         }
+    }
+
+    #[Route('/library/see/one/{id}', name: 'see_one', methods: ['GET'])]
+    public function readOneBook(
+        BookRepository $bookRepository,
+        int $id
+    ): Response {
+        $book = $bookRepository->find($id);
         $data = [
             'id' => $id,
             'title' => $book->getTitle(),
@@ -142,13 +168,18 @@ class LibraryController extends AbstractController
                 'cover' => $book->getCover(),
                 'isbn' => $book->getIsbn(),
             ];
+           
+            return $this->render('library/update.html.twig', $data);
         } catch (Exception $e) {
-            throw $this->createNotFoundException(
-                'No books found for id '.$id
+            // throw $this->createNotFoundException(
+            //     'No books found for id '.$id
+            // );
+            $this->addFlash(
+                "warning",
+                "No books found for id: {$id}"
             );
+            return $this->redirectToRoute('app_library');
         }
-
-        return $this->render('library/update.html.twig', $data);
     }
 
     #[Route('library/cnahge/book', name: 'change_the_book', methods: ['POST'])]
@@ -178,6 +209,11 @@ class LibraryController extends AbstractController
         // Persist changes to the database
         $entityManager->flush();
 
+        $this->addFlash(
+            "notice",
+            "You successfully uppdated a book with id {$id}"
+        );
+
         return $this->redirectToRoute('app_library');
     }
 
@@ -193,14 +229,20 @@ class LibraryController extends AbstractController
             $book = $entityManager->getRepository(Book::class)->find($id);
 
             if (!$book) {
-                throw $this->createNotFoundException(
-                    'No book found for id '.$id
+                $this->addFlash(
+                    "warning",
+                    "No book found with id {$id}"
                 );
+                return $this->redirectToRoute('app_library');
             }
 
             $entityManager->remove($book);
             $entityManager->flush();
 
+            $this->addFlash(
+                "notice",
+                "You successfully deleted a book with id {$id}"
+            );  
 
             return $this->redirectToRoute('app_library');
 
