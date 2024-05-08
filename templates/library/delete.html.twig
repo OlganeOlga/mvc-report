@@ -3,13 +3,13 @@
 {% block title %}Hello LibraryController!{% endblock %}
 
 {% block body %}
-<main class="library">
-    <h2>TA bort en book</h2>
+<main class="library delete">
+    <h2>Ta bort en book</h2>
     <p>Ange id för book som du vill ta bort from biblioteken</p>
-    <form class="book" method="post" action="{{ path('delete_book') }}">
+    <form class="book" method="post" action="{{ path('delete_book') }}" style="margin: 0; display: block;">
         <label for="id">Books id:</label>
-        <input type="number" name="id" value="0" min ="0">
-        <input type="submit" name="do_it" value="Ta bort book från biblioteket">
+        <input type="number" name="id" value="0" min ="0" style="width: 3em;">
+        <input type="submit" name="do_it" value="Ta bort booken från biblioteket" style="width: 15em;">
     </form>
 </main>
 {% endblock %}

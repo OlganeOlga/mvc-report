@@ -128,6 +128,20 @@ main.library {
     padding-top: 2em;
 }
 
+main.library.delete {
+    display: flex;
+    flex-direction: column;
+}
+
+main.library.delete form.book {
+    margin: 0;
+}
+
+main.library.delete form.book input[type="number"],
+main.library.delete form.book input[type="submit"] {
+    
+}
+
 main .headerMe {
     grid-row: 1;
     grid-column: span 2;

@@ -255,4 +255,19 @@ class MyJsonController extends AbstractController
         // Return the session data as JSON
         return $this->json($data);
     }
+
+    #[Route('api/game', name: 'get_session')] // get all frome session
+    public function apiGetGameStatus(
+        SessionInterface $session
+    ): JsonResponse
+    {
+        $data = [];
+
+        foreach ($session->all() as $key => $value) {
+            $data[$key] = $value;
+        }
+
+        // Return the session data as JSON
+        return $this->json($data);
+    }
 }

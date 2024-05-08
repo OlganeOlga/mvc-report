@@ -113,7 +113,7 @@ class LibraryController extends AbstractController
         return $this->render('library/read.one.html.twig', $data);
     }
 
-    #[Route('/library/read/all', name: 'se_library', methods: ['GET'])]
+    #[Route('/library/read/all', name: 'see_library', methods: ['GET'])]
     public function seeLibrary(
         BookRepository $bookRepository,
     ): Response {
