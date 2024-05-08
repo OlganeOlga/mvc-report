@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Book>
+ * 
  */
 class BookRepository extends ServiceEntityRepository
 {
