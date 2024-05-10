@@ -7,7 +7,7 @@ use App\Game21\Hand;
 
 /**
  * Class repreents bank in the Play21
- * 
+ *
  * Chaild class to Player
  */
 class Bank extends Player

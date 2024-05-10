@@ -24,7 +24,7 @@
                     <li><a href="{{ path('lucky') }}">Lucky: galen sida</a></li>
                 </ul>
                 <ul>
-                    <li><a href="{{ path('json_ladning') }}">JsonControllers</a></li>
+                    <li><a href="{{ path('api_landing') }}">JsonControllers</a></li>
                     <li><a href="{{ path('app_library') }}">Bibliotek databas</a></li>
 
                 </ul>
@@ -125,22 +125,22 @@
                             <li><a href="{{  path('json_library') }}">Visa alla böcker</a></li>
                             <li>Sök en book med ISBN</li>
                             <li>
-                                <form action="" id="isbnForm" 
-                                        method="post" onsubmit="updateIsbn()">
+                                <form action="" id="changeByIsbnForm" 
+                                        method="post" onsubmit="changeByIsbn()">
                                     
-                                    <input type="number" name="isbn" id="isbn" value="0" pattern="[0-9]{13}" 
+                                    <input type="number" name="isbn" id="isbn" value="" pattern="[0-9]{13}" 
                                     placeholder="XXXXXXXXXXXXX" title="Please enter exactly 13 digits" style="width: 120px; margin: 0 3px 3px 0;">
                                     <input type="submit" value="Söka" style="margin: 0 3px 3px 0;">
                                 </form>
 
                                 <script>
-                                    function updateIsbn() {                  
+                                    function changeByIsbn() {                  
                                         var isbn = document.getElementById('isbn').value;
                                         
                                         var formAction = "{{ path('json_book_by_isbn', {'isbn': 'placeholder'}) }}";
                                         formAction = formAction.replace('placeholder', isbn);
-                                        document.getElementById('isbnForm').action = formAction;
-                                        document.getElementById('isbnForm').submit();
+                                        document.getElementById('changeByIsbnForm').action = formAction;
+                                        document.getElementById('changeByIsbnForm').submit();
                                     }
                                 </script>
                             </li>

@@ -24,7 +24,7 @@ class Game21gameController extends AbstractController
     }
 
     #[Route("/game", name: "gamekmom03")] // Start route for Game21
-    public function games( SessionInterface $session ): Response
+    public function games(SessionInterface $session): Response
     {
         $session->clear();
         $this->game->toSession($session);
@@ -32,14 +32,14 @@ class Game21gameController extends AbstractController
     }
 
     #[Route("/game/play", name: "play21")]
-    public function startGame( SessionInterface $session ): Response
+    public function startGame(SessionInterface $session): Response
     {
         $data = $this->game->firstState($session);
         return $this->render('game21/play.html.twig', $data);
     }
 
     #[Route("/game/play-again", name: "followplay21")]
-    public function followGame( SessionInterface $session ): Response
+    public function followGame(SessionInterface $session): Response
     {
         $session->clear();
         $this->game->toSession($session);
@@ -48,7 +48,7 @@ class Game21gameController extends AbstractController
     }
 
     #[Route("/game21/bankBet", name: "bankBet_card21")] //Ask bank to do bet
-    public function bankBet21( SessionInterface $session ): Response
+    public function bankBet21(SessionInterface $session): Response
     {
         $data = $this->game->secondState($session);
         return $this->render('game21/player_bet.html.twig', $data);
@@ -57,7 +57,7 @@ class Game21gameController extends AbstractController
     #[Route("/game21/playersBet", name: "player_bet21", methods: ['POST'])] //Ask player to do bet
     public function playersBet(
         SessionInterface $session,
-       
+        Request $request
     ): Response {
         $bet = $request->request->get('playersBet');
         $data = $this->game->thirdState($session, $bet);

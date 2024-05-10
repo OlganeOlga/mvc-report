@@ -22,18 +22,18 @@ class Desk
 
     /**
      * GetDesk method description
-     * 
+     *
      * @return array<string[]> Array contains strings: card reprresentation and color
      */
     public function getDesk(): array
     {
         $values = [];
-        foreach ($this->play as $card) { 
+        foreach ($this->play as $card) {
             $cardstring = $card->getAsString();
             $cardcolor = $card->getCollor();
-            $values[] = [$cardstring, $cardcolor];  
+            $values[] = [$cardstring, $cardcolor];
         }
-        
+
         return $values;
     }
 

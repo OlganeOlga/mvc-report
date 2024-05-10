@@ -6,14 +6,14 @@ use App\Game21\CardGraphics;
 
 /**
  * Represents the deck of cards used in the game.
- * 
+ *
  * This class manages a deck of cards, which can be freshly initialized, shuffled,
  * and manipulated. It utilizes instances of the CardGraphics class to represent each card.
  * The deck can be represented as an array of CardGraphics objects.
  */
 class Desk
 {
-    /** 
+    /**
      * @var array<CardGraphics> An array containing CardGraphics objects representing the deck of cards.
     */
     protected array $play;
@@ -57,16 +57,15 @@ class Desk
         return $values;
     }
 
-     /**
-     * Sets the contents of the deck based on the provided array representation of card values.
-     *
-     * @param array<int[]> $arr An array of integer arrays representing the values of the cards.
-     * @return void
-     */
+    /**
+    * Sets the contents of the deck based on the provided array representation of card values.
+    *
+    * @param array<int[]> $arr An array of integer arrays representing the values of the cards.
+    * @return void
+    */
     public function set(
         array $arr = []
-        ): void
-    {
+    ): void {
         $this->play = [];
         foreach ($arr as $c) {
             if (isset($c[0]) && isset($c[1])) {
@@ -92,7 +91,7 @@ class Desk
         }
         return $values;
     }
-    
+
     /**
      * Shuffles all cards in the deck.
      *
@@ -113,7 +112,7 @@ class Desk
         $randomKey = array_rand($this->play);
         $card = $this->play[$randomKey];
         unset($this->play[$randomKey]);
-        
+
         return $card;
     }
 }

@@ -28,13 +28,12 @@ class CardGraphicsTest extends TestCase
      */
     public function testOverridenToString(): void
     {
-        $card = new CardGraphics();
-        $res = $card->toString();
-        $this->assertIsString($res);
+        $card = new CardGraphics();       
 
         $card->set(1,1);
         $res = $card->toString();
         $exp = "2 ♥︎";
+        $this->assertIsString($res);
         $this->assertEquals($exp, $res);
     }
 

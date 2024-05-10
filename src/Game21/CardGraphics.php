@@ -26,7 +26,7 @@ class CardGraphics extends Card
         [13, 'Kung']
     ];
 
-    /** 
+    /**
      * @var array<string[]> $suterepresentation represents sutes and their colors
      */
     public array $suterepresentation = [
@@ -58,11 +58,11 @@ class CardGraphics extends Card
         $this->suterepresentation[$this->sute][0];
     }
 
-     /**
-     * GetCollor method returns the color of the suit.
-     *
-     * @return string The color of the suit.
-     */
+    /**
+    * GetCollor method returns the color of the sute.
+    *
+    * @return string The color of the sute.
+    */
     public function getCollor(): string
     {
         if($this->sute == null) {

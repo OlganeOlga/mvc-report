@@ -13,12 +13,12 @@ class Card
     protected ?int $face = null;
 
     /**
-     * @var nt|null Represents the sute of the card.
+     * @var int|null Represents the sute of the card.
      */
     protected ?int $sute = null;
 
-    /** 
-     * @var int|null Represents the face value of the card.
+    /**
+     * @var int[] Represents the face value of the card.
      */
     protected array $card;
 
@@ -27,28 +27,29 @@ class Card
      */
     public function __construct()
     {
-        // Initialize the card array with default face and suit values
+        // Initialize the card array with default face and sute values
         $this->card = [$this->face, $this->sute];
     }
 
     /**
-     * Sets the face and suit values of the card.
+     * Sets the face and sute values of the card.
      *
-     * @param int $face The face value of the card.
-     * @param int $suit The suit value of the card.
+     * @param int $fase The face value of the card.
+     * @param int $sute The sute value of the card.
      * @return self Returns the Card object.
      */
     public function set(int $fase, int $sute): self
     {
         $this->face = $fase; //fase
         $this->sute = $sute; //sute
+        $this->card = [$this->face, $this->sute]; // Update the card array
         return $this;
     }
 
     /**
-     * Randomly chooses a face and suit value for the card.
+     * Randomly chooses a face and sute value for the card.
      *
-     * @return array<int> An array containing the chosen face and suit values.
+     * @return array<int> An array containing the chosen face and sute values.
      */
     public function chose(): array
     {
@@ -59,9 +60,9 @@ class Card
     }
 
     /**
-     * Returns the card as an array containing its face and suit values.
+     * Returns the card as an array containing its face and sute values.
      *
-     * @return array<int> An array containing the face and suit values of the card.
+     * @return array<int> An array containing the face and sute values of the card.
      */
     public function toArray(): array
     {
@@ -86,7 +87,7 @@ class Card
      */
     public function getValue(): ?int
     {
-        if($this->face != null){
+        if($this->face !== null) {
             return $this->face + 1;
         }
         return null;

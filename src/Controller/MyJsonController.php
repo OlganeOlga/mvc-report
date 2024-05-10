@@ -20,22 +20,43 @@ use Symfony\Component\Routing\RouterInterface;
 
 use App\Repository\BookRepository; // Import BookRepository
 
+/**
+ * Controller class that produces routers returning json objects
+ */
 class MyJsonController extends AbstractController
 {
+    /**
+     * @var RouterInterface $router represents all routes in the application
+     */
     public RouterInterface $router;
 
+    /**
+     * controller initiate public $router
+     */
     public function __construct(RouterInterface $router)
     {
         $this->router = $router;
     }
 
-    #[Route('/json1', name: "json_ladning")]
+    /**
+     * Router displays page with links to all json-routes
+     * 
+     * @return Response : redirect to the twig html template displaying links to all
+     * jason-routes
+     */
+    #[Route('/json1', name: "api_landing")]
     public function apiLadning(): Response
     {
         //return new Response('Hello from the apiLadning() method!');
         return $this->render('myreport/json.html.twig');
     }
 
+    /**
+     * Router display all routes in the application in form of json
+     * 
+     * @param KernelInterface $kernel
+     * @return Response : all routes in the application and their functions in form of json
+     */
     #[Route('/api', name: "api")]
     public function apiIndex(KernelInterface $kernel): Response
     {
@@ -63,6 +84,11 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
+    /**
+     * Route display a rundome quote in form of json-content
+     * @param KernelInterface $kernel
+     * @return Response content with a rundome quote in form of json
+     */
     #[Route('/api/quote', name: "api.quote")]
     public function geQuote(KernelInterface $kernel): Response
     {
@@ -77,10 +103,14 @@ class MyJsonController extends AbstractController
         $randomQuote = $data[$quoteIndex];
         $response->setContent(json_encode($randomQuote));
 
-        //return $this->render('api_quote.html.twig', $randomQuote);
         return $response;
     }
 
+    /**
+     * Route display desk of cards in form json-content
+     * @param SessionInterface $session
+     * @return Response content with desk of cards in form of json
+     */
     #[Route('/api/desk', name: "api_desk", methods:['GET'])]
     public function apiDesk(
         SessionInterface $session
@@ -106,9 +136,13 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
-
+    /**
+     * Route create new desk of cards, shuffle it and display it in form json-content
+     * 
+     * @return Response content with desk of cards in form of json
+     */
     #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
-    public function apiShuffleDesk( ): Response
+    public function apiShuffleDesk(): Response
     {
         $desk = new Desk();
         $desk->getDesk();
@@ -123,6 +157,13 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
+    /**
+     * Route create new desk of cards, shuffle it and display it in form json-content
+     * 
+     * @param  SessionInterface $session contans desk of cards
+     * @return Response content with drown cards and the number of rest cards in the desk
+     * in form of json
+     */
     #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
     public function apiDrawDesk(
         SessionInterface $session
@@ -158,6 +199,18 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
+    /**
+     * Route retrieves desk of card from the session
+     * if the desk empty, creates new desk of cards,
+     * take given number of cards (rundomised) from te desk
+     * saves result in the session
+     * and display drown cards and number of cards in the desk as json-content
+     * 
+     * @param  SessionInterface $session contans desk of cards
+     * @param Request $request request
+     * @return Response content with drown cards and the number of rest cards in the desk
+     * in form of json
+     */
     #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
     public function apiDrawFleraDesk(
         SessionInterface $session,
@@ -199,6 +252,21 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
+    /**
+     * Route deals chosen amount of cards to the chosen
+     * amount of players from th desk saved in the session
+     * if the desk empty, creates new desk of cards,
+     * take given number of cards (rundomised) from te desk
+     * saves result in the session
+     * and display drown cards and number of cards in the desk as json-content
+     * 
+     * @param  SessionInterface $session contans desk of cards
+     * @param int $play amount of players
+     * @param int $cards amount of cards
+     * @return Response content with cardes dealed for each player and
+     * the number of rest cards in the desk
+     * in form of json
+     */
     #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
     public function apiDealCard(
         SessionInterface $session,
@@ -247,11 +315,17 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
+    /**
+     * Route displays all variables saved in the session as json-content
+     * 
+     * @param  SessionInterface $session contans desk of cards
+     * @return JsonResponse content with drown cards and the number of rest cards in the desk
+     * in form of json
+     */
     #[Route('/session', name: 'get_session')] // get all frome session
     public function apiGetSession(
         SessionInterface $session
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $data = [];
 
         foreach ($session->all() as $key => $value) {
@@ -262,53 +336,52 @@ class MyJsonController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('api/game', name: 'json_cardplay21')]
-    public function apiGetGameStatus(
-        SessionInterface $session
-    ): Response
-    {
-        $data = [];
+    // #[Route('api/game', name: 'json_cardplay21')]
+    // public function apiGetGameStatus(
+    //     SessionInterface $session
+    // ): Response {
+    //     $data = [];
 
-        foreach ($session->all() as $key => $value) {
-            if($key == "desk" | $key == "bank" | $key == "player") {
-                $data[$key] = $value;
-            }
-        }
+    //     foreach ($session->all() as $key => $value) {
+    //         if($key == "desk" | $key == "bank" | $key == "player") {
+    //             $data[$key] = $value;
+    //         }
+    //     }
 
-        if(count($data) == 0) {
-            $data["status"] = "cardplay was not initiated";
-        }
+    //     if(count($data) == 0) {
+    //         $data["status"] = "cardplay was not initiated";
+    //     }
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-        return $response;
-    }
+    //     $response = new JsonResponse($data);
+    //     $response->setEncodingOptions(
+    //         $response->getEncodingOptions() | JSON_PRETTY_PRINT
+    //     );
+    //     return $response;
+    // }
 
-    #[Route('api/library/books', name: 'json_library')]
-    public function jsonLibrary(
-        BookRepository $bookRepository
-    ): Response {
-        $books = $bookRepository->findAll();
-        return $this->json($books);
-    }
+    // #[Route('api/library/books', name: 'json_library')]
+    // public function jsonLibrary(
+    //     BookRepository $bookRepository
+    // ): Response {
+    //     $books = $bookRepository->findAll();
+    //     return $this->json($books);
+    // }
 
-    #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]
-    public function jsonBookByIsbn(
-        BookRepository $bookRepository,
-        $isbn
-    ): Response {
-        $isbnString = (string) $isbn;
-        if(strlen($isbnString) != 13) {
-            $this->addFlash(
-                'warning',
-                'You enter too few or too many numbers for ISBN!'
-            );
-            return $this->redirectToRoute('json_ladning');
-        }
-        $book = $bookRepository->findByIsbn($isbn);
+    // #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]
+    // public function jsonBookByIsbn(
+    //     BookRepository $bookRepository,
+    //     int $isbn
+    // ): Response {
+    //     $isbnString = (string) $isbn;
+    //     if(strlen($isbnString) != 13) {
+    //         $this->addFlash(
+    //             'warning',
+    //             'You enter too few or too many numbers for ISBN!'
+    //         );
+    //         return $this->redirectToRoute('json_ladning');
+    //     }
+    //     $book = $bookRepository->findByIsbn($isbn);
 
-        return $this->json($book);
-    }
+    //     return $this->json($book);
+    // }
 }

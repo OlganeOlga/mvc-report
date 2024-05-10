@@ -128,7 +128,7 @@ main.cort {
 
 main.library {
     grid-column: span 2;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 7fr;
     align-items: start;
     justify-items: center;
     padding-top: 2em;
@@ -137,6 +137,11 @@ main.library {
 main.library.all {
     display: flex;
     flex-direction: column;
+}
+
+main.library ul li {
+    font-size: 2em;
+    margin: 15px 0;
 }
 
 main.library.all header {
@@ -364,6 +369,7 @@ footer p {
     background-color: #cce5ff;
     border-color: #b8daff;
 }
+
 .flash-notice:before {
     content: "ⓘ";
 }
@@ -375,11 +381,17 @@ footer p {
     background-color: #fff3cd;
     border-color: #ffeeba;
 }
+
 .flash-warning:before {
     content: "⚠";
 }
 
-ul li {
+main.main.json .flash-warning,
+main.main.json .flash-warning {
+    grid-column: 3;
+}
+
+ul li, div li {
     list-style-type: none;
 }
 

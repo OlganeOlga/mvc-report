@@ -7,13 +7,13 @@ use App\Game21\Hand;
 
 /**
  * Represents a player in the game.
- * 
+ *
  * Each player has a hand of cards, a bet amount, and a profit value.
  */
 class Player
 {
-    /** 
-     * @var Hand The hand of cards held by the player. 
+    /**
+     * @var Hand The hand of cards held by the player.
      */
     protected Hand $hand;
 
@@ -28,7 +28,7 @@ class Player
      */
     public function __construct()
     {
-        $this->hand = new Hand;
+        $this->hand = new Hand();
         $this->bet = 0;
         $this->profit = 0;
     }
@@ -87,8 +87,8 @@ class Player
      */
     public function set(array $arr): void
     {
-        $hand = new Hand;
-        
+        $hand = new Hand();
+
         $this->hand = $arr['hand'] !== null ? $hand->set($arr['hand']) : new Hand();
         $this->bet = $arr['bet'];
         $this->profit = $arr['profit'];

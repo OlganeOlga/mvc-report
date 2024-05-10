@@ -62,6 +62,8 @@ class CardTest extends TestCase
     {
         $card = new Card();
         $card->set(0, 2);
+        $res = $card->toArray();
+        $this->assertEquals([0, 2], $res);
         $this->assertEquals(1, $card->getValue());
     }
 

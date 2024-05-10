@@ -20,7 +20,7 @@ class Hand
 
     /**
      * AddCard method description
-     * 
+     *
      * @param CardGraphics $card
      * @return void.
      */
@@ -32,7 +32,7 @@ class Hand
 
     /**
      * GetPoints method description
-     * 
+     *
      * @return int points of the hand.
      */
     public function getPoints(): int
@@ -102,7 +102,7 @@ class Hand
     {
         $this->cards = [];
         foreach ($handArr['cards'] as $c) {
-            $card = new CardGraphics;
+            $card = new CardGraphics();
             $card->set($c[0], $c[1]);
             $this->cards[] = $card;
         }

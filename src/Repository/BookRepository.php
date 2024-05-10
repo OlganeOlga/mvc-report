@@ -8,7 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Book>
- * 
+ *
  */
 class BookRepository extends ServiceEntityRepository
 {
@@ -44,11 +44,11 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * Find a book having gven ISBN.
-     * @param int {$isbn} ISBN number with 9 digits
-     * 
+     * @param int $isbn ISBN number with 9 digits
+     *
      * @return Book[] Returns array of Book objects
      */
-    public function findByIsbn($isbn): array
+    public function findByIsbn(int $isbn): array
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.isbn = :isbn')

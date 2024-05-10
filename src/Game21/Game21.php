@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class Game21 represents the game logic for a simplified version of the card game 21.
- * 
+ *
  * The game involves a desk of cards, a player, and a bank. The game progresses through various states
  * such as initial setup, dealing cards, player actions, and bank actions.
  */
@@ -27,7 +27,7 @@ class Game21
     protected Player $player;
 
     /**
-     * @var Band The Band participating in the game.
+     * @var Bank The Bank participating in the game.
      */
     protected Bank $bank;
 
@@ -43,7 +43,7 @@ class Game21
      * @param Bank $bank The bank or dealer in the game.
      * @param Player $player The player participating in the game.
      */
-    public function __construct(Desk $desk = new Desk, Bank $bank = new Bank, Player $player = new Player)
+    public function __construct(Desk $desk = new Desk(), Bank $bank = new Bank(), Player $player = new Player())
     {
         $this->desk = $desk;
         $this->desk->freshDesk();
@@ -84,10 +84,10 @@ class Game21
      * @param SessionInterface $session The session interface used to store and retrieve game state.
      * @return array<string, mixed> An array containing the desk of cards.
      */
-    public function firstState(SessionInterface $session): array     
+    public function firstState(SessionInterface $session): array
     {
         $this->set($session);
-        $this->toSession($session); 
+        $this->toSession($session);
         $data = [
             //'Status' => $this->status,
             'desk' => $this->desk->getDesk(),
@@ -146,7 +146,7 @@ class Game21
         $this->set($session);
         $this->bank->dealCards($this->desk, [$this->player]);
         $points = $this->player->points();
-        if($points > 21){
+        if($points > 21) {
             $this->status = "fat player";
         } elseif ($points == 21) {
             $this->status = "player wins";
@@ -175,7 +175,7 @@ class Game21
         $this->bank->takeCards($this->desk);
         $points = $this->bank->points();
         $this->status = "compare";
-        if($points > 21){
+        if($points > 21) {
             $this->status = "fat bank";
         } elseif ($points == 21) {
             $this->status = "bank wins";

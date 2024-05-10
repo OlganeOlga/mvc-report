@@ -36,10 +36,10 @@ class Game21PDFController extends AbstractController
             $response->headers->set('Content-Disposition', 'inline; filename="Flodesschema.drawio.pdf"');
 
             return $response;
-        } 
-        
+        }
+
         throw $this->createNotFoundException('The PDF file could not be found.');
-        
+
     }
 
     #[Route("/game/Classes", name: "docClass")] //Show classses for game 21
@@ -76,4 +76,4 @@ class Game21PDFController extends AbstractController
         throw $this->createNotFoundException('The PDF file could not be found.');
     }
 
- }
+}

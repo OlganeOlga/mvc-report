@@ -4,8 +4,8 @@ namespace App\Dice;
 
 use App\Dice\Dice;
 
-class HandDice{
-
+class HandDice
+{
     /** @var Dice[] */
     private array $hand = [];
 

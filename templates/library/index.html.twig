@@ -7,31 +7,28 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<main class="library">
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<main class="main library">
+<header class="headerMe">
+    <h2>Bibliotekdatabas startsidan</h2>
+</header>
     {{ include('flash.html.twig') }}
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/mnt/c/cygwin64/home/oleg0001/dbwebb-kurser/mvc/me/report/src/Controller/LibraryController.php</code></li>
-        <li>Your template at <code>/mnt/c/cygwin64/home/oleg0001/dbwebb-kurser/mvc/me/report/templates/library/index.html.twig</code></li>
-    </ul>
+    <h3 style="font-size: 2em"> Du kan: </h3 style="font-size: 2em">
     <ul>
         <li><a href="{{ path('create_book') }}">Bifoga en bok till biblioteket</a></li>
         <li><a href="{{ path('see_library') }}">Visa alla böcker</a></li>
-        <form class="linkForm" action="{{ path('read_chosen') }}" method="post"> 
+        <li><form class="linkForm" action="{{ path('read_chosen') }}" method="post"> 
             <label for="bookid">Visa en book med id:</label>                  
             <input class="number" type="number" name="bookid" value="" min="1" 
                         placeholder="id" style="width: 100px">
             <input type="submit" value="Visa book">
-        </form>
+        </form></li>
 
-        <form class="linkForm" action="{{ path('update_book') }}" method="post"> 
+        <li><form class="linkForm" action="{{ path('update_book') }}" method="post"> 
             <label for="bookid">Updatera en book med id:</label>                  
             <input class="number" type="number" name="bookid" value="" min="1" 
                         placeholder="id" style="width: 100px">
             <input type="submit" value="Visa book">
-        </form>
+        </form></li>
             
         <li><a href="{{ path('delete_book') }}">Ta bort en book</a></li>
     </ul>

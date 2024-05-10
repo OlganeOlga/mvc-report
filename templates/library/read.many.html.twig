@@ -19,7 +19,7 @@
         </fig>
 
         {% if book.title is not empty %}
-            <h4 class="bookbook.title"><a href="{{ path('see_one', {'id': book.id}) }}">{{ book.title }}</a></h4>
+            <h4 class="bookbook.title"><a href="{{ path('see_one', {'bookId': book.id}) }}">{{ book.title }}</a></h4>
         {% else %}
             <p>Ingen book.title tillagd för book med id {{ book.id }}</p>
         {% endif %}

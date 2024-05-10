@@ -3,7 +3,7 @@
 {% block title %}About{% endblock %}
 
 {% block body %}
- <main class="main json" style="display:'block';">
+ <main class="main json">
     {{ include('flash.html.twig') }}
     <header class="headerMe">
         <h2 class="h1">Json Controllers</h2>
@@ -12,11 +12,11 @@
     <li><a href="{{ path('api') }}">Alla routes</a></li>
     <li><a href="{{ path('api.quote') }}">Dagens citat</a></li>
     <li><a href="{{ path('api_desk') }}">Json kortspel</a></li>
-    <li><a href="#" id="shuffleDesk">Shuffla kortspel</a>
+    <li><a href="#" id="shufD">Shuffla kortspel</a>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                var shuffleLink = document.getElementById("shuffleDesk");
-                shuffleLink.addEventListener("click", function(event) {
+                var shufDLink = document.getElementById("shufD");
+                shufDLink.addEventListener("click", function(event) {
                     event.preventDefault(); // Prevent the default behavior of the link
                     
                     var form = document.createElement("form");
@@ -30,10 +30,10 @@
         </script>
     </li>
 
-    <li><a href="#" id="draEttKort">Json Dra ett kort</a>
+    <li><a href="#" id="draEtK">Json Dra ett kort</a>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                var draLink = document.getElementById("draEttKort");
+                var draLink = document.getElementById("draEtK");
 
                 draLink.addEventListener("click", function(event) {
                     event.preventDefault(); // Prevent the default behavior of the link
@@ -50,20 +50,20 @@
     
     <li style="margin: 15px">Dra flera kort:</li>
     <li>
-        <form class="linkForm" action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawManyForm" 
+        <form class="linkForm" action="{{ path('api_desk_draw_flera', {'num_card': 1}) }}" id="drawFleraForm" 
                 method="post" onsubmit="updateCards()">
         
-            <input type="number" name="num_card" id="num_card_input" value="kort" min="1" max="51" 
+            <input type="number" name="num_card" id="n_card_input" value="kort" min="1" max="51" 
             placeholder="kort" style="width: 50px; margin: 0 10px;">
             <input type="submit" value="Dra">
         </form>
 
         <script>
             function updateCards() {
-                var numCard = document.getElementById('num_card_input').value;
+                var numCard = document.getElementById('n_card_input').value;
                 var formAction = "{{ path('api_desk_draw_flera', {'num_card': 'placeholder'}) }}";
                 formAction = formAction.replace('placeholder', numCard);
-                document.getElementById('drawManyForm').action = formAction;
+                document.getElementById('drawFleraForm').action = formAction;
                 return true;
             }
         </script>
@@ -71,9 +71,8 @@
     </li>
     <li style="margin: 15px">Dela ut för flera spelare:</li>
     <li>
-        <form action="" id="dealForm" 
-                method="post" onsubmit="updatePlay()">
-            
+        <form action="" id="dealF" method="post" onsubmit="changePlay()">
+            <label for="number">Sök en book med ISBN:</label>
             <input type="number" name="num_players" id="players_input" value="person" min="1" max="5" 
             placeholder="person" style="width: 60px; margin: 0 5px 3px 0;">
 
@@ -83,15 +82,15 @@
         </form>
 
         <script>
-            function updatePlay() {                  
+            function changePlay() {                  
                 var numCards = document.getElementById('cards_input').value;
                 var numPlayers = document.getElementById('players_input').value;
                 
                 var formAction = "{{ path('api_desk_deal', {'play': 'placeholder1', 'cards': 'placeholder2'}) }}";
                 formAction = formAction.replace('placeholder1', numPlayers);
                 formAction = formAction.replace('placeholder2', numCards);
-                document.getElementById('dealForm').action = formAction;
-                document.getElementById('dealForm').submit();
+                document.getElementById('dealF').action = formAction;
+                document.getElementById('dealF').submit();
             }
         </script>
     </li>
@@ -99,22 +98,20 @@
     <li><a href="{{  path('json_library') }}">Visa alla böcker</a></li>
     <li>Sök en book med ISBN</li>
     <li>
-        <form action="" id="isbnForm" 
-                method="post" onsubmit="updateIsbn()">
-            
-            <input type="number" name="isbn" id="isbn" value="isbn" pattern="[0-9]{13}" 
-            placeholder="isbn" title="Please enter exactly 13 digits" style="width: 120px; margin: 0 3px 3px 0;">
+        <form action="" id="seachByIsbnForm" method="post" onsubmit="seachByIsbn()">
+            <input type="number" name="isbn" id="isbnMain" value="" pattern="[0-9]{13}" 
+            placeholder="XXXXXXXXXXXXX" title="Please enter exactly 13 digits" style="width: 120px; margin: 0 3px 3px 0;">
             <input type="submit" value="Söka" style="margin: 0 3px 3px 0;">
         </form>
 
         <script>
-            function updateIsbn() {                  
-                var isbn = document.getElementById('isbn').value;
+            function seachByIsbn() {                  
+                var isbn = document.getElementById('isbnMain').value;
                 
                 var formAction = "{{ path('json_book_by_isbn', {'isbn': 'placeholder'}) }}";
                 formAction = formAction.replace('placeholder', isbn);
-                document.getElementById('isbnForm').action = formAction;
-                document.getElementById('isbnForm').submit();
+                document.getElementById('seachByIsbnForm').action = formAction;
+                document.getElementById('seachByIsbnForm').submit();
             }
         </script>
     </li>

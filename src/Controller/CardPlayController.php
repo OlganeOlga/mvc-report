@@ -105,7 +105,7 @@ class CardPlayController extends AbstractController
         unset($desk[$element]);
         $number = count($desk);
         $data = [
-            'desk'=> $desk,
+            'desk' => $desk,
             'cards' => $cards,
             'number' => $number,
         ];
@@ -126,7 +126,8 @@ class CardPlayController extends AbstractController
         $hand = [];
 
         if ($num < 1 || $num > count($desk)) {
-            throw new \InvalidArgumentException($exception);
+            //throw new \InvalidArgumentException($exception);
+            throw new InvalidArgumentException($exception);
         }
 
         for($i = 0; $i < $num; $i++) {
@@ -150,7 +151,6 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/draw_many.html.twig', $data);
     }
 
-
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
     public function dealCards(
         int $player,
@@ -158,7 +158,7 @@ class CardPlayController extends AbstractController
     ): Response {
         $newDesk = new Desk();
         $desk = $newDesk->getDesk();
-        
+
         $players = [];
 
         for($p = 0; $p < $player; $p++) {

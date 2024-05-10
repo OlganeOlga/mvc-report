@@ -73,7 +73,15 @@
                 
             </li>
                     <li>
+                <a href="namespaces/app-entity.html" class="">Entity</a>
+                
+            </li>
+                    <li>
                 <a href="namespaces/app-game21.html" class="">Game21</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/app-repository.html" class="">Repository</a>
                 
             </li>
             </ul>
@@ -179,7 +187,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Game21-Card.html#property_card">$card</a>
     <span>
-                        &nbsp;: int|null            </span>
+                        &nbsp;: array&lt;string|int, int&gt;            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
@@ -191,7 +199,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/App-Game21-Card.html#property_sute">$sute</a>
     <span>
-                        &nbsp;: <abbr title="\App\Game21\nt">nt</abbr>|null            </span>
+                        &nbsp;: int|null            </span>
 </dt>
 
     </dl>
@@ -214,7 +222,7 @@
     <span>
                                 &nbsp;: array&lt;string|int, int&gt;    </span>
 </dt>
-<dd>Randomly chooses a face and suit value for the card.</dd>
+<dd>Randomly chooses a face and sute value for the card.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Game21-Card.html#method_getAsString">getAsString()</a>
@@ -228,7 +236,7 @@
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>GetCollor method returns the color of the suit.</dd>
+<dd>GetCollor method returns the color of the sute.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Game21-Card.html#method_getValue">getValue()</a>
@@ -242,14 +250,14 @@
     <span>
                                 &nbsp;: self    </span>
 </dt>
-<dd>Sets the face and suit values of the card.</dd>
+<dd>Sets the face and sute values of the card.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Game21-Card.html#method_toArray">toArray()</a>
     <span>
                                 &nbsp;: array&lt;string|int, int&gt;    </span>
 </dt>
-<dd>Returns the card as an array containing its face and suit values.</dd>
+<dd>Returns the card as an array containing its face and sute values.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-Game21-CardGraphics.html#method_toString">toString()</a>
@@ -366,7 +374,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">int|null</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, int&gt;</span>
     <span class="phpdocumentor-signature__name">$card</span>
     </code>
 
@@ -436,7 +444,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\App\Game21\nt">nt</abbr>|null</span>
+        <span class="phpdocumentor-signature__type">int|null</span>
     <span class="phpdocumentor-signature__name">$sute</span>
      = <span class="phpdocumentor-signature__default-value">null</span></code>
 
@@ -501,11 +509,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Game21/Card.php"><a href="files/src-game21-card.html"><abbr title="src/Game21/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">53</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Randomly chooses a face and suit value for the card.</p>
+        <p class="phpdocumentor-summary">Randomly chooses a face and sute value for the card.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -521,7 +529,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>An array containing the chosen face and suit values.</p>
+                <section class="phpdocumentor-description"><p>An array containing the chosen face and sute values.</p>
 </section>
 
             </section>
@@ -541,7 +549,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Game21/Card.php"><a href="files/src-game21-card.html"><abbr title="src/Game21/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -585,7 +593,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">GetCollor method returns the color of the suit.</p>
+        <p class="phpdocumentor-summary">GetCollor method returns the color of the sute.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -601,7 +609,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The color of the suit.</p>
+                <section class="phpdocumentor-description"><p>The color of the sute.</p>
 </section>
 
             </section>
@@ -621,7 +629,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Game21/Card.php"><a href="files/src-game21-card.html"><abbr title="src/Game21/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -665,7 +673,7 @@
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sets the face and suit values of the card.</p>
+        <p class="phpdocumentor-summary">Sets the face and sute values of the card.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -681,14 +689,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The face value of the card.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$sute</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The sute value of the card.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -718,11 +730,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Game21/Card.php"><a href="files/src-game21-card.html"><abbr title="src/Game21/Card.php">Card.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Returns the card as an array containing its face and suit values.</p>
+        <p class="phpdocumentor-summary">Returns the card as an array containing its face and sute values.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -738,7 +750,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, int&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>An array containing the face and suit values of the card.</p>
+                <section class="phpdocumentor-description"><p>An array containing the face and sute values of the card.</p>
 </section>
 
             </section>
