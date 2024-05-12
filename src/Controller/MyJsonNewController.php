@@ -73,7 +73,7 @@ class MyJsonNewController extends AbstractController
      * Router search and displays all books with given ISBN from table 'book' in connected databas as json
      * 
      * @param BookRepository $bookRepository
-     * @param int @isbn 13-digits integer
+     * @param int $isbn 13-digits integer
      * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
      */
     #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]

@@ -178,7 +178,7 @@ class LibraryController extends AbstractController
         Request $request,
         BookRepository $bookRepository
     ): Response {
-        $entityManager = $doctrine->getManager();
+        //$entityManager = $doctrine->getManager(); comment away this line as it is seen as anused by phpmd
         $bookId = intval($request->request->get('bookid'));
         $data = [];
         try {

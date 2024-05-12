@@ -98,7 +98,8 @@
         ],
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "csfix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src",
-        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src --dry-run -v"
+        "csfix:dry": "tools/php-cs-fixer/vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix src --dry-run -v",
+        "phpmetrics": "tools/phpmetrics/vendor/bin/phpmetrics --config=tools/phpmetrics/phpmetrics.json"
     },
     "conflict": {
         "symfony/symfony": "*"
