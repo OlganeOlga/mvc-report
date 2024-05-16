@@ -21,7 +21,7 @@ class Desk
     }
 
     /**
-     * GetDesk method returns array of string arrays representing all cards in desk
+     * GetDesk method returns array cards
      *
      * @return array<string[]> Array contains strings: card reprresentation and color
      */
@@ -37,28 +37,11 @@ class Desk
         return $values;
     }
 
-    // /**
-    //  * setDesk method description
-    //  *
-    //  * @param array<int[]> $array of integers arrays
-    //  * @return Desk Array contains strings: card reprresentation and color
-    //  */
-    // public function setDesk($array): Desk
-    // {
-
-    //     foreach ($this->play as $card) {
-    //         $cardstring = $card->getAsString();
-    //         $cardcolor = $card->getCollor();
-    //         $values[] = [$cardstring, $cardcolor];
-    //     }
-
-    //     return $values;
-    // }
 
     /**
-     * GetDeskArray method description.
+     * GetDeskArray method returns array of strings represented cards of the desk.
      *
-     * @return array<int> Array containing array representation of card elements.
+     * @return array<string[]> Array containing array representation of card elements.
      */
     public function getDeskArray(): array
     {

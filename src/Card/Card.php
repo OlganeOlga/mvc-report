@@ -28,14 +28,14 @@ class Card
     /**
      * Set method description.
      *
-     * @return mixed[] Array containing the given int elements.
+     * @return Card Card object with given properties.
      */
-    public function set(int $aFase, int $aSuit): array
+    public function set(int $aFase, int $aSuit): Card
     {
         $this->face = $aFase;
         $this->suit = $aSuit;
 
-        return $this->card;
+        return $this;
     }
 
     /**
