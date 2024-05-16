@@ -75,22 +75,10 @@ class Desk
     {
         $res = [];
         foreach ($this->play as $card) {
-            $res[] = $card.getCard();
+            $res[] = $card.toArray();
         }
         return $this->play;
     }
-
-    // public function setDesk($arr): object
-    // {
-    //     $play = [];
-    //     for ($i = 0; $i < count($arr); $i++) {
-    //         $card = new CardGraphics;
-    //         $card.set($arr[$i][0], $arr[$i][1]);
-    //         $play[] = $card;
-    //     }
-    //     $this->play = $play;
-    //     return $this->play;
-    // }
 
     /**
      * ShuffleDesk method shuffles desk.
@@ -111,8 +99,8 @@ class Desk
     public function randCard(): CardGraphics
     {
         $cardnum = array_rand($this->play);
-        $card = $this->paly[$cardNum];
-        unset($this->paly[$element]);
+        $card = $this->play[$cardnum];
+        unset($this->play[$cardnum]);
         return $card;
     }
 
