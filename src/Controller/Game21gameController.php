@@ -33,7 +33,7 @@ class Game21gameController extends AbstractController
      * Route is the start route for all routes of cardplay 21
      * saves game in the session
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */
@@ -48,7 +48,7 @@ class Game21gameController extends AbstractController
     /**
      * Route shows results of FirstState in the html.
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */
@@ -78,7 +78,7 @@ class Game21gameController extends AbstractController
     /**
      * Route shows bank bet in html.
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */
@@ -93,7 +93,7 @@ class Game21gameController extends AbstractController
      * Route gets player bet from the form in html and first card of the palyer and
      * gives player a card.
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */
@@ -112,7 +112,7 @@ class Game21gameController extends AbstractController
      * gives player a card and shows the posints
      * follow steps dependent on the players points.
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */
@@ -130,7 +130,7 @@ class Game21gameController extends AbstractController
     /**
      * If player is satisfyed, this route shows all cards that get bank
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */

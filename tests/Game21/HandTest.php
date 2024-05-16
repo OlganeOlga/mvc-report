@@ -22,18 +22,6 @@ class HandTest extends TestCase
         $this->assertEquals($exp, $res);
     }
 
-    // /**
-    //  * Construct object and verify it can add a card.
-    //  */
-    // public function testAddCard(): void
-    // {
-    //     $hand = new Hand();
-    //     $card1 = $this->createMock(CardGraphics::class);
-    //     $hand->addCard($card);
-    //     $res = $hand->toArray();
-    //     $this->assertNotEmpty($res);
-    // }
-
     /**
      * Construct object and verify it get correct points.
      */

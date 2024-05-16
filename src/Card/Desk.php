@@ -59,7 +59,7 @@ class Desk
         foreach ($this->play as $card) {
             $res[] = $card->getCard();
         }
-        return $this->play;
+        return $res;
     }
 
     /**
@@ -90,12 +90,12 @@ class Desk
     /**
      * CountDeskArray method description.
      *
-     * @return Desk self with shuffled elements.
+     * @return int amount elements.
      */
-    public function countDesk(): self
+    public function countDesk(): int
     {
-        count($this->play);
-        return $this;
+        $res = count($this->play);
+        return $res;
     }
 
 }
