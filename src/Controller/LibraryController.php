@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\VarDumper\VarDumper;
+//use Symfony\Component\VarDumper\VarDumper;
 use InvalidArgumentException;
 
 use App\Entity\Book;
@@ -169,18 +169,17 @@ class LibraryController extends AbstractController
      * 
      * @param BookRepository $bookRepository,
      * @param Request $request,
-     * @param ManagerRegistry $doctrine,
      * @return Response
      */ 
     #[Route('library/update/book', name: 'update_book', methods: ['POST'])]
     public function updateBook(
-        ManagerRegistry $doctrine,
+        //ManagerRegistry $doctrine,// comment it away after Scerutinizer tests
         Request $request,
         BookRepository $bookRepository
     ): Response {
-        //$entityManager = $doctrine->getManager(); comment away this line as it is seen as anused by phpmd
+        //$entityManager = $doctrine->getManager(); comment away this line as it is seen as unused by phpmd
         $bookId = intval($request->request->get('bookid'));
-        $data = [];
+        //$data = [];
         try {
             $book = $bookRepository->find($bookId);
             $data = [

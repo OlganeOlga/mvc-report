@@ -307,6 +307,11 @@ main.cort p {
     grid-column: span 2;
 }
 
+main.metrix {
+    display: flex;
+    flex-direction: column;
+}
+
 ul.desk {
     background-color: green;
     justify-content: center;
@@ -413,6 +418,14 @@ form.cardGame21 input.card {
 main.library h2 {
     grid-row: 1;
     grid-column: span 2;
+}
+
+main.metrix h2 {
+    color: salmon;
+}
+
+main.metrix h3 {
+    font-style: italic;
 }
 
 main.library form.book {

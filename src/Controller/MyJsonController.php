@@ -115,8 +115,7 @@ class MyJsonController extends AbstractController
     public function apiDesk(
         SessionInterface $session
     ): Response {
-        $data = [];
-
+        //$data = []; If api/desk does not work uncomment this
         try {
             $data = $session->get('desk');
             if ($data == null || count($data) < 52) {
@@ -168,19 +167,21 @@ class MyJsonController extends AbstractController
     public function apiDrawDesk(
         SessionInterface $session
     ): Response {
-        $data = [];
+        //$data = []; If desk/drow does not work uncomment this
+        // try {
+        //     $data = $session->get('desk');
+        //     if ($data == null || count($data) < 52) {
+        //         $desk = new Desk();
+        //         $data = $desk->getDesk();
+        //     }
+        // } catch (Exception $e) {
+        //     $desk = new Desk();
+        //     $data = $desk->getDesk();
+        // }
 
-        try {
-            $data = $session->get('desk');
-            if ($data == null || count($data) < 52) {
-                $desk = new Desk();
-                $data = $desk->getDesk();
-            }
-        } catch (Exception $e) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
-
+        
+        $desk = new Desk();
+        $data = $desk->getDesk();
         $element = array_rand($data);
         $card = $data[$element];
         unset($data[$element]);
@@ -269,44 +270,48 @@ class MyJsonController extends AbstractController
      */
     #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
     public function apiDealCard(
-        SessionInterface $session,
+        //SessionInterface $session,
         int $play,
         int $cards
     ): Response {
-        $data = [];
+        $desk = new Desk();
         $players = [];
         $response = new Response();
-        try {
-            $data = $session->get('desk');
-            if ($data == null || count($data) < 52) {
-                $desk = new Desk();
-                $data = $desk->getDesk();
-            }
-        } catch (Exception $e) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
+        // try {
+        //     $data = $session->get('desk');
+        //     if ($data == null || count($data) < 52) {
+        //         $desk = new Desk();
+        //         $data = $desk->getDesk();
+        //     }
+        // } catch (Exception $e) {
+        //     $desk = new Desk();
+        //     $data = $desk->getDesk();
+        // }
 
-        shuffle($data);
+        $desk = shuffleDesk();
+        //shuffle($data);
         for($k = 0; $k < $play; $k++) {
             $hand = [];
             for($i = 0; $i < $cards; $i++) {
-                $element = array_rand($data);
-                $card = $data[$element];
+                // $element = array_rand($data);
+                // $card = $data[$element];
+                $card = $data.randCard();
                 $hand[] = $card;
-                unset($data[$element]);
+                // unset($data[$element]);
             }
             $players[(string)($k + 1)] = $hand;
         }
 
-        $number = count($data);
+        // $number = count($data);
+        $number = $desk.countDesk();
         $result = [
             'players' => $players,
             'number cards left' => $number,
         ];
 
-        $session->set('players', $players);
-        $session->set('desk', $data);
+        // $session->set('players', $players); ??
+        // // $session->set('desk', $data);
+        // $session->set('desk', $desk->toArray());
 
         $response = new Response();
         $response->setContent(json_encode($result));

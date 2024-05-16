@@ -22,7 +22,7 @@ class Hand
      * AddCard method description
      *
      * @param CardGraphics $card
-     * @return void.
+     * @return void
      */
     public function addCard(CardGraphics $card): void
     {

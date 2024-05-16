@@ -1,3 +1,21 @@
+Scrutiniser bages: 
+<p>   
+Här är Scrutinizer badge för ’build’:</p>
+ <a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
+    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/build-score.png?b=master" alt="Scrutinizer Code Build">
+</a>
+<p>för quality:</p>
+<a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
+    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
+</a>
+<p> och för coverage: </p>
+
+<a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
+    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/coverage-score.png?b=master" alt="Scrutinizer Code Coverage">
+</a>
+
+
+
 commit d1bfd2270d33e3d0a898a820b687dd1353cfeea8 (HEAD -> master, tag: 3.0.0)
 Author: OlganeOlga <o_yegorovar@yahoo.com>
 Date:   Sun Apr 21 07:24:53 2024 +0200

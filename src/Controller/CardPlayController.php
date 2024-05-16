@@ -24,7 +24,6 @@ class CardPlayController extends AbstractController
         $data = $session->all();
 
         // Skriv ut eller logga variablerna
-        //var_dump($data);
         return $this->render('cardplay/tests/debug.html.twig', ['data' => $data]);
     }
 
@@ -92,25 +91,27 @@ class CardPlayController extends AbstractController
     public function draw(
         SessionInterface $session
     ): Response {
-        $desk = $session->get('desk');
-        if($desk == null) {
+        $deskCards = $session->get('desk');
+        if($deskCards == null) {
             $desk = new Desk();
-            $desk->getDesk();
+            $deskCards = $desk->getDesk();
         }
         $cards = $session->get('cards');
 
-        $element = array_rand($desk);
-        $card = $desk[$element];
+        $element = array_rand($deskCards);
+        $card = $deskCards[$element];
+        // $card = $desk.randCard();
         $cards[] = $card;
-        unset($desk[$element]);
-        $number = count($desk);
+        unset($deskCards[$element]);
+        $number = count($deskCards);
+        // $number = $desk.countDesk();
         $data = [
-            'desk' => $desk,
+            'desk' => $deskCards,
             'cards' => $cards,
             'number' => $number,
         ];
 
-        $session->set('desk', $desk);
+        $session->set('desk', $deskCards);
         $session->set('cards', $cards);
         return $this->render('cardplay/draw.html.twig', $data);
     }

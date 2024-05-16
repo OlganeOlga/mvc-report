@@ -69,7 +69,7 @@ class Game21gameController extends AbstractController
         SessionInterface $session
     ): Response {
         $data = $this->game->playerNewCard($session);
-        if($data['Status'] == "fat player" | $data['Status'] == "player wins") {
+        if($data['Status'] == "fat player" || $data['Status'] == "player wins") {
             return $this->render('game21/endround.html.twig', $data);
         }
         return $this->render('game21/card_to_player.html.twig', $data);

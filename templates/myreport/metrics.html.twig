@@ -3,115 +3,50 @@
 {% block title %}About{% endblock %}
 
 {% block body %}
- <main class="main">
+ <main class="main metrix">
         
     <header class="headerMe">
         <h2 class="h1">Metrics</h2>
-        <div class="link">
-        <ul>
-            <li><a href="#Intro">Introduction</a></li>
-            <li><a href="#Phpmetrics">Phpmetrics</a></li>
-            <li><a href="#Scrutinizer">Scrutinizer</a></li>
-            <li><a href="#Forbattringar">Förbättringar</a></li>
-            <li><a href="#Diskussion">Diskussion</a></li>
-        </ul>
-    </div>
     </header>
     <h2 class="part" id="Intro">Introduction</h2>
-
-    <p>du förklarar de sex C:na och hur de kan påverka kodens kvalitet. 
-        Exemplifiera, där det passar, med några mätvärden som är kopplad 
-        till din egen kod och ge en kort förklaring av mätvärdet relaterat till kodkvalitet.
-    </p>
-    <h3>Codstyle:</h3> 
-    
-    <p>
-        It is important that PHP code adheres (as close as possible) to a common code style to make it easy for developers to mix and match various libraries for their projects.
-    </p>
-    <h3>Codcoverage</h3>
-    <p>
-        Code coverage i Scrutinizer är en mätning av hur mycket av din kod som testas av dina testfall. Det visar andelen av din kodbas som faktiskt körs genom dina enhetstester, vilket hjälper dig att bedöma hur väl din kod är testad.
-    </p>
-    <p>
-        När du kör dina enhetstester genereras en rapport som visar vilka delar av din kod som har kört och vilka som inte har gjort det. Code coverage-mätningen mäts vanligtvis i procent och kan hjälpa dig att identifiera områden av din kod som behöver ytterligare testning.
-    </p>
-    <p>
-        En hög code coverage indikerar vanligtvis att mer av din kod är testad och därmed mer pålitlig. Å andra sidan kan en låg code coverage indikera områden av din kod som är mer sårbara för buggar och fel eftersom de inte har testats tillräckligt noggrant.
-    </p>
-    <p>
-        I Scrutinizer kan du se code coverage-resultaten i rapporterna som genereras efter att dina testkörningar har slutförts. Det ger dig insikt i hur väl din kod är testad och kan hjälpa dig att förbättra din teststrategi för att öka pålitligheten och kvaliteten på din kod.
-    </p>
-    <h3>Complexity</h3>
-    <p>
-        Codcomplexitet visar hur många beslutspunkter finns i kodavsnitten. Det är sårbarhet grad. så det är önskvard att försöka hålla ner kodkomplexitet.
-        Tumregeln är att bibehålla kodkomplexitet under 10. Men ibbland går det inte.
-    </p>
-    <p>
-        I Scrutinizer är kodkomplexitet en mätning av hur komplicerad och svår att förstå din kod är. Det används för att bedöma hur lätt det är att underhålla och vidareutveckla din kodbas. Kodkomplexitet mäts vanligtvis med olika metriker och algoritmer som tar hänsyn till faktorer som antalet kodrader, djupet av nivåerna av inbäddade block (t.ex. loopar och villkorssatser), och antalet grenar och villkor i din kod.
-    </p>
-    <p>
-        En hög kodkomplexitet kan göra det svårare för utvecklare att förstå och modifiera koden, vilket kan leda till ökad sårbarhet för buggar och fel. Å andra sidan kan en låg kodkomplexitet indikera att koden är mer lättläst, förståelig och därmed mer underhållbar.
-    </p>
-    <p>
-        I Scrutinizer kan du se kodkomplexitetsresultaten i de genererade rapporterna efter att din kod har analyserats. Det ger dig insikt i hur komplicerad din kod är och kan hjälpa dig att identifiera områden som kan behöva förenklas eller omstruktureras för att förbättra kodens läsbarhet och underhållbarhet.
-    </p>
-
-    <h3>Cohesion</h3>
-    <p>
-        Cohesion är ett begrepp inom mjukvaruutveckling som avser graden av sammanhållning eller koppling mellan olika delar av en modul, klass eller system. Det mäter hur nära och relaterade olika delar av koden är till varandra i ett givet sammanhang.
-    </p>
-    <p> 
-        Hög cohesion indikerar att de olika delarna av en modul eller klass är nära relaterade till varandra och arbetar tillsammans för att utföra en enda uppgift eller ansvar. Detta anses vara ett önskvärt mål eftersom det främjar läsbarhet, underhållbarhet och återanvändbarhet av koden.
-    </p>
-    <p>
-        Låg cohesion, å andra sidan, innebär att olika delar av koden inte är särskilt relaterade till varandra och kan ha olika ansvar eller uppgifter. Detta kan leda till svårigheter med att förstå och underhålla koden, samt ökad risk för buggar och fel.
-    </p>
-
-    <h3>Coupling</h3>
-    <p>Visar hur mycket end klas är beroende av den andra klasser. Det är instabilitet index. Med låd coupling är en klass stabilt och
-    ju högre är couplingsindex ju svarare är det att underhålla klassen.</p>
-    <p>
-        Koppling av kod, även känd som kodkoppling, hänvisar till graden av beroende mellan olika delar av en kodbas. Det mäter hur nära eller löst sammanlänkade olika delar av koden är. Koppling är en viktig indikator på hur välmodulerad och flexibel en kodbas är.
-    </p>
-    <p>
-        När kod har hög koppling innebär det att olika delar av koden är starkt beroende av varandra. Detta kan leda till problem som:
-    </p>
-    <p>
-        Svårigheter vid ändringar: En liten ändring i en del av koden kan kräva ändringar i många andra delar av koden.
-    </p>
-    <p>
-        Svårigheter vid återanvändning: Kod med hög koppling är vanligtvis svårare att återanvända eftersom den är så starkt bunden till sin kontext.
-    </p>
-    <p>
-        Svårigheter vid testning: Högt kopplad kod kan vara svårare att testa eftersom det kan vara svårt att isolera och testa olika delar av koden separat.
-    </p>
-    <p>
-        Målet är att ha låg koppling i koden, vilket innebär att olika delar av koden är mindre beroende av varandra. Detta främjar modulär design, återanvändbarhet och testbarhet. Att minska kopplingen kan uppnås genom att använda olika principer och mönster i mjukvaruutveckling, såsom löst kopplade komponenter, gränssnitt och beroendehanteringstekniker.
-    </p>
-   
-    <h3>CRAP</h3>
-    <p>CRAP är förkortning for "Change Risk Analys and Predictor". Det inckluderar flera olika mätvärde i sig och visar hur svart är det att 
-    underhålla kodavsnitt (metod, class osv). För att förbättra kodkvalitet med högre CRAP ska man skaffa flera tester.
-    <p>
-     Clean code Readable, reusable, and refactorable software in PHP.</p>
-    <h3>6C om kodkvalitet</h3>
-    <p>Inför denna uppgiften definierar vi de sex C:na om kodkvalitet (6C). Du kan se det som 6 steg till snyggare och bättre kod, “clean code”.
-
-    <ul>
+<h3>Några ’C’ för bättre kodkvalitet</h3>
+<p>
+I Kmom06 ska vi lära oss använda några verktyg för att mäta kvalitet på applikationen (koden) och försöka förbättra den. Det finns flera olika mätvärden för kodens kvalitet. VI ska använda bara 6 eller 7 av de som börjar på ”C”, som kan hjälpa att få snyggare och bättre kod, “clean code”. De C-ar är:    </p>
+<ul>
         <li>Codestyle</li>
         <li>Coverage</li>
         <li>Complexity</li>
         <li>Cohesion</li>
         <li>Coupling</li>
         <li>CRAP</li>
-    </ul>
-    <p>
-        Din undersökning om kodkvalitet på din egen kod kan utgå från dessa “mättal”. Men glöm inte bort att det finns fler mättal som kan vara intressanta.
-    </p>
-    <p>
-        Om du vill kan du utöka 6C till 7C med följande som hanteras av dina rapporter från dina statiska kodlinters.
-    </p>
+Och 
     <li>Code smell</li>
+    </ul>
+    <h3>Codstyle:</h3>
+    <p>
+     I php finns det inte explicita reglar som inte tillåter koden att fungera ifall kodstyle inte är standardiserad, men det är viktigt att skriva koden så mycket som möjligt nära allmänna standarder så att det blir lättare att läsa koden, analysera den så att andra programmerare kan använda koden i sina projekt. Kod som är skriven med bra style är lättare att förbättra.
+    </p>
+    <h3>Codcoverage</h3>
+    <p>
+För att minimera felkällor (buggar) i koden ska programvara testas så mycket som möjligt. Begrepp ”Codcoverage” visar vilken del av koden är testad genom enhetstesterna. Högre ”Coverage” säger att koden är bättre testad och därför är mera pålitligt.
+  </p>
+    <h3>Complexity</h3>
+    <p>
+        Kodkomplexitet visar hur många beslutspunkter finns i kodavsnitten. Det är sårbarhet grad. så det är önskvärd att försöka hålla ner kodkomplexitet. Tumregeln är att bibehålla kodkomplexitet under 10. Men ibland går det inte. </p>
+    <h3>Cohesion</h3>
+    <p>
+        Cohesion är ett begrepp inom mjukvaruutveckling som avser graden av sammanhållning eller koppling mellan olika delar av en modul, klass eller system. Det mäter hur nära och relaterade olika delar av koden är relaterad till varandra.
+    </p>
+    <p> Hög cohesion visar att delarna av en klass är relaterad till varandra och fungerar rätt för att utföra en enda uppgift eller ansvar. Låg cohesion, visar att det finns delar av koden som är inte särskilt relaterade till varandra och kan ha olika ansvar eller uppgifter. </p>
+
+    <h3>Coupling</h3>
+    <p>Visar hur mycket end klas är beroende av den andra klasser. Det är instabilitetindex. Med låd coupling är en klass stabilt och ju högre är couplingsindex ju svarare är det att underhålla klassen vid ändringen av kod. Det visar också hur svår kan det vara att testa koden. Med högre koupling är det svarare att skriva bra tester.</p>
+    
+    <h3>CRAP</h3>
+    <p>CRAP är förkortning for "Change Risk Analys and Predictor". Det inckluderar flera olika mätvärde i sig och visar hur svart är det att underhålla kodavsnitt (metod, class osv). För att förbättra kodkvalitet med högre CRAP ska man skaffa flera tester.
+    </p>
+    <h3>Code smell</h3>
+<p>Den begrepp refererar till möjliga design eller användningsprovlem som ligger i koden. Det kan vara langa metoder, eller metoder med flera parametrar eller upprepade köravsnitt (duplicerad kod). Komplex logik och många beslutsmoment kan också höja den index. Testtakning räknas med. Index kan dras ner med flera enhetstester.</p>
 
     <h2 class="part" id="Phpmetrics">Phpmetrics</h2>
     
@@ -159,10 +94,13 @@
     </p>
 </main>
 <aside class="aside">
-    <h2 class="aside-right">Alla länkar</h2>
+    <h2 class="aside-right">Innehåll</h2>
     <ul>
-        <li><a href="https://github.com/dbwebb-se/mvc/tree/main">MVC Gitrepo</a></li>
-        <li><a href="https://github.com/OlganeOlga/mvc-report/">Min Gitrepo för MVC</a></li>
+        <li class="metrics"><a href="#Intro">Introduction</a></li>
+        <li class="metrics"><a href="#Phpmetrics">Phpmetrics</a></li>
+        <li class="metrics"><a href="#Scrutinizer">Scrutinizer</a></li>
+        <li class="metrics"><a href="#Forbattringar">Förbättringar</a></li>
+        <li class="metrics"><a href="#Diskussion">Diskussion</a></li>
     </ul>
 </aside>
     

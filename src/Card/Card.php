@@ -53,9 +53,9 @@ class Card
     }
 
     /**
-     * GetCard method description.
+     * GetCard method card as array.
      *
-     * @return mixed[] Array containing the chosencharacteristic of the card.
+     * @return int[] Array containing the chosencharacteristic of the card.
      */
     public function getCard(): array
     {
@@ -63,7 +63,7 @@ class Card
     }
 
     /**
-     * Choose method description.
+     * GetAsString method returns cardobject as string.
      *
      * @return string string representation of the card.
      */
@@ -72,4 +72,5 @@ class Card
         $string = $this->face . ", " . $this->suit;
         return $string;
     }
+
 }
