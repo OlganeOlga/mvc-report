@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2024-05-16 18:15:04        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2024-05-16 19:57:25        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -60,24 +60,24 @@
         <div class="bloc bloc-number">
             <div class="label">Test suites</div>
             <div class="number">
-                12            </div>
+                13            </div>
         </div>
     </div>
     <div class="column">
         <div class="bloc bloc-number">
             <div class="label">Assertions</div>
             <div class="number">
-                129            </div>
+                147            </div>
         </div>
     </div>
     <div class="column">
         <div class="bloc bloc-number">
             <div class="label">
                 classes never called by tests
-                <small>(57.14 %)</small>
+                <small>(53.57 %)</small>
             </div>
             <div class="number">
-                16            </div>
+                15            </div>
         </div>
     </div>
 </div>
@@ -210,17 +210,6 @@
                                                                     <td>
                                         <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.26);">
                                         0.26                                        </span>
-                                    </td>
-                                                            </tr>
-                                                        <tr>
-                                <td><span class="path">App\Dice\HandDice</span></td>
-                                                                    <td>
-                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.33);">
-                                        4                                        </span>
-                                    </td>
-                                                                    <td>
-                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.02);">
-                                        0.02                                        </span>
                                     </td>
                                                             </tr>
                                                         <tr>
@@ -365,6 +354,17 @@
                                                                             <br>                                        <span class="badge" title="Cyclomatic complexity of class">
                                             1                                        </span>
                                         <span class="path">App\Dice\GraphicDice</span>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <td valign="top"><span class="path">App\Dice\HandDiceTest</span></td>
+                                <td style="padding-bottom: 1em;">
+                                                                                                                    <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">PHPUnit\Framework\TestCase</span>
+                                                                            <br>                                        <span class="badge" title="Cyclomatic complexity of class">
+                                            4                                        </span>
+                                        <span class="path">App\Dice\HandDice</span>
                                                                     </td>
                             </tr>
                                                     <tr>
@@ -691,7 +691,7 @@
 
 
             
-            var json = {"name":"Execution time","children":[{"name":"App\\Card\\CardGraphicsTest","time":0.184298},{"name":"App\\Card\\CardTest","time":0.096713},{"name":"App\\Card\\DeskTest","time":0.013673},{"name":"App\\Dice\\DiceTest","time":0.063817},{"name":"App\\Dice\\GraphicDiceTest","time":0.032848},{"name":"App\\Game21\\BankTest","time":0.520027},{"name":"App\\Game21\\CardGraphicsTest","time":0.00156},{"name":"App\\Game21\\CardTest","time":0.003187},{"name":"App\\Game21\\DeskTest","time":0.005895},{"name":"App\\Game21\\Game21Test","time":0.286939},{"name":"App\\Game21\\HandTest","time":0.019386},{"name":"App\\Game21\\PlayerTest","time":0.003131}]};
+            var json = {"name":"Execution time","children":[{"name":"App\\Card\\CardGraphicsTest","time":0.12302},{"name":"App\\Card\\CardTest","time":0.061957},{"name":"App\\Card\\DeskTest","time":0.029647},{"name":"App\\Dice\\DiceTest","time":0.027324},{"name":"App\\Dice\\GraphicDiceTest","time":0.023753},{"name":"App\\Dice\\HandDiceTest","time":0.295087},{"name":"App\\Game21\\BankTest","time":0.100452},{"name":"App\\Game21\\CardGraphicsTest","time":0.002484},{"name":"App\\Game21\\CardTest","time":0.002757},{"name":"App\\Game21\\DeskTest","time":0.00645},{"name":"App\\Game21\\Game21Test","time":0.197674},{"name":"App\\Game21\\HandTest","time":0.0171},{"name":"App\\Game21\\PlayerTest","time":0.002}]};
             root = json;
             var nodes = treemap.nodes(json)
                 .filter(function (d) {

@@ -16,6 +16,16 @@ use App\Repository\ProductRepository;
 class ProductController extends AbstractController
 {
     /**
+     * @var ManagerRegistry $doctrine
+     */
+    private $doctrine;
+
+     /**
+     * @var ProductRepository $productRepository
+     */
+    private $productRepository;
+
+    /**
      * Constructor
      */
     public function __construct(ManagerRegistry $doctrine, ProductRepository $productRepository)
