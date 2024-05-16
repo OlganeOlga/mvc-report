@@ -74,7 +74,7 @@ class Desk
     {
         $res = [];
         foreach ($this->play as $card) {
-            $res[] = $card.toArray();
+            $res[] = $card->getCard();
         }
         return $this->play;
     }
