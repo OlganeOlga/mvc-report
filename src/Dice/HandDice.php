@@ -6,14 +6,24 @@ use App\Dice\Dice;
 
 class HandDice
 {
-    /** @var Dice[] */
+    /**
+     *  @var Dice[] array represents all dies in hand
+    */
     private array $hand = [];
 
+    /**
+     * Constructor method
+     */
     public function add(Dice $die): void
     {
         $this->hand[] = $die;
     }
 
+     /**
+     * Roll hand.
+     *
+     * @return int[] array with value of the dice.
+     */
     public function roll(): void
     {
         foreach ($this->hand as $die) {

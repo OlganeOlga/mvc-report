@@ -10,8 +10,23 @@ use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Repository\ProductRepository;
 
+/**
+ * Controllers for exercise Product
+ */
 class ProductController extends AbstractController
 {
+    /**
+     * Constructor
+     */
+    public function __construct(ManagerRegistry $doctrine, ProductRepository $productRepository)
+    {
+        $this->doctrine = $doctrine;
+        $this->productRepository = $productRepository;
+    }
+
+    /**
+     * @return Response
+     */
     #[Route('/product', name: 'app_product')]
     public function index(): Response
     {
@@ -20,11 +35,16 @@ class ProductController extends AbstractController
         ]);
     }
 
+    /**
+     * Creates new products with standart value and name in the database
+     * @param ManagerRegistry $doctrine
+     * @return Response
+     */
     #[Route('/product/create', name: 'product_create')]
     public function createProduct(
-        ManagerRegistry $doctrine
+        //ManagerRegistry $doctrine
     ): Response {
-        $entityManager = $doctrine->getManager();
+        $entityManager = $this->doctrine->getManager();
 
         $product = new Product();
         $product->setName('Keyboard_num_' . rand(1, 9));
@@ -40,11 +60,16 @@ class ProductController extends AbstractController
         return new Response('Saved new product with id '.$product->getId());
     }
 
+    /**
+     * Shows all products in the database
+     * @param ProductRepository $productRepository,
+     * @return Response
+     */
     #[Route('/product/show', name: 'product_show_all')]
     public function showAllProduct(
-        ProductRepository $productRepository
+        //ProductRepository $productRepository
     ): Response {
-        $products = $productRepository
+        $products = $this->productRepository
             ->findAll();
 
         $response = $this->json($products);
@@ -54,23 +79,35 @@ class ProductController extends AbstractController
         return $response;
     }
 
+    /**
+     * Shows product from database with given product id
+     * @param ProductRepository $productRepository,
+     * @param int $prodId,
+     * @return Response
+     */
     #[Route('/product/show/{prodId}', name: 'product_by_id')]
     public function showProductById(
-        ProductRepository $productRepository,
+        //ProductRepository $productRepository,
         int $prodId
     ): Response {
-        $product = $productRepository
+        $product = $this->productRepository
             ->find($prodId);
 
         return $this->json($product);
     }
 
+    /**
+     * Deletes product with the prodId from the database
+     * @param ManagerRegistry $doctrine,
+     * @param int $prodId,
+     * @return Response
+     */
     #[Route('/product/delete/{prodId}', name: 'product_delete_by_id')]
     public function deleteProductById(
-        ManagerRegistry $doctrine,
+        //ManagerRegistry $doctrine,
         int $prodId
     ): Response {
-        $entityManager = $doctrine->getManager();
+        $entityManager = $this->doctrine->getManager();
         $product = $entityManager->getRepository(Product::class)->find($prodId);
 
         if (!$product) {
@@ -85,13 +122,22 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('product_show_all');
     }
 
+    /**
+     * Updates product with the prodId in the database
+     * set value as given
+     * 
+     * @param ManagerRegistry $doctrine,
+     * @param int $prodId,
+     * @param int $value
+     * @return Response
+     */
     #[Route('/product/update/{prodId}/{value}', name: 'product_update')]
     public function updateProduct(
-        ManagerRegistry $doctrine,
+        //ManagerRegistry $doctrine,
         int $prodId,
         int $value
     ): Response {
-        $entityManager = $doctrine->getManager();
+        $entityManager = $this->doctrine->getManager();
         $product = $entityManager->getRepository(Product::class)->find($prodId);
 
         if (!$product) {
@@ -106,11 +152,14 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('product_show_all');
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/product/view', name: 'product_view_all')]
     public function viewAllProduct(
-        ProductRepository $productRepository
+        //ProductRepository $productRepository
     ): Response {
-        $products = $productRepository->findAll();
+        $products = $this->productRepository->findAll();
 
         $data = [
             'products' => $products
@@ -119,12 +168,17 @@ class ProductController extends AbstractController
         return $this->render('product/view.html.twig', $data);
     }
 
+    /**
+     * Test function findByMinimumValue
+     * @param ProductRepository $productRepository
+     * @return Response
+     */
     #[Route('/product/view/{value}', name: 'product_view_minimum_value')]
     public function viewProductWithMinimumValue(
-        ProductRepository $productRepository,
+        //ProductRepository $productRepository,
         int $value
     ): Response {
-        $products = $productRepository->findByMinimumValue($value);
+        $products = $this->productRepository->findByMinimumValue($value);
 
         $data = [
             'products' => $products
@@ -133,12 +187,17 @@ class ProductController extends AbstractController
         return $this->render('product/view.html.twig', $data);
     }
 
+    /**
+     * Test function findByMinimumValue2
+     * @param ProductRepository $productRepository
+     * @return Response
+     */
     #[Route('/product/show/min/{value}', name: 'product_by_min_value')]
     public function showProductByMinimumValue(
-        ProductRepository $productRepository,
+        //ProductRepository $productRepository,
         int $value
     ): Response {
-        $products = $productRepository->findByMinimumValue2($value);
+        $products = $this->productRepository->findByMinimumValue2($value);
 
         return $this->json($products);
     }

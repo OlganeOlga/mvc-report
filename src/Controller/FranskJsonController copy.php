@@ -15,8 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 use App\Repository\BookRepository; // Import BookRepository
 
@@ -33,19 +31,12 @@ class FranskJsonController extends AbstractController
     #[Route('/api/desk', name: "api_desk", methods:['GET'])]
     public function apiDesk(
         SessionInterface $session
-    ): Response {
-        //$data = []; If api/desk does not work uncomment this
-        try {
-            $data = $session->get('desk');
-            if ($data == null || count($data) < 52) {
-                $newDesk = new Desk();
-                $data = $newDesk->getDesk();
-            }
-        } catch (Exception $e) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
+    ): Response {        
+        $data = $session->get('desk');
+        if ($data == null) {
+            $newDesk = new Desk();
+            $data = $newDesk->getDesk();
         }
-
         $session->set('desk', $data);
 
         $response = new Response();

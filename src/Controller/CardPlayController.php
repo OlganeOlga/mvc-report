@@ -14,8 +14,17 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use InvalidArgumentException;
 
+/**
+ * Controller handle the routes for fransk-engelsk cardplay
+ */
 class CardPlayController extends AbstractController
 {
+    /**
+     * shows all variables thet saved in the session
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/session", name: "debug_cardplay")]
     public function debug(
         SessionInterface $session
@@ -27,6 +36,12 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/tests/debug.html.twig', ['data' => $data]);
     }
 
+    /**
+     * delates all variables from session
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/session/delete", name: "delete_session")]
     public function delete(
         SessionInterface $session
@@ -41,6 +56,12 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/tests/debug.html.twig', ['data' => $data]);
     }
 
+    /**
+     * Initiates the session för cardplay.
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/card", name: "card_play")]
     public function home(
         SessionInterface $session
@@ -52,6 +73,12 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/home.html.twig');
     }
 
+    /**
+     * Displays one card, a ranndom card from the paly.
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/card/desk/test/card", name: "one_card")]
     public function testCard(): Response
     {
@@ -66,6 +93,12 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/tests/card.html.twig', $data);
     }
 
+    /**
+     * Displays cards that is not in hands.
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/card/desk", name: "desk_of_cards")]
     public function desk(
         SessionInterface $session
@@ -74,6 +107,12 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/desk.html.twig', ['data' => $desk]);
     }
 
+    /**
+     * Shuffle carddesk. If desk i not complete gen a new desk
+     * 
+     * @param Session
+     * @return Response
+     */
     #[Route("/card/deck/suffle", name: "shuffle_card")]
     public function shufle(
         SessionInterface $session
@@ -87,6 +126,11 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/desk.html.twig', ['data' => $desk]);
     }
 
+    /**
+     * Take a random card from play
+     * @param Session
+     * @return Response
+     */
     #[Route("card/desk/draw", name: "draw_card")]
     public function draw(
         SessionInterface $session
@@ -116,6 +160,11 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/draw.html.twig', $data);
     }
 
+    /**
+     * Take several cards from play
+     * @param Session
+     * @return Response
+     */
     #[Route('/card/desk/draw/{num<\d+>}', name: 'draw_several_card')]
     public function drawNumber(
         int $num,
@@ -152,6 +201,11 @@ class CardPlayController extends AbstractController
         return $this->render('cardplay/draw_many.html.twig', $data);
     }
 
+    /**
+     * Deal cards to the given amount of players
+     * @param Session
+     * @return Response
+     */
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
     public function dealCards(
         int $player,

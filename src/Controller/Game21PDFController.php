@@ -15,14 +15,27 @@ use App\Game21\Hand;
 use App\Game21\Player;
 use App\Game21\Bank;
 
+/**
+ * Shows documentation for te developeing CardPlay21
+ */
 class Game21PDFController extends AbstractController
 {
+    /**
+     * Shows documents in PDF
+     * 
+     * @return Response
+     */
     #[Route("/game/doc", name: "doc21")]
     public function viewDoc(): Response
     {
         return $this->render('game21/doc/doc.html.twig');
     }
 
+    /**
+     * Shows Flodersschema
+     * 
+     * @return Response
+     */
     #[Route("/game/Flodesschema", name: "docFlodeschema")] //Show flödersschema for game21
     public function viewPdf(KernelInterface $kernel): Response
     {
@@ -42,6 +55,11 @@ class Game21PDFController extends AbstractController
 
     }
 
+    /**
+     * Shows description of the classes
+     * 
+     * @return Response
+     */
     #[Route("/game/Classes", name: "docClass")] //Show classses for game 21
     public function viewClass(KernelInterface $kernel): Response
     {
@@ -59,6 +77,11 @@ class Game21PDFController extends AbstractController
         throw $this->createNotFoundException('The PDF file could not be found.');
     }
 
+    /**
+     * Shows pseudocode
+     * 
+     * @return Response
+     */
     #[Route("/game/pseudocode", name: "docPseudo")] //show pseudocode for Game21
     public function viewPseudo(KernelInterface $kernel): Response
     {
@@ -75,5 +98,4 @@ class Game21PDFController extends AbstractController
         }
         throw $this->createNotFoundException('The PDF file could not be found.');
     }
-
 }

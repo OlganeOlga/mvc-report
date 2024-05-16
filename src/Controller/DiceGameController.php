@@ -13,20 +13,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class contain routes for game throw pig
+ */
 class DiceGameController extends AbstractController
 {
-    // #[Route("pig/games", name: "games")]
-    // public function games(): Response
-    // {
-    //     return $this->render('pig/games.html.twig');
-    // }
-
+    /**
+     * Start route for the pig game
+     * @return Response
+     */
     #[Route("/game/pig", name: "pig_start")]
     public function home(): Response
     {
         return $this->render('pig/home.html.twig');
     }
 
+    /**
+     * Route shows roll one dice and present result
+     * @return Response
+     */
     #[Route("/game/pig/test/roll", name: "test_roll_dice")]
     public function testRollDice(): Response
     {
@@ -40,14 +45,16 @@ class DiceGameController extends AbstractController
         return $this->render('pig/test/roll.html.twig', $data);
     }
 
+    /**
+     * Route rolls several dice and present result
+     * 
+     * @param int $num amount of the rolling dies,
+     * between 1 and 12 includingly
+     * @return Response
+     */
     #[Route("/game/pig/test/roll/{num<\d+>}", name: "test_roll_num_dices")]
     public function testRollDices(int $num): Response
     {
-        $exception = "Can not roll more than 12 dices!";
-        if ($num > 12) {
-            throw new InvalidArgumentException($exception);
-        }
-
         $diceRoll = [];
         for ($i = 1; $i <= $num; $i++) {
             $die = new GraphicDice();
@@ -63,14 +70,13 @@ class DiceGameController extends AbstractController
         return $this->render('pig/test/roll_many.html.twig', $data);
     }
 
+    /**
+     * Route shows roll one dice and present result
+     * @return Response
+     */
     #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
     public function testDiceHand(int $num): Response
     {
-        $exception = "Can not roll more than 99 dices!";
-        if ($num > 99) {
-            throw new InvalidArgumentException($exception);
-        }
-
         $hand = new HandDice();
         for ($i = 1; $i <= $num; $i++) {
             $i % 2 == 1 ? $hand->add(new GraphicDice()) : $hand->add(new Dice());
@@ -86,12 +92,23 @@ class DiceGameController extends AbstractController
         return $this->render('pig/test/dicehand.html.twig', $data);
     }
 
+    /**
+     * Route initiate pig game returns the page with formulär
+     * @return Response
+     */
     #[Route("/game/pig/init", name: "pig_init_get", methods: ['GET'])]
     public function init(): Response
     {
         return $this->render('pig/init.html.twig');
     }
 
+    /**
+     * Get input from formulär and roll hand of dice
+     * @param Request $request,
+     * @param SessionInterface $session
+     * 
+     * @return Response
+     */
     #[Route("/game/pig/init", name: "pig_init_post", methods: ['POST'])]
     public function initCallback(
         Request $request,
@@ -114,6 +131,13 @@ class DiceGameController extends AbstractController
         return $this->redirectToRoute('pig_play');
     }
 
+    /**
+     * Follow the pig playshows results of the furst steps
+     * from Session
+     * @param SessionInterface $session
+     * 
+     * @return Response
+     */
     #[Route("/game/pig/play", name: "pig_play", methods: ['GET'])]
     public function play(
         SessionInterface $session
@@ -131,6 +155,13 @@ class DiceGameController extends AbstractController
         return $this->render('pig/play.html.twig', $data);
     }
 
+    /**
+     * Follow the pig playshows results of the furst steps
+     * roll dice and save results in the session
+     * @param SessionInterface $session
+     * 
+     * @return Response
+     */
     #[Route("/game/pig/roll", name: "pig_roll", methods: ['POST'])]
     public function roll(
         SessionInterface $session
@@ -162,6 +193,13 @@ class DiceGameController extends AbstractController
         return $this->redirectToRoute('pig_play');
     }
 
+    /**
+     * Saves results of the round in the session
+     *
+     * @param SessionInterface $session
+     * 
+     * @return Response
+     */
     #[Route("/game/pig/save", name: "pig_save", methods: ['POST'])]
     public function save(
         SessionInterface $session
