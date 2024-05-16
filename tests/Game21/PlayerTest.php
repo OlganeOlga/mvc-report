@@ -38,8 +38,7 @@ class PlayerTest extends TestCase
         $stub = $this->createMock(CardGraphics::class);
 
         // Configure the stub.
-        $stub->method('getValue')
-            ->willReturn(2);
+        $stub->method('getValue')->willReturn(2);
         //player get cards
         $player->getCard(clone $stub);
         $player->getCard(clone $stub);

@@ -3,7 +3,6 @@
 namespace App\Card;
 
 use App\Card\CardGraphics;
-use App\Card\Desk;
 
 class Desk
 {
@@ -81,7 +80,7 @@ class Desk
     }
 
     /**
-     * ShuffleDesk method shuffles desk.
+     * ShuffleDesk method shuffels desk.
      *
      * @return Desk self with shuffled elements.
      */

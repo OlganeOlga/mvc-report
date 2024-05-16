@@ -106,287 +106,211 @@ class MyJsonController extends AbstractController
         return $response;
     }
 
-    /**
-     * Route display desk of cards in form json-content
-     * @param SessionInterface $session
-     * @return Response content with desk of cards in form of json
-     */
-    #[Route('/api/desk', name: "api_desk", methods:['GET'])]
-    public function apiDesk(
-        SessionInterface $session
-    ): Response {
-        //$data = []; If api/desk does not work uncomment this
-        try {
-            $data = $session->get('desk');
-            if ($data == null || count($data) < 52) {
-                $newDesk = new Desk();
-                $data = $newDesk->getDesk();
-            }
-        } catch (Exception $e) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
-
-        $session->set('desk', $data);
-
-        $response = new Response();
-        $response->setContent(json_encode($data));
-
-        return $response;
-    }
-
-    /**
-     * Route create new desk of cards, shuffle it and display it in form json-content
-     * 
-     * @return Response content with desk of cards in form of json
-     */
-    #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
-    public function apiShuffleDesk(): Response
-    {
-        $desk = new Desk();
-        $desk->getDesk();
-        $desk->shuffleDesk();
-
-        $data = $desk->getDesk();
-        $response = new Response();
-
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Route create new desk of cards, shuffle it and display it in form json-content
-     * 
-     * @param  SessionInterface $session contans desk of cards
-     * @return Response content with drown cards and the number of rest cards in the desk
-     * in form of json
-     */
-    #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
-    public function apiDrawDesk(
-        SessionInterface $session
-    ): Response {
-        //$data = []; If desk/drow does not work uncomment this
-        // try {
-        //     $data = $session->get('desk');
-        //     if ($data == null || count($data) < 52) {
-        //         $desk = new Desk();
-        //         $data = $desk->getDesk();
-        //     }
-        // } catch (Exception $e) {
-        //     $desk = new Desk();
-        //     $data = $desk->getDesk();
-        // }
-
-        
-        $desk = new Desk();
-        $data = $desk->getDesk();
-        $element = array_rand($data);
-        $card = $data[$element];
-        unset($data[$element]);
-        $number = count($data);
-        $result = [
-            'card' => $card,
-            'number' => $number,
-        ];
-
-        $session->set('drawed', $result);
-        $session->set('desk', $data);
-        $response = new Response();
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Route retrieves desk of card from the session
-     * if the desk empty, creates new desk of cards,
-     * take given number of cards (rundomised) from te desk
-     * saves result in the session
-     * and display drown cards and number of cards in the desk as json-content
-     * 
-     * @param  SessionInterface $session contans desk of cards
-     * @param Request $request request
-     * @return Response content with drown cards and the number of rest cards in the desk
-     * in form of json
-     */
-    #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
-    public function apiDrawFleraDesk(
-        SessionInterface $session,
-        Request $request
-    ): Response {
-        $response = new Response();
-        $numCard = $request->request->get('num_card');
-        $data = [];
-        $hand = [];
-
-        try {
-            $data = $session->get('desk');
-            if ($data == null || count($data) < 52) {
-                $desk = new Desk();
-                $data = $desk->getDesk();
-            }
-        } catch (Exception $e) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
-
-        for($i = 0; $i < $numCard; $i++) {
-            $element = array_rand($data);
-            $card = $data[$element];
-            $hand[] = $card;
-            unset($data[$element]);
-        }
-        $number = count($data);
-        $result = [
-            'drown' => $hand,
-            'number' => $number,
-        ];
-
-        $session->set('desk', $data);
-        $session->set('hand', $hand);
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Route deals chosen amount of cards to the chosen
-     * amount of players from th desk saved in the session
-     * if the desk empty, creates new desk of cards,
-     * take given number of cards (rundomised) from te desk
-     * saves result in the session
-     * and display drown cards and number of cards in the desk as json-content
-     * 
-     * @param  SessionInterface $session contans desk of cards
-     * @param int $play amount of players
-     * @param int $cards amount of cards
-     * @return Response content with cardes dealed for each player and
-     * the number of rest cards in the desk
-     * in form of json
-     */
-    #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
-    public function apiDealCard(
-        //SessionInterface $session,
-        int $play,
-        int $cards
-    ): Response {
-        $desk = new Desk();
-        $players = [];
-        $response = new Response();
-        // try {
-        //     $data = $session->get('desk');
-        //     if ($data == null || count($data) < 52) {
-        //         $desk = new Desk();
-        //         $data = $desk->getDesk();
-        //     }
-        // } catch (Exception $e) {
-        //     $desk = new Desk();
-        //     $data = $desk->getDesk();
-        // }
-
-        $desk = shuffleDesk();
-        //shuffle($data);
-        for($k = 0; $k < $play; $k++) {
-            $hand = [];
-            for($i = 0; $i < $cards; $i++) {
-                // $element = array_rand($data);
-                // $card = $data[$element];
-                $card = $data.randCard();
-                $hand[] = $card;
-                // unset($data[$element]);
-            }
-            $players[(string)($k + 1)] = $hand;
-        }
-
-        // $number = count($data);
-        $number = $desk.countDesk();
-        $result = [
-            'players' => $players,
-            'number cards left' => $number,
-        ];
-
-        // $session->set('players', $players); ??
-        // // $session->set('desk', $data);
-        // $session->set('desk', $desk->toArray());
-
-        $response = new Response();
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Route displays all variables saved in the session as json-content
-     * 
-     * @param  SessionInterface $session contans desk of cards
-     * @return JsonResponse content with drown cards and the number of rest cards in the desk
-     * in form of json
-     */
-    #[Route('/session', name: 'get_session')] // get all frome session
-    public function apiGetSession(
-        SessionInterface $session
-    ): JsonResponse {
-        $data = [];
-
-        foreach ($session->all() as $key => $value) {
-            $data[$key] = $value;
-        }
-
-        // Return the session data as JSON
-        return $this->json($data);
-    }
-
-    // #[Route('api/game', name: 'json_cardplay21')]
-    // public function apiGetGameStatus(
+    // /**
+    //  * Route display desk of cards in form json-content
+    //  * @param SessionInterface $session
+    //  * @return Response content with desk of cards in form of json
+    //  */
+    // #[Route('/api/desk', name: "api_desk", methods:['GET'])]
+    // public function apiDesk(
     //     SessionInterface $session
     // ): Response {
-    //     $data = [];
-
-    //     foreach ($session->all() as $key => $value) {
-    //         if($key == "desk" | $key == "bank" | $key == "player") {
-    //             $data[$key] = $value;
+    //     //$data = []; If api/desk does not work uncomment this
+    //     try {
+    //         $data = $session->get('desk');
+    //         if ($data == null || count($data) < 52) {
+    //             $newDesk = new Desk();
+    //             $data = $newDesk->getDesk();
     //         }
+    //     } catch (Exception $e) {
+    //         $desk = new Desk();
+    //         $data = $desk->getDesk();
     //     }
 
-    //     if(count($data) == 0) {
-    //         $data["status"] = "cardplay was not initiated";
-    //     }
+    //     $session->set('desk', $data);
 
-    //     $response = new JsonResponse($data);
-    //     $response->setEncodingOptions(
-    //         $response->getEncodingOptions() | JSON_PRETTY_PRINT
-    //     );
+    //     $response = new Response();
+    //     $response->setContent(json_encode($data));
+
     //     return $response;
     // }
 
-    // #[Route('api/library/books', name: 'json_library')]
-    // public function jsonLibrary(
-    //     BookRepository $bookRepository
-    // ): Response {
-    //     $books = $bookRepository->findAll();
-    //     return $this->json($books);
+    // /**
+    //  * Route create new desk of cards, shuffle it and display it in form json-content
+    //  * 
+    //  * @return Response content with desk of cards in form of json
+    //  */
+    // #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
+    // public function apiShuffleDesk(): Response
+    // {
+    //     $desk = new Desk();
+    //     $desk->getDesk();
+    //     $desk->shuffleDesk();
+
+    //     $data = $desk->getDesk();
+    //     $response = new Response();
+
+    //     $response->setContent(json_encode($data));
+    //     $response->headers->set('Content-Type', 'application/json');
+
+    //     return $response;
     // }
 
-    // #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]
-    // public function jsonBookByIsbn(
-    //     BookRepository $bookRepository,
-    //     int $isbn
+    // /**
+    //  * Route create new desk of cards, shuffle it and display it in form json-content
+    //  * 
+    //  * @param  SessionInterface $session contans desk of cards
+    //  * @return Response content with drown cards and the number of rest cards in the desk
+    //  * in form of json
+    //  */
+    // #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
+    // public function apiDrawDesk(
+    //     SessionInterface $session
     // ): Response {
-    //     $isbnString = (string) $isbn;
-    //     if(strlen($isbnString) != 13) {
-    //         $this->addFlash(
-    //             'warning',
-    //             'You enter too few or too many numbers for ISBN!'
-    //         );
-    //         return $this->redirectToRoute('json_ladning');
+        
+    //     $data = $session->get('desk');
+    //     $cards = $session->get('drawed');
+    //     if ($data == null || count($data) < 52) {
+    //         $desk = new Desk();
+    //         $data = $desk->getDesk();
     //     }
-    //     $book = $bookRepository->findByIsbn($isbn);
+        
+    //     $element = array_rand($data);
+    //     $card = $data[$element];
+    //     unset($data[$element]);
+    //     $number = count($data);
+    //     $result = [
+    //         'card' => $card,
+    //         'number' => $number,
+    //     ];
 
-    //     return $this->json($book);
+    //     $session->set('drawed', $cards);
+    //     $session->set('desk', $data);
+    //     $response = new Response();
+    //     $response->setContent(json_encode($result));
+    //     $response->headers->set('Content-Type', 'application/json');
+
+    //     return $response;
+    // }
+
+    // /**
+    //  * Route retrieves desk of card from the session
+    //  * if the desk empty, creates new desk of cards,
+    //  * take given number of cards (rundomised) from te desk
+    //  * saves result in the session
+    //  * and display drown cards and number of cards in the desk as json-content
+    //  * 
+    //  * @param  SessionInterface $session contans desk of cards
+    //  * @param Request $request request
+    //  * @return Response content with drown cards and the number of rest cards in the desk
+    //  * in form of json
+    //  */
+    // #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
+    // public function apiDrawFleraDesk(
+    //     SessionInterface $session,
+    //     Request $request
+    // ): Response {
+    //     $response = new Response();
+    //     $numCard = $request->request->get('num_card');
+    //     $data = [];
+    //     $hand = [];
+
+    //     $data = $session->get('desk');
+    //     if ($data == null) {
+    //         $desk = new Desk();
+    //         $data = $desk->getDesk();
+    //     }
+
+    //     if ( count($data) < $numCard) {
+    //         $numCard = count($data);
+    //     }
+
+    //     for($i = 0; $i < $numCard; $i++) {
+    //         $element = array_rand($data);
+    //         $card = $data[$element];
+    //         $hand[] = $card;
+    //         unset($data[$element]);
+    //     }
+    //     $number = count($data);
+    //     $result = [
+    //         'drown' => $hand,
+    //         'number' => $number,
+    //     ];
+
+    //     $session->set('desk', $data);
+    //     $session->set('hand', $hand);
+    //     $response->setContent(json_encode($result));
+    //     $response->headers->set('Content-Type', 'application/json');
+
+    //     return $response;
+    // }
+
+    // /**
+    //  * Route deals chosen amount of cards to the chosen
+    //  * amount of players from th desk saved in the session
+    //  * if the desk empty, creates new desk of cards,
+    //  * take given number of cards (rundomised) from te desk
+    //  * saves result in the session
+    //  * and display drown cards and number of cards in the desk as json-content
+    //  * 
+    //  * @param  SessionInterface $session contans desk of cards
+    //  * @param int $play amount of players
+    //  * @param int $cards amount of cards
+    //  * @return Response content with cardes dealed for each player and
+    //  * the number of rest cards in the desk
+    //  * in form of json
+    //  */
+    // #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
+    // public function apiDealCard(
+    //     //SessionInterface $session,
+    //     int $play,
+    //     int $cards
+    // ): Response {
+    //     $desk = new Desk();
+    //     $players = [];
+    //     $response = new Response();
+
+    //     $desk->shuffleDesk();
+    //     for($k = 0; $k < $play; $k++) {
+    //         $hand = [];
+    //         for($i = 0; $i < $cards; $i++) {
+    //             $card = $desk->randCard();
+    //             $hand[] = $card;
+    //         }
+    //         $players[(string)($k + 1)] = $hand;
+    //     }
+
+    //     $number = $desk->countDesk();
+    //     $result = [
+    //         'players' => $players,
+    //         'number cards left' => $number,
+    //     ];
+
+    //     $response = new Response();
+    //     $response->setContent(json_encode($result));
+    //     $response->headers->set('Content-Type', 'application/json');
+
+    //     return $response;
+    // }
+
+    // /**
+    //  * Route displays all variables saved in the session as json-content
+    //  * 
+    //  * @param  SessionInterface $session contans desk of cards
+    //  * @return JsonResponse content with drown cards and the number of rest cards in the desk
+    //  * in form of json
+    //  */
+    // #[Route('/session', name: 'get_session')] // get all frome session
+    // public function apiGetSession(
+    //     SessionInterface $session
+    // ): JsonResponse {
+    //     $data = [];
+
+    //     foreach ($session->all() as $key => $value) {
+    //         $data[$key] = $value;
+    //     }
+
+    //     // Return the session data as JSON
+    //     return $this->json($data);
     // }
 }
