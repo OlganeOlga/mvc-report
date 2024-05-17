@@ -47,13 +47,11 @@ class ProductController extends AbstractController
 
     /**
      * Creates new products with standart value and name in the database
-     * @param ManagerRegistry $doctrine
+     * 
      * @return Response
      */
     #[Route('/product/create', name: 'product_create')]
-    public function createProduct(
-        //ManagerRegistry $doctrine
-    ): Response {
+    public function createProduct(): Response {
         $entityManager = $this->doctrine->getManager();
 
         $product = new Product();
@@ -72,13 +70,12 @@ class ProductController extends AbstractController
 
     /**
      * Shows all products in the database
-     * @param ProductRepository $productRepository,
+     * 
      * @return Response
      */
     #[Route('/product/show', name: 'product_show_all')]
-    public function showAllProduct(
-        //ProductRepository $productRepository
-    ): Response {
+    public function showAllProduct(): Response
+    {
         $products = $this->productRepository
             ->findAll();
 
@@ -91,13 +88,12 @@ class ProductController extends AbstractController
 
     /**
      * Shows product from database with given product id
-     * @param ProductRepository $productRepository,
+     * 
      * @param int $prodId,
      * @return Response
      */
     #[Route('/product/show/{prodId}', name: 'product_by_id')]
     public function showProductById(
-        //ProductRepository $productRepository,
         int $prodId
     ): Response {
         $product = $this->productRepository
@@ -108,13 +104,12 @@ class ProductController extends AbstractController
 
     /**
      * Deletes product with the prodId from the database
-     * @param ManagerRegistry $doctrine,
+     *
      * @param int $prodId,
      * @return Response
      */
     #[Route('/product/delete/{prodId}', name: 'product_delete_by_id')]
     public function deleteProductById(
-        //ManagerRegistry $doctrine,
         int $prodId
     ): Response {
         $entityManager = $this->doctrine->getManager();
@@ -136,14 +131,12 @@ class ProductController extends AbstractController
      * Updates product with the prodId in the database
      * set value as given
      * 
-     * @param ManagerRegistry $doctrine,
      * @param int $prodId,
      * @param int $value
      * @return Response
      */
     #[Route('/product/update/{prodId}/{value}', name: 'product_update')]
     public function updateProduct(
-        //ManagerRegistry $doctrine,
         int $prodId,
         int $value
     ): Response {
@@ -163,12 +156,12 @@ class ProductController extends AbstractController
     }
 
     /**
+     * Shows products in the table product
      * @return Response
      */
     #[Route('/product/view', name: 'product_view_all')]
-    public function viewAllProduct(
-        //ProductRepository $productRepository
-    ): Response {
+    public function viewAllProduct(): Response
+    {
         $products = $this->productRepository->findAll();
 
         $data = [
@@ -180,12 +173,11 @@ class ProductController extends AbstractController
 
     /**
      * Test function findByMinimumValue
-     * @param ProductRepository $productRepository
+     *
      * @return Response
      */
     #[Route('/product/view/{value}', name: 'product_view_minimum_value')]
     public function viewProductWithMinimumValue(
-        //ProductRepository $productRepository,
         int $value
     ): Response {
         $products = $this->productRepository->findByMinimumValue($value);
@@ -199,12 +191,11 @@ class ProductController extends AbstractController
 
     /**
      * Test function findByMinimumValue2
-     * @param ProductRepository $productRepository
+     *
      * @return Response
      */
     #[Route('/product/show/min/{value}', name: 'product_by_min_value')]
     public function showProductByMinimumValue(
-        //ProductRepository $productRepository,
         int $value
     ): Response {
         $products = $this->productRepository->findByMinimumValue2($value);

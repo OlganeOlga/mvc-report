@@ -22,7 +22,7 @@ class HandDice
      /**
      * Roll hand.
      *
-     * @return int[] array with value of the dice.
+     * @return void
      */
     public function roll(): void
     {

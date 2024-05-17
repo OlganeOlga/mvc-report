@@ -165,7 +165,6 @@ class MyJsonCardController extends AbstractController
      * saves result in the session
      * and display drown cards and number of cards in the desk as json-content
      * 
-     * @param  SessionInterface $session contans desk of cards
      * @param int $play amount of players
      * @param int $cards amount of cards
      * @return Response content with cardes dealed for each player and
@@ -174,7 +173,6 @@ class MyJsonCardController extends AbstractController
      */
     #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
     public function apiDealCard(
-        //SessionInterface $session,
         int $play,
         int $cards
     ): Response {

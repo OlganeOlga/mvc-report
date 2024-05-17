@@ -42,7 +42,7 @@ class MyJsonController extends AbstractController
      * @return Response : redirect to the twig html template displaying links to all
      * jason-routes
      */
-    #[Route('/json1', name: "api_landing")]
+    #[Route('/api', name: "api")]
     public function apiLadning(): Response
     {
         //return new Response('Hello from the apiLadning() method!');
@@ -55,7 +55,7 @@ class MyJsonController extends AbstractController
      * @param KernelInterface $kernel
      * @return Response : all routes in the application and their functions in form of json
      */
-    #[Route('/api', name: "api")]
+    #[Route('/api/routes', name: "api_routes")]
     public function apiIndex(KernelInterface $kernel): Response
     {
         $routes = $this->router->getRouteCollection()->all();

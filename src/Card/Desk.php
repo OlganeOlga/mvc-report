@@ -6,7 +6,7 @@ use App\Card\CardGraphics;
 
 class Desk
 {
-    /** @var int[] */
+    /** @var CardGraphics[] */
     private array $play = [];
 
     public function __construct()
@@ -41,7 +41,7 @@ class Desk
     /**
      * GetDeskArray method returns array of strings represented cards of the desk.
      *
-     * @return array<string[]> Array containing array representation of card elements.
+     * @return  array<CardGraphics> Array containing array representation of card elements.
      */
     public function getDeskArray(): array
     {
@@ -51,7 +51,7 @@ class Desk
     /**
      * toArray method returns desk as array.
      *
-     * @return array<int> Array containing array representation of card elements.
+     * @return  array<int<0, max>, array<int>> Array containing array representation of card elements.
      */
     public function toArray(): array
     {

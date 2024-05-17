@@ -22,7 +22,7 @@ class CardPlayController extends AbstractController
     /**
      * shows all variables thet saved in the session
      * 
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("/session", name: "debug_cardplay")]
@@ -39,7 +39,7 @@ class CardPlayController extends AbstractController
     /**
      * delates all variables from session
      * 
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("/session/delete", name: "delete_session")]
@@ -59,7 +59,7 @@ class CardPlayController extends AbstractController
     /**
      * Initiates the session för cardplay.
      * 
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("/card", name: "card_play")]
@@ -76,7 +76,6 @@ class CardPlayController extends AbstractController
     /**
      * Displays one card, a ranndom card from the paly.
      * 
-     * @param Session
      * @return Response
      */
     #[Route("/card/desk/test/card", name: "one_card")]
@@ -96,7 +95,7 @@ class CardPlayController extends AbstractController
     /**
      * Displays cards that is not in hands.
      * 
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("/card/desk", name: "desk_of_cards")]
@@ -110,7 +109,7 @@ class CardPlayController extends AbstractController
     /**
      * Shuffle carddesk. If desk i not complete gen a new desk
      * 
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("/card/deck/suffle", name: "shuffle_card")]
@@ -128,7 +127,7 @@ class CardPlayController extends AbstractController
 
     /**
      * Take a random card from play
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route("card/desk/draw", name: "draw_card")]
@@ -162,7 +161,7 @@ class CardPlayController extends AbstractController
 
     /**
      * Take several cards from play
-     * @param Session
+     * @param SessionInterface $session
      * @return Response
      */
     #[Route('/card/desk/draw/{num<\d+>}', name: 'draw_several_card')]
@@ -203,7 +202,8 @@ class CardPlayController extends AbstractController
 
     /**
      * Deal cards to the given amount of players
-     * @param Session
+     * @param int $player number of players
+     * @param int $cards number of cards
      * @return Response
      */
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]
