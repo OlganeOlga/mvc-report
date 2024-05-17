@@ -15,7 +15,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testSession(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/session');
+        $client->request('GET', '/session');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Debug kortspel, visa session');
@@ -27,7 +27,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testDelate(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/session/delete');
+        $client->request('GET', '/session/delete');
 
         $this->assertResponseIsSuccessful();
         // Check if the flash message is set
@@ -43,7 +43,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testCardPlay(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/card');
+        $client->request('GET', '/card');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Fransk-engelsk kortspel');
@@ -60,7 +60,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testOneCard(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/card/desk/test/card');
+        $client->request('GET', '/card/desk/test/card');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Här ser du kortet.');
@@ -72,7 +72,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testDeskCard(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/card/desk');
+        $client->request('GET', '/card/desk');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Se kortspel');
@@ -84,7 +84,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testShuffleCard(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/card/deck/suffle');
+        $client->request('GET', '/card/deck/suffle');
 
         $this->assertResponseIsSuccessful();
     }
@@ -95,7 +95,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testDrawCard(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', 'card/desk/draw');
+        $client->request('GET', 'card/desk/draw');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Dra ett kort');
@@ -115,7 +115,7 @@ class CardPlayControllerTest extends WebTestCase
     //             ['cards', []] // Assuming cards are initially empty
     //         ]);
     //     $client = static::createClient();
-    //     $crawler = $client->request('GET', '/card/desk/draw/1');
+    //     $client->request('GET', '/card/desk/draw/1');
 
     //     //$this->assertResponseIsSuccessful();
     //     $this->assertSelectorTextContains('h2', 'Du drå 1 kort!');
@@ -127,7 +127,7 @@ class CardPlayControllerTest extends WebTestCase
     public function testDealCard(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', 'card/deck/deal/2/2');
+        $client->request('GET', 'card/deck/deal/2/2');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Kort delas ut till 2 spelare!');

@@ -38,7 +38,7 @@ class Bank extends Player
      * Take a random cards from the desk and add to the Bank hand.
      *
      * @param Desk    $desk    Desk object from which cards are dealt.
-     * @return void.
+     * @return void
      */
     public function takeCards(Desk $desk): void
     {

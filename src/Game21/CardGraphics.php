@@ -65,7 +65,7 @@ class CardGraphics extends Card
     */
     public function getCollor(): string
     {
-        if($this->sute == null) {
+        if($this->sute === null) {
             return "";
         }
         return $this->suterepresentation[$this->sute][1];

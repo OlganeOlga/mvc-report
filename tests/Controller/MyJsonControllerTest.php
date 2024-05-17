@@ -12,7 +12,7 @@ class MyJsonControllerTest extends WebTestCase
          * Test start page
          */
         $client = static::createClient();
-        $crawler = $client->request('GET', '/json1');
+        $client->request('GET', '/json1');
 
         $this->assertResponseIsSuccessful();
         // controll if the title is correct

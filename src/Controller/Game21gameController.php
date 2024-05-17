@@ -62,7 +62,7 @@ class Game21gameController extends AbstractController
     /**
      * Route shows results of SecondState in the html.
      * 
-     * @param Session $session
+     * @param SessionInterface $session
      * 
      * @return Response
      */

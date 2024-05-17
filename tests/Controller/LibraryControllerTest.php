@@ -16,7 +16,7 @@ class LibraryControllerTest extends WebTestCase
     public function testIndex(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/library');
+        $client->request('GET', '/library');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Bibliotekdatabas startsidan');
@@ -28,7 +28,7 @@ class LibraryControllerTest extends WebTestCase
     public function testHandleBookFormGet(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/library/create');
+        $client->request('GET', '/library/create');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Skaffa en book');
@@ -88,7 +88,7 @@ class LibraryControllerTest extends WebTestCase
     
     $this->assertTrue($client->getResponse()->isRedirect(), 'Expected response to be a redirect');
 
-    $crawler = $client->followRedirect();
+    $client->followRedirect();
 
     $this->assertResponseIsSuccessful();
     $this->assertSelectorTextContains('.flash-notice', 'You successfully create a new book with id');
@@ -105,7 +105,7 @@ class LibraryControllerTest extends WebTestCase
     // public function testReadChosenBook(): void
     // {
     //     $client = static::createClient();
-    //     $crawler = $client->request('POST', '/library/read/one/');
+    //     $client->request('POST', '/library/read/one/');
 
     //     $this->assertResponseIsSuccessful();
     //     $this->assertSelectorTextContains('h2', 'Bibliotekdatabas startsidan');

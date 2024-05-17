@@ -208,7 +208,7 @@ class LibraryController extends AbstractController
      * @param ManagerRegistry $doctrine,
      * @return Response
      */ 
-    #[Route('library/cnahge/book', name: 'change_the_book', methods: ['POST'])]
+    #[Route('library/change/book', name: 'change_the_book', methods: ['POST'])]
     public function changeBook(
         ManagerRegistry $doctrine,
         Request $request,

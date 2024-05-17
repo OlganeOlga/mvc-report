@@ -15,7 +15,7 @@ class LuckyControllerTest extends WebTestCase
     public function testMeController(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Det är jag');
@@ -27,7 +27,7 @@ class LuckyControllerTest extends WebTestCase
     public function testAboutController(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/about');
+        $client->request('GET', '/about');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Om kurs MVC');
@@ -39,7 +39,7 @@ class LuckyControllerTest extends WebTestCase
     public function testReportController(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/report');
+        $client->request('GET', '/report');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Reportsidan för kurs MVC');
@@ -51,7 +51,7 @@ class LuckyControllerTest extends WebTestCase
     public function testLuckyController(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/lucky');
+        $client->request('GET', '/lucky');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Lycklig Sida');
@@ -62,7 +62,7 @@ class LuckyControllerTest extends WebTestCase
      public function testMetricsController(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/metrics');
+        $client->request('GET', '/metrics');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Metrics');

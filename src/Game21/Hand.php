@@ -43,7 +43,7 @@ class Hand
     /**
      * toArray method description
      *
-     * @return array<string, mixed[]>.
+     * @return array[points: int, cards: int[]] array
      */
     public function toArray(): array
     {

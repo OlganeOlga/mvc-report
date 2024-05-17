@@ -15,7 +15,7 @@ class DiceGameControllerTest extends WebTestCase
     public function testHome(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/game/pig');
+        $client->request('GET', '/game/pig');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Pig game');
@@ -27,7 +27,7 @@ class DiceGameControllerTest extends WebTestCase
     public function testRoleDice(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/game/pig/test/roll');
+        $client->request('GET', '/game/pig/test/roll');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Roll a dice');
@@ -39,7 +39,7 @@ class DiceGameControllerTest extends WebTestCase
     public function testRoleDices(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/game/pig/test/roll/3');
+        $client->request('GET', '/game/pig/test/roll/3');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Roll many dices');
@@ -51,7 +51,7 @@ class DiceGameControllerTest extends WebTestCase
     public function testRoleDiceHand(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/game/pig/test/dicehand/3');
+        $client->request('GET', '/game/pig/test/dicehand/3');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Roll dice hand');
@@ -63,7 +63,7 @@ class DiceGameControllerTest extends WebTestCase
     public function testInit(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/game/pig/init');
+        $client->request('GET', '/game/pig/init');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Pig game [START]');
@@ -85,7 +85,7 @@ class DiceGameControllerTest extends WebTestCase
         //     echo 'Response status code: ' . $response->getStatusCode();
         // }
 
-        $crawler = $client->followRedirect();
+        $client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Pig game [PLAYING]');
     }
@@ -126,7 +126,7 @@ class DiceGameControllerTest extends WebTestCase
     //     $client->getContainer()->set('session', $session);
 
     //     Make a GET request to the route
-    //     $crawler = $client->request('GET', '/game/pig/play');
+    //     $client->request('GET', '/game/pig/play');
 
     //     Assert that the response is successful
     //     $this->assertResponseIsSuccessful();
@@ -189,9 +189,9 @@ class DiceGameControllerTest extends WebTestCase
     // public function testSave(): void
     // {
     //     $client = static::createClient();
-    //     $crawler = $client->request('POST', '/game/pig/save');
+    //     $client->request('POST', '/game/pig/save');
     //     $response = $client->getResponse();
-    //     $crawler = $client->followRedirect();
+    //     $client->followRedirect();
     //     $this->assertResponseIsSuccessful();
 
     //     $this->assertSelectorTextContains('h2', 'Pig game [PLAYING]');

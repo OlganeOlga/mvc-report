@@ -38,7 +38,7 @@ class MyJsonNewController extends AbstractController
         $data = [];
 
         foreach ($session->all() as $key => $value) {
-            if($key == "desk" | $key == "bank" | $key == "player") {
+            if($key == "desk" || $key == "bank" || $key == "player") {
                 $data[$key] = $value;
             }
         }

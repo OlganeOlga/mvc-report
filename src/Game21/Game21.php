@@ -126,7 +126,7 @@ class Game21
     public function thirdState(SessionInterface $session, ?int $bet): array
     {
         $this->set($session);
-        $this->player->doBet($bet);
+        $this->player->doBet(/** @scrutinizer ignore-type */ $bet);
         $this->toSession($session);
         $data = [
             'playerCards' => $this->player->getHand(),
