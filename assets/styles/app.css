@@ -368,7 +368,7 @@ footer p {
 }
 
 .flash-notice {
-    grid-column: span 2;
+    position: absolute;
     padding: 0.5em;
     color: #004085;
     background-color: #cce5ff;

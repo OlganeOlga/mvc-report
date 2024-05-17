@@ -15,13 +15,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\RouterInterface;
 
 use App\Repository\BookRepository; // Import BookRepository
 
 /**
  * Controller class that produces routers returning json objects
  */
-class FranskJsonController extends AbstractController
+class MyJsonCardController extends AbstractController
 {
     /**
      * Route display desk of cards in form json-content
