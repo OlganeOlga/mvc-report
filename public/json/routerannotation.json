@@ -65,5 +65,6 @@
     "json_cardplay21": "Displays the current state of the game in a JSON structure",
     "delete_book": "Displays the form to choos a book that should be deleted and delete this book",
     "json_library": "Displays all books in the library in Json form.",
-    "json_book_by_isbn": "Search book by ISBN. Display all books with given ISBN in Json form."
+    "json_book_by_isbn": "Search book by ISBN. Display all books with given ISBN in Json form.",
+    "metrics": "Ladnings page for kmom06"
 }

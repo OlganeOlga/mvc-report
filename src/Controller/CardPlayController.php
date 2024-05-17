@@ -70,7 +70,7 @@ class CardPlayController extends AbstractController
         $data = $desk->getDesk();
         $session->set('desk', $data);
         $session->set('cards', []);
-        return $this->render('cardplay/home.html.twig');
+        return $this->render('cardplay/home.html.twig', $data);
     }
 
     /**

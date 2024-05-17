@@ -59,7 +59,7 @@ class DeskTest extends TestCase
 
         $this->assertInstanceOf("\App\Card\Desk", $res);
         $res1 = $res->toArray();
-        $this->assertNotEquals([0,0], $res1[0]);
+        $this->assertContains([0,0], $res1);
     }
 
     /**

@@ -6,17 +6,14 @@
 <header class="headerMe">
     <h2>Debug kortspel, visa session</h2>
 </header>
-
+{{ dump(data) }}
 <div class="session">  
     <h3>Här kan jag se session.</h3>
+    {{ include('flash.html.twig') }}
     {% if data %}
-    {% for key, value in data %}
-        <p>{{ key }}: {{ dump(value) }}</p>
-    {% endfor %}
+    <pre>{{ data|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
     {% endif %}
 </div>
-{{ include('flash.html.twig') }}
-
 <p><a href="{{ path('debug_cardplay') }}">Debug korstspel</a></p> 
 
 <p> <a href="{{ path('delete_session') }}">Rensa session</a> </p>
