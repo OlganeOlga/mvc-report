@@ -77,13 +77,13 @@ class DiceGameControllerTest extends WebTestCase
         $client->request('POST', '/game/pig/init');
 
         $response = $client->getResponse();
-        // check if response is redirected
-        if ($response->isRedirection()) {
-            $redirectUrl = $response->headers->get('Location');
-            echo 'Redirect URL: ' . $redirectUrl;
-        } else {
-            echo 'Response status code: ' . $response->getStatusCode();
-        }
+        // // check if response is redirected
+        // if ($response->isRedirection()) {
+        //     $redirectUrl = $response->headers->get('Location');
+        //     echo 'Redirect URL: ' . $redirectUrl;
+        // } else {
+        //     echo 'Response status code: ' . $response->getStatusCode();
+        // }
 
         $crawler = $client->followRedirect();
         $this->assertResponseIsSuccessful();

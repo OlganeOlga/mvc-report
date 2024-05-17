@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 
-use App\Repository\BookRepository; // Import BookRepository
+use App\Repository\BookRepository;
 
 /**
  * Controller class that produces routers returning json objects
