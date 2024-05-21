@@ -380,7 +380,7 @@ footer p {
 }
 
 .flash-warning {
-    grid-column: span 2;
+    position: absolute;
     padding: 0.5em;
     color: #856404;
     background-color: #fff3cd;

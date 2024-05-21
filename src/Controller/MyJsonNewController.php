@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -34,7 +35,7 @@ class MyJsonNewController extends AbstractController
     #[Route('api/game', name: 'json_cardplay21')]
     public function apiGetGameStatus(
         SessionInterface $session
-    ): Response {
+    ): JsonResponse {
         $data = [];
 
         foreach ($session->all() as $key => $value) {
@@ -48,9 +49,6 @@ class MyJsonNewController extends AbstractController
         }
 
         $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
         return $response;
     }
 
@@ -76,21 +74,21 @@ class MyJsonNewController extends AbstractController
      * @param int $isbn 13-digits integer
      * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
      */
-    #[Route('api/library/book/{isbn}', name: 'json_book_by_isbn', methods: ['POST'])]
+    #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
     public function jsonBookByIsbn(
         BookRepository $bookRepository,
-        int $isbn
+        Request $request,
     ): Response {
-        $isbnString = (string) $isbn;
-        if(strlen($isbnString) !== 13) {
+        $isbnString = (string) $request->request->get('isbn');
+        if(strlen($isbnString) < 10) {
             $this->addFlash(
                 'warning',
                 'You enter too few or too many numbers for ISBN!'
             );
-            return $this->redirectToRoute('api_landing');
+            return $this->redirectToRoute('api');
         }
-        $book = $bookRepository->findByIsbn($isbn);
-
-        return $this->json($book);
+        $book = $bookRepository->findByIsbn($isbnString);
+        $response =$this->json($book);
+        return $response;
     }
 }

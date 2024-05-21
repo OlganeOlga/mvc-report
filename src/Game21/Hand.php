@@ -43,7 +43,7 @@ class Hand
     /**
      * toArray method description
      *
-     * @return array[points: int, cards: int[]] array
+     * @return array{points: int, cards: array<int<0, max>, array<int>>}
      */
     public function toArray(): array
     {

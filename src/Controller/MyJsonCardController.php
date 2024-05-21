@@ -41,10 +41,11 @@ class MyJsonCardController extends AbstractController
         }
         $session->set('desk', $data);
 
-        $response = new Response();
-        $response->setContent(json_encode($data));
+        // $response = new Response();
+        // $response->setContent(json_encode($data));
 
-        return $response;
+        // return $response;
+        return $this->json($data);
     }
 
     /**
@@ -69,7 +70,8 @@ class MyJsonCardController extends AbstractController
     }
 
     /**
-     * Route create new desk of cards, shuffle it and display it in form json-content
+     * Route extrakt from session/create new desk of cards,
+     * draw one card and display result in json
      * 
      * @param  SessionInterface $session contans desk of cards
      * @return Response content with drown cards and the number of rest cards in the desk
@@ -82,11 +84,14 @@ class MyJsonCardController extends AbstractController
         
         $data = $session->get('desk');
         $cards = $session->get('drawed');
-        if ($data == null || count($data) < 52) {
+        if ($data == null) {
             $desk = new Desk();
             $data = $desk->getDesk();
         }
-        
+        // if ($data == null || count($data) < 52) {
+        //     $desk = new Desk();
+        //     $data = $desk->getDesk();
+        // }
         $element = array_rand($data);
         $card = $data[$element];
         unset($data[$element]);
@@ -151,10 +156,7 @@ class MyJsonCardController extends AbstractController
 
         $session->set('desk', $data);
         $session->set('hand', $hand);
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+       return $this->json($result);
     }
 
     /**
@@ -164,8 +166,7 @@ class MyJsonCardController extends AbstractController
      * take given number of cards (rundomised) from te desk
      * saves result in the session
      * and display drown cards and number of cards in the desk as json-content
-     * 
-     * @param  SessionInterface $session contans desk of cards
+     *  
      * @param int $play amount of players
      * @param int $cards amount of cards
      * @return Response content with cardes dealed for each player and
@@ -174,7 +175,6 @@ class MyJsonCardController extends AbstractController
      */
     #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
     public function apiDealCard(
-        //SessionInterface $session,
         int $play,
         int $cards
     ): Response {
@@ -198,11 +198,12 @@ class MyJsonCardController extends AbstractController
             'number cards left' => $number,
         ];
 
-        $response = new Response();
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
+        // $response = new Response();
+        // $response->setContent(json_encode($result));
+        // $response->headers->set('Content-Type', 'application/json');
 
-        return $response;
+        // return $response;
+        return $this->json($result);
     }
 
     /**
