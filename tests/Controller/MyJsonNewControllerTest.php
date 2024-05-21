@@ -1,94 +1,137 @@
 <?php
-
+// tests/Controller/MyJsonControllerTest.php
 namespace App\Controller;
 
-use App\Card\Desk;
-
-use ReflectionClass;
-use ReflectionMethod;
-use Exception;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
+use App\Repository\BookRepository;
 
-
-use App\Repository\BookRepository; // Import BookRepository
-
-/**
- * Class contains routes displaying information in form of json
- */
-class MyJsonNewController extends AbstractController
+class MyJsonNewControllerTest extends WebTestCase
 {
-    /**
-     * Router displays cardplay21 in the present status
-     * 
-     * @param SessionInterface $session
-     * 
-     * @return Response : displays present status of the cardplay 21.
-     */
-    #[Route('api/game', name: 'json_cardplay21')]
-    public function apiGetGameStatus(
-        SessionInterface $session
-    ): JsonResponse {
-        $data = [];
+    public function testApiGame(): void
+    {
+        /**
+         * Test api/game
+         * 
+         * @return void
+         */
+        $client = static::createClient();
+        $client->request('GET', '/api/game');
 
-        foreach ($session->all() as $key => $value) {
-            if($key == "desk" || $key == "bank" || $key == "player") {
-                $data[$key] = $value;
+        $response = $client->getResponse();
+        $this->assertResponseIsSuccessful();
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
+        $this->assertJson($client->getResponse()->getContent());
+        $this->assertTrue(
+            $response->headers->contains('Content-Type', 'application/json'),
+            'Response is not of type application/json'
+        );
+
+        $expKey = ['desk', 'bank', 'player', 'status'];
+        $data = json_decode($client->getResponse()->getContent(), true);
+        foreach ($expKey as $oneKey) {
+            if (array_key_exists($oneKey, $data)) {
+                $this->assertTrue(true);
+                return;
             }
         }
 
-        if(count($data) == 0) {
-            $data["status"] = "cardplay was not initiated";
+        // Check the status code
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $this->fail($message ?: "None of the expected keys '" . implode(', ', $expKey) . "' are present in the array.");
+
+        // Check the status code
+        $this->assertEquals(200, $response->getStatusCode());
+
+        // Optionally, check the content of the JSON response
+        $content = json_decode($response->getContent(), true);
+        $this->assertIsArray($content);
+        $this->assertArrayHasKey('desk', $content);
+        $this->assertArrayHasKey('bank', $content);
+        $this->assertArrayHasKey('player', $content);
+    }
+
+
+    /**
+     * Test /api/routes
+     * 
+     * @return void
+     */
+    public function testJsonLibrary(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', 'api/library/books');
+
+        $response = $client->getResponse();
+        $this->assertResponseIsSuccessful();
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
+        $this->assertJson($client->getResponse()->getContent());
+        $this->assertTrue(
+            $response->headers->contains('Content-Type', 'application/json'),
+            'Response is not of type application/json'
+        );
+
+        $expKey = ['desk', 'bank', 'player', 'status'];
+        $data = json_decode($client->getResponse()->getContent(), true);
+        foreach ($expKey as $oneKey) {
+            if (array_key_exists($oneKey, $data)) {
+                $this->assertTrue(true);
+                return;
+            }
         }
 
-        $response = new JsonResponse($data);
-        return $response;
+        $data = json_decode($client->getResponse()->getContent(), true);
     }
 
     /**
-     * Router displays all books from table 'book' in connected databas as json
+     * Test api_quote"
      * 
-     * @param BookRepository $bookRepository
-     * 
-     * @return Response : returns all books from table 'book' in connected databas as json.
+     * @return void
      */
-    #[Route('api/library/books', name: 'json_library')]
-    public function jsonLibrary(
-        BookRepository $bookRepository
-    ): Response {
-        $books = $bookRepository->findAll();
-        return $this->json($books);
+    public function testJsonBookByIsbnBokNotFound(): void
+    {
+        $client = static::createClient();
+        $client->request('POST', '/api/library/bookIsbn');
+
+        $response = $client->getResponse();
+        $this->assertTrue($response->isRedirection());
+        $client->followRedirect();
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('.flash-warning', 'You enter too few or too many numbers for ISBN!');
     }
 
-    /**
-     * Router search and displays all books with given ISBN from table 'book' in connected databas as json
-     * 
-     * @param BookRepository $bookRepository
-     * @param int $isbn 13-digits integer
-     * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
-     */
-    #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
-    public function jsonBookByIsbn(
-        BookRepository $bookRepository,
-        Request $request,
-    ): Response {
-        $isbnString = (string) $request->request->get('isbn');
-        if(strlen($isbnString) < 10) {
-            $this->addFlash(
-                'warning',
-                'You enter too few or too many numbers for ISBN!'
-            );
-            return $this->redirectToRoute('api');
+    public function testJsonBookByIsbnBokFound(): void
+    {
+        // $request = $this->createMock(Request::class);
+        // $request->method('get')->willReturn('9780340960196');
+        $client = static::createClient();
+
+        // Define the route and parameters
+        $route = '/api/library/bookIsbn';
+        $isbn = '9780340960196'; // Example ISBN
+
+        // Simulate a POST request to the specified route with the ISBN parameter
+        $client->request('POST', $route, ['isbn' => $isbn]);
+
+        // Get the response
+        $response = $client->getResponse();
+
+        // Check if the response is successful
+        $this->assertResponseIsSuccessful();
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
+        // $this->assertJson($client->getResponse()->getContent());
+        // $this->assertTrue(
+        //     $response->headers->contains('Content-Type', 'application/json'),
+        //     'Response is not of type application/json'
+        // );
+
+        $expKey = ['isbn', 'title', 'isbn', 'bookAuthor', 'cover'];
+        $data = json_decode($client->getResponse()->getContent(), true);
+        foreach ($expKey as $oneKey) {
+            if (array_key_exists($oneKey, $data[0])) {
+                $this->assertTrue(true);
+            }
         }
-        $book = $bookRepository->findByIsbn($isbnString);
-        $response =$this->json($book);
-        return $response;
     }
 }
