@@ -14,7 +14,16 @@ use App\Repository\BookRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 class LibraryControllerTest extends WebTestCase
-{ 
+{
+    // // Set up kernel för scrutiniser
+    // protected function setUp(): void
+    // {
+    //     $kernel = self::bootKernel();
+    //     $this->doctrine = $kernel->getContainer()->get('doctrine');
+    //     $this->entityManager = $this->doctrine->getManager();
+    //     $this->bookRepository = $this->entityManager->getRepository(Book::class);
+    // }
+
     /**
      * Setup for class Mocked BoockRepository
      * 
