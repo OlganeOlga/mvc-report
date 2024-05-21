@@ -106,7 +106,6 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        // $mockRepo = $this->setMockBookRepo();
         // Replace the real BookRepository with the mock in the service container
         self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
@@ -166,9 +165,6 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        //mock BookRepository
-        // $mockRepo = $this->setMockBookRepo();
-
         // Replace the real BookRepository with the mock in the service container
         self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
@@ -211,8 +207,6 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        //$mockRepo = $this->setMockBookRepo();
-
         // Replace the real BookRepository with the mock in the service container
         self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
@@ -235,8 +229,6 @@ class LibraryControllerTest extends WebTestCase
     public function testUpdateBookNotFound(): void
     {
         $client = static::createClient();
-
-        //$mockRepo = $this->setMockBookRepo();
 
         // Replace the real BookRepository with the mock in the service container
         self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
