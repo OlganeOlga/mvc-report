@@ -41,9 +41,9 @@ class Hand
     }
 
     /**
-     * toArray method description
+     * Converts the object to an array.
      *
-     * @return array{points: int, cards: array<int<0, max>, array<int>>}
+     * @return array{points: int, cards: array<int<0, max>, array<int>>} The array representation of the objecs
      */
     public function toArray(): array
     {
