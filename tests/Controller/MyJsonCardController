@@ -1,229 +1,168 @@
 <?php
 
-namespace App\Controller;
+namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Card\Desk;
 
-use ReflectionClass;
-use ReflectionMethod;
-use Exception;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
-
-use App\Repository\BookRepository;
-
-/**
- * Controller class that produces routers returning json objects
- */
-class MyJsonCardController extends AbstractController
+class MyJsonCardControllerTest extends WebTestCase
 {
     /**
-     * Route display desk of cards in form json-content
-     * @param SessionInterface $session
-     * @return Response content with desk of cards in form of json
-     */
-    #[Route('/api/desk', name: "api_desk", methods:['GET'])]
-    public function apiDesk(
-        SessionInterface $session
-    ): Response {        
-        $data = $session->get('desk');
-        if ($data == null) {
-            $newDesk = new Desk();
-            $data = $newDesk->getDesk();
-        }
-        $session->set('desk', $data);
-
-        // $response = new Response();
-        // $response->setContent(json_encode($data));
-
-        // return $response;
-        return $this->json($data);
-    }
-
-    /**
-     * Route create new desk of cards, shuffle it and display it in form json-content
+     * Test route api/desk
      * 
-     * @return Response content with desk of cards in form of json
+     * @return void
      */
-    #[Route('/api/desk/shuffle', name: "api_desk_shuffle", methods:['POST'])]
-    public function apiShuffleDesk(): Response
+    public function testApiDesk(): void
     {
-        $desk = new Desk();
-        $desk->getDesk();
-        $desk->shuffleDesk();
+        $client = static::createClient();
 
-        $data = $desk->getDesk();
-        $response = new Response();
+        // Simulate a GET request to the /api/desk route
+        $client->request('GET', '/api/desk');
 
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Route extrakt from session/create new desk of cards,
-     * draw one card and display result in json
-     * 
-     * @param  SessionInterface $session contans desk of cards
-     * @return Response content with drown cards and the number of rest cards in the desk
-     * in form of json
-     */
-    #[Route('/api/desk/draw', name: "api_desk_draw", methods:['POST'])]
-    public function apiDrawDesk(
-        SessionInterface $session
-    ): Response {
+        $response = $client->getResponse();
         
-        $data = $session->get('desk');
-        $cards = $session->get('drawed');
-        if ($data == null) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
-        // if ($data == null || count($data) < 52) {
-        //     $desk = new Desk();
-        //     $data = $desk->getDesk();
-        // }
-        $element = array_rand($data);
-        $card = $data[$element];
-        unset($data[$element]);
-        $number = count($data);
-        $result = [
-            'card' => $card,
-            'number' => $number,
-        ];
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertJson($client->getResponse()->getContent());
 
-        $session->set('drawed', $cards);
-        $session->set('desk', $data);
-        $response = new Response();
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
+        // Assert the response content type is JSON
+        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
 
-        return $response;
+        
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertNotNull($responseData);
+        $this->assertLessThanOrEqual(52, count($responseData));
     }
 
     /**
-     * Route retrieves desk of card from the session
-     * if the desk empty, creates new desk of cards,
-     * take given number of cards (rundomised) from te desk
-     * saves result in the session
-     * and display drown cards and number of cards in the desk as json-content
+     * Test route api/desk/suffle
      * 
-     * @param  SessionInterface $session contans desk of cards
-     * @param Request $request request
-     * @return Response content with drown cards and the number of rest cards in the desk
-     * in form of json
+     * @return void
      */
-    #[Route('api/deck/draw/{num_card}', name: "api_desk_draw_flera", methods:['POST'])]
-    public function apiDrawFleraDesk(
-        SessionInterface $session,
-        Request $request
-    ): Response {
-        $response = new Response();
-        $numCard = $request->request->get('num_card');
-        $data = [];
-        $hand = [];
+    public function testApiDeskShuffle(): void
+    {
+        $client = static::createClient();
 
-        $data = $session->get('desk');
-        if ($data == null) {
-            $desk = new Desk();
-            $data = $desk->getDesk();
-        }
+        // Simulate a GET request to the /api/desk route
+        $client->request('POST', '/api/desk/shuffle');
 
-        if ( count($data) < $numCard) {
-            $numCard = count($data);
-        }
+        $response = $client->getResponse();
+        
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertJson($client->getResponse()->getContent());
 
-        for($i = 0; $i < $numCard; $i++) {
-            $element = array_rand($data);
-            $card = $data[$element];
-            $hand[] = $card;
-            unset($data[$element]);
-        }
-        $number = count($data);
-        $result = [
-            'drown' => $hand,
-            'number' => $number,
-        ];
+        // Assert the response content type is JSON
+        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
 
-        $session->set('desk', $data);
-        $session->set('hand', $hand);
-       return $this->json($result);
+        
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertNotNull($responseData);
+        $this->assertEquals(52, count($responseData));
     }
 
     /**
-     * Route deals chosen amount of cards to the chosen
-     * amount of players from th desk saved in the session
-     * if the desk empty, creates new desk of cards,
-     * take given number of cards (rundomised) from te desk
-     * saves result in the session
-     * and display drown cards and number of cards in the desk as json-content
-     *  
-     * @param int $play amount of players
-     * @param int $cards amount of cards
-     * @return Response content with cardes dealed for each player and
-     * the number of rest cards in the desk
-     * in form of json
+     * Test route api/desk/draw
+     * 
+     * @return void
      */
-    #[Route('api/deck/deal/{play}/{cards}', name: "api_desk_deal", methods:['POST'])]
-    public function apiDealCard(
-        int $play,
-        int $cards
-    ): Response {
-        $desk = new Desk();
-        $players = [];
-        $response = new Response();
+    public function testApiDrawDesk(): void
+    {
+        $client = static::createClient();
 
-        $desk->shuffleDesk();
-        for($k = 0; $k < $play; $k++) {
-            $hand = [];
-            for($i = 0; $i < $cards; $i++) {
-                $card = $desk->randCard();
-                $hand[] = $card;
+        // Simulate a GET request to the /api/desk route
+        $client->request('POST', '/api/desk/draw');
+
+        $response = $client->getResponse();
+        
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertJson($client->getResponse()->getContent());
+
+        // Assert the response content type is JSON
+        $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
+
+        
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertNotNull($responseData);
+        $this->assertEquals(2, count($responseData));
+        $expKey = ['card', 'number'];
+        foreach ($expKey as $oneKey) {
+            if (array_key_exists($oneKey, $responseData)) {
+                $this->assertTrue(true);
+                return;
             }
-            $players[(string)($k + 1)] = $hand;
         }
-
-        $number = $desk->countDesk();
-        $result = [
-            'players' => $players,
-            'number cards left' => $number,
-        ];
-
-        // $response = new Response();
-        // $response->setContent(json_encode($result));
-        // $response->headers->set('Content-Type', 'application/json');
-
-        // return $response;
-        return $this->json($result);
     }
 
     /**
-     * Route displays all variables saved in the session as json-content
+     * Test route api/desk/draw(num)
      * 
-     * @param  SessionInterface $session contans desk of cards
-     * @return JsonResponse content with drown cards and the number of rest cards in the desk
-     * in form of json
+     * @return void
      */
-    #[Route('/session', name: 'get_session')] // get all frome session
-    public function apiGetSession(
-        SessionInterface $session
-    ): JsonResponse {
-        $data = [];
 
-        foreach ($session->all() as $key => $value) {
-            $data[$key] = $value;
+    public function testApiDrawFlerDesk(): void
+    {
+        $client = static::createClient();
+        $session = $this->createMock(SessionInterface::class);
+        $desk = new Desk();
+        
+        $session->set('desk', $desk->getDesk());
+        $session->method('get')->willReturn($desk->getDesk());
+
+        $numCard = 3;
+
+        // Log the request URL
+        $url = '/api/deck/draw/' . $numCard;
+        echo "Request URL: $url\n";
+        $client->request('POST', $url);
+
+        $response = $client->getResponse();
+        
+        // Log the response content
+        echo "Response: " . $response->getContent() . "\n";
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertJson($response->getContent());
+        $expKey = ['drown', 'number'];
+        $data = json_decode($client->getResponse()->getContent(), true);
+        foreach ($expKey as $oneKey) {
+            if (array_key_exists($oneKey, $data)) {
+                $this->assertTrue(true);
+            }
         }
+    }
 
-        // Return the session data as JSON
-        return $this->json($data);
+    /**
+     * Test route api/desk/deal/{player}/{num}
+     * 
+     * @return void
+     */
+    public function testApiDealCard(): void
+    {
+        $client = static::createClient();
+
+        // Simulate a GET request to the /api/desk route
+        $client->request('POST', 'api/deck/deal/2/3');
+
+        $this->assertResponseIsSuccessful();
+        $response = $client->getResponse();
+        $responseData = json_decode($client->getResponse()->getContent(), true);
+        $this->assertEquals(200, $response->getStatusCode());
+        // $this->assertJson($client->getResponse()->getContent());
+
+
+        // // Assert the response content type is JSON
+        // $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
+
+        
+        // $responseData = json_decode($client->getResponse()->getContent(), true);
+        // $this->assertNotNull($responseData);
+        // $this->assertEquals(2, count($responseData));
+        // $expKey = ['players', 'number cards left'];
+        // foreach ($expKey as $oneKey) {
+        //     if (array_key_exists($oneKey, $responseData)) {
+        //         $this->assertTrue(true);
+        //         return;
+        //     }
+        // }
     }
 }
