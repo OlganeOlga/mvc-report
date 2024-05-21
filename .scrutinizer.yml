@@ -2,7 +2,7 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, tools/*]
+    excluded_paths: [vendor/*, test/*]
 
 build:
     image: default-bionic
@@ -12,19 +12,15 @@ build:
             environment:
                 php:
                     version: 8.3.3
+                    # version: 8.1.13
+                    # version: 8.1.17
+                    # version: 8.2.4
         analysis:
             tests:
                 override:
                     - php-scrutinizer-run
                     #- phpcs-run # Not used, missing config file
     tests:
-        before:
-                    - sudo service mysql start
-                    - mysql -e 'CREATE DATABASE scrutinizer_db;'
-                    - cp .env .env.test
-                    - sed -i 's|DATABASE_URL=.*|DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db|' .env.test
-                    - php bin/console doctrine:schema:create --env=test
-                    - php bin/console doctrine:migrations:migrate --env=test --no-interaction
         override:
             -   command: "composer phpunit"
                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
@@ -32,3 +28,37 @@ build:
                     file: "docs/coverage.clover"
                     format: "php-clover"
 
+
+# imports:
+#     - php
+
+# filter:
+#     excluded_paths: [vendor/*, tools/*]
+
+# build:
+#     image: default-bionic
+
+#     nodes:
+#         my-tests:
+#             environment:
+#                 php:
+#                     version: 8.3.3
+#         analysis:
+#             tests:
+#                 override:
+#                     - php-scrutinizer-run
+#                     #- phpcs-run # Not used, missing config file
+#     tests:
+#         before:
+#                     - sudo service mysql start
+#                     - mysql -e 'CREATE DATABASE scrutinizer_db;'
+#                     - cp .env .env.test
+#                     - sed -i 's|DATABASE_URL=.*|DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db|' .env.test
+#                     - php bin/console doctrine:schema:create --env=test
+#                     - php bin/console doctrine:migrations:migrate --env=test --no-interaction
+#         override:
+#             -   command: "composer phpunit"
+#                 # command: "XDEBUG_MODE=coverage vendor/bin/phpunit"
+#                 coverage:
+#                     file: "docs/coverage.clover"
+#                     format: "php-clover"

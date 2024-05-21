@@ -31,7 +31,7 @@ class DiceGameController extends AbstractController
      * Rolls chosen amount of dice
      * @param int $number number of dice to roll
      * 
-     * @return array[int, string[]]
+     * @return array<int, string[]>
      */
     public function rollDices(int $number) {
         $diceRoll = [];
@@ -111,7 +111,7 @@ class DiceGameController extends AbstractController
     {
         $hand = new HandDice();
 
-        $roledHand = $this->rollHandDices($hand, $number);
+        $this->rollHandDices($hand, $number);
 
         $data = [
             "num_dices" => $hand->getNumberDices(),
@@ -147,7 +147,7 @@ class DiceGameController extends AbstractController
 
         $hand = new HandDice();
 
-        $roledHand = $this->rollHandDices($hand, $numDice);
+        $this->rollHandDices($hand, $numDice);
 
         $session->set("pig_dicehand", $hand);
         $session->set("pig_dices", $numDice);

@@ -12,27 +12,24 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Book;
 use App\Repository\BookRepository; 
 use Doctrine\Persistence\ManagerRegistry;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class LibraryControllerTest extends WebTestCase
 {
-    // // Set up kernel för scrutiniser
-    // protected function setUp(): void
-    // {
-    //     $kernel = self::bootKernel();
-    //     $this->doctrine = $kernel->getContainer()->get('doctrine');
-    //     $this->entityManager = $this->doctrine->getManager();
-    //     $this->bookRepository = $this->entityManager->getRepository(Book::class);
-    // }
+    /**
+     * @var MockObject
+     */
+    protected $mockRepo;
 
     /**
-     * Setup for class Mocked BoockRepository
-     * 
-     * @return BookRepository 
+     * Setup
      */
-    protected function setMockBookRepo(): BookRepository
+    protected function setUp(): void
     {
-        //mock BookRepository
-        $mockRepo = $this->createMock(BookRepository::class);
+        parent::setUp(); // Call parent setUp method if needed
+
+        // Mock BookRepository
+        $this->mockRepo = $this->createMock(BookRepository::class);
 
         // Create a sample book entity
         $book = new Book();
@@ -42,8 +39,7 @@ class LibraryControllerTest extends WebTestCase
         $book->setIsbn(1234567890321);
 
         // Configure the mock repository to return the sample book
-        $mockRepo->method('find')->willReturn($book);
-        return $mockRepo;
+        $this->mockRepo->method('find')->willReturn($book);
     }
 
     /**
@@ -110,9 +106,9 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $mockRepo = $this->setMockBookRepo();
+        // $mockRepo = $this->setMockBookRepo();
         // Replace the real BookRepository with the mock in the service container
-        self::getContainer()->set('App\Repository\BookRepository', $mockRepo);
+        self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
         // Perform a POST request to the route
         $client->request('POST', '/library/read/one/', ['bookid' => 1]);
@@ -171,10 +167,10 @@ class LibraryControllerTest extends WebTestCase
         $client = static::createClient();
 
         //mock BookRepository
-        $mockRepo = $this->setMockBookRepo();
+        // $mockRepo = $this->setMockBookRepo();
 
         // Replace the real BookRepository with the mock in the service container
-        self::getContainer()->set('App\Repository\BookRepository', $mockRepo);
+        self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
         // Perform a POST request to the route
         $client->request('GET', '/library/see/one/999');
@@ -215,10 +211,10 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $mockRepo = $this->setMockBookRepo();
+        //$mockRepo = $this->setMockBookRepo();
 
         // Replace the real BookRepository with the mock in the service container
-        self::getContainer()->set('App\Repository\BookRepository', $mockRepo);
+        self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
         // Perform a POST request to the route
         $client->request('POST', '/library/update/book', ['bookid' => 19999]);
@@ -240,10 +236,10 @@ class LibraryControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $mockRepo = $this->setMockBookRepo();
+        //$mockRepo = $this->setMockBookRepo();
 
         // Replace the real BookRepository with the mock in the service container
-        self::getContainer()->set('App\Repository\BookRepository', $mockRepo);
+        self::getContainer()->set('App\Repository\BookRepository', $this->mockRepo);
 
         // Perform a POST request to the route
         $client->request('POST', '/library/update/book', ['bookid' => 19999]);
@@ -335,51 +331,6 @@ class LibraryControllerTest extends WebTestCase
         $form = $crawler->filter('form');
         $this->assertGreaterThan(0, $form->count(), 'The form was not found in the response');
     }
-
-    // /**
-    //  * Test delete existing book
-    //  */
-    // public function testDeleteBookExist(): void
-    // {
-    //     $client = static::createClient(); 
-
-    //     // Create a sample book entity
-    //     $book = $this->createMock(Book::class);
-    //     $book->method('getId')->willReturn(1);
-
-    //     // Mock BookRepository
-    //     $bookRepository = $this->createMock(BookRepository::class);
-    //     $bookRepository->method('find')->with(1)->willReturn($book);
-
-    //     // Mock EntityManager
-    //     $entityManager = $this->createMock(EntityManagerInterface::class);
-    //     $entityManager->method('getRepository')->willReturn($bookRepository);
-    //     $entityManager->method('remove');
-    //     $entityManager->method('flush');
-
-    //     // Mock ManagerRegistry
-    //     $doctrine = $this->createMock(ManagerRegistry::class);
-    //     $doctrine->method('getManager')->willReturn($entityManager);
-
-    //     // Replace services in the container with mocks
-    //     self::getContainer()->set('doctrine', $doctrine);
-
-    //     // Perform a POST request to the route
-    //     $client->request('POST', '/library/delete', ['id' => 1]);
-
-    //     // Assert the response is a redirect to the app_library route
-    //     //$this->assertTrue($client->getResponse()->isRedirection());
-        
-
-    //     $this->assertEquals('/library', $client->getResponse()->headers->get('location'));
-
-    //     // Follow the redirect
-        
-
-    //     //$this->assertStringContainsString('No book found with id 1', $client->getCrawler()->filter('.flash-warning')->text());
-    //     // Assert the flash message was added
-    //     $this->assertStringContainsString('You successfully deleted a book with id 1', $client->getCrawler()->filter('.flash-notice')->text());
-    // }
 
     /**
      * Test if varning message uppear f book doesnot exists

@@ -127,7 +127,6 @@ class MyJsonCardController extends AbstractController
         SessionInterface $session,
         Request $request
     ): Response {
-        $response = new Response();
         $numCard = $request->request->get('num_card');
         $data = [];
         $hand = [];

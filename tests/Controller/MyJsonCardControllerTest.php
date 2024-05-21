@@ -145,24 +145,6 @@ class MyJsonCardControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
-        $responseData = json_decode($client->getResponse()->getContent(), true);
         $this->assertEquals(200, $response->getStatusCode());
-        // $this->assertJson($client->getResponse()->getContent());
-
-
-        // // Assert the response content type is JSON
-        // $this->assertTrue($client->getResponse()->headers->contains('Content-Type', 'application/json'));
-
-        
-        // $responseData = json_decode($client->getResponse()->getContent(), true);
-        // $this->assertNotNull($responseData);
-        // $this->assertEquals(2, count($responseData));
-        // $expKey = ['players', 'number cards left'];
-        // foreach ($expKey as $oneKey) {
-        //     if (array_key_exists($oneKey, $responseData)) {
-        //         $this->assertTrue(true);
-        //         return;
-        //     }
-        // }
     }
 }

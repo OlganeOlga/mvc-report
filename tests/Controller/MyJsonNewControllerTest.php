@@ -8,22 +8,13 @@ use App\Repository\BookRepository;
 
 class MyJsonNewControllerTest extends WebTestCase
 {
-    // // In your PHPUnit test case setup
-    // protected function setUp(): void
-    // {
-    //     $kernel = self::bootKernel();
-    //     $this->doctrine = $kernel->getContainer()->get('doctrine');
-    //     $this->entityManager = $this->doctrine->getManager();
-    //     $this->bookRepository = $this->entityManager->getRepository(Book::class);
-    // }
-
+    /**
+     * Test api/game
+     * 
+     * @return void
+     */
     public function testApiGame(): void
     {
-        /**
-         * Test api/game
-         * 
-         * @return void
-         */
         $client = static::createClient();
         $client->request('GET', '/api/game');
 
@@ -48,12 +39,6 @@ class MyJsonNewControllerTest extends WebTestCase
         // Check the status code
         $this->assertEquals(200, $response->getStatusCode());
 
-        $this->fail($message ?: "None of the expected keys '" . implode(', ', $expKey) . "' are present in the array.");
-
-        // Check the status code
-        $this->assertEquals(200, $response->getStatusCode());
-
-        // Optionally, check the content of the JSON response
         $content = json_decode($response->getContent(), true);
         $this->assertIsArray($content);
         $this->assertArrayHasKey('desk', $content);
@@ -112,8 +97,6 @@ class MyJsonNewControllerTest extends WebTestCase
 
     public function testJsonBookByIsbnBokFound(): void
     {
-        // $request = $this->createMock(Request::class);
-        // $request->method('get')->willReturn('9780340960196');
         $client = static::createClient();
 
         // Define the route and parameters
@@ -129,11 +112,6 @@ class MyJsonNewControllerTest extends WebTestCase
         // Check if the response is successful
         $this->assertResponseIsSuccessful();
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
-        // $this->assertJson($client->getResponse()->getContent());
-        // $this->assertTrue(
-        //     $response->headers->contains('Content-Type', 'application/json'),
-        //     'Response is not of type application/json'
-        // );
 
         $expKey = ['isbn', 'title', 'isbn', 'bookAuthor', 'cover'];
         $data = json_decode($client->getResponse()->getContent(), true);
