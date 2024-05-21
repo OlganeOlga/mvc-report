@@ -17,9 +17,9 @@ build:
                 - php bin/console doctrine:schema:create --env=test
                 - php bin/console doctrine:migrations:migrate --env=test --no-interaction
 
-        environment:
-            php:
-                version: 8.3.3
+    environment:
+        php:
+            version: 8.3.3
 
     tests:
         override:
@@ -27,10 +27,3 @@ build:
               coverage:
                 file: "docs/coverage.clover"
                 format: "php-clover"
-
-    analysis:
-        tests:
-            override:
-                - php-scrutinizer-run
-                # Uncomment and configure if you have a phpcs config file
-                # - phpcs-run
