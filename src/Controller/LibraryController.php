@@ -80,7 +80,7 @@ class LibraryController extends AbstractController
     }
 
     /**
-     * Display ont book from the library table
+     * Display one book from the library table
      * with given ID
      * 
      * @param BookRepository $bookRepository,
@@ -94,8 +94,9 @@ class LibraryController extends AbstractController
         Request $request,
     ): Response {
         $bookId = intval($request->request->get('bookid'));
-        try {
-            $book = $bookRepository->find($bookId);
+        
+        $book = $bookRepository->find($bookId);
+        if($book !== null) { 
             $data = [
                 'id' => $bookId,
                 'title' => $book->getTitle(),
@@ -104,13 +105,12 @@ class LibraryController extends AbstractController
                 'isbn' => $book->getIsbn(),
             ];
             return $this->render('library/read.one.html.twig', $data);
-        } catch (InvalidArgumentException $e) {
-            $this->addFlash(
-                "warning",
-                "No books found for id: {$bookId}"
-            );
-            return $this->redirectToRoute('app_library');
-        }
+        } 
+        $this->addFlash(
+            "warning",
+            "No books found for id: {$bookId}"
+        );
+        return $this->redirectToRoute('app_library');
     }
 
      /**
@@ -159,7 +159,8 @@ class LibraryController extends AbstractController
                 'isbn' => $book->getIsbn(),
             ];
         }
-        return $this->render('library/read.many.html.twig', ['books' => $data]);
+        
+        return $this->render('library/read.many.html.twig', ['data' => $data]);
     }
 
     /**
@@ -173,15 +174,12 @@ class LibraryController extends AbstractController
      */ 
     #[Route('library/update/book', name: 'update_book', methods: ['POST'])]
     public function updateBook(
-        //ManagerRegistry $doctrine,// comment it away after Scerutinizer tests
         Request $request,
         BookRepository $bookRepository
     ): Response {
-        //$entityManager = $doctrine->getManager(); comment away this line as it is seen as unused by phpmd
         $bookId = intval($request->request->get('bookid'));
-        //$data = [];
-        try {
-            $book = $bookRepository->find($bookId);
+        $book = $bookRepository->find($bookId);
+        if($book !== null) { 
             $data = [
                 'id' => $bookId,
                 'title' => $book->getTitle(),
@@ -189,15 +187,13 @@ class LibraryController extends AbstractController
                 'cover' => $book->getCover(),
                 'isbn' => $book->getIsbn(),
             ];
-
             return $this->render('library/update.html.twig', $data);
-        } catch (InvalidArgumentException $e) {
-            $this->addFlash(
-                "warning",
-                "No books found for id: {$bookId}"
-            );
-            return $this->redirectToRoute('app_library');
-        }
+        } 
+        $this->addFlash(
+            "warning",
+            "No books found for id: {$bookId}"
+        );
+        return $this->redirectToRoute('app_library');
     }
 
     /**
@@ -240,7 +236,7 @@ class LibraryController extends AbstractController
     }
 
     /**
-     * Add remove a book-row from the library table
+     * Remove a book-row from the library table
      *
      * @param Request $request,
      * @param ManagerRegistry $doctrine,

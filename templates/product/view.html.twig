@@ -3,10 +3,13 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block body %}
-<ul>
-    {% for product in products %}
-        <li>{{ product.getName|e }} ({{ product.getId|e }}) {{ product.getValue|e }}</li>
-    {% endfor %}
-</ul>
+<div class="example-wrapper">
+    <h1>Visa produkter i html</h1>
 
+    <ul>
+        {% for product in products %}
+            <li>{{ product.getName|e }} ({{ product.getId|e }}) {{ product.getValue|e }}</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

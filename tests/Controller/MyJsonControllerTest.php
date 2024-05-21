@@ -12,7 +12,7 @@ class MyJsonControllerTest extends WebTestCase
          * Test start page
          */
         $client = static::createClient();
-        $client->request('GET', '/json1');
+        $client->request('GET', '/api');
 
         $this->assertResponseIsSuccessful();
         // controll if the title is correct
@@ -20,18 +20,18 @@ class MyJsonControllerTest extends WebTestCase
     }
 
     /**
-     * Test /api
+     * Test /api/routes
      */
     public function testApiIndex(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/api');
+        $client->request('GET', '/api/routes');
 
         $this->assertResponseIsSuccessful();
         $this->assertJson($client->getResponse()->getContent());
 
         $data = json_decode($client->getResponse()->getContent(), true);
-        $this->assertArrayHasKey('api_landing', $data);
+        $this->assertArrayHasKey('api_routes', $data);
     }
 
     /**
@@ -46,8 +46,6 @@ class MyJsonControllerTest extends WebTestCase
         $this->assertJson($client->getResponse()->getContent());
 
         $quote = json_decode($client->getResponse()->getContent(), true);
-        $this->assertArrayHasKey('quote', $quote); // Assuming the JSON contains a "quote" key
+        $this->assertArrayHasKey('quote', $quote);
     }
-
-    // Add more tests for the other routes as needed
 }
