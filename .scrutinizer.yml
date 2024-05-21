@@ -3,6 +3,9 @@ imports:
 
 filter:
     excluded_paths: [vendor/*, tools/*]
+    branches:
+        only:
+            - godTest
 
 build:
     image: default-bionic
