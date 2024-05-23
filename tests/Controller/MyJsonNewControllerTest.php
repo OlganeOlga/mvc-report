@@ -38,7 +38,6 @@ class MyJsonNewControllerTest extends WebTestCase
 
         // Check the status code
         $this->assertEquals(200, $response->getStatusCode());
-
         $content = json_decode($response->getContent(), true);
         $this->assertIsArray($content);
         $this->assertArrayHasKey('desk', $content);

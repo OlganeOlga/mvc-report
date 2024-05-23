@@ -74,7 +74,8 @@ class ProductController extends AbstractController
      * @return Response
      */
     #[Route('/product/show', name: 'product_show_all')]
-    public function showAllProduct(): Response {
+    public function showAllProduct(): Response
+    {
         $products = $this->productRepository
             ->findAll();
 
@@ -155,13 +156,13 @@ class ProductController extends AbstractController
     }
 
     /**
-     * See all products in html
+     * Shows products in the table product
+     *
      * @return Response
      */
     #[Route('/product/view', name: 'product_view_all')]
-    public function viewAllProduct(
-        //ProductRepository $productRepository
-    ): Response {
+    public function viewAllProduct(): Response
+    {
         $products = $this->productRepository->findAll();
 
         $data = [

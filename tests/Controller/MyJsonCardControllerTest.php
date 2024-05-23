@@ -146,5 +146,6 @@ class MyJsonCardControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $response = $client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
+      }
     }
 }
