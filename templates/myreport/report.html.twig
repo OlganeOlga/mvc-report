@@ -130,7 +130,19 @@
 
 
         <h2 class="kmom" id="kmom06">kmom06</h2>
-        <p>Kmom06 handlar om testverktyg. Se vidare: <a href="{{ path('metrics') }}">Metrix</a></p>
+         <p>Kmom06 handlar om testverktyg. Ser också: <a href="{{ path('metrics') }}">Metrix</a></p>
+        <p>
+            I Kmom06 arbetar vi med phpmetrics och Scrutiniser: verktyg för att se hur säkert koden är. Den första kan man använda på lokal repo och den andra kan anävndas online. Jag tycker att den ger alldeles för många mätningar. Jag gick först vilse bland de alla. Å andra sätt hjälper båda verktyg med att förstå bättre hyr olika delar av projekt påverkar varandra och var kan svaga delar, delar som kan ger fel, finnas.
+        </p>
+        <p>
+            Skrutinizer ställer för det största problem för mig. Det svaraset var att jag koplade delade repo i flera grnar och har svårt att merga de, när de koplade till scrutinizer. 
+            Efter första bugget fick jag cottackning på 21% och kodkvalitet på 9.98
+        </p>
+        <p>
+            Till slutt lyckades jag twsta lite drygt 70% av koden. Jag var tvungen att ta bort vissa tetes som testade databaskopplade delar av koden.
+            Det blev nästan gröna bages. Dock undrar jag om bages visa inte tillräckligt många nyanser på kod kvalitet. Det verkar att om jag skaffar flera asserts på samma kodregel, så höjdes min kodkvalitet, fat det var ibbland asserts som assertar samma sak. 
+        </p>
+
         <h2 class="kmom" id="kmom07-10">kmom07 - kmom10</h2>
     </div>
 </main>

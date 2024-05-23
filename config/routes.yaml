@@ -4,11 +4,6 @@ controllers:
         namespace: App\Controller
     type: attribute
 
-docs:
-    path: /docs/{path}
-    controller: App\Controller\DocsController::index
-    requirements:
-        path: .+
 # app_pdf_view:
 #     path: /view-pdf/{fileName}
 #     controller: App\Controller\PdfController::viewPdf
