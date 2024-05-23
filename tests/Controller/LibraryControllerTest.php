@@ -248,23 +248,14 @@ class LibraryControllerTest extends WebTestCase
 
 
     /**
-     * Test router library/change/book 
+     * @test
+     * Test changing a book
      * 
      * @return void
      */
     private function testChangeBook(): void
     {
         $client = static::createClient();
-
-        // // Mock Request
-        // $request = $this->createMock(Request::class);
-        // $request->method('request')->willReturnMap([
-        //     ['id', 1],
-        //     ['title', 'New Title'],
-        //     ['author', 'New Author'],
-        //     ['cover', 'new_cover.jpg'],
-        //     ['isbn', '9876543210987'],
-        // ]);
 
         // Create a sample book entity
         $book = new Book();
@@ -300,7 +291,7 @@ class LibraryControllerTest extends WebTestCase
 
         // Assert the book was updated correctly
         $this->assertEquals('Updated Title', $book->getTitle());
-        $this->assertEquals('Updated Author', $book->getAuthor());
+        $this->assertEquals('Updated Author', $book->getBookAuthor());
         $this->assertEquals('updated_cover.jpg', $book->getCover());
         $this->assertEquals(9876543210987, $book->getIsbn());
         //$this->assertStringContainsString('You successfully uppdated a book with id 1', $client->getCrawler()->filter('.flash-notice')->text());

@@ -1,19 +1,23 @@
 body {
     background-color: #d5dfe2;
     display: grid;
-    /* grid-template-rows: 2fr 6fr 1fr; */
-    grid-template-rows: 250px 4fr 1fr;
+    grid-template-rows: 270px 4fr 1fr;
     grid-template-columns: 4fr 1fr;
 }
 
+/* body.metrics {
+    overflow: hidden;
+} */
+
 header {
+    width: 100%;
     grid-row: 1;
     grid-column: span 2;
     display: grid;
     grid-template-columns: 50% 50%;
-    /* background-color: #570757; */
     background-size: cover;
     color: #172327;
+    font-size: 0.9em;
 }
 
 
@@ -134,6 +138,15 @@ main.library {
     padding-top: 2em;
 }
 
+main.metrics {
+    width: 95%;
+    height: 30em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+    box-sizing: border-box;
+}
+
 main.library.all {
     display: flex;
     flex-direction: column;
@@ -179,6 +192,10 @@ main.library.delete form.book {
 main.library.delete form.book input[type="number"],
 main.library.delete form.book input[type="submit"] {
 
+}
+
+main.metrics figure img {
+    width: 600px;
 }
 
 main .headerMe {
@@ -459,4 +476,23 @@ aside.asideMe form.lableForm {
 
 aside.asideMe label.smal {
     font-size: 10px;
+}
+
+aside h2.aside-right {
+    display: grid;
+    font-size: 1.1em;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+aside ul {
+    margin-top: 0;
+}
+
+aside li.metrics {
+    font-size: 0.8em;
+}
+
+aside h7 {
+    font-size: 0.7em;
 }

@@ -1,125 +1,244 @@
-{% extends "base.html.twig" %}
+{% extends "base.metrics.html.twig" %}
 
 {% block title %}About{% endblock %}
 
 {% block body %}
- <main class="main metrix">
+
+    <main class="main metrics">
+        <header class="headerMe">
+            <h2 class="h1">Metrics</h2>
+        </header>
+
+        <h2 class="part" id="Intro">Introduction</h2>
+        <h3>Några ’C’ för bättre kodkvalitet</h3>
+        <p>
+        I Kmom06 ska vi lära oss använda några verktyg för att mäta kvalitet på applikationen (koden) och försöka förbättra den. Det finns flera olika mätvärden för kodens kvalitet. VI ska använda bara 6 eller 7 av de som börjar på ”C”, som kan hjälpa att få snyggare och bättre kod, “clean code”. De C-ar är:    </p>
+        <ul>
+            <li>Codestyle</li>
+            <li>Coverage</li>
+            <li>Complexity</li>
+            <li>Cohesion</li>
+            <li>Coupling</li>
+            <li>CRAP</li>
+            
+            <p>Och</p>
+            
+            <li>Code smell</li>
+        </ul>
+            
+        <h3>Codstyle:</h3>
+        <p>
+            I php finns det inte explicita reglar som inte tillåter koden att fungera ifall kodstyle inte är standardiserad, men det är viktigt att skriva koden så mycket som möjligt nära allmänna standarder så att det blir lättare att läsa koden, analysera den så att andra programmerare kan använda koden i sina projekt. Kod som är skriven med bra style är lättare att förbättra.
+        </p>
+        <h3>Codcoverage</h3>
+        <p>
+            För att minimera felkällor (buggar) i koden ska programvara testas så mycket som möjligt. Begrepp ”Codcoverage” visar vilken del av koden är testad genom enhetstesterna. Högre ”Coverage” säger att koden är bättre testad och därför är mera pålitligt.
+        </p>
+        <h3>Complexity</h3>
+        <p>
+            Kodkomplexitet visar hur många beslutspunkter finns i kodavsnitten. Det är sårbarhet grad. så det är önskvärd att försöka hålla ner kodkomplexitet. Tumregeln är att bibehålla kodkomplexitet under 10. Men ibland går det inte. </p>
+        <h3>Cohesion</h3>
+        <p>
+            Cohesion är ett begrepp inom mjukvaruutveckling som avser graden av sammanhållning eller koppling mellan olika delar av en modul, klass eller system. Det mäter hur nära och relaterade olika delar av koden är relaterad till varandra.
+        </p>
+        <p> 
+            Hög cohesion visar att delarna av en klass är relaterad till varandra och fungerar rätt för att utföra en enda uppgift eller ansvar. Låg cohesion, visar att det finns delar av koden som är inte särskilt relaterade till varandra och kan ha olika ansvar eller uppgifter. </p>
+
+        <h3>Coupling</h3>
+        <p>
+            Visar hur mycket end klas är beroende av den andra klasser. Det är instabilitetindex. Med låd coupling är en klass stabilt och ju högre är couplingsindex ju svarare är det att underhålla klassen vid ändringen av kod. Det visar också hur svår kan det vara att testa koden. Med högre koupling är det svarare att skriva bra tester.</p>
         
-    <header class="headerMe">
-        <h2 class="h1">Metrics</h2>
-    </header>
+        <h3>CRAP</h3>
+        <p>
+            CRAP är förkortning for "Change Risk Analys and Predictor". Det inckluderar flera olika mätvärde i sig och visar hur svart är det att underhålla kodavsnitt (metod, class osv). För att förbättra kodkvalitet med högre CRAP ska man skaffa flera tester.
+        </p>
+        <h3>Code smell</h3>
+        <p>
+            Den begrepp refererar till möjliga design eller användningsprovlem som ligger i koden. Det kan vara langa metoder, eller metoder med flera parametrar eller upprepade köravsnitt (duplicerad kod). Komplex logik och många beslutsmoment kan också höja den index. Testtakning räknas med. Index kan dras ner med flera enhetstester.</p>
 
-    <div class="metrix">
-    <li><a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=master”</a>
-        <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=master" alt="Scrutinizer Code Build">
-    </a></li>
+        <h2 class="part" id="Phpmetrics">Phpmetrics</h2>
+        <p>
+            Phpmetrix är verktyg som inbyggas i projekt. Den tillåter skapa en HTML-rapport. Rapporten tillåter se flera av e C-årna.
+        </p>
 
-    <li><a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=master”</a>
-        <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=master" alt="Scrutinizer Code Build">
-    </a></li>
-    
-    <li><a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=master”</a>
-        <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=master" alt="Scrutinizer Code Build">
-    </a></li>
-    
-    <li><a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=master”</a>
-        <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=master" alt="Scrutinizer Code Build">
-    </a></li>
-    </div>
-    <h2 class="part" id="Intro">Introduction</h2>
-<h3>Några ’C’ för bättre kodkvalitet</h3>
-<p>
-I Kmom06 ska vi lära oss använda några verktyg för att mäta kvalitet på applikationen (koden) och försöka förbättra den. Det finns flera olika mätvärden för kodens kvalitet. VI ska använda bara 6 eller 7 av de som börjar på ”C”, som kan hjälpa att få snyggare och bättre kod, “clean code”. De C-ar är:    </p>
-<ul>
-        <li>Codestyle</li>
-        <li>Coverage</li>
-        <li>Complexity</li>
-        <li>Cohesion</li>
-        <li>Coupling</li>
-        <li>CRAP</li>
-Och 
-    <li>Code smell</li>
-    </ul>
-    <h3>Codstyle:</h3>
-    <p>
-     I php finns det inte explicita reglar som inte tillåter koden att fungera ifall kodstyle inte är standardiserad, men det är viktigt att skriva koden så mycket som möjligt nära allmänna standarder så att det blir lättare att läsa koden, analysera den så att andra programmerare kan använda koden i sina projekt. Kod som är skriven med bra style är lättare att förbättra.
-    </p>
-    <h3>Codcoverage</h3>
-    <p>
-För att minimera felkällor (buggar) i koden ska programvara testas så mycket som möjligt. Begrepp ”Codcoverage” visar vilken del av koden är testad genom enhetstesterna. Högre ”Coverage” säger att koden är bättre testad och därför är mera pålitligt.
-  </p>
-    <h3>Complexity</h3>
-    <p>
-        Kodkomplexitet visar hur många beslutspunkter finns i kodavsnitten. Det är sårbarhet grad. så det är önskvärd att försöka hålla ner kodkomplexitet. Tumregeln är att bibehålla kodkomplexitet under 10. Men ibland går det inte. </p>
-    <h3>Cohesion</h3>
-    <p>
-        Cohesion är ett begrepp inom mjukvaruutveckling som avser graden av sammanhållning eller koppling mellan olika delar av en modul, klass eller system. Det mäter hur nära och relaterade olika delar av koden är relaterad till varandra.
-    </p>
-    <p> Hög cohesion visar att delarna av en klass är relaterad till varandra och fungerar rätt för att utföra en enda uppgift eller ansvar. Låg cohesion, visar att det finns delar av koden som är inte särskilt relaterade till varandra och kan ha olika ansvar eller uppgifter. </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/complexity.phpmetrix.png') }}" width="600" class "imgmetrix" alt="Phpmetrix Rapporten">
+            </a>
+        </figure>
+        <p>
+            I mitt fall rapporten visar att det finns två class violations (BLOB) i klasser MyJsonController och ProductController. Det kan vara att klasser har för stort ansvarsområde. Det stämmer i alla fall gällande MyJsonController, som skapar många routes och använder väldigt många klasser. Det drå ner betyg på Codstyle och höjer nivå på Complexity och Coupling och på CRAP.
+            Phpmetrix visar att cyclomatic complexity i MyJsonController är 19, som kan var svårt att underhålla. 
+        </p>
 
-    <h3>Coupling</h3>
-    <p>Visar hur mycket end klas är beroende av den andra klasser. Det är instabilitetindex. Med låd coupling är en klass stabilt och ju högre är couplingsindex ju svarare är det att underhålla klassen vid ändringen av kod. Det visar också hur svår kan det vara att testa koden. Med högre koupling är det svarare att skriva bra tester.</p>
-    
-    <h3>CRAP</h3>
-    <p>CRAP är förkortning for "Change Risk Analys and Predictor". Det inckluderar flera olika mätvärde i sig och visar hur svart är det att underhålla kodavsnitt (metod, class osv). För att förbättra kodkvalitet med högre CRAP ska man skaffa flera tester.
-    </p>
-    <h3>Code smell</h3>
-<p>Den begrepp refererar till möjliga design eller användningsprovlem som ligger i koden. Det kan vara langa metoder, eller metoder med flera parametrar eller upprepade köravsnitt (duplicerad kod). Komplex logik och många beslutsmoment kan också höja den index. Testtakning räknas med. Index kan dras ner med flera enhetstester.</p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.complexity.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p> Complexity och Defects in Phpmetrix:  </p>
+        <p> Bild övenför visar att mest relativt till system och relativt till struktur komplicerade klasser är de klasser som använder databas. Men klasser som kan innehålla mest buggar ör igen MyJsonController. Definitivt måste jag göra något med det.</p>
+        <p> Coupling  </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.coupling.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p> Violations</p>
 
-    <h2 class="part" id="Phpmetrics">Phpmetrics</h2>
-    
-    <p>analysera dess rapport för din kod. Använd mätvärdena för att hitta flaskhalsar och 
-        svaga punkter i din kod (minst 3 stycken). Du vill hitta kod som har förbättringspotential. 
-        Visualisera med någon representativ bild från rapporten.
-    </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.violations.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p>Object orienteered metrix: <br>  <br> visar att MyJsonController är klass med störst volym. Jag redan försökte att dra ner på volymen med att införa en ny klass med json routers för de sista uppgifter, men förmodligen behöver jag dela den ännu mera. <p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.object.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p> Alla de testerna visar att MyJsonController har minst Cohesion index, och hög Coupling index, classen har också lägst Coverage index pga. jag testade inte alla klasser. MyJsonController klass har också högst cyclomatic Complexiy och således högst CRAP index och Code Smell index. Jag tror att möjliga åtgärder är: skaffa tester för flera klasser, dela MyJsonController till kanske tre olika klasser som är mer logisk kopplade. Ser att det blir mindre beslutspunkter i metoder. </p> 
 
-    <h2 class="part" id=“Scrutinizer">Scrutinizer</h2>
-    
-    <p>
-        analysera dess rapport för din kod. Gör på samma sätt som du gjorde med Phpmetrics.
-    </p>
-    <p>   
-        Inkludera klickbara Scrutinizer badges i din rapport för build, coverage och quality.
-    </p>
-    <p>  
-        Placera samma badges i din README.md.
-    </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.coupling.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
 
-    <h2 class="part" id="Forbattringar">Förbättringar</h2>
-    <p>
-        där du väljer minst 3 förbättringar som du vill göra med din kod (gärna fler).
-        Exempel på förbättringar kan vara:
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.violations.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <h2 class="part" id="Scrutinizer">Scrutinizer</h2>
+        
+        <p>
+            Resultat på första tester i Scrutinizer:
+        </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/scrutiniset.overview.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p>
+            Ger ganska bra rapport i för min kod. Det enda som är röd är coverage. 
+            Och jag vet att jag har inte skaffat många test för mina classer.
+        </p>
+        <p> 
+            Här visas det mera detljerad rapport: 
+        </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/scrutiniset.coverage.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
+        <p>
+            Liksom i Phpmetrix bisar det att unittest coverage cöf MyJsonController är låg och de är en klass med stor complexitet. 
+            Scrutiniser visar också några issues som finns i olika klasser: 
+        </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/scrutiniset.issues.png') }}" width="600" class "imgmetrix" alt="Metrix">
+            </a>
+        </figure>
 
-            Fixa issues
-            Öka kodtäckning
-            Fokusera på kvalitetsindex i Scrutinizer
-            Minska komplexiteten i class/metod
-            Börja med att skriva om förbättringarna, vad du tänker göra, varför du väljer dem och hur du tror det kommer påverka mätvärdena för kvalitet.
+        
+        <h2 class="part" id="Forbattringar">Förbättringar</h2>
+        <p>
+            För att förbättra min applikation jag börjar med ser om jag kan fixa issues. Jag börjar med issues pga det är mest tydligt var kan jag felsöka och jag hoppas det tar minst tid.
+            Sedan vill jag minska komplexitet av MyJsonController. Jag ska dela den i logiska klasser som sturar uppgifter från olika kmom.
+            Samtidigt med de två första åtgärder ska jag se om jag kan dra ner på cyklomatig complexitet i olika klasser.
+            Den tredje åtgärd blir att skaffa mera tester för klasser.
+        </p>
 
-            Implementera sedan förbättringarna.
-            Analysera därefter rapporterna från phpmetrics och Scrutinizer och notera de nya mätvärdena.
-            Gör det tydligt hur mätvärdena såg ut innan och efter dina förbättringar.
-    </p>
-    <h2 class="part" id="#Diskussion">Diskussion</h2>
-    <p>
-        Kan man aktivt jobba med kodkvalitet och “clean code” på detta sättet?
-    </p>
-    <p>
-        Finns det fördelar och kanske nackdelar?
-    </p>
-    <p>
-        Ser du andra möjligheter att jobba mot “clean code”?
-    </p>
-</main>
-<aside class="aside">
-    <h2 class="aside-right">Innehåll</h2>
-    <ul>
-        <li class="metrics"><a href="#Intro">Introduction</a></li>
-        <li class="metrics"><a href="#Phpmetrics">Phpmetrics</a></li>
-        <li class="metrics"><a href="#Scrutinizer">Scrutinizer</a></li>
-        <li class="metrics"><a href="#Forbattringar">Förbättringar</a></li>
-        <li class="metrics"><a href="#Diskussion">Diskussion</a></li>
-    </ul>
-</aside>
-    
+        <p>
+            Det var en lång väg innan jag fick någorlunda bra resultat. Delviss hängde det på mina tester. Jag började med att testa 
+            repositorier och det direct blev röda varningar i Scrutinizer. Det krävdes att jag skaffar en databas i min gitrepo. 
+            Jag hittar inte rätt sätt att göra det.
+        </p>
+        <p>
+            Förljande förändringar gorde jag: 
+            <br> Kodstyl: - började med issues och fixar ala issues söm jag fick efter första test, kommeterar alla funktioner och variabler;
+            <br> - efter varje ny testklass körde jag linter;
+            <br> Coverage: - skrev tester för classer card/Card, Card/CardGraphics, Card/Desk, Dice/GraphicDice, Dice/HandDice, alla klasser i Game21/, Controller/,
+            och Repository/. Tester for klasser Repository/BookRepository och Repository/ProductRepository samt tester för flera router i klass MyJsonNewcontroller
+            var exckuderad från analys i Scrutinizer, men de fungerar localt.
+            <br> Complexitet: - jag delade en stor klass MyJsonController på tre olika klasser.
+            Slutresultat visas bra på bilden i första sidan. Jag lyckades förändra alla röd-färgade klasser till gulfägade. 
+            <br> - kör flera gånger linter.
+        </p>
+        <figure>
+            <a href="">
+                <img src="{{ asset('img/img/metrics/metrix.resultat.png') }}" width="600" class "imgmetrix" alt="Phpmetrix Resultat">
+            </a>
+        </figure>
+        <p>
+            Jag arbetar betydligt minder med scrutiniser pga det kräv mycket tid att köra test och när det började krongla i samband med tester till
+            Product- och BookRepositorier. Då slutar jag med att köra skrutiniser och consentrerar mig mera på phpmetrics. Jag desuttom börjar testa i en
+            ny gren av min repository, som bifogade svårigheter till slut. Därför har jag inte särskild mycke statistik där.
+            För det mesta användde jag bara Scrutinisers issues och kodcoverage.
+        
+        <h2 class="part" id="Diskussion">Diskussion</h2>
+        <p>
+            Kmom06 handlade om några verktyg som hjälper dig att skriva säker kod. Det är verkligen bra verktyg, som visar på
+            svaga delar av kod både visuelt och i syfror.
+        </p>
+
+
+        <p>
+            Jag lyckades inte drå ner cyclomatic complexity. Medel cyclomatic complexity var 3.81 och bleb 3.46. 
+            jag delade en stor class MyJsonController i tre och det hade det störst effect på medel cyclomatic complexity.
+            Innan atgrder var högst klassens cyclomatic complexity 13 och nu höst complexitet är 9. Egentlige det skulle vara bra dela min största klass
+            MyNewJsonController på två, men det innebär flera förändringar för vika jag har inte tid.
+            Slutresultat visas bra på bilden i första sidan. Jag lyckades förändra alla röd-färgade klasser till gulfägade. 
+            Jag bör skriva flera tester och kommentera bättre de gulfärgade klasser för att höja dess maintebility.
+        </p>
+
+        <p>
+            Den största ätgärd som jag gör var testning. Det förbätrar min codcoverage som visar hur stor del av kod är teatad. Fat än jag är inte säkert att
+            resultat som visar coverage i båda verktyg är hundra procent pålitligt. jag märkte att det höjes oberoende på om tester är bra eller inte hundra procent 
+            bra. Det verkar att coverage räknar med antal assertins per test och om jag tog bort nägraassertions som testar samma sak, så minskades coverage.
+        </p>
+        <p>
+            Jag tyker att mest hjälpsam i detta kmom var för mig phpmetrix. Den krävde inte extra jobb med repo. Online test som scrutiniser kan vara
+            bra i fall flera arbetar på projektet och samla projekt i online repo. Scrutiniser är bra sätt att  testa olika projektvarianter.
+        </p>
+
+    </main>
+
+    <aside class="aside">
+        <div class="scrut">
+            <h7>   
+                Scrutinizer badges från sista test:
+            </h7>
+            
+            <div class="metrix">
+                <li><a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+                    <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=godTest" alt="Scrutinizer Code Build">
+                </a></li>
+
+                <li><a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+                    <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=godTest" alt="Scrutinizer Code Build">
+                </a></li>
+                
+                <li><a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+                    <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=godTest" alt="Scrutinizer Code Build">
+                </a></li>
+                
+                <li><a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+                    <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=godTest" alt="Scrutinizer Code Build">
+                </a></li>
+            </div>
+        </div>
+        <h2 class="aside-right">Innehåll</h2>
+        <ul>
+            <li class="metrics"><a href="#Intro">Introduction</a></li>
+            <li class="metrics"><a href="#Phpmetrics">Phpmetrics</a></li>
+            <li class="metrics"><a href="#Scrutinizer">Scrutinizer</a></li>
+            <li class="metrics"><a href="#Forbattringar">Förbättringar</a></li>
+            <li class="metrics"><a href="#Diskussion">Diskussion</a></li>
+        </ul>
+        
+    </aside>
+        
 {% endblock %}

@@ -12,15 +12,6 @@ use App\Repository\ProductRepository;
 
 class ProductControllerTest extends WebTestCase
 {
-    // // In your PHPUnit test case setup
-    // protected function setUp(): void
-    // {
-    //     $kernel = self::bootKernel();
-    //     $this->doctrine = $kernel->getContainer()->get('doctrine');
-    //     $this->entityManager = $this->doctrine->getManager();
-    //     $this->bookRepository = $this->entityManager->getRepository(Book::class);
-    // }
-
     /**
      * Test stertpage for Product
      * 

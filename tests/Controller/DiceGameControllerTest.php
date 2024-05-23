@@ -202,8 +202,10 @@ class DiceGameControllerTest extends WebTestCase
     
     /**
      * Test roll route method POST
+     * 
+     * @return void
      */
-    public function testRollRoutePost()
+    public function testRollRoutePost(): void
     {
         // Create a client
         $client = static::createClient();

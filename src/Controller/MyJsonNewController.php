@@ -35,7 +35,7 @@ class MyJsonNewController extends AbstractController
     #[Route('api/game', name: 'json_cardplay21')]
     public function apiGetGameStatus(
         SessionInterface $session
-    ): JsonResponse {
+    ): Response {
         $data = [];
 
         foreach ($session->all() as $key => $value) {
@@ -71,7 +71,7 @@ class MyJsonNewController extends AbstractController
      * Router search and displays all books with given ISBN from table 'book' in connected databas as json
      * 
      * @param BookRepository $bookRepository
-     * @param int $isbn 13-digits integer
+     * @param Request $request
      * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
      */
     #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
@@ -79,8 +79,8 @@ class MyJsonNewController extends AbstractController
         BookRepository $bookRepository,
         Request $request,
     ): Response {
-        $isbnString = (string) $request->request->get('isbn');
-        if(strlen($isbnString) < 10) {
+        $isbnString = $request->request->get('isbn');
+        if(strlen((string)$isbnString) < 10) {
             $this->addFlash(
                 'warning',
                 'You enter too few or too many numbers for ISBN!'
