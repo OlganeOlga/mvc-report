@@ -192,30 +192,20 @@ class DiceGameControllerTest extends WebTestCase
         //Make a GET request to the route
         $client->request('GET', '/game/pig/play');
         $response = $client->getResponse();
-        $statusCode = $response->getStatusCode();
-        //$responseContent = $response->getContent();
+        $response->getStatusCode();
         $this->assertInstanceOf("\App\Dice\HandDice", $diceHand);
         $exDice = $session->get('pig_dicehand');
         $exrond = $session->get('pig_round');
         $this->assertEquals($exDice, $diceHand);
         $this->assertEquals($exrond, 2);
-        // Print response content and status code for debugging
-        //echo 'Response status code: ' . $statusCode . PHP_EOL;
-        //Assert that the response is successful
-       //$this->assertResponseIsSuccessful();
-
-        // Assert that specific data is rendered in the response
-        // $this->assertSelectorTextContains('div#pigDices', '⚀');
-        // $this->assertSelectorTextContains('div#pigRound', '1');
-        // $this->assertSelectorTextContains('div#pigTotal', '10');
-        // $this->assertSelectorTextContains('div#roundTotal', '5');
-        // $this->assertSelectorTextContains('div#diceValues', '1');
-
     }
+    
     /**
      * Test roll route method POST
+     * 
+     * @return void
      */
-    public function testRollRoutePost()
+    public function testRollRoutePost(): void
     {
         // Create a client
         $client = static::createClient();

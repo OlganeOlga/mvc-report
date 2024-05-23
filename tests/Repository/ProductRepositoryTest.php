@@ -13,17 +13,17 @@ class ProductRepositoryTest extends KernelTestCase
     /**
      * @var ManagerRegistry
      */
-    private $doctrine;
+    private ManagerRegistry $doctrine;
 
     /**
      * @var ProductRepository
      */
-    private $productRepository;
+    private ProductRepository $productRepository;
 
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var ?\Doctrine\ORM\EntityManager
      */
-    private $entityManager;
+    private ?\Doctrine\ORM\EntityManager $entityManager = null;
 
     /**
      * Setup for class Product
@@ -83,6 +83,9 @@ class ProductRepositoryTest extends KernelTestCase
         }
     }
 
+    /**
+     * Tear down
+     */
     protected function tearDown(): void
     {
         parent::tearDown();
