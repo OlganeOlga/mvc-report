@@ -18,6 +18,55 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DiceGameController extends AbstractController
 {
+
+    /**
+     * public function create new die
+     * 
+     * @return Dice
+     */
+    public function createDie(): Dice
+    {
+        return new GraphicDice();
+    }
+
+    /**
+     * Rolls chosen amount of dice
+     * @param int $number number of dice to roll
+     * 
+     * @return array{num_dices: int, diceRoll: array<int, string>}
+     */
+    public function rollDices(int $number) {
+        $diceRoll = [];
+        for ($i = 1; $i <= $number; $i++) {
+            $die = $this->createDie();
+            $die->roll();
+            $diceRoll[] = $die->getAsString();
+        }
+
+        $data = [
+            "num_dices" => count($diceRoll),
+            "diceRoll" => $diceRoll,
+        ];
+
+        return $data;
+    }
+
+    /**
+     * Get hand and Rolls hand with chosen amount of dice
+     * @param HandDice $hand empty hand of dice
+     * @param int $number number of dice to roll
+     * 
+     * @return HandDice $hand
+     */
+    public function rollHandDices(HandDice $hand, int $number) {
+        for ($i = 1; $i <= $number; $i++) {
+            $i % 2 == 1 ? $hand->add(new GraphicDice()) : $hand->add(new Dice());
+        }
+
+        $hand->roll();
+        return $hand;
+    }
+    
     /**
      * Start route for the pig game
      * @return Response
@@ -35,12 +84,7 @@ class DiceGameController extends AbstractController
     #[Route("/game/pig/test/roll", name: "test_roll_dice")]
     public function testRollDice(): Response
     {
-        $die = new GraphicDice();
-
-        $data = [
-            "dice" => $die->roll(),
-            "diceString" => $die->getAsString(),
-        ];
+        $data = $this->rollDices(1);
 
         return $this->render('pig/test/roll.html.twig', $data);
     }
@@ -48,24 +92,14 @@ class DiceGameController extends AbstractController
     /**
      * Route rolls several dice and present result
      * 
-     * @param int $num amount of the rolling dies,
+     * @param int $number amount of the rolling dies,
      * between 1 and 12 includingly
      * @return Response
      */
-    #[Route("/game/pig/test/roll/{num<\d+>}", name: "test_roll_num_dices")]
-    public function testRollDices(int $num): Response
+    #[Route("/game/pig/test/roll/{number<\d+>}", name: "test_roll_num_dices")]
+    public function testRollDices(int $number): Response
     {
-        $diceRoll = [];
-        for ($i = 1; $i <= $num; $i++) {
-            $die = new GraphicDice();
-            $die->roll();
-            $diceRoll[] = $die->getAsString();
-        }
-
-        $data = [
-            "num_dices" => count($diceRoll),
-            "diceRoll" => $diceRoll,
-        ];
+        $data = $this->rollDices($number);
 
         return $this->render('pig/test/roll_many.html.twig', $data);
     }
@@ -74,15 +108,12 @@ class DiceGameController extends AbstractController
      * Route shows roll one dice and present result
      * @return Response
      */
-    #[Route("/game/pig/test/dicehand/{num<\d+>}", name: "test_dicehand")]
-    public function testDiceHand(int $num): Response
+    #[Route("/game/pig/test/dicehand/{number<\d+>}", name: "test_dicehand")]
+    public function testDiceHand(int $number): Response
     {
         $hand = new HandDice();
-        for ($i = 1; $i <= $num; $i++) {
-            $i % 2 == 1 ? $hand->add(new GraphicDice()) : $hand->add(new Dice());
-        }
 
-        $hand->roll();
+        $this->rollHandDices($hand, $number);
 
         $data = [
             "num_dices" => $hand->getNumberDices(),
@@ -117,10 +148,8 @@ class DiceGameController extends AbstractController
         $numDice = $request->request->get('num_dices');
 
         $hand = new HandDice();
-        for ($i = 1; $i <= $numDice; $i++) {
-            $hand->add(new GraphicDice());
-        }
-        $hand->roll();
+
+        $this->rollHandDices($hand, $numDice);
 
         $session->set("pig_dicehand", $hand);
         $session->set("pig_dices", $numDice);

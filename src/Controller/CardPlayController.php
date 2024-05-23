@@ -202,8 +202,7 @@ class CardPlayController extends AbstractController
 
     /**
      * Deal cards to the given amount of players
-     * @param int $player number of players
-     * @param int $cards number of cards
+     *
      * @return Response
      */
     #[Route('card/deck/deal/{player}/{cards}', name: 'deal_cards')]

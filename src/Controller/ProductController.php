@@ -74,8 +74,7 @@ class ProductController extends AbstractController
      * @return Response
      */
     #[Route('/product/show', name: 'product_show_all')]
-    public function showAllProduct(): Response
-    {
+    public function showAllProduct(): Response {
         $products = $this->productRepository
             ->findAll();
 
@@ -88,7 +87,7 @@ class ProductController extends AbstractController
 
     /**
      * Shows product from database with given product id
-     * 
+     *
      * @param int $prodId,
      * @return Response
      */
@@ -156,12 +155,13 @@ class ProductController extends AbstractController
     }
 
     /**
-     * Shows products in the table product
+     * See all products in html
      * @return Response
      */
     #[Route('/product/view', name: 'product_view_all')]
-    public function viewAllProduct(): Response
-    {
+    public function viewAllProduct(
+        //ProductRepository $productRepository
+    ): Response {
         $products = $this->productRepository->findAll();
 
         $data = [
@@ -173,7 +173,7 @@ class ProductController extends AbstractController
 
     /**
      * Test function findByMinimumValue
-     *
+     * 
      * @return Response
      */
     #[Route('/product/view/{value}', name: 'product_view_minimum_value')]
@@ -191,7 +191,7 @@ class ProductController extends AbstractController
 
     /**
      * Test function findByMinimumValue2
-     *
+     * 
      * @return Response
      */
     #[Route('/product/show/min/{value}', name: 'product_by_min_value')]

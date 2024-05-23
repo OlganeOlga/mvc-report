@@ -37,7 +37,7 @@ class ProductRepository extends ServiceEntityRepository
      *
      * @param int $value The value of the product.
      * 
-     * @return mixed[] Returns an array of associative arrays (i.e., a raw data set).
+     * @return  array<int, array<string, mixed>> Returns an array of associative arrays representing products.
      */
     public function findByMinimumValue2(int $value): array
     {

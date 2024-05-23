@@ -43,5 +43,5 @@ yarn-error.log
 ###< friendsofphp/php-cs-fixer ###
 
 ###> ignore some tests ###
-/tests/Controller/*
+#/tests/Controller/*
 ###<###
