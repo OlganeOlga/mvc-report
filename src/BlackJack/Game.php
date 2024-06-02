@@ -22,12 +22,12 @@ class Game {
     protected Desk $desk;
 
     /**
-     * @var array[name: Player] array of activ players.
+     * @var array<string, Player> array of activ players.
      */
     protected $playing;
 
     /**
-     * @var array[name: Player] array of ready (won/loosed) players.
+     * @var array<string, Player> array of ready (won/loosed) players.
      */
     protected $ready;
 
@@ -107,9 +107,9 @@ class Game {
      * Get players as array
      * 
      * @param string $category name of the array
-     * @return ?array[name: Player]
+     * @return array<string, Player>|null
      */
-    public function getPlayers(string $category): array
+    public function getPlayers(string $category): array|null
     {
         switch($category) {
             case 'playing':
@@ -206,9 +206,19 @@ class Game {
     }
 
     /**
-     * Take cards for bank.
+     * First two cards for players and one card to bank
      * 
-     * @return array<name:[{hand:[], points:int, soft:bool}], bank:{hand:[], points:int, soft:bool}>
+     * @return array{
+     *     name: array{
+     *         hand: array,
+     *         points: int,
+     *         soft: bool
+     *     }[],
+     *     bank: array{
+     *         hand: array,
+     *         points: int,
+     *         soft: bool
+     *     }
      */
     public function firstDeal(): array
     {
@@ -241,9 +251,28 @@ class Game {
 
     /**
      *
-     * Take cards for bank.
-     * 
-     * @return array<players:{name:[{hand:[], points:int, soft:bool}]}, bank:{hand:[], points:int, soft:bool}>
+     * get array with data for html routes
+     * @return array{
+     *     players => {
+     *      'bet' => int,
+     *      'hand' => string[],
+     *      'points' => int,
+     *      'soft' => bool,
+     *      'status' => string,
+     *      'insure' => bool,
+     *      'blackJack' => bool,
+     *      'split' => bool,
+     *      'profit' => int
+     *  }[],
+     *     bank => ['bet' => int,
+     *      'hand' => string[],
+     *      'points' => int,
+     *      'soft' => bool,
+     *      'status' => string,
+     *      'insure' => bool,
+     *      'blackJack' => bool,
+     *      'split' => bool,
+     *      'profit' => int]}
      */
     public function getGame(): array
     {
@@ -289,6 +318,108 @@ class Game {
     }
 
     /**
+     * Count winst if bankfat
+     * 
+     * @return void
+     */
+
+     public function winstIfBankBlackJack(): void
+    { 
+        foreach ($this->playing as $player) {
+            if($player->insurance()) {
+                $player->loosGame(1, 2);
+            } else {
+                $player->loosGame(1, 1);
+            }
+        }
+        
+        foreach ($this->ready as $player) {
+            if($player->getStatus() === 'wait') {
+                $player->loosGame(0, 1);
+            } elseif ($player->getStatus() === 'ready') {
+                if($player->insurance()) {
+                    $player->loosGame(1, 2);
+                } else {
+                    $player->loosGame(1, 1);
+                }
+            }
+        } 
+    }
+
+    /**
+     * Count winst if bank Black JAck
+     * 
+     * @return void
+     */
+
+     public function winstIfBankGet21(): void
+    { 
+        foreach ($this->playing as $player) {
+            $player->loosGame(1, 1);
+        }
+    
+        foreach ($this->ready as $player) {
+            if($player->getStatus() === 'wait') {
+                $player->winGame(3, 2);
+            } elseif ($player->getStatus() === 'ready') {
+                $player->loosGame(1, 1);
+            }
+        }
+    }
+
+    /**
+     * Count winst if bank has less than 21 points
+     * 
+     * @return void
+     */
+
+     public function winstIfBankLessThan21(): void
+    { 
+        foreach ($this->playing as $player) {
+            if($player->points() > $this->bank->points()){
+                $player->winGame(1, 1);
+            } else {
+                $player->loosGame(1, 1);
+            }
+        }
+    
+        foreach ($this->ready as $player) {
+            if($player->getStatus() === 'wait') {
+                $player->winGame(3, 2);
+            } elseif ($player->getStatus() === 'ready') {
+                if($player->points() > $this->bank->points()){
+                    $player->winGame(1, 1);
+                } else {
+                    $player->loosGame(1, 1);
+                }
+            }
+        }
+    }
+
+    /**
+     * Count winst if bank fat
+     * 
+     * @return void
+     */
+
+     public function winstIfBankFat(): void
+    { 
+        foreach ($this->playing as $player) {
+            $player->winGame(1, 1);
+        }
+
+        foreach ($this->ready as $player) {
+            if($player->getStatus() === 'wait') {
+                $player->winGame(3, 2);
+            } elseif ($player->getStatus() === 'ready') {
+                $player->winGame(1, 1);
+            } else {
+                $player->loosGame(1, 1);
+            }
+        }
+    }
+
+    /**
      * Count winst
      * 
      * @return void
@@ -298,74 +429,17 @@ class Game {
         $bankStatus = $this->bank->getStatus();
         switch($bankStatus){
             case('Black Jack'):
-                foreach ($this->playing as $player) {
-                    if($player->insurance()) {
-                        $player->loosGame(1, 2);
-                    } else {
-                        $player->loosGame(1, 1);
-                    }
-                }
-                
-                foreach ($this->ready as $player) {
-                    if($player->getStatus() === 'wait') {
-                        $player->loosGame(0, 1);
-                    } elseif ($player->getStatus() === 'ready') {
-                        if($player->insurance()) {
-                            $player->loosGame(1, 2);
-                        } else {
-                            $player->loosGame(1, 1);
-                        }
-                    }
-                } 
+                $this->winstIfBankBlackJack();
                 break;
             case('win'):
-                foreach ($this->playing as $player) {
-                        $player->loosGame(1, 1);
-                    }
-                
-                foreach ($this->ready as $player) {
-                    if($player->getStatus() === 'wait') {
-                        $player->winGame(3, 2);
-                    } elseif ($player->getStatus() === 'ready') {
-                        $player->loosGame(1, 1);
-                    }
-                }
+                $this->winstIfBankGet21();
                 break;
             case('play'):
-                foreach ($this->playing as $player) {
-                    if($player->points() > $this->bank->points()){
-                        $player->winGame(1, 1);
-                    } else {
-                        $player->loosGame(1, 1);
-                    }
-                }
-            
-                foreach ($this->ready as $player) {
-                    if($player->getStatus() === 'wait') {
-                        $player->winGame(3, 2);
-                    } elseif ($player->getStatus() === 'ready') {
-                        if($player->points() > $this->bank->points()){
-                            $player->winGame(1, 1);
-                        } else {
-                            $player->loosGame(1, 1);
-                        }
-                    }
-                }
+                $this->winstIfBankLessThan21();
                 break;
             case('fat'):
-                foreach ($this->playing as $player) {
-                    $player->winGame(1, 1);
-                }
-
-                foreach ($this->ready as $player) {
-                    if($player->getStatus() === 'wait') {
-                        $player->winGame(3, 2);
-                    } elseif ($player->getStatus() === 'ready') {
-                        $player->winGame(1, 1);
-                    } else {
-                        $player->loosGame(1, 1);
-                    }
-                }
+                $this->winstIfBankFat();
+                break;
         }
     }
 }
