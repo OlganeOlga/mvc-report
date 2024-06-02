@@ -328,9 +328,8 @@ class Game {
         foreach ($this->playing as $player) {
             if($player->insurance()) {
                 $player->loosGame(1, 2);
-            } else {
-                $player->loosGame(1, 1);
-            }
+            } 
+            $player->loosGame(1, 1);
         }
         
         foreach ($this->ready as $player) {
@@ -339,9 +338,8 @@ class Game {
             } elseif ($player->getStatus() === 'ready') {
                 if($player->insurance()) {
                     $player->loosGame(1, 2);
-                } else {
-                    $player->loosGame(1, 1);
-                }
+                } 
+                $player->loosGame(1, 1);
             }
         } 
     }
@@ -378,9 +376,8 @@ class Game {
         foreach ($this->playing as $player) {
             if($player->points() > $this->bank->points()){
                 $player->winGame(1, 1);
-            } else {
-                $player->loosGame(1, 1);
-            }
+            } 
+            $player->loosGame(1, 1);
         }
     
         foreach ($this->ready as $player) {
@@ -389,9 +386,8 @@ class Game {
             } elseif ($player->getStatus() === 'ready') {
                 if($player->points() > $this->bank->points()){
                     $player->winGame(1, 1);
-                } else {
-                    $player->loosGame(1, 1);
-                }
+                } 
+                $player->loosGame(1, 1);
             }
         }
     }
@@ -413,9 +409,8 @@ class Game {
                 $player->winGame(3, 2);
             } elseif ($player->getStatus() === 'ready') {
                 $player->winGame(1, 1);
-            } else {
-                $player->loosGame(1, 1);
             }
+            $player->loosGame(1, 1);
         }
     }
 

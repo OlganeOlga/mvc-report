@@ -212,9 +212,7 @@ class Player
      * @return array<string[]> The string representation of the player's hand.
      */
     public function getHand(): array
-    {
-        $status = $this->getStatus();
-        
+    {      
         $hand = [
             'bet' => $this->getBet(),
             'hand' => $this->hand->getHand(),

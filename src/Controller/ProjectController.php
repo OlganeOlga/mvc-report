@@ -145,13 +145,13 @@ class ProjectController extends AbstractController
         $this->game = $session->get('game');
         $names = $session->get('names');  
         
-        if ($this->game === null) {
-            throw new \Exception('Game object is null');
-        }
+        // if ($this->game === null) {
+        //     throw new \Exception('Game object is null');
+        // }
 
-        if ($names === null) {
-            throw new \Exception('Names array is null');
-        }
+        // if ($names === null) {
+        //     throw new \Exception('Names array is null');
+        // }
         
         foreach($names as $name) {
             $player = new Player();
@@ -194,7 +194,7 @@ class ProjectController extends AbstractController
         $this->game = $session->get('game');
         $finish = $this->game->finish();
 
-        if (!$finish[1]) {
+        // if (!$finish[1]) {
 
             $action = $request->request->get('action');
             $session->set('by action', $action);
@@ -245,11 +245,11 @@ class ProjectController extends AbstractController
             $session->set('data', $data);
             $session->set('game', $this->game);
             return $this->redirectToRoute('playView');
-        }
-        $data = $this->game->getGame();
-        $session->set('data', $data);
-        $session->set('game', $this->game);
-        return $this->redirectToRoute('finish');
+        // }
+        // $data = $this->game->getGame();
+        // $session->set('data', $data);
+        // $session->set('game', $this->game);
+        // return $this->redirectToRoute('finish');
     }
 
     /**

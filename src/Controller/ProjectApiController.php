@@ -38,7 +38,7 @@ class ProjectApiController extends AbstractController
      */
     #[Route("/proj/api", name: "projectApi")] // Start route for Game
     public function project(
-        SessionInterface $session
+        // SessionInterface $session
     ): Response
     {
         return $this->render('project/api/home.html.twig');
