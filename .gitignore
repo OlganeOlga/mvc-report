@@ -43,5 +43,12 @@ yarn-error.log
 ###< friendsofphp/php-cs-fixer ###
 
 ###> ignore some tests ###
-#/tests/Controller/*
+/tests/Controller/*
+/tests/Repository/*
+###<###
+
+###> ignore some tests ###
+/src/Controller/MyJsonNewController.php
+/src/Controller/LibraryController.php
+/src/Controller/ProductController.php
 ###<###
