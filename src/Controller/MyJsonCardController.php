@@ -179,7 +179,6 @@ class MyJsonCardController extends AbstractController
     ): Response {
         $desk = new Desk();
         $players = [];
-        $response = new Response();
 
         $desk->shuffleDesk();
         for($k = 0; $k < $play; $k++) {
@@ -196,12 +195,6 @@ class MyJsonCardController extends AbstractController
             'players' => $players,
             'number cards left' => $number,
         ];
-
-        // $response = new Response();
-        // $response->setContent(json_encode($result));
-        // $response->headers->set('Content-Type', 'application/json');
-
-        // return $response;
         return $this->json($result);
     }
 

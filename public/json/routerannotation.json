@@ -2,7 +2,7 @@
     "api": "Startpage displaying links to all json-routes in api",
     "api_routes": "This route displays all routes with path and their functions.",
     "api.quote": "Give a randome quote from 5 existing.",
-    "me": "Give presentation about my selg with a picture.",
+    "me-page": "Give presentation about my selg with a picture.",
     "about": "Explaines cours perpouse and content",
     "report": "Gives explanation abuot all moments in cours",
     "lucky": "Creasy router with some php-play",

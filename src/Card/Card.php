@@ -18,10 +18,6 @@ class Card
      */
     public function __construct()
     {
-        // $this-> face = null;
-
-        // $this->suit = null;
-
         $this->card = [$this->face, $this->suit];
     }
 
@@ -30,10 +26,10 @@ class Card
      *
      * @return Card Card object with given properties.
      */
-    public function set(int $aFase, int $aSuit): Card
+    public function set(int $theFase, int $theSuit): Card
     {
-        $this->face = $aFase;
-        $this->suit = $aSuit;
+        $this->face = $theFase;
+        $this->suit = $theSuit;
 
         return $this;
     }
