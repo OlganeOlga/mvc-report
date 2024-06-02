@@ -59,13 +59,13 @@ class MyJsonNewController extends AbstractController
      * 
      * @return Response : returns all books from table 'book' in connected databas as json.
      */
-    #[Route('api/library/books', name: 'json_library')]
+   /** #[Route('api/library/books', name: 'json_library')]
     public function jsonLibrary(
         BookRepository $bookRepository
     ): Response {
         $books = $bookRepository->findAll();
         return $this->json($books);
-    }
+    }*/
 
     /**
      * Router search and displays all books with given ISBN from table 'book' in connected databas as json
@@ -74,21 +74,21 @@ class MyJsonNewController extends AbstractController
      * @param Request $request
      * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
      */
-    #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
-    public function jsonBookByIsbn(
-        BookRepository $bookRepository,
-        Request $request,
-    ): Response {
-        $isbnString = (string) $request->request->get('isbn');
-        if(strlen($isbnString) < 10) {
-            $this->addFlash(
-                'warning',
-                'You enter too few or too many numbers for ISBN!'
-            );
-            return $this->redirectToRoute('api');
-        }
-        $book = $bookRepository->findByIsbn((int)$isbnString);
-        $response =$this->json($book);
-        return $response;
-    }
+      /** #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
+    //public function jsonBookByIsbn(
+    //    BookRepository $bookRepository,
+    //    Request $request,
+    //): Response {
+    //    $isbnString = (string) $request->request->get('isbn');
+    //    if(strlen($isbnString) < 10) {
+    //        $this->addFlash(
+    //            'warning',
+    //            'You enter too few or too many numbers for ISBN!'
+    //        );
+    //        return $this->redirectToRoute('api');
+    //    }
+    //    $book = $bookRepository->findByIsbn((int)$isbnString);
+    //    $response =$this->json($book);
+    //    return $response;
+    //}
 }

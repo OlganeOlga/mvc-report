@@ -52,7 +52,7 @@ class MyJsonNewControllerTest extends WebTestCase
      * 
      * @return void
      */
-    public function testJsonLibrary(): void
+    /**public function testJsonLibrary(): void
     {
         $client = static::createClient();
         $client->request('GET', 'api/library/books');
@@ -76,14 +76,14 @@ class MyJsonNewControllerTest extends WebTestCase
         // }
 
         //$data = json_decode($client->getResponse()->getContent(), true);
-    }
+    }*/
 
     /**
      * Test api_quote"
      * 
      * @return void
      */
-    public function testJsonBookByIsbnBokNotFound(): void
+    /**public function testJsonBookByIsbnBokNotFound(): void
     {
         $client = static::createClient();
         $client->request('POST', '/api/library/bookIsbn');
@@ -120,5 +120,5 @@ class MyJsonNewControllerTest extends WebTestCase
                 $this->assertTrue(true);
             }
         }
-    }
+    }*/
 }
