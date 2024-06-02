@@ -53,7 +53,7 @@ class Desk
     /**
      * toArray method returns desk as array.
      *
-     * @return array<int<0, max>, int[]>.Array containing array representation of card elements.
+     * @return array<int[0, max], int[]>.Array containing array representation of card elements.
      */
     public function toArray(): array
     {
