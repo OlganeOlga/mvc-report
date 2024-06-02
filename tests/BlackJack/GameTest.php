@@ -58,6 +58,21 @@ class GameTest extends TestCase
     }
 
     /**
+     * Test get players with wrong string
+     * @return void
+     */
+    public function testGetPlayersIfWrongArray(): void
+    {
+        $game = new Game();
+        $player = new Player();
+        $player->setName('Jul');
+
+        $game->addPlaying('Jul', $player);
+        $result = $game->getPlayers('paying');
+        $this->assertNull($result);
+    }
+    
+    /**
      * Find players
      * 
      * @return void
