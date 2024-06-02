@@ -109,7 +109,7 @@ class Game {
      * @param string $category name of the array
      * @return array<string, Player>|null
      */
-    public function getPlayers(string $category): array
+    public function getPlayers(string $category): array|null
     {
         switch($category) {
             case 'playing':
