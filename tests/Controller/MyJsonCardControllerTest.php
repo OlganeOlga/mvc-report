@@ -129,13 +129,13 @@ class MyJsonCardControllerTest extends WebTestCase
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertJson($response->getContent());
-        $expKey = ['drown', 'number'];
-        $data = json_decode($client->getResponse()->getContent(), true);
-        foreach ($expKey as $oneKey) {
-            if (array_key_exists($oneKey, $data)) {
-                $this->assertTrue(true);
-            }
-        }
+        // $expKey = ['drown', 'number'];
+        // $data = json_decode($client->getResponse()->getContent(), true);
+        // foreach ($expKey as $oneKey) {
+        //     if (array_key_exists($oneKey, $data)) {
+        //         $this->assertTrue(true);
+        //     }
+        // }
     }
 
     /**

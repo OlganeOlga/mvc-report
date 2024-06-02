@@ -66,16 +66,16 @@ class MyJsonNewControllerTest extends WebTestCase
             'Response is not of type application/json'
         );
 
-        $expKey = ['desk', 'bank', 'player', 'status'];
-        $data = json_decode($client->getResponse()->getContent(), true);
-        foreach ($expKey as $oneKey) {
-            if (array_key_exists($oneKey, $data)) {
-                $this->assertTrue(true);
-                return;
-            }
-        }
+        // $expKey = ['desk', 'bank', 'player', 'status'];
+        // $data = json_decode($client->getResponse()->getContent(), true);
+        // foreach ($expKey as $oneKey) {
+        //     if (array_key_exists($oneKey, $data)) {
+        //         $this->assertTrue(true);
+        //         return;
+        //     }
+        // }
 
-        $data = json_decode($client->getResponse()->getContent(), true);
+        //$data = json_decode($client->getResponse()->getContent(), true);
     }
 
     /**
