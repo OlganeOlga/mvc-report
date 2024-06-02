@@ -294,9 +294,10 @@ class LibraryControllerTest extends WebTestCase
         $this->assertEquals('Updated Author', $book->getBookAuthor());
         $this->assertEquals('updated_cover.jpg', $book->getCover());
         $this->assertEquals(9876543210987, $book->getIsbn());
-        //$this->assertStringContainsString('You successfully uppdated a book with id 1', $client->getCrawler()->filter('.flash-notice')->text());
+        $this->assertStringContainsString('Bibliotekdatabas startsidan', );
+         $this->assertSelectorTextContains('h2', 'Bibliotekdatabas startsidan');
     }
-
+    
     /**
      * Test route library/delate GET
      * 

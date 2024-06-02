@@ -39,7 +39,6 @@ class Game {
     /**
      * Constructor method that initializes the game with default objects and sets the initial game status.
      *
-     * @param int $numberOfPlayers: number of player participating in the game.
      */
     public function __construct()
     {
@@ -134,11 +133,12 @@ class Game {
      * Deal cards for a player.
      * 
      * @param Player $player
-     * @return int players points
+     * @param string players name
+     * @return int
      */
-    public function bankDeal($player, $name): int
+    public function bankDeal(Player $player, string $name): int
     {
-        $points;
+        $points = 0;
         if(in_array($player, $this->playing)) {
             $points = $this->bank->dealCards($this->desk, $player);
         }
@@ -209,16 +209,15 @@ class Game {
      * First two cards for players and one card to bank
      * 
      * @return array{
-     *     name: array{
+     *     name: [
      *         hand: array,
      *         points: int,
-     *         soft: bool
-     *     }[],
-     *     bank: array{
+     *         soft: bool],
+     *     bank: [
      *         hand: array,
      *         points: int,
-     *         soft: bool
-     *     }
+     *         soft: bool]
+     *      }
      */
     public function firstDeal(): array
     {
@@ -253,26 +252,26 @@ class Game {
      *
      * get array with data for html routes
      * @return array{
-     *     players => {
-     *      'bet' => int,
-     *      'hand' => string[],
-     *      'points' => int,
-     *      'soft' => bool,
-     *      'status' => string,
-     *      'insure' => bool,
-     *      'blackJack' => bool,
-     *      'split' => bool,
-     *      'profit' => int
+     *     players: [
+     *      bet: int,
+     *      hand: string[],
+     *      points: int,
+     *      soft: bool,
+     *      status: string,
+     *      insure: bool,
+     *      blackJack: bool,
+     *      split: bool,
+     *      profit: int
      *  }[],
-     *     bank => ['bet' => int,
-     *      'hand' => string[],
-     *      'points' => int,
-     *      'soft' => bool,
-     *      'status' => string,
-     *      'insure' => bool,
-     *      'blackJack' => bool,
-     *      'split' => bool,
-     *      'profit' => int]}
+     *     bank: [bet: int,
+     *      hand: string[],
+     *      points: int,
+     *      soft: bool,
+     *      status: string,
+     *      insure: bool,
+     *      blackJack: bool,
+     *      split: bool,
+     *      profit: int]}
      */
     public function getGame(): array
     {
@@ -300,7 +299,7 @@ class Game {
 
     /**
      * see if game is over
-     * @return array<string, bool>
+     * @return array<int, string|bool>
      */
     public function finish(): array
     {
@@ -322,7 +321,6 @@ class Game {
      * 
      * @return void
      */
-
      public function winstIfBankBlackJack(): void
     { 
         foreach ($this->playing as $player) {
@@ -349,7 +347,6 @@ class Game {
      * 
      * @return void
      */
-
      public function winstIfBankGet21(): void
     { 
         foreach ($this->playing as $player) {

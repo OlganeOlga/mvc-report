@@ -264,7 +264,7 @@ class Player
      * removes one card ajust points
      * gives another card it to the new player
      * 
-     * @return ?array<namd:string, bet:int, card:CardGraphics>
+     * @return array{name:string, bet:int, card:CardGraphics}|null
      */
     public function splitHand(): ?array
     {

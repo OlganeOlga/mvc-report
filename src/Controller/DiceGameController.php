@@ -33,7 +33,7 @@ class DiceGameController extends AbstractController
      * Rolls chosen amount of dice
      * @param int $number number of dice to roll
      * 
-     * @return array<num_dices: int, diceRoll: string[]>
+     * @return array{'num_dices': int, ' ': string[]}
      */
     public function rollDices(int $number): array
      {

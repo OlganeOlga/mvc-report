@@ -39,7 +39,6 @@
                 const head = document.createElement('p');
                 head.innerHTML = 'Ger namn för spelare:';
                 
-                // Generate input fields based on the number of players
                 for (let i = number; i > 0; i--) {
                     const input = document.createElement('input');
                     input.setAttribute('class', 'name');
@@ -50,14 +49,11 @@
                     theform.insertBefore(input, secondChild.nextSibling);
                 }
                 theform.insertBefore(head, secondChild.nextSibling);
-                //Change text in the button
                 const button = document.getElementById('submitButton');
                 button.innerHTML = "Börja spel";
 
-                // Change form action if using server-side templating
-                theform.action = '{{ path("getPlayers") }}'; // Replace with correct syntax for your server-side template engine
+                theform.action = '{{ path("getPlayers") }}';
 
-                // Remove event listener after execution
                 theform.removeEventListener('submit', submitForm);
             
 
@@ -71,15 +67,15 @@
                 nameInputs.forEach(input => {
                     if (input.value.trim() === "") {
                         allFilled = false;
-                        input.style.border = "2px solid red"; // Highlight empty fields
+                        input.style.border = "2px solid red";
                     } else {
-                        input.style.border = ""; // Reset border for filled fields
+                        input.style.border = "";
                     }
                 });
 
                 if (!allFilled) {
-                    event.preventDefault(); // Prevent form submission
-                    alert("Please fill in all player names."); // Display alert to user
+                    event.preventDefault();
+                    alert("Please fill in all player names.");
                 }
             }
 
