@@ -22,12 +22,12 @@ class Game {
     protected Desk $desk;
 
     /**
-     * @var Player[name: Player] array of activ players.
+     * @var array[name: Player] array of activ players.
      */
     protected $playing;
 
     /**
-     * @var Player[] array of ready (won/loosed) players.
+     * @var array[name: Player] array of ready (won/loosed) players.
      */
     protected $ready;
 
@@ -107,7 +107,7 @@ class Game {
      * Get players as array
      * 
      * @param string $category name of the array
-     * @return Player[]
+     * @return ?array[name: Player]
      */
     public function getPlayers(string $category): array
     {
@@ -117,6 +117,7 @@ class Game {
             case 'ready':
                 return $this->ready;
         }
+        return null;
     }
 
     /**
@@ -207,7 +208,7 @@ class Game {
     /**
      * Take cards for bank.
      * 
-     * @return array<players:[{hand:[], points:int, soft:bool}], bank:{hand:[], points:int, soft:bool}>
+     * @return array<name:[{hand:[], points:int, soft:bool}], bank:{hand:[], points:int, soft:bool}>
      */
     public function firstDeal(): array
     {
@@ -242,7 +243,7 @@ class Game {
      *
      * Take cards for bank.
      * 
-     * @return array<players:[{hand:[], points:int, soft:bool}], bank:{hand:[], points:int, soft:bool}>
+     * @return array<players:{name:[{hand:[], points:int, soft:bool}]}, bank:{hand:[], points:int, soft:bool}>
      */
     public function getGame(): array
     {

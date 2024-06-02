@@ -148,7 +148,7 @@ class ProjectController extends AbstractController
         if ($this->game === null) {
             throw new \Exception('Game object is null');
         }
-        $names = $session->get('names');
+
         if ($names === null) {
             throw new \Exception('Names array is null');
         }
@@ -197,7 +197,6 @@ class ProjectController extends AbstractController
         if (!$finish[1]) {
 
             $action = $request->request->get('action');
-            var_dump($action);
             $session->set('by action', $action);
             $name = $request->request->get('form_id');
             $player = $this->game->findPlayer($name, 'playing');
@@ -232,7 +231,7 @@ class ProjectController extends AbstractController
                     break;
             }
 
-            $minCardByPlayer = $this->game->newCardToBank();
+            $this->game->newCardToBank();
             $finish = $this->game->finish();
            
             if ($finish[1]) {
