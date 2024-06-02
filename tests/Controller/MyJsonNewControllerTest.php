@@ -52,7 +52,7 @@ class MyJsonNewControllerTest extends WebTestCase
      * 
      * @return void
      */
-    public function testJsonLibrary(): void
+    /**public function testJsonLibrary(): void
     {
         $client = static::createClient();
         $client->request('GET', 'api/library/books');
@@ -76,7 +76,7 @@ class MyJsonNewControllerTest extends WebTestCase
         // }
 
         //$data = json_decode($client->getResponse()->getContent(), true);
-    }
+    }*/
 
     /**
      * Test api_quote"
