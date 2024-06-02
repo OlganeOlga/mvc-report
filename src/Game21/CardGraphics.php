@@ -8,7 +8,7 @@ namespace App\Game21;
 class CardGraphics extends Card
 {
     /**
-     *  @var mixed[] $facerepresentation represent fases and fases values
+     *  @var mixed[] $facerepresentation represent faces and faces values
      */
     public array $facerepresentation = [
         [1, 'Ess'],

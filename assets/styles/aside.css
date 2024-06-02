@@ -1,0 +1,36 @@
+aside {
+    display: flex;
+    flex-direction: column;
+    grid-row: 2;
+    padding: 10px;
+    font-size: 2em;
+    text-shadow: 2px 2px 2px azure;
+    border-left: solid 7px azure;
+}
+
+aside.asideMe form.lableForm {
+    border: solid 2px rgb(129, 126, 126);
+}
+
+aside.asideMe label.smal {
+    font-size: 10px;
+}
+
+aside h2.aside-right {
+    display: grid;
+    font-size: 1.1em;
+    margin-bottom: 0;
+    justify-content: center;
+}
+
+aside ul {
+    margin-top: 0;
+}
+
+aside li.metrics {
+    font-size: 0.8em;
+}
+
+aside h7 {
+    font-size: 0.7em;
+}

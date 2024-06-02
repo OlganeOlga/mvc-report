@@ -1,0 +1,28 @@
+.flash-notice {
+    position: absolute;
+    padding: 0.5em;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.flash-notice:before {
+    content: "ⓘ";
+}
+
+.flash-warning {
+    grid-column: span 2;
+    padding: 0.5em;
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.flash-warning:before {
+    content: "⚠";
+}
+
+main.main.json .flash-warning,
+main.main.json .flash-warning {
+    grid-column: 3;
+}

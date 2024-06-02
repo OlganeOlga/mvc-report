@@ -1,20 +1,69 @@
-Scrutiniser bages: 
-<p>   
-Här är Scrutinizer badge för ’build’:</p>
- <a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
-    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/build-score.png?b=master" alt="Scrutinizer Code Build">
-</a>
-<p>för quality:</p>
-<a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
-    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
-</a>
-<p> och för coverage: </p>
+# MVC-project
 
-<a href=”https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/issues/master”</a>
-    <img src=" https://scrutinizer-ci.com/g/OlganeOlga/mvc-report /badges/coverage-score.png?b=master" alt="Scrutinizer Code Coverage">
-</a>
+The project is a study-project for the cours MVC (Objektorienterade webbteknologier)
+Main programming language PHP
+
+Project wa done on the basis of Symphony framework
+
+## Installation
+1. Prerequisites
+To intsl Symphony and use this project you need:
+PHP version higher than 8.2
+Composer (for managing PHP dependencies)
+Web server (Apache, Firwox)
+2. Installation Steps
+- install Symphony CLI. See: https://symfony.com/download
+- create application: 
+- run: composer create-project symfony/skeleton:"7.0.*" /name för you app/
+- go to app directory
+- run: composer require webapp
+Now you can start to build your app
+
+3. This project use requireties: 
+- webapp
+- twig
+- symfony/webpack-encore-bundle
+- php-cs-fixer
+- phpmd
+- phpstan
+- test-pack/ PHPunuit
+- symfony/orm-pack
+- symfony/maker-bundle
+
+- RUN npm istall to get the requireties
 
 
+## Usage
+
+You can navigate to all pages through links in the headers 
+
+## Authors
+the project is made by Olga Egorova
+
+# Scrutinizer
+
+<div class="scrutiniser">
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+</div>
 
 commit d1bfd2270d33e3d0a898a820b687dd1353cfeea8 (HEAD -> master, tag: 3.0.0)
 Author: OlganeOlga <o_yegorovar@yahoo.com>

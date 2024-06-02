@@ -21,8 +21,10 @@ class DiceGameController extends AbstractController
 
     /**
      * public function create new die
+     * 
+     * @return GraphicDice
      */
-    public function createDie()
+    public function createDie(): GraphicDice
     {
         return new GraphicDice();
     }
@@ -31,9 +33,10 @@ class DiceGameController extends AbstractController
      * Rolls chosen amount of dice
      * @param int $number number of dice to roll
      * 
-     * @return array<int, string[]>
+     * @return array<num_dices: int, diceRoll: string[]>
      */
-    public function rollDices(int $number) {
+    public function rollDices(int $number): array
+     {
         $diceRoll = [];
         for ($i = 1; $i <= $number; $i++) {
             $die = $this->createDie();
@@ -90,7 +93,7 @@ class DiceGameController extends AbstractController
     /**
      * Route rolls several dice and present result
      * 
-     * @param int $num amount of the rolling dies,
+     * @param int $number amount of the rolling dies,
      * between 1 and 12 includingly
      * @return Response
      */

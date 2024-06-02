@@ -11,6 +11,7 @@ class DeskTest extends TestCase
 {
     /**
      * Construct object and verify it a Desk object.
+     * @return void
      */
     public function testCreateObject(): void
     {
@@ -25,6 +26,7 @@ class DeskTest extends TestCase
     /**
      * Construct object and verify method that make fresh desk returns 
      * correct.
+     * @return void
      */
     public function testFreshDesk(): void
     {
@@ -38,6 +40,7 @@ class DeskTest extends TestCase
 
     /**
      * Construct object and verify of toArray method werks.
+     * @return void
      */
     public function testToArray(): void
     {
@@ -52,6 +55,7 @@ class DeskTest extends TestCase
 
     /**
      * Construct object and verify if shuffleDesk method works.
+     * @return void
      */
     public function testGetDesk(): void
     {
@@ -67,6 +71,7 @@ class DeskTest extends TestCase
 
     /**
      * Construct object and verify if shuffleDesk method works.
+     * @return void
      */
     public function testShuffleDesk(): void
     {
@@ -82,6 +87,7 @@ class DeskTest extends TestCase
 
     /**
      * Construct object and verify if set method works.
+     * @return void
      */
     public function testSet(): void
     {

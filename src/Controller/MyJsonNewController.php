@@ -35,7 +35,7 @@ class MyJsonNewController extends AbstractController
     #[Route('api/game', name: 'json_cardplay21')]
     public function apiGetGameStatus(
         SessionInterface $session
-    ): JsonResponse {
+    ): Response {
         $data = [];
 
         foreach ($session->all() as $key => $value) {
@@ -71,7 +71,7 @@ class MyJsonNewController extends AbstractController
      * Router search and displays all books with given ISBN from table 'book' in connected databas as json
      * 
      * @param BookRepository $bookRepository
-     * @param int $isbn 13-digits integer
+     * @param Request $request
      * @return Response : returns all books with given ISBN from table 'book' in connected databas as json.
      */
     #[Route('api/library/bookIsbn', name: 'json_book_by_isbn', methods: ['POST'])]
@@ -87,7 +87,7 @@ class MyJsonNewController extends AbstractController
             );
             return $this->redirectToRoute('api');
         }
-        $book = $bookRepository->findByIsbn($isbnString);
+        $book = $bookRepository->findByIsbn((int)$isbnString);
         $response =$this->json($book);
         return $response;
     }

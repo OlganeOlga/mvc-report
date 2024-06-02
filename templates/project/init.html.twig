@@ -1,0 +1,92 @@
+{% extends "base.project.html.twig" %}
+
+{% block title %}Project MVC VT24{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe">
+        <h2>Play Black Jack</h2>
+        <p>Projektet implementerar kortspel Black Jack. 
+        Du kan läsa mera om kortspelet i 
+        <a href="https://sv.wikipedia.org/wiki/Black_Jack"> Wikipedia</a>.</p>
+    </header>
+    <ul class="desk">
+    
+    {% for card in desk %}
+    <div>
+        <fig>
+            <img src="{{ asset(card) }}" width="80">
+        </fig>
+    </div>
+    {% endfor %}
+    </ul>
+    <div class="get players">
+    <form class="create-players"id="createPlayers" action="" method="POST">
+        <label for="number">Valj antal spelare (1-3):</label>
+        <input class="number" id="number" type="number" name="number" value="1" min="1" max="3"></input>
+        <button id="submitButton" type="submit">Scaffa spelare</button>
+    </form>
+    <script>
+        const theform = document.getElementById('createPlayers');
+
+            function submitForm(event) {
+                event.preventDefault();
+
+                const numberInput = document.getElementById('number');
+                const number = numberInput.value;
+                numberInput.setAttribute('readonly', true);
+                const secondChild = theform.children[1];
+                const head = document.createElement('p');
+                head.innerHTML = 'Ger namn för spelare:';
+                
+                // Generate input fields based on the number of players
+                for (let i = number; i > 0; i--) {
+                    const input = document.createElement('input');
+                    input.setAttribute('class', 'name');
+                    input.setAttribute('type', 'text');
+                    input.setAttribute('name', 'player' + i);
+                    input.setAttribute('value', "");
+                    input.setAttribute('placeholder', 'Player ' + i + ' name');
+                    theform.insertBefore(input, secondChild.nextSibling);
+                }
+                theform.insertBefore(head, secondChild.nextSibling);
+                //Change text in the button
+                const button = document.getElementById('submitButton');
+                button.innerHTML = "Börja spel";
+
+                // Change form action if using server-side templating
+                theform.action = '{{ path("getPlayers") }}'; // Replace with correct syntax for your server-side template engine
+
+                // Remove event listener after execution
+                theform.removeEventListener('submit', submitForm);
+            
+
+                theform.addEventListener('submit', validateAndSubmit);
+            }
+
+            function validateAndSubmit(event) {
+                const nameInputs = document.querySelectorAll('.name');
+                let allFilled = true;
+
+                nameInputs.forEach(input => {
+                    if (input.value.trim() === "") {
+                        allFilled = false;
+                        input.style.border = "2px solid red"; // Highlight empty fields
+                    } else {
+                        input.style.border = ""; // Reset border for filled fields
+                    }
+                });
+
+                if (!allFilled) {
+                    event.preventDefault(); // Prevent form submission
+                    alert("Please fill in all player names."); // Display alert to user
+                }
+            }
+
+        theform.addEventListener('submit', submitForm);
+    </script>
+    <div>
+
+    
+</main>
+{% endblock %}

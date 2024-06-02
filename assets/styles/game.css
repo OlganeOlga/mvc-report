@@ -1,0 +1,31 @@
+main.game {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-column-gap: 40px;
+}
+
+main.game p {
+    grid-column: 1;
+}
+
+main.game ul.dice,
+main.api ul.desk {
+    grid-column: span 2;
+    display: inline;
+}
+
+main.game ul.dice li,
+main.game p span.die {
+    font-size: 4em;
+}
+
+main.cort p {
+    font-size: 2em;
+    grid-column: span 2;
+}
+
+ul.desk {
+    background-color: green;
+    justify-content: center;
+    padding: 20px 0;
+}

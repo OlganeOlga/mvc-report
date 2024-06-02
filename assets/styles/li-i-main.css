@@ -1,0 +1,24 @@
+ul li, div li {
+    list-style-type: none;
+}
+
+ul.desk li,
+ul.kort li,
+ul.hand li {
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    font-size: 1em;
+    height: 70px;
+    width: 50px;
+    align-content: center;
+}
+
+main.library ul li {
+    font-size: 2em;
+    margin: 15px 0;
+}
+
+main.game ul li.red,
+main.api ul li.red{
+    color: red;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="project">
+        <header class="site-header project" style="background-image: url({{ asset('img/img/cardplay.png') }});">
+            <div class="toMvc">
+                <li style="width: 19em;">
+                    <a href="{{ path('me') }}" style="diplay: inline-block;
+                                                    text-decoration: none;
+                                                    font-size: 2em;
+                                                    font-weight: bold;
+                                                    color: #9bafc1; margin-left: 40px;">Till MVC kmom
+                    </a>
+                </li>
+            </div>
+            <div class="title">
+                <span class="site-title" style="color: green">Projekt för kurs MVC</span>   
+            </div>
+            <nav class="project">
+                <ul>
+                    <li><a href="{{ path('project') }}">Home project</a></li>
+                    <li><a href="{{ path('aboutProject') }}">About Project</a></li>   
+                </ul>
+            </nav>
+        </header>
+        {% block body %}{% endblock %}
+        <footer>
+            <li><a class="linkForm" href="{{ path('get_session')}}">Debugg session</a></li>
+            <p class="author">&copy; Olga Egorova, uppdaterad <time datetime="2022-06-29">2024-05-30</time>.</p>
+        </footer> 
+    </body>
+</html>

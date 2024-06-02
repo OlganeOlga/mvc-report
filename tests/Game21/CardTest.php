@@ -11,6 +11,7 @@ class CardTest extends TestCase
 {
     /**
      * Construct object and verify it it a Card object.
+     * @return void
      */
     public function testCreateObject(): void
     {
@@ -25,6 +26,7 @@ class CardTest extends TestCase
     /**
      * Construct object, give it properties, verify set method
      * returns correct object and if the properties are of the given value.
+     * @return void
      */
     public function testSetAndToArray(): void
     {
@@ -41,6 +43,7 @@ class CardTest extends TestCase
     /**
      * Construct object, verify set method
      * returns correct object and if the properties are of the given value.
+     * @return void
      */
     public function testChoseAndToArray(): void
     {
@@ -57,6 +60,7 @@ class CardTest extends TestCase
     /**
      * Construct object, give it properties, verify if
      * method getValue() returns correct value
+     * @return void
      */
     public function testGetValue(): void
     {
@@ -70,6 +74,7 @@ class CardTest extends TestCase
     /**
      * Construct object, give it properties, verify if
      * method getAsString() returns correct value
+     * @return void
      */
     public function testGetAsString(): void
     {

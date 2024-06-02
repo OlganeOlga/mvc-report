@@ -1,0 +1,29 @@
+main .headerMe h2 {
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 2px 2px azure;
+}
+
+main.library h2 {
+    grid-row: 1;
+    grid-column: span 2;
+}
+
+main.metrix h2 {
+    color: salmon;
+}
+
+main.metrix h3 {
+    font-style: italic;
+}
+
+main.library h4 {
+    font-size: 3em;
+}
+
+main.library.all div.book h4 {
+    margin: 0;
+    font-size: 2em;
+    justify-self: center;
+    align-self: center;
+}

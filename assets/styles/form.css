@@ -1,0 +1,24 @@
+form.cardGame21 input.card {
+    height: 100px;
+    width: 60px;
+}
+
+main.library form.book {
+    margin-top: 100px;
+    grid-column: span 2;
+    width: 80%;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main.library form.book input {
+    margin: 10px 0;
+    width: 90em;
+}
+
+main.library form.linkForm input.number {
+    margin: 10px 0;
+    width: 2em;
+}

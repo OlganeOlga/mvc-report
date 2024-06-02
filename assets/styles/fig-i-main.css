@@ -1,0 +1,24 @@
+main figure figcaption {
+    margin: 4px;
+}
+
+main figure.lucky {
+    width: 300px;
+    height: 150px;
+    grid-row: 2;
+    grid-column: 1;
+}
+.lucky .lucky figure {
+    grid-column: 1;
+    width: 300px;
+    height: 150px;
+    transform: rotate(35deg);
+}
+
+main.library.all div.book fig.book {
+    padding: 2em;
+}
+
+main.metrics figure img {
+    width: 600px;
+}

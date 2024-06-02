@@ -1,0 +1,43 @@
+{% extends "base.project.html.twig" %}
+
+{% block title %}Project MVC VT24{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe" style="grid-row: 1; grid-column: spane 2">
+        <h2>MVC projekt: kortspel</h2>
+    </header>
+    
+    <a class="button" href="{{ path('initiatePlay') }}">SPELA</a>
+    
+    <div class="content" style="grid-row: 2; grid-column: spane 2">
+    <p>
+        Projektet implementerar kortspel Black Jack. 
+        Du kan läsa mera om kortspelet i 
+        <a href="https://sv.wikipedia.org/wiki/Black_Jack"> Wikipedia</a>.
+    </p>
+    <li><a href="{{  path('getOneCard')}}">En kort</a></li>
+    <p>
+    Regler för kortspel är följande:
+    <br>
+    <br>En till tre spelaren spelar mot datorn.
+    <br>
+    <br>Varje spelaren ska komma så nära talet 21 som möjligt utan att bli "tjock", det vill säga få över 21. 
+    Man måste dessutom ha bättre kort än dealern. Alla klädda kort är värda 10, ess är 11. 
+    Om spelarens 2 första kort är ett ess och ett klätt kort/en 10:a kallas det Black Jack och ger en och en halv gånger insatsen, 
+    såvida inte dealern också får Black Jack. Får spelaren Black Jack, och dealern har ess som första kort 
+    kan spelaren välja att ta "jämna pengar", det vill säga få vinst lika stor som insatsen.
+    <br>
+    <br>
+    <br>
+    <br>Om både spelare och dealer har 17, 18 eller 19 så vinner dealern, har både spelare och dealer 20 eller 21 så blir det lika, dvs ingen vinst till spelaren men hen blir heller inte av med sin insats. Hos kasinon generellt, exempelvis Casino Cosmopol i Sverige, gäller dock att 17, 18, 19, 20 eller 21 innebär "push", det vill säga att man behåller sin insats. Denna regel har ganska stor betydelse för bankens statistiska övertag, ett par procent.
+    <br>
+    <br>Spelaren satsar valfritt belopp (maximum är 1/200 del av prisbasbeloppet och minimum varierar) i sin spelruta före en giv. Det brukar finnas gränser både uppåt och nedåt. Dealern ger först ut två öppna kort till varje spelare. Till sig själv delar dealern ut ett kort.
+    <br>
+    <br>Spelarna får nu välja om de vill ha fler kort eller stanna. När spelarna valt klart drar dealern kort. Dealern måste stanna på 17 eller bättre och ta kort om det är under 17. Dealen måste stanna även om denna har exempelvis ess och 6:a dvs 7/17.
+    </p>
+    <div>
+
+    
+</main>
+{% endblock %}

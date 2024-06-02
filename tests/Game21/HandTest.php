@@ -11,6 +11,8 @@ class HandTest extends TestCase
 {
     /**
      * Construct object and verify it it a Hand object.
+     * 
+     * @return void
      */
     public function testCreateObject(): void
     {
@@ -24,6 +26,8 @@ class HandTest extends TestCase
 
     /**
      * Construct object and verify it get correct points.
+     * 
+     * @return void
      */
     public function testGetPoints(): void
     {
@@ -39,6 +43,8 @@ class HandTest extends TestCase
 
     /**
      * Construct object and verify of toString method werks.
+     * 
+     * @return void
      */
     public function testToString(): void
     {
@@ -58,6 +64,8 @@ class HandTest extends TestCase
 
     /**
      * Construct object and verify of toArray method werks.
+     * 
+     * @return void
      */
     public function testToArray(): void
     {
@@ -83,6 +91,8 @@ class HandTest extends TestCase
     /**
      * Construct object and verify 
      * method getHand with help of mocked CardGraphics objekt.
+     * 
+     * @return void
      */
     public function testGetHand(): void
     {
@@ -111,7 +121,9 @@ class HandTest extends TestCase
     }
 
     /**
-     * Tests method set() 
+     * Tests method set()
+     * 
+     * @return void 
      */
     public function testSetMethod(): void
     {

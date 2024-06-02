@@ -1,0 +1,61 @@
+header {
+    display: grid;
+    width: 100%;
+    grid-row: 1;
+    grid-column: span 2;
+    grid-template-columns: 50% 50%;
+    background-size: cover;
+    color: #172327;
+    font-size: 0.9em;
+}
+
+header div.titel {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    height: 230px;
+    grid-column: 1;
+}
+
+header div.title .site-title {
+    display: grid;
+    grid-row: 1;
+    margin: 1em;
+    font-size: 3em;
+    font-weight: 700;
+    text-shadow: 2px 2px 2px azure;
+}
+
+header div.title ul {
+    color: rgb(142, 150, 112);
+    grid-row: 2;
+    font-size: 2em;
+    justify-self: center;
+}
+
+header div.title ul li {
+    width: 90px;
+}
+
+header div.title ul li a:visited {
+    color:rgb(88, 201, 12);
+}
+
+
+header nav {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+header nav ul {
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    font-size: 1.8em;
+    color: #172327;
+}
+
+header nav ul a:visited {
+    color: #e1ffd0;
+}

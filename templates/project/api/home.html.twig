@@ -1,0 +1,27 @@
+{% extends "base.project.html.twig" %}
+
+{% block title %}Project API{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe" style="grid-row: 1; grid-column: spane 2">
+        <h2>MVC projekt: API</h2>
+        <h3>Här kan du se stryktur på klasser som används i plrojektet</h3>
+    </header>
+    
+    <a class="button" href="{{ path('initiatePlay') }}">SPELA</a>
+    
+    <div class="api-router">CardGraphics
+    </div>
+    <div class="api-router">Player
+    </div>
+    <div class="api-router">Bank
+    </div>
+    <div class="api-router">Desk
+    </div>
+    <div class="api-router">Game
+    </div>
+    
+    
+</main>
+{% endblock %}

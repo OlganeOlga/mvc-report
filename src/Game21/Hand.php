@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Game21;
 
 use App\Game21\CardGraphics;
@@ -43,7 +42,7 @@ class Hand
     /**
      * toArray method description
      *
-     * @return array{points: int, cards: array<int, array[int]>}
+     * @return array{points: int, cards: array<int, int[]>}
      */
     public function toArray(): array
     {

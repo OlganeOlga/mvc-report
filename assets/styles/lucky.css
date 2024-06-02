@@ -1,0 +1,42 @@
+.lucky .headerMe h2 {
+    color: #ffef1edb;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    font-size: 3em;
+    transform: rotate(320deg);
+    text-shadow: 2px 2px 2px azure;
+}
+
+.lucky .lucky {
+    transform: rotate(35deg);
+    justify-content: center;
+    grid-column: 2;
+}
+
+.lucky .lucky p {
+    display: flex;
+    font-size: 2em;
+    color: #430c43;
+}
+
+.lucky .lucky p .message {
+    text-shadow: 2px 2px 2px red;
+    color: green;
+    transform: rotate(25deg);
+}
+
+.lucky .lucky p .number {
+    text-shadow: 2px 2px 2px red;
+    color: rgb(207, 204, 9);
+    transform: rotate(125deg);
+}
+
+.lucky .lucky p .end {
+    position: absolute;
+    right: 20px;
+    top: -200px;
+    font-size: 7em;
+    font-size: 4em;
+    color: blueviolet;
+}

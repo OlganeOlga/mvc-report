@@ -1,0 +1,29 @@
+{% extends "base.project.html.twig" %}
+{% block title %}Project MVC VT24{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe">
+        <h2>Satsa peng. Bankens sats är: {{ bankBet }}</h2>
+    </header>
+    
+    <ul class="desk">
+        {% for card in desk %}
+        <figure class="card">
+            <img src="{{ asset(card) }}" width="80" alt="Card image">
+        </figure>
+        {% endfor %}
+    </ul>
+    
+    <div class="get players">
+        <form class="create-players" id="doBet" action="{{ path('playersDecision') }}" method="POST">
+            {% for player in players %}
+                <label for="{{ player }}">Valj din sats, {{ player }}</label>
+                <input class="number" id="bet{{ player }}" type="number" name="{{ player }}" value="1" min="1" max="{{ bankBet }}">   
+            {% endfor %} 
+            <button type="submit">Satsa på spel</button>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

@@ -15,7 +15,12 @@
     </head>
     <body>
         <header class="site-header" style="background-image: url({{ asset('img/img/det_just_var_fredag.jpg') }})">
-            <span class="site-title">Reportsida för kurs MVC</span>
+            <div class="title">
+                <span class="site-title">Reportsida för kurs MVC</span>
+                <ul>
+                    <li><a href="{{ path('project') }}">Projekt</a></li>
+                </ul>
+            </div>
             <nav>
                 <ul>
                     <li><a href="{{ path('me') }}">Det är jag</a></li>

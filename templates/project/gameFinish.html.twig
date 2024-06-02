@@ -1,0 +1,43 @@
+{% extends "base.project.html.twig" %}
+{% block title %}Project MVC VT24{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe">
+        <h2>Du spelar Black Jack.</h2>
+        <h3>Ronde utkomst</h3>
+    </header>
+    <a class="button" href="{{ path('initiatePlay') }}">IGEN?</a>
+<div class="play">    
+    <div class="bank">
+        <p>Bank sats: {{ datus.bank.bet }}</p>
+        <p>Bank points: {{ datus.bank.points }}</p>
+        {% if datus.bank.blackJack %}
+        <p style="color: red; font-weight: 900">Bank far Black Jack!</p>
+        {% endif %}
+            {% for card in datus.bank.hand %}
+                <figure class="card">
+                    <img src="{{ asset(card) }}" width="80" alt="Card image">
+                </figure>
+            {% endfor %}   
+    </div>
+    <div class="players">
+        {% for name, player in datus.players %}
+            <div class="a_player">
+                <p class='profit'>Profit: {{ player.profit }}</p>
+                <div class="hand">
+                    {% for card in player.hand %}
+                        <figure class="card">
+                            <img src="{{ asset(card) }}" width="80" alt="Card image">
+                        </figure>
+                    {% endfor %}
+                </div>
+                <h3>{{ name }}</h3>
+            </div>           
+        {% endfor %} 
+    </div>
+    </div>
+</div>
+</main>
+
+{% endblock %}

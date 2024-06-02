@@ -66,5 +66,11 @@
     "delete_book": "Displays the form to choos a book that should be deleted and delete this book",
     "json_library": "Displays all books in the library in Json form.",
     "json_book_by_isbn": "Search book by ISBN. Display all books with given ISBN in Json form.",
-    "metrics": "Ladnings page for kmom06"
+    "metrics": "Ladnings page for kmom06",
+    "project": "Start page for the cours project",
+    "aboutProject": "describes project",
+    "getOneCard": "show one card from project",
+    "initiatePlay": "Show router that can get number of players and players names",
+    "getPlayers": "Post route to create players for the BlackJack",
+    "playersSats": "GET and POST route to show players and desk and banks bet and take players bet"
 }

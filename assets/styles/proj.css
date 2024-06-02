@@ -1,0 +1,194 @@
+body.project {
+    background-color: #2f7513;
+    display: grid;
+    grid-template-rows: 270px 4fr 1fr;
+    grid-template-columns: unset;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.project header.site-header.project {
+    grid-template-columns: unset;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+body.project header.site-header.project div.toMvc {
+    grid-column: 1;
+}
+
+body.project header.site-header.project div.toMvc li a {
+    font-size: 2em;
+    font-weight: bold;
+    color: #9bafc1;
+}
+
+body.project header.site-header.project div.title {  
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    grid-column: 2;
+    color: green;
+    text-shadow: 1px 1px #fdfdd0
+}
+
+body.project header.site-header.project nav.project {
+    grid-column: 3;
+}
+
+body.project header.site-header.project nav ul li {
+    display: grid;
+    padding-right: 10px;
+    justify-content: right;
+}
+
+body.project header.site-header.project nav ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #3c5624;
+    font-weight: 650;
+    text-shadow: 1px 1px antiquewhite;
+}
+
+body.project main.main.project {
+    grid-column: span 2;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+}
+
+body.project main.main.project a.button {
+    background-color: #af984c;
+    border: 4px solid #cde2f4;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    margin: 20px 2px;
+    padding: 15px 32px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none; 
+    transition: transform 1s, box-shadow 1s; 
+}
+
+body.project main.main.project a.button:hoover {    
+    box-shadow: 0 2px #c21f1f;
+}
+
+body.project main.main.project header.headerMe {
+    grid-column: span 3;
+    height: 8em;
+    text-shadow: 1px 1px #b7b762;
+}
+body.project main.main.project header.headerMe h3 {
+    display: flex;
+    justify-content: center;
+}
+
+body.project main.main.project header.headerMe p {
+    text-shadow: none;
+    font-size: 0.7em;
+}
+
+body.project main.main.project div.get.players {
+    grid-column: 2;
+    margin: 20px 40px,
+}
+
+body.project main.main.project div.get.players form.create-players {
+    width: 200px;
+}
+
+body.project main.main.project div.get.players form.create-players input.number {
+    width: 50px;
+}
+
+body.project main.main.project div.get.players form.create-players input.name {
+    width: 200px;
+    margin: 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+body.project main.main.project ul.desk {
+    width: 50em;
+    grid-column: 1;
+    grid-template-columns: repeat(11, 1fr);
+    display: grid;
+    justify-content: center;
+    padding: 20px 0;
+    min-height: 400px;
+}
+
+body.project main.main.project ul.desk figure.card,
+body.project main.main.project div.play div.players div.a_player div.hand figure.card {
+    margin: 0;
+    height: 30px;
+}
+
+body.project main.main.project div.play {
+    display: grid;
+    grid-column: span 3;
+    justify-self: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+    min-height: 300px;
+}
+
+body.project main.main.project div.play div.bank {
+    display: grid;
+    grid-column: 1;
+    justify-self: center;
+}
+
+body.project main.main.project div.play div.players {
+    display: grid;
+    grid-column: 3;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 300px;
+    gap: 3px;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    justify-self: center;
+    min-height: 500px;
+}
+
+body.project main.main.project div.play div.players div.a_player {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 20px;
+}
+
+body.project main.main.project div.play div.players div.a_player h3{
+    margin: 0;
+    position: relative;
+    top: 5em;
+}
+
+body.project main.main.project div.play div.players div.a_player p {
+    margin: 0;
+    font-size: large;
+    font-style: oblique;
+}
+
+body.project main.main.project div.play div.players div.a_player p.profit {
+    margin: 0;
+    color: #0c0a9e;
+    font-size: large;
+    font-style: oblique;
+    font-weight: 900;
+}
+
+
+body.project main.main.project div.play div.players div.a_player div.hand {
+    display: flex;
+}
+
+body.project main.main.project div.play div.players div.a_player form.play-actions {
+    display: grid;
+    gap: 7px;
+}
+
+body.project main.main.project div.play div.players div.a_player form.play-actions button {
+    border: 3px solid #090602;
+}
+
+body.project main.main.project div.play div.players div.a_player form.play-actions button:hover {
+    box-shadow: 0 5px 15px rgba(222, 238, 5, 0.979);
+}

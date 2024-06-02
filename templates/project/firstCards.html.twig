@@ -1,0 +1,64 @@
+{% extends "base.project.html.twig" %}
+{% block title %}Project MVC VT24{% endblock %}
+
+{% block body %}
+<main class="main project">
+    <header class="headerMe">
+        <h2>Du spelar Black Jack.</h2>
+    </header>
+<div class="play">    
+    <div class="bank">
+        <p>Bank sats: {{ bank.bet }}</p>
+            {% for card in bank.hand %}
+                <figure class="card">
+                    <img src="{{ asset(card) }}" width="80" alt="Card image">
+                </figure>
+            {% endfor %}   
+    </div>
+    <div class="players">
+        {% for name, data in players %}
+        <div class="a_player">
+            {%if data.blackJack and bank.hand|length == 1 and bank.points < 10  %}
+                <h3>Black Jack</h3>
+            {% else %}
+                <form class="play-actions" id="{{ name }}" action="{{ path('playersAction') }}" method="post">
+                    <input type="hidden" name="form_id" value="{{ name }}">
+                    {% if data.hand|length == 2 and bank.hand|length == 1 and data.split %}
+                        <button type="submit" name="action" value="split">Split hand</button>
+                    {% endif %}
+                    {% if data.blackJack and bank.hand|length == 1 and bank.points > 9 %}
+                        <button type="submit" name="action" value="wait">Wänta</button>
+                        <button type="submit" name="action" value="1:1">1:1</button>
+                    {% endif %}
+
+                    {% if data.status == 'play' and not data.blackJack %}
+                        {% if not data.insure and bank.hand|length == 1 and bank.points > 9 %}
+                            <button type="submit" name="action" value="insure">Försäkra</button>
+                        {% endif %}
+                        <button type="submit" name="action" value="take_card">Ta kort</button>
+                        <button type="submit" name="action" value="ready">Stop</button>
+                        
+                    {% endif %}
+                </form>
+            {% endif %}  
+            <p>Sats: {{ data.bet }}</p>
+            <p>Points: {{ data.points }}</p>
+            <p>Soft: {{ data.soft ? 'Yes' : 'No' }}</p>
+            <p>Status: {{ data.status }}</p>
+            <div class="hand">
+                {% for card in data.hand %}
+                    <figure class="card">
+                        <img src="{{ asset(card) }}" width="80" alt="Card image">
+                    </figure>
+                {% endfor %}
+            </div>
+            <h3>{{ name }}</h3>
+            
+        </div>           
+    {% endfor %} 
+    </div>
+    </div>
+</div>
+</main>
+
+{% endblock %}

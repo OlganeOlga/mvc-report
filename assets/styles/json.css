@@ -1,0 +1,17 @@
+main.routers table {
+    grid-column: span 2;
+    border-collapse: collapse;
+    border: solid 3px aliceblue;
+    margin-bottom: 30px;
+    background: #edcaca;
+}
+
+main.routers table tr {
+    border: solid 3px aliceblue;
+}
+
+main.citat p.quote {
+    font-family: cursive;
+    font-size: 2em;
+    grid-column: span 2;
+}
