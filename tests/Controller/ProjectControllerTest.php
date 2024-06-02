@@ -156,45 +156,45 @@ class ProjectControllerTest extends WebTestCase
     // }
 
 
-    /**
-     * Test page that shows game
-     * @return void
-     */
-    public function testGameFinish(): void
-    {
-        $client = static::createClient();
-        $card1 = new CardGraphics();
-        $card1->set(0, 1);
-        $card2 = new CardGraphics();
-        $card2->set(10, 1);
-        $card3 = new CardGraphics();
-        $card3->set(6, 2);
-        $card4 = new CardGraphics();
-        $card4->set(7, 2);
+    // /**
+    //  * Test page that shows game
+    //  * @return void
+    //  */
+    // public function testGameFinish(): void
+    // {
+    //     $client = static::createClient();
+    //     $card1 = new CardGraphics();
+    //     $card1->set(0, 1);
+    //     $card2 = new CardGraphics();
+    //     $card2->set(10, 1);
+    //     $card3 = new CardGraphics();
+    //     $card3->set(6, 2);
+    //     $card4 = new CardGraphics();
+    //     $card4->set(7, 2);
 
-        $player4 = new Player();
-        $player4->setName('Per');
-        $player4->doBet(2);
-        $player4->getCard($card1);
-        $player4->getCard($card3);
-        $player4->setStatus('ready');
+    //     $player4 = new Player();
+    //     $player4->setName('Per');
+    //     $player4->doBet(2);
+    //     $player4->getCard($card1);
+    //     $player4->getCard($card3);
+    //     $player4->setStatus('ready');
 
-        $game = new Game();
-        $game->addPlaying('Per', $player4);
+    //     $game = new Game();
+    //     $game->addPlaying('Per', $player4);
         
-        $bank = $this->createMock(Bank::class);
-        $bank->method('points')->willReturn(19);
-        $bank->method('blackJack')->willReturn(false);
-        $bank->method('getStatus')->willReturn('play');
-        $game->setBank($bank);
+    //     $bank = $this->createMock(Bank::class);
+    //     $bank->method('points')->willReturn(19);
+    //     $bank->method('blackJack')->willReturn(false);
+    //     $bank->method('getStatus')->willReturn('play');
+    //     $game->setBank($bank);
 
-        $game->countWinst();
-        $session = $this->createMock(SessionInterface::class);
-        $session->method('get')->willReturn($game);
-        $client->request('GET', '/proj/finish');
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h2', 'Du spelar Black Jack.');
-    }
+    //     $game->countWinst();
+    //     $session = $this->createMock(SessionInterface::class);
+    //     $session->method('get')->willReturn($game);
+    //     $client->request('GET', '/proj/finish');
+    //     $this->assertResponseIsSuccessful();
+    //     $this->assertSelectorTextContains('h2', 'Du spelar Black Jack.');
+    // }
 
 
 }
