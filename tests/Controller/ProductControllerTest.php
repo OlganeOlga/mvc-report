@@ -123,7 +123,8 @@ class ProductControllerTest extends WebTestCase
     public function testViewAllProduct(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/product/view');
+        $data => [];
+        $client->request('GET', '/product/view', );
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Visa produkter i html');
     }

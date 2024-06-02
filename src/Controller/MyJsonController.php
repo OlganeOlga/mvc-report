@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Card\Desk;
-
 use ReflectionClass;
 use ReflectionMethod;
 use Exception;

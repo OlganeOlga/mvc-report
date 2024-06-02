@@ -143,7 +143,16 @@ class ProjectController extends AbstractController
     ): Response
     {
         $this->game = $session->get('game');
-        $names = $session->get('names');          
+        $names = $session->get('names');  
+        
+        if ($this->game === null) {
+            throw new \Exception('Game object is null');
+        }
+        $names = $session->get('names');
+        if ($names === null) {
+            throw new \Exception('Names array is null');
+        }
+        
         foreach($names as $name) {
             $player = new Player();
             $player->setName($name);
@@ -251,13 +260,11 @@ class ProjectController extends AbstractController
     #[Route("/proj/finish", name: "finish", methods: ['GET'])]
     public function gameFinish(
         SessionInterface $session,
-        Request $request,
     ): Response {
         $game = $session->get('game');
         $data = $game->getGame();
         return $this->render('project/gameFinish.html.twig', 
-        ['datus' => $data, 'action' => $session->get('by action'),
-         'finish'  => $session->get('finish')]);
+        ['datus' => $data]);
     }
 
 }

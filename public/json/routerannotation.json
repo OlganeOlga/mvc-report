@@ -72,5 +72,10 @@
     "getOneCard": "show one card from project",
     "initiatePlay": "Show router that can get number of players and players names",
     "getPlayers": "Post route to create players for the BlackJack",
-    "playersSats": "GET and POST route to show players and desk and banks bet and take players bet"
+    "playersSats": "GET and POST route to show players and desk and banks bet and take players bet",
+    "playView": "show players and thei hands and bank with hand",
+    "playersAction": "Gpossibility for players to sact",
+    "playersDecision": "takes players desission and work with it in Black JAck",
+    "finish": "if Black Jack playround is finished it gives outcomst",
+    "projectApi": "show links to api-routes"
 }

@@ -91,6 +91,13 @@ class MyJsonCardControllerTest extends WebTestCase
                 return;
             }
         }
+        $this->assertEquals(200, $response->getStatusCode());
+
+        // $content = json_decode($response->getContent(), true);
+        // $this->assertIsArray($content);
+        // $this->assertArrayHasKey('desk', $content);
+        // $this->assertArrayHasKey('bank', $content);
+        // $this->assertArrayHasKey('player', $content);
     }
 
     /**
