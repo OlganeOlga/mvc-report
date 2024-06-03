@@ -33,14 +33,8 @@ class Person
     /** @var int The profit earned by the player. */
     protected int $profit;
 
-    // /** @var bool Does player insuerd against banks BlackJack. */
-    // protected bool $insurance;
-
     /** @var bool Does player has BlackJack. */
     protected bool $blackJack;
-
-    /** @var bool can player split hand. */
-    protected bool $split;
 
     /**
      * Constructor method that initializes a player with an empty hand, zero betPeng, and zero profit.
@@ -51,12 +45,10 @@ class Person
         $this->hand = new Hand();
         $this->betPeng = 0;
         $this->profit = 0;
-        $this->status = "play";
-        //$this->insurance = false;
+        $this->status = 'play';
         $this->blackJack = false;
-        //$this->split = false;
     }
-    /**
+    /**Ca
      * Retrieves the name of the player.
      *
      * @return string players name.
@@ -75,26 +67,6 @@ class Person
     {
         $this->name = $name;
     }
-
-    // /**
-    //  * Retrieves insurance of the player.
-    //  *
-    //  * @return bool The currentinsurance.
-    //  */
-    // public function insurance(): bool
-    // {
-    //     return $this->insurance;
-    // }
-
-    // /**
-    //  * Insuar PLAYER against banks BlackJack.
-    //  *
-    //  * @return void
-    //  */
-    // public function insure(): void
-    // {
-    //     $this->insurance = true;
-    // }
 
     /**
      * Retrieves the current betPeng amount of the player.
@@ -115,26 +87,6 @@ class Person
     {
         return $this->profit;
     }
-
-    // /**
-    //  * Adds a card to the player's hand and return status of the player.
-    //  *
-    //  * @param CardGraphics $card The card to be added to the hand.
-    //  * @return int players points
-    //  */
-    // public function getCard(CardGraphics $card): int
-    // {
-    //     $this->hand->addCard($card);
-    //     $points = $this->hand->getPoints();
-    //     if($points > 21) {
-    //         $this->loosGame(1, 1);
-    //         $this->status = 'fat';
-    //     } elseif ($points === 21) {
-    //         $this->blackJack();
-    //         $this->status = 'wait';
-    //     }
-    //     return $points;
-    // }
 
     /**
      * Retrieves the current status of the player.
@@ -178,111 +130,18 @@ class Person
         $this->betPeng = $betPeng;
     }
 
-    // /**
-    // * Change the profit amount for the player.
-    // *
-    // * @param int $multiplicate multiplicate bet
-    // * @param int $devide divide bet
-    // * @return int $this->profit
-    // */
-    // public function winGame($multiplicate, $devide): int
-    // {
-    //     $this->status = "win";
-    //     $this->profit = $this->betPeng * $multiplicate / $devide;
-    //     return $this->profit;
-    // }
-
-    // /**
-    // * Change the profit amount for the player.
-    // *
-    // * @param int $multiplicate multiplicate bet
-    // * @param int $devide divide bet
-    // * @return int $this->profit
-    // */
-    // public function loosGame($multiplicate, $devide): int
-    // {
-    //     $this->setStatus("loos");
-    //     $this->profit = - $this->betPeng * $multiplicate / $devide;
-    //     return $this->profit;
-    // }
-
-    // /**
-    //  * Retrieves the array<string[]> representation of the player's hand.
-    //  *
-    //  * @return array<string[]> The string representation of the player's hand.
-    //  */
-    // public function getHand(): array
-    // {      
-    //     $hand = [
-    //         'bet' => $this->getBet(),
-    //         'hand' => $this->hand->getHand(),
-    //         'points' => $this->hand->getPoints(),
-    //         'soft' => $this->hand->soft(),
-    //         'status' => $this->status,
-    //         'insure' => $this->insurance(),
-    //         'blackJack' => $this->blackJack,
-    //         'split' => $this->canSplit(),
-    //         'profit' => $this->profit,
-
-    //     ];
-    //     return $hand;
-    // }
-
     /**
-     * Test if player get BlackJack
-     * @return bool
+     * Adds a card to the player's hand and return status of the player.
+     *
+     * @param CardGraphics $card The card to be added to the hand.
+     * @return int players points
      */
-    public function blackJack(): bool
+    public function getCard(CardGraphics $card): int
     {
-        $faces = $this->hand->getCardFaces();
-        $expected = ['queen', 'jack', 'king', '10'];
-        if(count($faces) === 2 && in_array('ace', $faces)) {
-            foreach ($expected as $value){
-                if(in_array($value, $faces)) {
-                    $this->blackJack = true;
-                    return $this->blackJack;
-                }
-            }
-        }
-        return $this->blackJack;
+        $this->hand->addCard($card);
+        $points = $this->points();
+        return $points;
     }
-
-    // /**
-    //  * Can player split hand?
-    //  * 
-    //  * @return bool
-    //  */
-    // public function canSplit(): bool
-    // {
-    //     $this->split = $this->hand->canSplit();
-    //     return $this->split;
-    // }
-
-    // /**
-    //  * split hand make copy self, add "-1" to the self name, 
-    //  * give name self-2 to the new object
-    //  * removes one card ajust points
-    //  * gives another card it to the new player
-    //  * 
-    //  * @return array{name:string, bet:int, card:CardGraphics}|null
-    //  */
-    // public function splitHand(): ?array
-    // {
-    //     $name = $this->name;
-    //     $betPeng = $this->betPeng;
-    //     $card1 = $this->hand->split();
-    //     if($card1){
-        
-    //         $this->name = $name . '-1';
-            
-    //         return [
-    //             'name' => $name . '-2',
-    //             'bet' => $betPeng,
-    //             'card' => $card1,
-    //         ];
-    //     }
-    //     return null;
-    // }
 
     /**
      * Count cards in hand of player
@@ -292,4 +151,19 @@ class Person
     {
         return count($this->hand->getHand());
     }
+
+    /**
+     * Test if player get BlackJack
+     * @return bool
+     */
+    public function blackJack(): bool
+    {
+        if($this->countCards() === 2 && $this->points() === 21) {
+            $this->blackJack = true;
+            return $this->blackJack;
+        }
+        return $this->blackJack;
+    }
+
+    
 }

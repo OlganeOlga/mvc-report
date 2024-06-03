@@ -14,21 +14,21 @@ use App\BlackJack\CardGraphics;
 use App\BlackJack\Bank;
 use App\BlackJack\Desk;
 use App\BlackJack\Player;
-use App\BlackJack\Game;
+use App\BlackJack\GameInterface;
 
 class ProjectController extends AbstractController
 {
     /**
      * @var Game $game represents game used in the controller
      */
-    private Game $game;
+    private GameInterface $game;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->game = new Game();
+        $this->game = new GameInterface();
     }
 
     /**
@@ -232,6 +232,7 @@ class ProjectController extends AbstractController
             }
 
             $this->game->newCardToBank();
+            $data = $this->game->getGame();
             $finish = $this->game->finish();
            
             if ($finish[1]) {
@@ -241,15 +242,10 @@ class ProjectController extends AbstractController
                 $session->set('finish', $this->game->finish());
                 return $this->redirectToRoute('finish');
             }
-            $data = $this->game->getGame();
+            
             $session->set('data', $data);
             $session->set('game', $this->game);
             return $this->redirectToRoute('playView');
-        // }
-        // $data = $this->game->getGame();
-        // $session->set('data', $data);
-        // $session->set('game', $this->game);
-        // return $this->redirectToRoute('finish');
     }
 
     /**

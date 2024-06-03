@@ -1,7 +1,7 @@
 <?php
 
 namespace App\BlackJack;
-
+//use App\BlackJack\CardGraphics;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,12 +27,10 @@ class BankTest extends TestCase
             'bet' => 0,
             'hand' => [],
             'points' => 0,
-            'soft' => 0,
             'status' => 'play',
-            'insure' => false,
             'blackJack' => false,
-            'split' => false,
-            'profit' => 0
+            'profit' => 0,
+            'soft' => false
         ];
         $this->assertEquals($expected, $hand);
     }
@@ -46,14 +44,15 @@ class BankTest extends TestCase
     {
         $bank = new Bank;
         // Create a mock variable for the CardGraphics class.
-        $stub = $this->createMock(CardGraphics::class);
-
+        $card = new CardGraphics();
+        $card->set(1, 2);
+        $mockDesk = $this->createMock(Desk::class);
+        $mockDesk->method('takeCard')->willReturn($card);
         // Configure the stub.
-        $stub->method('getValue')
-            ->willReturn(2);
+    
         //bank get cards
-        $bank->getCard(clone $stub);
-        $bank->getCard(clone $stub);
+        $bank->takeCard($mockDesk);
+        $bank->takeCard($mockDesk);
         $this->assertEquals(4, $bank->points());
     }
 
@@ -225,19 +224,15 @@ class BankTest extends TestCase
     {
         $bank = new Bank;
         // Create a stub for the CardGraphics class.
-        $card = $this->createMock(CardGraphics::class);
+        $card = new CardGraphics();
+        $card->set(1, 2);
         $desk = $this->createMock(Desk::class);
         $player = new Player;
 
-        // Configure the stub.
-        $card->method('getValue')
-            ->willReturn(2);
-
         // Configure the stubDesk.
-        $desk->method('takeCard')
-            ->willReturn($card);
+        $desk->method('takeCard')->willReturn($card);
 
-        //bank get cards
+        //bank deal cards
         $bank->dealCards($desk, $player);
         $this->assertEquals(2, $player->points());
     }

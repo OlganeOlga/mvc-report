@@ -2,13 +2,13 @@
 
 namespace App\BlackJack;
 
-use App\BlackJack\CardGraphics;
-use App\BlackJack\Hand;
+// use App\BlackJack\CardGraphics;
+// use App\BlackJack\Hand;
 
 /**
  * Class repreents bank in the BlackJack
  *
- * Chaild class to Player
+ * Chaild class to Person
  */
 class Bank extends Person
 {
@@ -40,36 +40,50 @@ class Bank extends Person
         return $hand;
     }
 
-
     /**
      * Deal one card for each player in array.
      *
      * @param Desk $desk Desk object from which cards are dealt.
      * @param Player $player Player object.
      * 
-     * @return int players points
+     * @return int resulting players points
      */
     public function dealCards(Desk $desk, $player): int
     {
         $card = $desk->takeCard();
         $playersPoints = $player->getCard($card);
-        
+        if($player->countCards() === 2 && $playersPoints === 21) {
+            $player->blackJack();
+            return $playersPoints;
+        } elseif ($player->countCards() > 2 && $playersPoints === 21) {
+            $player->setStatus('wait');
+            return $playersPoints;
+        } elseif ($playersPoints > 21) {
+            $player->setStatus('fat');
+            return $playersPoints;
+        }
         return $playersPoints;
     }
 
+    /**
+     * Take card from desk
+     * change status
+     * 
+     * @return bool
+     */
     public function takeCard(Desk $desk): bool
     {
         $bankPoints = $this->points();
         if ($bankPoints < 17) {
             $card = $desk->takeCard();
             // override players getCard
-            $this->hand->addCard($card);
+            $this->getCard($card);
 
             $newPoints = $this->points();           // Check for blackjack or win first
-            if ($newPoints === 21 && count($this->hand->getCardFaces()) === 2) {
-                $this->status = 'Black Jack';
+            if ($this->countCards() === 2 && $newPoints === 21) {
+                $this->setStatus('Black Jack');
                 return false;
-            } elseif ($newPoints === 21 && count($this->hand->getCardFaces()) > 2) {
+            } elseif ($this->countCards() > 2 && $newPoints === 21) {
                 $this->setStatus('win');
                 return false;
             } elseif ($newPoints > 21) {

@@ -2,36 +2,16 @@
 
 namespace App\BlackJack;
 
-use App\BlackJack\CardGraphics;
-use App\BlackJack\Hand;
+// use App\BlackJack\CardGraphics;
+// use App\BlackJack\Hand;
 
 /**
- * Represents a player in the game.
+ * Represents a player in the game chaild class to Person.
  *
  * Each player has a hand of cards, a betPeng amount, and a profit value.
  */
 class Player extends Person
 {
-    // /**
-    //  * @var string The name of the player.
-    //  */
-    // protected string $name;
-    // /**
-    //  * @var Hand The hand of cards held by the player.
-    //  */
-    // protected Hand $hand;
-
-    // /** @var int The betPeng amount placed by the player. */
-    // protected int $betPeng;
-
-    // /**
-    //  * @var string show status on the basis of the cards and points
-    //  * in the hand
-    //  */
-    // protected string $status;
-
-    // /** @var int The profit earned by the player. */
-    // protected int $profit;
 
     /** @var bool Does player insuerd against banks BlackJack. */
     protected bool $insurance;
@@ -74,6 +54,7 @@ class Player extends Person
     }
 
     /**
+     * Overrid parent methods getCard
      * Adds a card to the player's hand and return status of the player.
      *
      * @param CardGraphics $card The card to be added to the hand.
@@ -82,7 +63,7 @@ class Player extends Person
     public function getCard(CardGraphics $card): int
     {
         $this->hand->addCard($card);
-        $points = $this->hand->getPoints();
+        $points = $this->points();
         if($points > 21) {
             $this->loosGame(1, 1);
             $this->status = 'fat';
@@ -103,7 +84,7 @@ class Player extends Person
     */
     public function winGame($multiplicate, $devide): int
     {
-        $this->status = "win";
+        $this->status = 'win';
         $this->profit = $this->betPeng * $multiplicate / $devide;
         return $this->profit;
     }
@@ -117,7 +98,7 @@ class Player extends Person
     */
     public function loosGame($multiplicate, $devide): int
     {
-        $this->setStatus("loos");
+        $this->setStatus('loos');
         $this->profit = - $this->betPeng * $multiplicate / $devide;
         return $this->profit;
     }
@@ -132,7 +113,7 @@ class Player extends Person
         $hand = [
             'bet' => $this->getBet(),
             'hand' => $this->hand->getHand(),
-            'points' => $this->hand->getPoints(),
+            'points' => $this->points(),
             'soft' => $this->hand->soft(),
             'status' => $this->status,
             'insure' => $this->insurance(),
@@ -156,7 +137,7 @@ class Player extends Person
     }
 
     /**
-     * split hand make copy self, add "-1" to the self name, 
+     * split hand make copy self, add '-1' to the self name, 
      * give name self-2 to the new object
      * removes one card ajust points
      * gives another card it to the new player
