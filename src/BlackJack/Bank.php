@@ -10,7 +10,7 @@ use App\BlackJack\Hand;
  *
  * Chaild class to Player
  */
-class Bank extends Player
+class Bank extends Person
 {
     /**
      * Composer is parent composer
@@ -19,6 +19,27 @@ class Bank extends Player
     {
         parent::__construct();
     }
+
+     /**
+     * Retrieves the array<string[]> representation of the player's hand.
+     *
+     * @return array<string[]> The string representation of the player's hand.
+     */
+    public function getHand(): array
+    {      
+        $hand = [
+            'bet' => $this->getBet(),
+            'hand' => $this->hand->getHand(),
+            'points' => $this->hand->getPoints(),
+            'soft' => $this->hand->soft(),
+            'status' => $this->status,
+            'blackJack' => $this->blackJack,
+            'profit' => $this->profit,
+
+        ];
+        return $hand;
+    }
+
 
     /**
      * Deal one card for each player in array.

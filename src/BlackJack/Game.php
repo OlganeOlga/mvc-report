@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /**
  * Class BlacJack represents the game logic for Black Jack.
  *
- * The game involves a desk of cards, a player, and a bank. The game progresses through various states
- * such as initial setup, dealing cards, player actions, and bank actions.
  */
 class Game {
 
@@ -92,7 +90,7 @@ class Game {
     /**
      * create and returns banks bet
      *
-     * @return int  banks bet
+     * @return int       banks bet
      */
     public function bankBet(): int
     {

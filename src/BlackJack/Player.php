@@ -10,28 +10,28 @@ use App\BlackJack\Hand;
  *
  * Each player has a hand of cards, a betPeng amount, and a profit value.
  */
-class Player
+class Player extends Person
 {
-    /**
-     * @var string The name of the player.
-     */
-    protected string $name;
-    /**
-     * @var Hand The hand of cards held by the player.
-     */
-    protected Hand $hand;
+    // /**
+    //  * @var string The name of the player.
+    //  */
+    // protected string $name;
+    // /**
+    //  * @var Hand The hand of cards held by the player.
+    //  */
+    // protected Hand $hand;
 
-    /** @var int The betPeng amount placed by the player. */
-    protected int $betPeng;
+    // /** @var int The betPeng amount placed by the player. */
+    // protected int $betPeng;
 
-    /**
-     * @var string show status on the basis of the cards and points
-     * in the hand
-     */
-    protected string $status;
+    // /**
+    //  * @var string show status on the basis of the cards and points
+    //  * in the hand
+    //  */
+    // protected string $status;
 
-    /** @var int The profit earned by the player. */
-    protected int $profit;
+    // /** @var int The profit earned by the player. */
+    // protected int $profit;
 
     /** @var bool Does player insuerd against banks BlackJack. */
     protected bool $insurance;
@@ -47,33 +47,10 @@ class Player
      */
     public function __construct()
     {
-        $this->name = '';
-        $this->hand = new Hand();
-        $this->betPeng = 0;
-        $this->profit = 0;
-        $this->status = "play";
+        parent::__construct();
+        
         $this->insurance = false;
-        $this->blackJack = false;
         $this->split = false;
-    }
-    /**
-     * Retrieves the name of the player.
-     *
-     * @return string players name.
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Cjange the name of the player.
-     * @param string $name 
-     * @return void
-     */
-    public function setName($name): void
-    {
-        $this->name = $name;
     }
 
     /**
@@ -97,26 +74,6 @@ class Player
     }
 
     /**
-     * Retrieves the current betPeng amount of the player.
-     *
-     * @return int The current betPeng amount.
-     */
-    public function getBet(): int
-    {
-        return $this->betPeng;
-    }
-
-    /**
-     * Retrieves the profit earned by the player.
-     *
-     * @return int The profit earned by the player.
-     */
-    public function getProfit(): int
-    {
-        return $this->profit;
-    }
-
-    /**
      * Adds a card to the player's hand and return status of the player.
      *
      * @param CardGraphics $card The card to be added to the hand.
@@ -136,47 +93,6 @@ class Player
         return $points;
     }
 
-    /**
-     * Retrieves the current status of the player.
-     *
-     * @return string The current betPeng amount.
-     */
-    public function getStatus() {
-        return $this->status;
-    }
-
-    /**
-     * change status of the player.
-     * 
-     * @param string $newStatus chnaged status of the player
-     * @return string The current betPeng amount.
-     */
-    public function setStatus($newStatus): string
-    {
-        $this->status = $newStatus;
-        return $this->status;
-    }
-
-    /**
-     * Calculates and returns the total points of the player's hand.
-     *
-     * @return int The total points of the player's hand.
-     */
-    public function points(): int
-    {
-        return $this->hand->getPoints();
-    }
-
-    /**
-    * Sets the betPeng amount of the player.
-    *
-    * @param int $betPeng The betPeng amount to be set.
-    * @return void
-    */
-    public function doBet(int $betPeng): void
-    {
-        $this->betPeng = $betPeng;
-    }
 
     /**
     * Change the profit amount for the player.
@@ -229,25 +145,6 @@ class Player
     }
 
     /**
-     * Test if player get BlackJack
-     * @return bool
-     */
-    public function blackJack(): bool
-    {
-        $faces = $this->hand->getCardFaces();
-        $expected = ['queen', 'jack', 'king', '10'];
-        if(count($faces) === 2 && in_array('ace', $faces)) {
-            foreach ($expected as $value){
-                if(in_array($value, $faces)) {
-                    $this->blackJack = true;
-                    return $this->blackJack;
-                }
-            }
-        }
-        return $this->blackJack;
-    }
-
-    /**
      * Can player split hand?
      * 
      * @return bool
@@ -282,14 +179,5 @@ class Player
             ];
         }
         return null;
-    }
-
-    /**
-     * Count cards in hand of player
-     * @return int
-     */
-    public function countCards(): int 
-    {
-        return count($this->hand->getHand());
     }
 }
