@@ -44,28 +44,13 @@ the project is made by Olga Egorova
 
 # Scrutinizer
 
-<div class="scrutiniser">
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-</div>
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=NewMain0603)](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=NewMain0603)
+
+[![Code Coverage](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=NewMain0603)](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=NewMain0603)
+
+[![Build Status](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=NewMain0603)](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/build-status/NewMain0603)
+
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=NewMain0603)](https://scrutinizer-ci.com/code-intelligence)
 
 commit d1bfd2270d33e3d0a898a820b687dd1353cfeea8 (HEAD -> master, tag: 3.0.0)
 Author: OlganeOlga <o_yegorovar@yahoo.com>
