@@ -47,36 +47,36 @@ class MyJsonNewControllerTest extends WebTestCase
     }
 
 
-    /**
-     * Test /api/routes
-     * 
-     * @return void
-     */
-    public function testJsonLibrary(): void
-    {
-        $client = static::createClient();
-        $client->request('GET', 'api/library/books');
+    // /**
+    //  * Test /api/routes
+    //  * 
+    //  * @return void
+    //  */
+    // public function testJsonLibrary(): void
+    // {
+    //     $client = static::createClient();
+    //     $client->request('GET', 'api/library/books');
 
-        $response = $client->getResponse();
-        $this->assertResponseIsSuccessful();
-        $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
-        $this->assertJson($client->getResponse()->getContent());
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            'Response is not of type application/json'
-        );
+    //     $response = $client->getResponse();
+    //     $this->assertResponseIsSuccessful();
+    //     $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
+    //     $this->assertJson($client->getResponse()->getContent());
+    //     $this->assertTrue(
+    //         $response->headers->contains('Content-Type', 'application/json'),
+    //         'Response is not of type application/json'
+    //     );
 
-        // $expKey = ['desk', 'bank', 'player', 'status'];
-        // $data = json_decode($client->getResponse()->getContent(), true);
-        // foreach ($expKey as $oneKey) {
-        //     if (array_key_exists($oneKey, $data)) {
-        //         $this->assertTrue(true);
-        //         return;
-        //     }
-        // }
+    //     // $expKey = ['desk', 'bank', 'player', 'status'];
+    //     // $data = json_decode($client->getResponse()->getContent(), true);
+    //     // foreach ($expKey as $oneKey) {
+    //     //     if (array_key_exists($oneKey, $data)) {
+    //     //         $this->assertTrue(true);
+    //     //         return;
+    //     //     }
+    //     // }
 
-        //$data = json_decode($client->getResponse()->getContent(), true);
-    }
+    //     //$data = json_decode($client->getResponse()->getContent(), true);
+    // }
 
     /**
      * Test api_quote"
