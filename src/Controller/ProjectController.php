@@ -192,7 +192,7 @@ class ProjectController extends AbstractController
                 $this->game->bankDeal($player);
                 $newPlayer->setName($playerData['name']);
                 $newPlayer->doBet($playerData['bet']);
-                $newPlayer->getCards($playerData['card']);
+                $newPlayer->getCard($playerData['card']);
                 $this->game->bankDeal($newPlayer);
                 $this->game->addPlaying($playerData['name'], $newPlayer); 
                 break;

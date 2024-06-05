@@ -129,7 +129,7 @@ class WinstCounterTest extends TestCase
     {   //finish with bank ready
         // finish if playing contain no players
         $game = new WinstCounter();
-        $desk = new Desk();
+        
         $bank = $this->createMock(Bank::class);
         $bank->method('getStatus')->willReturn('fat');
         $game->setBank($bank);
@@ -142,9 +142,7 @@ class WinstCounterTest extends TestCase
         $gstatus = $game1->gameStatus();
         $this->assertEquals('ready', $gstatus,);
         $this->assertTrue($resultat1);
-        $game1->getBank()->takeCard($desk);
-        $bstatus = $game1->getBank()->getStatus();
-       
+        $game1->getBank()->takeCard($desk);       
         $status = $game1->gameStatus();
 
         $this->assertEquals('ready', $status);

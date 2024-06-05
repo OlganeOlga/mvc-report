@@ -96,7 +96,6 @@ class WinstCounter extends GameInterface
     { 
         foreach ($this->getPlayers() as $player) {
             $pStatus =  $player->getStatus();
-            $playPoints = $player->points();
             switch($pStatus){
                 case 'Black Jack':
                     $player->winGame(3, 2);
@@ -156,6 +155,8 @@ class WinstCounter extends GameInterface
                 }
                 return true;
             case 'play':
+                return false;
+            default:
                 return false;
         }
     }

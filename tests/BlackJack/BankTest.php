@@ -223,7 +223,6 @@ class BankTest extends TestCase
     public function testDealCards(): void
     {
         $bank = new Bank;
-        $player = new Player();
         // Create a stub for the CardGraphics class.
         $card = new CardGraphics();
         $card->set(1, 2);

@@ -33,7 +33,7 @@ class GameTest extends TestCase
         $name = $game->findPlayer('Jul')->getName();
         $this->assertEquals('Jul', $name);
 
-        $game->bankDeal($player, 'Jul');
+        $game->bankDeal($player);
         $this->assertEquals(51, count($game->getDesk()));
     }   
 
@@ -133,7 +133,7 @@ class GameTest extends TestCase
         $game->addPlaying('Jul', $player);
         $this->assertEquals(1, count($game->getPlayers()));
         $this->assertEquals(0, count($game->getPlaying()));
-        $bank = $this->createMock(Bank::class);
+        
         $game->bankBet();
         $points = $game->bankDeal($player);
         $this->assertInstanceOf("\App\BlackJack\Player", $game->findPlayer('Jul'));
