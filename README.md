@@ -13,8 +13,7 @@ Composer (for managing PHP dependencies)
 Web server (Apache, Firwox)
 2. Installation Steps
 - copy the symfony from the projects dir mvc-report/symfony:
-<code>rsync -av mvc-report/* {root of your-repository}</code>
-- install Symphony CLI. See: https://symfony.com/download
+- <code>rsync -av mvc-report/symfony {path-to-your-dir}</code>
 - create application: 
 - run: composer create-project symfony/skeleton:"7.0.*" /name för you app/
 - go to app directory
