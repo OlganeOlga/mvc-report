@@ -124,7 +124,7 @@
     Bank
 
         <span class="phpdocumentor-element__extends">
-        extends <a href="classes/App-BlackJack-Person.html"><abbr title="\App\BlackJack\Person">Person</abbr></a>
+        extends <a href="classes/App-BlackJack-Player.html"><abbr title="\App\BlackJack\Player">Player</abbr></a>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -151,7 +151,7 @@
 
             <p class="phpdocumentor-summary">Class repreents bank in the BlackJack</p>
 
-    <section class="phpdocumentor-description"><p>Chaild class to Person</p>
+    <section class="phpdocumentor-description"><p>Chaild class to Player</p>
 </section>
 
 
@@ -179,37 +179,49 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_betPeng">$betPeng</a>
+    <a href="classes/App-BlackJack-Player.html#property_betPeng">$betPeng</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_blackJack">$blackJack</a>
+    <a href="classes/App-BlackJack-Player.html#property_blackJack">$blackJack</a>
     <span>
                         &nbsp;: bool            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_hand">$hand</a>
+    <a href="classes/App-BlackJack-Player.html#property_hand">$hand</a>
     <span>
                         &nbsp;: <a href="classes/App-BlackJack-Hand.html"><abbr title="\App\BlackJack\Hand">Hand</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_name">$name</a>
+    <a href="classes/App-BlackJack-Player.html#property_insurance">$insurance</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/App-BlackJack-Player.html#property_name">$name</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_profit">$profit</a>
+    <a href="classes/App-BlackJack-Player.html#property_profit">$profit</a>
     <span>
-                        &nbsp;: float            </span>
+                        &nbsp;: int            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/App-BlackJack-Person.html#property_status">$status</a>
+    <a href="classes/App-BlackJack-Player.html#property_split">$split</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/App-BlackJack-Player.html#property_status">$status</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
@@ -230,14 +242,21 @@
 <dd>Composer is parent composer</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_blackJack">blackJack()</a>
+    <a href="classes/App-BlackJack-Player.html#method_blackJack">blackJack()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Test if player get BlackJack</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_countCards">countCards()</a>
+    <a href="classes/App-BlackJack-Player.html#method_canSplit">canSplit()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Can player split hand?</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_countCards">countCards()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
@@ -251,81 +270,118 @@
 <dd>Deal one card for each player in array.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_doBet">doBet()</a>
+    <a href="classes/App-BlackJack-Player.html#method_doBet">doBet()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Sets the betPeng amount of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_getBet">getBet()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getBet">getBet()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Retrieves the current betPeng amount of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_getCard">getCard()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getCard">getCard()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Adds a card to the player&#039;s hand and return status of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Bank.html#method_getHand">getHand()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getHand">getHand()</a>
     <span>
                                 &nbsp;: array&lt;string|int, array&lt;string|int, string&gt;&gt;    </span>
 </dt>
 <dd>Retrieves the array&lt;string[]&gt; representation of the player&#039;s hand.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_getName">getName()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getName">getName()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
+<dd>Retrieves the name of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_getProfit">getProfit()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getProfit">getProfit()</a>
     <span>
-                                &nbsp;: float    </span>
+                                &nbsp;: int    </span>
 </dt>
 <dd>Retrieves the profit earned by the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_getStatus">getStatus()</a>
+    <a href="classes/App-BlackJack-Player.html#method_getStatus">getStatus()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Retrieves the current status of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_points">points()</a>
+    <a href="classes/App-BlackJack-Player.html#method_insurance">insurance()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Retrieves insurance of the player.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_insure">insure()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Insuar PLAYER against banks BlackJack.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_loosGame">loosGame()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Change the profit amount for the player.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_points">points()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Calculates and returns the total points of the player&#039;s hand.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_setName">setName()</a>
+    <a href="classes/App-BlackJack-Player.html#method_setName">setName()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Cjange the name of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/App-BlackJack-Person.html#method_setStatus">setStatus()</a>
+    <a href="classes/App-BlackJack-Player.html#method_setStatus">setStatus()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>change status of the player.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_splitHand">splitHand()</a>
+    <span>
+                                &nbsp;: <abbr title="array{name: string, bet: int, card: \App\BlackJack\CardGraphics}">CardGraphics}</abbr>|null    </span>
+</dt>
+<dd>split hand make copy self, add &quot;-1&quot; to the self name,
+give name self-2 to the new object
+removes one card ajust points
+gives another card it to the new player</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/App-BlackJack-Bank.html#method_takeCard">takeCard()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Take card from desk
-change status</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-BlackJack-Player.html#method_winGame">winGame()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Change the profit amount for the player.</dd>
 
     </dl>
 
@@ -350,13 +406,13 @@ change status</dd>
 >
     <h4 class="phpdocumentor-element__name" id="property_betPeng">
         $betPeng
-        <a href="classes/App-BlackJack-Person.html#property_betPeng" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#property_betPeng" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">25</span>
 
@@ -385,15 +441,15 @@ change status</dd>
 >
     <h4 class="phpdocumentor-element__name" id="property_blackJack">
         $blackJack
-        <a href="classes/App-BlackJack-Person.html#property_blackJack" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#property_blackJack" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">37</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -420,13 +476,13 @@ change status</dd>
 >
     <h4 class="phpdocumentor-element__name" id="property_hand">
         $hand
-        <a href="classes/App-BlackJack-Person.html#property_hand" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#property_hand" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">22</span>
 
@@ -453,15 +509,50 @@ change status</dd>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_name">
-        $name
-        <a href="classes/App-BlackJack-Person.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_insurance">
+        $insurance
+        <a href="classes/App-BlackJack-Player.html#property_insurance" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">37</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$insurance</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>Does player insuerd against banks BlackJack.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_name">
+        $name
+        <a href="classes/App-BlackJack-Player.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">18</span>
 
@@ -490,13 +581,13 @@ change status</dd>
 >
     <h4 class="phpdocumentor-element__name" id="property_profit">
         $profit
-        <a href="classes/App-BlackJack-Person.html#property_profit" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#property_profit" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">34</span>
 
@@ -505,7 +596,7 @@ change status</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">float</span>
+        <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$profit</span>
     </code>
 
@@ -523,15 +614,50 @@ change status</dd>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_status">
-        $status
-        <a href="classes/App-BlackJack-Person.html#property_status" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_split">
+        $split
+        <a href="classes/App-BlackJack-Player.html#property_split" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">43</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$split</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>can player split hand.</p>
+</section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_status">
+        $status
+        <a href="classes/App-BlackJack-Player.html#property_status" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">31</span>
 
@@ -600,13 +726,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_blackJack">
         blackJack()
-        <a href="classes/App-BlackJack-Person.html#method_blackJack" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_blackJack" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">160</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
@@ -634,15 +760,51 @@ in the hand</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_countCards">
-        countCards()
-        <a href="classes/App-BlackJack-Person.html#method_countCards" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_canSplit">
+        canSplit()
+        <a href="classes/App-BlackJack-Player.html#method_canSplit" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">151</span>
+    <span class="phpdocumentor-element-found-in__line">255</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Can player split hand?</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">canSplit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_countCards">
+        countCards()
+        <a href="classes/App-BlackJack-Player.html#method_countCards" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">291</span>
 
     </aside>
 
@@ -678,7 +840,7 @@ in the hand</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Bank.php"><a href="files/src-blackjack-bank.html"><abbr title="src/BlackJack/Bank.php">Bank.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">51</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -719,7 +881,7 @@ in the hand</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>resulting players points</p>
+                <section class="phpdocumentor-description"><p>players points</p>
 </section>
 
             </section>
@@ -733,13 +895,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_doBet">
         doBet()
-        <a href="classes/App-BlackJack-Person.html#method_doBet" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_doBet" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">129</span>
+    <span class="phpdocumentor-element-found-in__line">176</span>
 
     </aside>
 
@@ -777,13 +939,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getBet">
         getBet()
-        <a href="classes/App-BlackJack-Person.html#method_getBet" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getBet" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -817,13 +979,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getCard">
         getCard()
-        <a href="classes/App-BlackJack-Person.html#method_getCard" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getCard" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">125</span>
 
     </aside>
 
@@ -869,13 +1031,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getHand">
         getHand()
-        <a href="classes/App-BlackJack-Bank.html#method_getHand" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getHand" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Bank.php"><a href="files/src-blackjack-bank.html"><abbr title="src/BlackJack/Bank.php">Bank.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">214</span>
 
     </aside>
 
@@ -909,17 +1071,18 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getName">
         getName()
-        <a href="classes/App-BlackJack-Person.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Retrieves the name of the player.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
@@ -933,6 +1096,10 @@ in the hand</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>players name.</p>
+</section>
+
             </section>
 
 </article>
@@ -944,13 +1111,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getProfit">
         getProfit()
-        <a href="classes/App-BlackJack-Person.html#method_getProfit" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getProfit" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">114</span>
 
     </aside>
 
@@ -958,7 +1125,7 @@ in the hand</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getProfit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
+                    <span class="phpdocumentor-signature__name">getProfit</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -968,7 +1135,7 @@ in the hand</p>
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">float</span>
+        <span class="phpdocumentor-signature__response_type">int</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>The profit earned by the player.</p>
 </section>
@@ -984,13 +1151,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_getStatus">
         getStatus()
-        <a href="classes/App-BlackJack-Person.html#method_getStatus" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_getStatus" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
     </aside>
 
@@ -1022,15 +1189,148 @@ in the hand</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_points">
-        points()
-        <a href="classes/App-BlackJack-Person.html#method_points" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_insurance">
+        insurance()
+        <a href="classes/App-BlackJack-Player.html#method_insurance" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves insurance of the player.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">insurance</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The currentinsurance.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_insure">
+        insure()
+        <a href="classes/App-BlackJack-Player.html#method_insure" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Insuar PLAYER against banks BlackJack.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">insure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_loosGame">
+        loosGame()
+        <a href="classes/App-BlackJack-Player.html#method_loosGame" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">202</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Change the profit amount for the player.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">loosGame</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$multiplicate</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$devide</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$multiplicate</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>multiplicate bet</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$devide</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>divide bet</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$this-&gt;profit</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_points">
+        points()
+        <a href="classes/App-BlackJack-Player.html#method_points" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">165</span>
 
     </aside>
 
@@ -1064,13 +1364,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_setName">
         setName()
-        <a href="classes/App-BlackJack-Person.html#method_setName" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_setName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -1106,13 +1406,13 @@ in the hand</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_setStatus">
         setStatus()
-        <a href="classes/App-BlackJack-Person.html#method_setStatus" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/App-BlackJack-Player.html#method_setStatus" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Person.php"><a href="files/src-blackjack-person.html"><abbr title="src/BlackJack/Person.php">Person.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -1156,6 +1456,45 @@ in the hand</p>
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_splitHand">
+        splitHand()
+        <a href="classes/App-BlackJack-Player.html#method_splitHand" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">269</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">split hand make copy self, add &quot;-1&quot; to the self name,
+give name self-2 to the new object
+removes one card ajust points
+gives another card it to the new player</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">splitHand</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="array{name: string, bet: int, card: \App\BlackJack\CardGraphics}">CardGraphics}</abbr>|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="array{name: string, bet: int, card: \App\BlackJack\CardGraphics}">CardGraphics}</abbr>|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_takeCard">
         takeCard()
         <a href="classes/App-BlackJack-Bank.html#method_takeCard" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1164,13 +1503,11 @@ in the hand</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Bank.php"><a href="files/src-blackjack-bank.html"><abbr title="src/BlackJack/Bank.php">Bank.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Take card from desk
-change status</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">takeCard</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/App-BlackJack-Desk.html"><abbr title="\App\BlackJack\Desk">Desk</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$desk</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
@@ -1194,6 +1531,67 @@ change status</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_winGame">
+        winGame()
+        <a href="classes/App-BlackJack-Player.html#method_winGame" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/BlackJack/Player.php"><a href="files/src-blackjack-player.html"><abbr title="src/BlackJack/Player.php">Player.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">188</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Change the profit amount for the player.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">winGame</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$multiplicate</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$devide</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$multiplicate</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>multiplicate bet</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$devide</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>divide bet</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>$this-&gt;profit</p>
+</section>
+
             </section>
 
 </article>
@@ -1310,12 +1708,14 @@ change status</p>
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_betPeng">$betPeng<a href="classes/App-BlackJack-Bank.html"></li>
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_blackJack">$blackJack<a href="classes/App-BlackJack-Bank.html"></li>
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_hand">$hand<a href="classes/App-BlackJack-Bank.html"></li>
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_name">$name<a href="classes/App-BlackJack-Bank.html"></li>
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_profit">$profit<a href="classes/App-BlackJack-Bank.html"></li>
-                                                    <li><a href="classes/App-BlackJack-Person.html#property_status">$status<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_betPeng">$betPeng<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_blackJack">$blackJack<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_hand">$hand<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_insurance">$insurance<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_name">$name<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_profit">$profit<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_split">$split<a href="classes/App-BlackJack-Bank.html"></li>
+                                                    <li><a href="classes/App-BlackJack-Player.html#property_status">$status<a href="classes/App-BlackJack-Bank.html"></li>
                                             </ul>
                 </li>
             
@@ -1323,20 +1723,26 @@ change status</p>
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/App-BlackJack-Bank.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_blackJack">blackJack()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_countCards">countCards()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_blackJack">blackJack()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_canSplit">canSplit()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_countCards">countCards()</a></li>
                                             <li><a href="classes/App-BlackJack-Bank.html#method_dealCards">dealCards()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_doBet">doBet()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_getBet">getBet()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_getCard">getCard()</a></li>
-                                            <li><a href="classes/App-BlackJack-Bank.html#method_getHand">getHand()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_getName">getName()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_getProfit">getProfit()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_getStatus">getStatus()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_points">points()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_setName">setName()</a></li>
-                                            <li><a href="classes/App-BlackJack-Person.html#method_setStatus">setStatus()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_doBet">doBet()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getBet">getBet()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getCard">getCard()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getHand">getHand()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getName">getName()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getProfit">getProfit()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_getStatus">getStatus()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_insurance">insurance()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_insure">insure()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_loosGame">loosGame()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_points">points()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_setName">setName()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_setStatus">setStatus()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_splitHand">splitHand()</a></li>
                                             <li><a href="classes/App-BlackJack-Bank.html#method_takeCard">takeCard()</a></li>
+                                            <li><a href="classes/App-BlackJack-Player.html#method_winGame">winGame()</a></li>
                                     </ul>
             </li>
                     </ul>

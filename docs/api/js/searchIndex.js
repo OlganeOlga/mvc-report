@@ -11,11 +11,6 @@ Search.appendIndex(
             "summary": "Composer\u0020is\u0020parent\u0020composer",
             "url": "classes/App-BlackJack-Bank.html#method___construct"
         },                {
-            "fqsen": "\\App\\BlackJack\\Bank\u003A\u003AgetHand\u0028\u0029",
-            "name": "getHand",
-            "summary": "Retrieves\u0020the\u0020array\u003Cstring\u005B\u005D\u003E\u0020representation\u0020of\u0020the\u0020player\u0027s\u0020hand.",
-            "url": "classes/App-BlackJack-Bank.html#method_getHand"
-        },                {
             "fqsen": "\\App\\BlackJack\\Bank\u003A\u003AdealCards\u0028\u0029",
             "name": "dealCards",
             "summary": "Deal\u0020one\u0020card\u0020for\u0020each\u0020player\u0020in\u0020array.",
@@ -23,7 +18,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\BlackJack\\Bank\u003A\u003AtakeCard\u0028\u0029",
             "name": "takeCard",
-            "summary": "Take\u0020card\u0020from\u0020desk\nchange\u0020status",
+            "summary": "",
             "url": "classes/App-BlackJack-Bank.html#method_takeCard"
         },                {
             "fqsen": "\\App\\BlackJack\\Card",
@@ -151,86 +146,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-BlackJack-Desk.html#property_play"
         },                {
-            "fqsen": "\\App\\BlackJack\\Game",
-            "name": "Game",
-            "summary": "Class\u0020Game\u0020contain\u0020basic\u0020game\u0020logic\u0020for\u0020Black\u0020Jack.",
-            "url": "classes/App-BlackJack-Game.html"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020method\u0020that\u0020initializes\u0020the\u0020game\u0020with\u0020default\u0020objects\u0020and\u0020sets\u0020the\u0020initial\u0020game\u0020status.",
-            "url": "classes/App-BlackJack-Game.html#method___construct"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AsetBank\u0028\u0029",
-            "name": "setBank",
-            "summary": "Set\u0020bank.",
-            "url": "classes/App-BlackJack-Game.html#method_setBank"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AaddPlaying\u0028\u0029",
-            "name": "addPlaying",
-            "summary": "add\u0020player\u0020if\u0020a\u0020player\u0020split\u0020hand",
-            "url": "classes/App-BlackJack-Game.html#method_addPlaying"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AfindPlayer\u0028\u0029",
-            "name": "findPlayer",
-            "summary": "Get\u0020players",
-            "url": "classes/App-BlackJack-Game.html#method_findPlayer"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AgetDesk\u0028\u0029",
-            "name": "getDesk",
-            "summary": "Get\u0020desk\u0020in\u0020current\u0020status\u0020of\u0020the\u0020palay",
-            "url": "classes/App-BlackJack-Game.html#method_getDesk"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AbankBet\u0028\u0029",
-            "name": "bankBet",
-            "summary": "create\u0020and\u0020returns\u0020banks\u0020bet",
-            "url": "classes/App-BlackJack-Game.html#method_bankBet"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AgetPlayers\u0028\u0029",
-            "name": "getPlayers",
-            "summary": "Get\u0020players\u0020as\u0020array",
-            "url": "classes/App-BlackJack-Game.html#method_getPlayers"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AgetPlaying\u0028\u0029",
-            "name": "getPlaying",
-            "summary": "Get\u0020active\u0020players\u0020as\u0020array",
-            "url": "classes/App-BlackJack-Game.html#method_getPlaying"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AshuffleDesk\u0028\u0029",
-            "name": "shuffleDesk",
-            "summary": "Shuffles\u0020all\u0020cards\u0020in\u0020the\u0020deck.",
-            "url": "classes/App-BlackJack-Game.html#method_shuffleDesk"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AbankDeal\u0028\u0029",
-            "name": "bankDeal",
-            "summary": "Deal\u0020cards\u0020for\u0020a\u0020player.",
-            "url": "classes/App-BlackJack-Game.html#method_bankDeal"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AgetBank\u0028\u0029",
-            "name": "getBank",
-            "summary": "Get\u0020bank.",
-            "url": "classes/App-BlackJack-Game.html#method_getBank"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003AgameStatus\u0028\u0029",
-            "name": "gameStatus",
-            "summary": "check\u0020if\u0020player\u0020can\u0020win\u0020with\u0020his\u0020black\u0020jack",
-            "url": "classes/App-BlackJack-Game.html#method_gameStatus"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003A\u0024desk",
-            "name": "desk",
-            "summary": "",
-            "url": "classes/App-BlackJack-Game.html#property_desk"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003A\u0024playing",
-            "name": "playing",
-            "summary": "",
-            "url": "classes/App-BlackJack-Game.html#property_playing"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Game\u003A\u003A\u0024bank",
-            "name": "bank",
-            "summary": "",
-            "url": "classes/App-BlackJack-Game.html#property_bank"
-        },                {
             "fqsen": "\\App\\BlackJack\\Hand",
             "name": "Hand",
             "summary": "",
@@ -296,105 +211,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-BlackJack-Hand.html#property_points"
         },                {
-            "fqsen": "\\App\\BlackJack\\Person",
-            "name": "Person",
-            "summary": "Represents\u0020a\u0020person\u0020playing\u0020the\u0020game.",
-            "url": "classes/App-BlackJack-Person.html"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Constructor\u0020method\u0020that\u0020initializes\u0020a\u0020player\u0020with\u0020an\u0020empty\u0020hand,\u0020zero\u0020betPeng,\u0020and\u0020zero\u0020profit.",
-            "url": "classes/App-BlackJack-Person.html#method___construct"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#method_getName"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AsetName\u0028\u0029",
-            "name": "setName",
-            "summary": "Cjange\u0020the\u0020name\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_setName"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AgetBet\u0028\u0029",
-            "name": "getBet",
-            "summary": "Retrieves\u0020the\u0020current\u0020betPeng\u0020amount\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_getBet"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AgetProfit\u0028\u0029",
-            "name": "getProfit",
-            "summary": "Retrieves\u0020the\u0020profit\u0020earned\u0020by\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_getProfit"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AgetStatus\u0028\u0029",
-            "name": "getStatus",
-            "summary": "Retrieves\u0020the\u0020current\u0020status\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_getStatus"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AsetStatus\u0028\u0029",
-            "name": "setStatus",
-            "summary": "change\u0020status\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_setStatus"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003Apoints\u0028\u0029",
-            "name": "points",
-            "summary": "Calculates\u0020and\u0020returns\u0020the\u0020total\u0020points\u0020of\u0020the\u0020player\u0027s\u0020hand.",
-            "url": "classes/App-BlackJack-Person.html#method_points"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AdoBet\u0028\u0029",
-            "name": "doBet",
-            "summary": "Sets\u0020the\u0020betPeng\u0020amount\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_doBet"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AgetCard\u0028\u0029",
-            "name": "getCard",
-            "summary": "Adds\u0020a\u0020card\u0020to\u0020the\u0020player\u0027s\u0020hand\u0020and\u0020return\u0020status\u0020of\u0020the\u0020player.",
-            "url": "classes/App-BlackJack-Person.html#method_getCard"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003AcountCards\u0028\u0029",
-            "name": "countCards",
-            "summary": "Count\u0020cards\u0020in\u0020hand\u0020of\u0020player",
-            "url": "classes/App-BlackJack-Person.html#method_countCards"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024blackJack",
-            "name": "blackJack",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_blackJack"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_name"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024hand",
-            "name": "hand",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_hand"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024betPeng",
-            "name": "betPeng",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_betPeng"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024status",
-            "name": "status",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_status"
-        },                {
-            "fqsen": "\\App\\BlackJack\\Person\u003A\u003A\u0024profit",
-            "name": "profit",
-            "summary": "",
-            "url": "classes/App-BlackJack-Person.html#property_profit"
-        },                {
             "fqsen": "\\App\\BlackJack\\Player",
             "name": "Player",
-            "summary": "Represents\u0020a\u0020player\u0020in\u0020the\u0020game\u0020chaild\u0020class\u0020to\u0020Person.",
+            "summary": "Represents\u0020a\u0020player\u0020in\u0020the\u0020game.",
             "url": "classes/App-BlackJack-Player.html"
         },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020method\u0020that\u0020initializes\u0020a\u0020player\u0020with\u0020an\u0020empty\u0020hand,\u0020zero\u0020betPeng,\u0020and\u0020zero\u0020profit.",
             "url": "classes/App-BlackJack-Player.html#method___construct"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Retrieves\u0020the\u0020name\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_getName"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "Cjange\u0020the\u0020name\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_setName"
         },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024insurance",
             "name": "insurance",
@@ -406,10 +241,40 @@ Search.appendIndex(
             "summary": "Insuar\u0020PLAYER\u0020against\u0020banks\u0020BlackJack.",
             "url": "classes/App-BlackJack-Player.html#method_insure"
         },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AgetBet\u0028\u0029",
+            "name": "getBet",
+            "summary": "Retrieves\u0020the\u0020current\u0020betPeng\u0020amount\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_getBet"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AgetProfit\u0028\u0029",
+            "name": "getProfit",
+            "summary": "Retrieves\u0020the\u0020profit\u0020earned\u0020by\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_getProfit"
+        },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003AgetCard\u0028\u0029",
             "name": "getCard",
-            "summary": "Overrid\u0020parent\u0020methods\u0020getCard\nAdds\u0020a\u0020card\u0020to\u0020the\u0020player\u0027s\u0020hand\u0020and\u0020palyers\u0020points.",
+            "summary": "Adds\u0020a\u0020card\u0020to\u0020the\u0020player\u0027s\u0020hand\u0020and\u0020return\u0020status\u0020of\u0020the\u0020player.",
             "url": "classes/App-BlackJack-Player.html#method_getCard"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AgetStatus\u0028\u0029",
+            "name": "getStatus",
+            "summary": "Retrieves\u0020the\u0020current\u0020status\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_getStatus"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AsetStatus\u0028\u0029",
+            "name": "setStatus",
+            "summary": "change\u0020status\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_setStatus"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003Apoints\u0028\u0029",
+            "name": "points",
+            "summary": "Calculates\u0020and\u0020returns\u0020the\u0020total\u0020points\u0020of\u0020the\u0020player\u0027s\u0020hand.",
+            "url": "classes/App-BlackJack-Player.html#method_points"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AdoBet\u0028\u0029",
+            "name": "doBet",
+            "summary": "Sets\u0020the\u0020betPeng\u0020amount\u0020of\u0020the\u0020player.",
+            "url": "classes/App-BlackJack-Player.html#method_doBet"
         },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003AwinGame\u0028\u0029",
             "name": "winGame",
@@ -426,6 +291,11 @@ Search.appendIndex(
             "summary": "Retrieves\u0020the\u0020array\u003Cstring\u005B\u005D\u003E\u0020representation\u0020of\u0020the\u0020player\u0027s\u0020hand.",
             "url": "classes/App-BlackJack-Player.html#method_getHand"
         },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024blackJack",
+            "name": "blackJack",
+            "summary": "",
+            "url": "classes/App-BlackJack-Player.html#property_blackJack"
+        },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003AcanSplit\u0028\u0029",
             "name": "canSplit",
             "summary": "Can\u0020player\u0020split\u0020hand\u003F",
@@ -433,58 +303,43 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003AsplitHand\u0028\u0029",
             "name": "splitHand",
-            "summary": "split\u0020hand\u0020make\u0020copy\u0020self,\u0020add\u0020\u0027\u002D1\u0027\u0020to\u0020the\u0020self\u0020name,\ngive\u0020name\u0020self\u002D2\u0020to\u0020the\u0020new\u0020object\nremoves\u0020one\u0020card\u0020ajust\u0020points\ngives\u0020another\u0020card\u0020it\u0020to\u0020the\u0020new\u0020player",
+            "summary": "split\u0020hand\u0020make\u0020copy\u0020self,\u0020add\u0020\u0022\u002D1\u0022\u0020to\u0020the\u0020self\u0020name,\ngive\u0020name\u0020self\u002D2\u0020to\u0020the\u0020new\u0020object\nremoves\u0020one\u0020card\u0020ajust\u0020points\ngives\u0020another\u0020card\u0020it\u0020to\u0020the\u0020new\u0020player",
             "url": "classes/App-BlackJack-Player.html#method_splitHand"
         },                {
-            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024blackJack",
-            "name": "blackJack",
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003AcountCards\u0028\u0029",
+            "name": "countCards",
+            "summary": "Count\u0020cards\u0020in\u0020hand\u0020of\u0020player",
+            "url": "classes/App-BlackJack-Player.html#method_countCards"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024name",
+            "name": "name",
             "summary": "",
-            "url": "classes/App-BlackJack-Player.html#property_blackJack"
+            "url": "classes/App-BlackJack-Player.html#property_name"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024hand",
+            "name": "hand",
+            "summary": "",
+            "url": "classes/App-BlackJack-Player.html#property_hand"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024betPeng",
+            "name": "betPeng",
+            "summary": "",
+            "url": "classes/App-BlackJack-Player.html#property_betPeng"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024status",
+            "name": "status",
+            "summary": "",
+            "url": "classes/App-BlackJack-Player.html#property_status"
+        },                {
+            "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024profit",
+            "name": "profit",
+            "summary": "",
+            "url": "classes/App-BlackJack-Player.html#property_profit"
         },                {
             "fqsen": "\\App\\BlackJack\\Player\u003A\u003A\u0024split",
             "name": "split",
             "summary": "",
             "url": "classes/App-BlackJack-Player.html#property_split"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter",
-            "name": "WinstCounter",
-            "summary": "Class\u0020WinstCouter\u0020contain\u0020functions\u0020f\u00F6r\u0020endig\u0020of\u0020game\u0020and\u0020conting\u0020wins\nfor\u0020Black\u0020Jack.",
-            "url": "classes/App-BlackJack-WinstCounter.html"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "__constructor",
-            "url": "classes/App-BlackJack-WinstCounter.html#method___construct"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003AwinstIfBankBlackJack\u0028\u0029",
-            "name": "winstIfBankBlackJack",
-            "summary": "Count\u0020winst\u0020if\u0020bankfat",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_winstIfBankBlackJack"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003AwinstIfBankGet21\u0028\u0029",
-            "name": "winstIfBankGet21",
-            "summary": "Count\u0020winst\u0020if\u0020bank\u0020Black\u0020Jack",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_winstIfBankGet21"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003AwinstIfBankPlay\u0028\u0029",
-            "name": "winstIfBankPlay",
-            "summary": "Count\u0020winst\u0020if\u0020bank\u0020has\u0020less\u0020than\u002021\u0020points",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_winstIfBankPlay"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003AwinstIfBankFat\u0028\u0029",
-            "name": "winstIfBankFat",
-            "summary": "Count\u0020winst\u0020if\u0020bank\u0020fat",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_winstIfBankFat"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003AcountWinst\u0028\u0029",
-            "name": "countWinst",
-            "summary": "Count\u0020winst\u0020based\u0020on\u0020bank\u0020status",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_countWinst"
-        },                {
-            "fqsen": "\\App\\BlackJack\\WinstCounter\u003A\u003Afinish\u0028\u0029",
-            "name": "finish",
-            "summary": "see\u0020if\u0020game\u0020is\u0020over",
-            "url": "classes/App-BlackJack-WinstCounter.html#method_finish"
         },                {
             "fqsen": "\\App\\Card\\Card",
             "name": "Card",
@@ -1025,6 +880,11 @@ Search.appendIndex(
             "name": "ProjectApiController",
             "summary": "",
             "url": "classes/App-Controller-ProjectApiController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor",
+            "url": "classes/App-Controller-ProjectApiController.html#method___construct"
         },                {
             "fqsen": "\\App\\Controller\\ProjectApiController\u003A\u003Aproject\u0028\u0029",
             "name": "project",

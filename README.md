@@ -3,35 +3,7 @@
 The project is a study-project for the cours MVC (Objektorienterade webbteknologier)
 Main programming language PHP
 
-Project is made on the basis of Symphony framework
-
-## Authors
-the project is made by Olga Egorova
-
-# Scrutinizer
-
-<div class="scrutiniser">
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-    <li>
-        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
-            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=godTest" alt="Scrutinizer Code Build">
-        </a>
-    </li>
-</div>
+Project wa done on the basis of Symphony framework
 
 ## Installation
 1. Prerequisites
@@ -40,24 +12,19 @@ PHP version higher than 8.2
 Composer (for managing PHP dependencies)
 Web server (Apache, Firwox)
 2. Installation Steps
-- copy the symfony-project from the projects dir mvc-report/:
-<code>rsync -av mvc-report/* {path-to-your-dir}/</code>
-- install requaires:
-<code>composer create-project symfony/skeleton:"7.0.*" app</code>
-<code>cd app</code>
-<code>composer require webapp</code>
-<code>composer require twig</code>
-<code>composer require symfony/webpack-encore-bundle</code>
-<code>npm install</code>
-
-Now you can run the application locally from the directory pf the application: 
-<code>php -S localhost:8888 -t public</code>
+- copy the symfony from the projects dir mvc-report/symfony:
+<code>rsync -av mvc-report/* {root of your-repository}</code>
+- install Symphony CLI. See: https://symfony.com/download
+- create application: 
+- run: composer create-project symfony/skeleton:"7.0.*" /name för you app/
+- go to app directory
+- run: composer require webapp
+Now you can start to build your app
 
 3. This project use requireties: 
 - webapp
 - twig
 - symfony/webpack-encore-bundle
-AND if you want to run test and othe fiatures:
 - php-cs-fixer
 - phpmd
 - phpstan
@@ -65,13 +32,15 @@ AND if you want to run test and othe fiatures:
 - symfony/orm-pack
 - symfony/maker-bundle
 
-RUN npm istall to get the requireties
+- RUN npm istall to get the requireties
 
 
 ## Usage
 
 You can navigate to all pages through links in the headers 
 
+## Authors
+the project is made by Olga Egorova
 
 # Scrutinizer
 
