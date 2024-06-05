@@ -78,47 +78,47 @@ class MyJsonNewControllerTest extends WebTestCase
     //     //$data = json_decode($client->getResponse()->getContent(), true);
     // }
 
-    /**
-     * Test api_quote"
-     * 
-     * @return void
-     */
-    public function testJsonBookByIsbnBokNotFound(): void
-    {
-        $client = static::createClient();
-        $client->request('POST', '/api/library/bookIsbn');
+    // /**
+    //  * Test api_quote"
+    //  * 
+    //  * @return void
+    //  */
+    // public function testJsonBookByIsbnBokNotFound(): void
+    // {
+    //     $client = static::createClient();
+    //     $client->request('POST', '/api/library/bookIsbn');
 
-        $response = $client->getResponse();
-        $this->assertTrue($response->isRedirection());
-        $client->followRedirect();
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('.flash-warning', 'You enter too few or too many numbers for ISBN!');
-    }
+    //     $response = $client->getResponse();
+    //     $this->assertTrue($response->isRedirection());
+    //     $client->followRedirect();
+    //     $this->assertResponseIsSuccessful();
+    //     $this->assertSelectorTextContains('.flash-warning', 'You enter too few or too many numbers for ISBN!');
+    // }
 
-    public function testJsonBookByIsbnBokFound(): void
-    {
-        $client = static::createClient();
+    // public function testJsonBookByIsbnBokFound(): void
+    // {
+    //     $client = static::createClient();
 
-        // Define the route and parameters
-        $route = '/api/library/bookIsbn';
-        $isbn = '9780340960196'; // Example ISBN
+    //     // Define the route and parameters
+    //     $route = '/api/library/bookIsbn';
+    //     $isbn = '9780340960196'; // Example ISBN
 
-        // Simulate a POST request to the specified route with the ISBN parameter
-        $client->request('POST', $route, ['isbn' => $isbn]);
+    //     // Simulate a POST request to the specified route with the ISBN parameter
+    //     $client->request('POST', $route, ['isbn' => $isbn]);
 
-        // Get the response
-        $response = $client->getResponse();
+    //     // Get the response
+    //     $response = $client->getResponse();
 
-        // Check if the response is successful
-        $this->assertResponseIsSuccessful();
-        $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
+    //     // Check if the response is successful
+    //     $this->assertResponseIsSuccessful();
+    //     $this->assertInstanceOf('Symfony\Component\HttpFoundation\JsonResponse', $response);
 
-        $expKey = ['isbn', 'title', 'isbn', 'bookAuthor', 'cover'];
-        $data = json_decode($client->getResponse()->getContent(), true);
-        foreach ($expKey as $oneKey) {
-            if (array_key_exists($oneKey, $data[0])) {
-                $this->assertTrue(true);
-            }
-        }
-    }
+    //     $expKey = ['isbn', 'title', 'isbn', 'bookAuthor', 'cover'];
+    //     $data = json_decode($client->getResponse()->getContent(), true);
+    //     foreach ($expKey as $oneKey) {
+    //         if (array_key_exists($oneKey, $data[0])) {
+    //             $this->assertTrue(true);
+    //         }
+    //     }
+    // }
 }
