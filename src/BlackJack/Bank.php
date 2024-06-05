@@ -2,9 +2,6 @@
 
 namespace App\BlackJack;
 
-// use App\BlackJack\CardGraphics;
-// use App\BlackJack\Hand;
-
 /**
  * Class repreents bank in the BlackJack
  *

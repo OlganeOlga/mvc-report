@@ -8,6 +8,30 @@ Project is made on the basis of Symphony framework
 ## Authors
 the project is made by Olga Egorova
 
+# Scrutinizer
+
+<div class="scrutiniser">
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/quality-score.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/coverage.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/build.png?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+    <li>
+        <a href='https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/?branch=godTest'</a>
+            <img src="https://scrutinizer-ci.com/g/OlganeOlga/mvc-report/badges/code-intelligence.svg?b=godTest" alt="Scrutinizer Code Build">
+        </a>
+    </li>
+</div>
 
 ## Installation
 1. Prerequisites

@@ -51,8 +51,6 @@ class ProjectController extends AbstractController
     #[Route("/proj/about", name: "aboutProject")] // Start route for Game
     public function aboutProject(): Response
     {
-        //$session->clear();
-        // $this->game->toSession($session);
         return $this->render('project/about.html.twig');
     }
 
@@ -66,8 +64,7 @@ class ProjectController extends AbstractController
         $cardRand = new CardGraphics;
         $cardRand->getRandom();
         $cardUrl = $cardRand->getUrl();
-        //$session->clear();
-        // $this->game->toSession($session);
+
         return $this->render('project/test/one.html.twig', ["url" => $cardUrl]);
     }
 
@@ -142,14 +139,6 @@ class ProjectController extends AbstractController
         $this->game = $session->get('game');
         $names = $session->get('names');  
         
-        // if ($this->game === null) {
-        //     throw new \Exception('Game object is null');
-        // }
-
-        // if ($names === null) {
-        //     throw new \Exception('Names array is null');
-        // }
-        
         foreach($names as $name) {
             $player = new Player();
             $player->setName($name);
@@ -222,9 +211,6 @@ class ProjectController extends AbstractController
             case '1:1':
                 $player->winGame(1, 1);
                 break;
-            // case 'Black Jack':
-            //     $player->winGame(3, 2);// will be moved to ready array with winning
-            //     break;
         }
 
         //$this->game->newCardToBank();
@@ -233,7 +219,7 @@ class ProjectController extends AbstractController
             $this->game->countWinst();
             $data = $this->game->getGame();
             $session->set('data', $data);
-            //$session->set('finish', $this->game->finish());
+
             return $this->redirectToRoute('finish');
         }
         $data = $this->game->getGame();

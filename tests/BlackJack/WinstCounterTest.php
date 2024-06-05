@@ -54,64 +54,6 @@ class WinstCounterTest extends TestCase
         $this->assertInstanceOf("\App\BlackJack\Player", $game->findPlayer('Jul'));
         $this->assertEquals(1, count($game->getPlayers()));
     }
-
-    // /**
-    //  * Teast newCardToBank
-    //  * 
-    //  * @return void
-    //  */
-    // public function testNewCardToBank(): void
-    // {
-    //     $game = new WinstCounter();
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(true, $result);
-        
-    //     $player = new Player();
-    //     $player->setName('Jul');
-    //     $game->addPlaying('Jul', $player);
-    //     $active = $game->getPlaying();
-    //     $this->assertEquals(1, count($active));
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(false, $result);
-    // }
-
-    // /**
-    //  * Teast newCardToBank bank points < 17
-    //  * 
-    //  * @return void
-    //  */
-    // public function testNewCardToBanklessThan17(): void
-    // {
-    //     $game = new WinstCounter();
-    //     $player = $this->createMock(Player::class);
-    //     $player->method('countCards')->willReturn(2);
-    //     $player->method('getStatus')->willReturn('play');
-    //     $player->method('getName')->willReturn('Jul');
-    //     $game->addPlaying('Jul', $player);
-    //     $bankP = $game->getBank()->points();
-    //     $bankK = $game->getBank()->countCards();
-    //     $this->assertEquals(0, $bankP);
-    //     $active = $game->getPlaying();
-    //     $this->assertEquals(1, count($active));
-    //     $this->assertEquals(0, $bankK);
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(true, $result);
-    // }
-
-    //     /**
-    //  * Teast newCardToBank
-    //  * 
-    //  * @return void
-    //  */
-    // public function testNewCardToBank18(): void
-    // {
-    //     $game = new WinstCounter();
-    //     $bank = $this->createMock(Bank::class);
-    //     $bank->method('points')->willReturn(18);
-    //     $game->setBank($bank);
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(false, $result);
-    // }
    
     /**
      * Teast firstDeal

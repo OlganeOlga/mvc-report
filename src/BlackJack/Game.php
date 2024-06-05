@@ -96,17 +96,6 @@ class Game {
         return $this->bank->getBet();
     }
 
-    // /**
-    //  * create and returns banks bet
-    //  *
-    //  * @param Player $player
-    //  * @return void
-    //  */
-    // public function deal(Player $player): void
-    // {
-    //     $this->bank->dealCards($this->desk, $player);
-    // }
-
     /**
      * Get players as array
      * 
@@ -168,16 +157,6 @@ class Game {
     {
         return $this->bank;
     }
-
-    // /**
-    //  * Get bank.
-    //  * 
-    //  * @return string Bankstatsu
-    //  */
-    // public function getBankStatus(): string
-    // {
-    //     return $this->bank->getStatus();
-    // }
 
     /**
      * check if player can win with his black jack

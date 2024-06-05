@@ -2,9 +2,6 @@
 
 namespace App\BlackJack;
 
-// use App\BlackJack\CardGraphics;
-// use App\BlackJack\Hand;
-
 /**
  * Represents a player in the game chaild class to Person.
  *
