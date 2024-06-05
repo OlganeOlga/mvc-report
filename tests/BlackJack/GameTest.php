@@ -68,14 +68,27 @@ class GameTest extends TestCase
         $player = new Player();
         $player->setName('Jul');
         $game->addPlaying('Jul', $player);
-        $this->assertTrue(count($game->getPlaying()) === 1);
-
-        while(count($game->getPlayers()) === 1) {
-            $game->bankDeal($player, 'Jul');
-        }
 
         $this->assertInstanceOf("\App\BlackJack\Player", $game->findPlayer('Jul'));
-        $this->assertTrue(count($game->getPlaying()) === 0);
+    }
+
+    /**
+     * Get activ players
+     * 
+     * @return void
+     */
+    public function testGetPlaying(): void
+    {
+        $game = new Game();
+
+        $player = new Player();
+        $player->setName('Jul');
+        $game->addPlaying('Jul', $player);
+
+        $result = $game->getPlaying();
+        $this->assertInstanceOf("\App\BlackJack\Player", $result['Jul']);
+        $status = $result['Jul']->getStatus();
+        $this->assertEquals('play', $status);
     }
 
     /**
@@ -94,7 +107,7 @@ class GameTest extends TestCase
     }
 
     /**
-     * Teast shuffle
+     * Teast bankBet
      * 
      * @return void
      */
@@ -105,25 +118,6 @@ class GameTest extends TestCase
         $this->assertIsInt($result);
         $this->assertLessThanOrEqual(30, $result);
     }
-
-    //  /**
-    //  * Teast newCardToBank
-    //  * 
-    //  * @return void
-    //  */
-    // public function testNewCardToBank(): void
-    // {
-    //     $game = new Game();
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(10, $result);
-    //     $player = $this->createMock(Player::class);
-    //     $player->method('points')->willReturn(2);
-    //     $player->method('getName')->willReturn('Jul');
-    //     $player->method('countCards')->willReturn(0);
-    //     $game->addPlaying('Jul', $player);
-    //     $result = $game->newCardToBank();
-    //     $this->assertEquals(0, $result);
-    // }
 
     /**
      * Teast bankDeal
@@ -139,10 +133,11 @@ class GameTest extends TestCase
         $game->addPlaying('Jul', $player);
         $this->assertEquals(1, count($game->getPlayers()));
         $this->assertEquals(0, count($game->getPlaying()));
+        $bank = $this->createMock(Bank::class);
         $game->bankBet();
-        $game->bankDeal($player, 'Jul');
+        $points = $game->bankDeal($player);
         $this->assertInstanceOf("\App\BlackJack\Player", $game->findPlayer('Jul'));
-        $this->assertEquals(1, count($game->getPlayers()));
+        $this->assertTrue($points > 0);
     }
 
     /**
@@ -165,7 +160,7 @@ class GameTest extends TestCase
      */
     public function testSetBank(): void
     {
-        $game = new Game();
+        $game = new GameInterface();
         $bank= $this->createMock(Bank::class);
         $bank->method('points')->willReturn(22);
         $bank->method('blackJack')->willReturn(true);
@@ -174,5 +169,58 @@ class GameTest extends TestCase
         $this->assertInstanceOf("\App\BlackJack\Bank", $newBank);
         $this->assertTrue($newBank->blackJack());
         $this->assertEquals(22, $newBank->points());
+    }
+
+
+    /**
+     * Teast gameStatus
+     * 
+     * @return void
+     */
+    public function testGameStatus(): void
+    {
+        $game = new Game();
+        $bank = new Bank();
+
+        $card = new CardGraphics();
+        $card->set(1, 2);
+        $card1 = new CardGraphics();
+        $card1->set(0, 2);
+        $card2 = new CardGraphics();
+        $card2->set(9, 2);
+        $card3 = new CardGraphics();
+        $card3->set(5, 2);
+        // Configure the stubDesk.
+        $desk = $this->createMock(Desk::class);
+        $desk->method('takeCard')->willReturn($card1);
+
+        // Configure the stubDesk1.
+        $desk1 = $this->createMock(Desk::class);
+        $desk1->method('takeCard')->willReturn($card2);
+        
+        $bank->takeCard($desk);
+        $bank->takeCard($desk1);
+        $game->setBank($bank);
+        $status = $game->gameStatus();
+       
+        $this->assertEquals('Black Jack', $status);
+    }
+
+        /**
+     * Teast gameStatus get no playing
+     * 
+     * @return void
+     */
+    public function testGameStatusNoPlaying(): void
+    {
+        $game = new Game();
+        $bank = new Bank();
+
+        $game->setBank($bank);
+        $status = $game->gameStatus();
+       
+        //$this->assertTrue($game->getBank()->getStatus() === 'play' && ($game->getPlaying()) === 0);
+        $this->assertEquals(0, count($game->getPlaying()));
+        $this->assertEquals('no playing', $status);
     }
 }

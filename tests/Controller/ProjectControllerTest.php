@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\BlackJack\CardGraphics;
 use App\BlackJack\Player;
 use App\BlackJack\Bank;
-//use App\BlackJack\Game;
+use App\BlackJack\WinstCounter;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

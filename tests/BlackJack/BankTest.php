@@ -142,7 +142,7 @@ class BankTest extends TestCase
         
         $points = $bank->points();
         $status = $bank->getStatus();
-        $this->assertEquals('win', $status);
+        $this->assertEquals('21', $status);
         $this->assertTrue($points === 21);
     }
 
@@ -216,24 +216,95 @@ class BankTest extends TestCase
     }
 
     /**
-     * test if object bank can use takeCard()
+     * test if object bank can use dealCard()
      * and getPoints()
      * using mock CardGraphics object and mock Desk object
      */
     public function testDealCards(): void
     {
         $bank = new Bank;
+        $player = new Player();
         // Create a stub for the CardGraphics class.
         $card = new CardGraphics();
         $card->set(1, 2);
+        $card1 = new CardGraphics();
+        $card1->set(0, 2);
+        $card2 = new CardGraphics();
+        $card2->set(9, 2);
+        $card3 = new CardGraphics();
+        $card3->set(5, 2);
+        // Configure the stubDesk.
         $desk = $this->createMock(Desk::class);
+        $desk->method('takeCard')->willReturn($card);
+
+        // Configure the stubDesk1.
+        $desk1 = $this->createMock(Desk::class);
+        $desk1->method('takeCard')->willReturn($card1);
+        
+
+        // Configure the stubDesk2.
+        $desk2 = $this->createMock(Desk::class);
+        $desk2->method('takeCard')->willReturn($card2);
+
+        // Configure the stubDesk2.
+        $desk3 = $this->createMock(Desk::class);
+        $desk3->method('takeCard')->willReturn($card3);
         $player = new Player;
 
         // Configure the stubDesk.
         $desk->method('takeCard')->willReturn($card);
 
-        //bank deal cards
+        //bank deal card1
+        $bank->dealCards($desk1, $player);
+        $this->assertEquals(11, $player->points());
+        $this->assertEquals('play', $player->getStatus());
+
+        //bank deal card2
+        $bank->dealCards($desk2, $player);
+        $this->assertEquals(21, $player->points());
+        $this->assertEquals('Black Jack', $player->getStatus());
+
+        //bank deal card2
         $bank->dealCards($desk, $player);
-        $this->assertEquals(2, $player->points());
+        $this->assertEquals(13, $player->points());
+        $bank->dealCards($desk2, $player);
+        $this->assertEquals(23, $player->points());
+        $this->assertEquals('fat', $player->getStatus());
+
+    }
+
+    /**
+     * test if object bank can use takeCard()
+     * and getPoints()
+     * using mock CardGraphics object and mockdeal Desk object
+     */
+    public function testDealCardsPlayer21(): void
+    {
+        $bank = new Bank;
+        $player = new Player();
+        // Create a stub for the CardGraphics class.
+        $card = new CardGraphics();
+        $card->set(2, 2);
+        $card1 = new CardGraphics();
+        $card1->set(8, 2);
+        
+        // Configure the stubDesk.
+        $desk = $this->createMock(Desk::class);
+        $desk->method('takeCard')->willReturn($card);
+
+        // Configure the stubDesk1.
+        $desk1 = $this->createMock(Desk::class);
+        $desk1->method('takeCard')->willReturn($card1);
+        
+        //bank deal card1
+        $bank->dealCards($desk1, $player);
+        $bank->dealCards($desk1, $player);
+        $this->assertEquals(18, $player->points());
+        $this->assertEquals('play', $player->getStatus());
+
+        //bank deal card2
+        $bank->dealCards($desk, $player);
+        $this->assertEquals(21, $player->points());
+        $this->assertEquals('21', $player->getStatus());
     }
 }

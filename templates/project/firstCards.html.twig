@@ -26,7 +26,7 @@
                     {% if data.hand|length == 2 and bank.hand|length == 1 and data.split %}
                         <button type="submit" name="action" value="split">Split hand</button>
                     {% endif %}
-                    {% if data.blackJack and bank.hand|length == 1 and bank.points > 9 %}
+                    {% if data.blackJack and data.status == 'play' and bank.hand|length == 1 and bank.points > 9 %}
                         <button type="submit" name="action" value="wait">Wänta</button>
                         <button type="submit" name="action" value="1:1">1:1</button>
                     {% endif %}

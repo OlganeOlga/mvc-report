@@ -14,6 +14,7 @@
     <exclude-pattern>node_modules</exclude-pattern>
     <exclude-pattern>vendor</exclude-pattern>
     <exclude-pattern>migrations</exclude-pattern>
+    <exclude-pattern>symfony</exclude-pattern>
     <exclude-pattern>src/Entity</exclude-pattern>
 
     <rule ref="rulesets/design.xml" />

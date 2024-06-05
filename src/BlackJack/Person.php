@@ -30,8 +30,8 @@ class Person
      */
     protected string $status;
 
-    /** @var int The profit earned by the player. */
-    protected int $profit;
+    /** @var float The profit earned by the player. */
+    protected float $profit;
 
     /** @var bool Does player has BlackJack. */
     protected bool $blackJack;
@@ -81,9 +81,9 @@ class Person
     /**
      * Retrieves the profit earned by the player.
      *
-     * @return int The profit earned by the player.
+     * @return float The profit earned by the player.
      */
-    public function getProfit(): int
+    public function getProfit(): float
     {
         return $this->profit;
     }
@@ -93,7 +93,8 @@ class Person
      *
      * @return string The current betPeng amount.
      */
-    public function getStatus() {
+    public function getStatus(): string
+    {
         return $this->status;
     }
 

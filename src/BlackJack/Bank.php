@@ -51,18 +51,16 @@ class Bank extends Person
     public function dealCards(Desk $desk, $player): int
     {
         $card = $desk->takeCard();
-        $playersPoints = $player->getCard($card);
-        if($player->countCards() === 2 && $playersPoints === 21) {
-            $player->blackJack();
-            return $playersPoints;
-        } elseif ($player->countCards() > 2 && $playersPoints === 21) {
-            $player->setStatus('wait');
-            return $playersPoints;
-        } elseif ($playersPoints > 21) {
+        $points = $player->getCard($card);
+
+        if($points > 21) {
             $player->setStatus('fat');
-            return $playersPoints;
+        } elseif ($player->blackJack()) {
+            $player->setStatus('Black Jack');
+        } elseif (!$player->blackJack() && $points === 21) {
+            $player->setStatus('21');
         }
-        return $playersPoints;
+        return $points;
     }
 
     /**
@@ -73,27 +71,27 @@ class Bank extends Person
      */
     public function takeCard(Desk $desk): bool
     {
-        $bankPoints = $this->points();
-        if ($bankPoints < 17) {
+        if ($this->points() < 17) {
             $card = $desk->takeCard();
             // override players getCard
             $this->getCard($card);
-
-            $newPoints = $this->points();           // Check for blackjack or win first
-            if ($this->countCards() === 2 && $newPoints === 21) {
+            $points = $this->points();
+          // Check for blackjack or win first
+            if ($this->blackJack()) {
                 $this->setStatus('Black Jack');
                 return false;
-            } elseif ($this->countCards() > 2 && $newPoints === 21) {
-                $this->setStatus('win');
+            } elseif (!$this->blackJack() && $points === 21) {
+                $this->setStatus('21');
                 return false;
-            } elseif ($newPoints > 21) {
+            } elseif ($points > 21) {
                 $this->setStatus('fat');
                 return false;
+            } elseif ($points > 17) {
+                $this->setStatus('ready');
+                return false;
             }
-            
             return true;
         }
-        
         return false;
     }
 }

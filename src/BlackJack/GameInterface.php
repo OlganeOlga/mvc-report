@@ -7,7 +7,8 @@ namespace App\BlackJack;
  * Class BlacJack represents the game logic for Black Jack.
  *
  */
-class GameInterface extends Game {
+class GameInterface extends Game 
+{
 
     /**
      * __constructor
@@ -15,35 +16,6 @@ class GameInterface extends Game {
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * Count minimal amout cort in hand of players
-     * 
-     * @return int
-     */
-    public function newCardToBank(): int
-    {  
-        $active = $this->getPlaying();
-        $minCardsByActive = 10;
-        foreach($this->getPlaying() as $player)
-        { 
-            $cards = $player->countCards();
-            if ($minCardsByActive > $cards) {
-                $minCardsByActive = $cards;
-            }
-        }
-        
-        if($minCardsByActive - 1 > $this->bank->countCards()) {
-            $this->bank->takeCard($this->desk);
-        }
-
-        if (count($this->getPlaying()) === 0) {
-            while($this->bank->points() < 17 ) {
-                $this->bank->takeCard($this->desk);
-            }
-        }
-        return $minCardsByActive;
     }
 
     /**
@@ -86,8 +58,31 @@ class GameInterface extends Game {
         return $array;
     }
 
+    // /**
+    //  * Look if bank should take new cards
+    //  * 
+    //  * @return bool
+    //  */
+    // public function newCardToBank(): bool
+    // {
+    //     $bankPoints = $this->bank->points();
+    //     $bankcards = $this->bank->countCards();
+    //     $active = $this->getPlaying();
+    //     if($bankPoints < 17) {
+    //         if(count($active) > 0) {   
+    //             foreach($active as $player) { 
+    //                 if ($bankcards + 1 >= $player->countCards()) {
+    //                     return false;
+    //                 } 
+    //             }
+    //             return true; 
+    //         }
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
     /**
-     *
      * get array with data for html routes
      * @return array{
      *     players: [
@@ -112,18 +107,8 @@ class GameInterface extends Game {
     public function getGame(): array
     {
         $players = [];
-        foreach($this->playing as $player) {
-            $status = $player->getStatus();
-            $name = $player->getName();
-            if(in_array($status, ['fat', 'win', 'loos', 'wait', 'ready'])) {
-                unset($this->playing[$name]);
-                $this->ready[$name] = $player;
-            } 
+        foreach($this->playing as $name => $player) {
             $players[$name] = $player->getHand();
-        }
-
-        foreach($this->ready as $player) {
-            $players[$player->getName()] = $player->getHand();
         }
         
         $array = [
@@ -133,135 +118,141 @@ class GameInterface extends Game {
         return $array;
     }
 
-    /**
-     * see if game is over
-     * @return array<int, string|bool>
-     */
-    public function finish(): array
-    {
-
-        if ($this->bank->points() > 21) {
-            // finish if bank get fat
-            return ['bank fat', true];
-        } elseif($this->bank->blackJack()) {
-            // finish if bank get black jack
-            return ['bank Black Jack', true];
-        } elseif (count($this->playing) === 0) {
-            $this->newCardToBank();
-            return ['count playing', true];
-        }
-        return ['not finish', false];
-    }
-
-    /**
-     * Count winst if bankfat
-     * 
-     * @return void
-     */
-     public function winstIfBankBlackJack(): void
-    { 
-        foreach ($this->playing as $player) {
-            if($player->insurance()) {
-                $player->loosGame(1, 2);
-            } 
-            $player->loosGame(1, 1);
-        }
-        
-        foreach ($this->ready as $player) {
-            if($player->getStatus() === 'wait') {
-                $player->loosGame(0, 1);
-            } elseif ($player->getStatus() === 'ready') {
-                if($player->insurance()) {
-                    $player->loosGame(1, 2);
-                } 
-                $player->loosGame(1, 1);
-            }
-        } 
-    }
-
-    /**
-     * Count winst if bank Black JAck
-     * 
-     * @return void
-     */
-     public function winstIfBankGet21(): void
-    { 
-        foreach ($this->playing as $player) {
-            $player->loosGame(1, 1);
-        }
-    
-        foreach ($this->ready as $player) {
-            if($player->getStatus() === 'wait') {
-                $player->winGame(3, 2);
-            } elseif ($player->getStatus() === 'ready') {
-                $player->loosGame(1, 1);
-            }
-        }
-    }
-
-    /**
-     * Count winst if bank has less than 21 points
-     * 
-     * @return void
-     */
-
-     public function winstIfBankLessThan21(): void
-    { 
-        foreach ($this->getPlayers() as $player) {
-            if($player->getStatus() === 'wait') {
-                $player->winGame(3, 2);
-            } elseif (!in_array($player->getStatus(), ['win', 'loos']) && $player->points() > $this->bank->points()) {
+    // /**
+    //  * Count winst if bankfat
+    //  * 
+    //  * @return void
+    //  */
+    //  public function winstIfBankBlackJack(): void
+    // {         
+    //     foreach ($this->playing as $player) {
+    //         $status =  $player->getStatus();
+    //         if (in_array($status, ['play', 'ready'])) {
+    //             $player->insurance() === true ? $player->loosGame(1, 2) : $player->loosGame(1, 1);
                 
-                    $player->winGame(1, 1);
-                } 
-            $player->loosGame(1, 1);
-        }
-    }
+    //         } elseif($player->getStatus() === 'Black Jack') {
+    //             $player->loosGame(0, 1);
+    //         } elseif ($status === 'fat') {
+    //             $player->insurance() === true ? $player->loosGame(3, 2) : $player->loosGame(1, 1);
+    //         }
+    //     }
+    // }
 
-    /**
-     * Count winst if bank fat
-     * 
-     * @return void
-     */
+    // /**
+    //  * Count winst if bank Black Jack
+    //  * 
+    //  * @return void
+    //  */
+    //  public function winstIfBankGet21(): void
+    // { 
+    //     foreach ($this->playing as $player) {
+    //        $status =  $player->getStatus();
+    //         if(in_array($status,['play', 'ready', 'fat']) ){
+    //             $player->insurance() === true ? $player->loosGame(3, 2) : $player->loosGame(1, 1);
+    //         } elseif($player->getStatus() === 'Black Jack') {
+    //             $player->winGame(3, 2);
+    //         }
+    //     }
+    // }
 
-     public function winstIfBankFat(): void
-    { 
-        foreach ($this->playing as $player) {
-            $player->winGame(1, 1);
-        }
+    // /**
+    //  * Count winst if bank has less than 21 points
+    //  * 
+    //  * @return void
+    //  */
 
-        foreach ($this->ready as $player) {
-            if($player->getStatus() === 'wait') {
-                $player->winGame(3, 2);
-            } elseif ($player->getStatus() === 'ready') {
-                $player->winGame(1, 1);
-            }
-            $player->loosGame(1, 1);
-        }
-    }
+    //  public function winstIfBankLessThan21($bankPoints): void
+    // { 
+    //     foreach ($this->getPlayers() as $player) {
+    //         $pStatus =  $player->getStatus();
+    //         $playPoints = $player->points();
+    //         switch($pStatus){
+    //             case 'Black Jack':
+    //                 $player->winGame(3, 2);
+    //                 break;
+    //             case 'play':
+    //             case 'ready':
+    //                 if($playPoints > $bankPoints){
+    //                     $player->insurance() === true ? $player->winGame(1, 2) : $player->winGame(1, 1);
+    //                     break;
+    //                 } 
+    //                 $player->insurance() === true ? $player->loosGame(3, 2) : $player->loosGame(1, 1);
+    //                     break;  
+    //             case 'fat':
+    //                 $player->insurance() === true ? $player->loosGame(3, 2) : $player->loosGame(1, 1);
+    //         }
+    //     }
+    // }
 
-    /**
-     * Count winst
-     * 
-     * @return void
-     */
-    public function countWinst(): void
-    {
-        $bankStatus = $this->bank->getStatus();
-        switch($bankStatus){
-            case('Black Jack'):
-                $this->winstIfBankBlackJack();
-                break;
-            case('win'):
-                $this->winstIfBankGet21();
-                break;
-            case('fat'):
-                $this->winstIfBankFat();
-                break;
-            case('play'):
-                $this->winstIfBankLessThan21();
-                break;
+    // /**
+    //  * Count winst if bank fat
+    //  * 
+    //  * @return void
+    //  */
+
+    //  public function winstIfBankFat(): void
+    // { 
+    //     foreach ($this->getPlayers() as $player) {
+    //         $pStatus =  $player->getStatus();
+    //         $playPoints = $player->points();
+    //         switch($pStatus){
+    //             case 'Black Jack':
+    //                 $player->winGame(3, 2);
+    //                 break;
+    //             case 'play':
+    //             case 'ready':
+    //                 $player->insurance() === true ? $player->winGame(1, 2) : $player->winGame(1, 1);
+    //                 break;
+    //             case 'fat':
+    //                 $player->insurance() === true ? $player->loosGame(3, 2) : $player->loosGame(1, 1);
+    //         }
+    //     }
+    // }
+
+    // /**
+    //  * Count winst based on bank status
+    //  * 
+    //  * @return void
+    //  */
+    // public function countWinst(): void
+    // {
+    //     $bankStatus = $this->bank->getStatus();
+    //     switch($bankStatus) {
+    //         case 'Black Jack':
+    //             $this->winstIfBankBlackJack();
+    //             break;
+    //         case('win'):
+    //             $this->winstIfBankGet21();
+    //             break;
+    //         case('fat'):
+    //             $this->winstIfBankFat();
+    //             break;
+    //         case('play'):
+    //             $bankpoints = $this->bank->points();
+    //             $this->winstIfBankLessThan21($bankpoints);
+    //             break;
             
-        }
-    }
+    //     }
+    // }
+
+    // /**
+    //  * see if game is over
+    //  * @return bool
+    //  */
+    // public function finish(): bool
+    // {   
+    //     switch($this->gameStatus()) {
+    //         case 'fat':
+    //             return true;
+    //         case 'Black Jack':
+    //             return true;
+    //         case '21':
+    //             return true;
+    //         case 'no playing':
+    //             $this->newCardToBank();
+    //             return true;
+    //         default:
+    //             return false;
+    //     }
+    // }
 }

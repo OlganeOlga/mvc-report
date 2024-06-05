@@ -14,21 +14,16 @@ use App\BlackJack\CardGraphics;
 use App\BlackJack\Bank;
 use App\BlackJack\Desk;
 use App\BlackJack\Player;
-use App\BlackJack\GameInterface;
+use App\BlackJack\WinstCounter;
 
 class ProjectController extends AbstractController
 {
-    /**
-     * @var Game $game represents game used in the controller
-     */
-    private GameInterface $game;
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->game = new GameInterface();
+        $this->game = new WinstCounter();
     }
 
     /**
@@ -192,60 +187,57 @@ class ProjectController extends AbstractController
     ): Response
     {
         $this->game = $session->get('game');
-        $finish = $this->game->finish();
 
-        // if (!$finish[1]) {
+        $action = $request->request->get('action');
+        $session->set('by action', $action);
+        $name = $request->request->get('form_id');
+        $player = $this->game->findPlayer($name);
+        
+        switch($action) {
+            case 'split': // split player and add it to the playing in the game
+                $newPlayer = new Player();
+                //$bank = $this->game->getBank();
+                $playerData = $player->splitHand();
+                $this->game->bankDeal($player);
+                $newPlayer->setName($playerData['name']);
+                $newPlayer->doBet($playerData['bet']);
+                $newPlayer->getCards($playerData['card']);
+                $this->game->bankDeal($newPlayer);
+                $this->game->addPlaying($playerData['name'], $newPlayer); 
+                break;
+            case 'insure':
+                $player->insure(); // insure player against black jack
+                break;
+            case 'take_card':
+                $this->game->bankDeal($player); // take card and see what happend
+                break;
+            case 'ready':
+                $player->setStatus('ready'); // change status to ready without winning
+                break;
+            case 'wait':
+                $player->setStatus('wait'); // change status to ready without winning
+                break;
+            case '1:1':
+                $player->winGame(1, 1);
+                break;
+            // case 'Black Jack':
+            //     $player->winGame(3, 2);// will be moved to ready array with winning
+            //     break;
+        }
 
-            $action = $request->request->get('action');
-            $session->set('by action', $action);
-            $name = $request->request->get('form_id');
-            $player = $this->game->findPlayer($name, 'playing');
-            
-            switch($action) {
-                case 'split': // split player and add it to the playing in the game
-                    $newPlayer = new Player();
-                    $playerData = $player->splitHand();
-                    $newPlayer->setName($playerData['name']);
-                    $newPlayer->doBet($playerData['bet']);
-                    $newPlayer->getCard($playerData['card']);
-                    $this->game->addPlaying($playerData['name'], $newPlayer); 
-                    break;
-                case 'insure':
-                    $player->insure(); // insure player against black jack
-                    break;
-                case 'take_card':
-                    $this->game->bankDeal($player, $name); // take card and see what happend
-                    break;
-                case 'ready':
-                    $player->setStatus('ready'); // will be moved to ready array without winning
-                    break;
-                case 'wait':
-                    $player->setStatus('wait'); // will be moved to ready array without winning
-                    break;
-                case '1:1':
-                    $player->winGame(1, 1);
-                    $player->setStatus('win');// will be moved to ready array with winning
-                    break;
-                case 'Black Jack':
-                    $player->winGame(3, 2);// will be moved to ready array with winning
-                    break;
-            }
-
-            $this->game->newCardToBank();
+        //$this->game->newCardToBank();
+        
+        if ($this->game->finish()) {
+            $this->game->countWinst();
             $data = $this->game->getGame();
-            $finish = $this->game->finish();
-           
-            if ($finish[1]) {
-                $this->game->countWinst();
-                $data = $this->game->getGame();
-                $session->set('data', $data);
-                $session->set('finish', $this->game->finish());
-                return $this->redirectToRoute('finish');
-            }
-            
             $session->set('data', $data);
-            $session->set('game', $this->game);
-            return $this->redirectToRoute('playView');
+            //$session->set('finish', $this->game->finish());
+            return $this->redirectToRoute('finish');
+        }
+        $data = $this->game->getGame();
+        $session->set('data', $data);
+        $session->set('game', $this->game);
+        return $this->redirectToRoute('playView');
     }
 
     /**

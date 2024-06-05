@@ -55,7 +55,7 @@ class Player extends Person
 
     /**
      * Overrid parent methods getCard
-     * Adds a card to the player's hand and return status of the player.
+     * Adds a card to the player's hand and palyers points.
      *
      * @param CardGraphics $card The card to be added to the hand.
      * @return int players points
@@ -64,13 +64,6 @@ class Player extends Person
     {
         $this->hand->addCard($card);
         $points = $this->points();
-        if($points > 21) {
-            $this->loosGame(1, 1);
-            $this->status = 'fat';
-        } elseif ($points === 21) {
-            $this->blackJack();
-            $this->status = 'wait';
-        }
         return $points;
     }
 
@@ -80,12 +73,12 @@ class Player extends Person
     *
     * @param int $multiplicate multiplicate bet
     * @param int $devide divide bet
-    * @return int $this->profit
+    * @return float $this->profit
     */
-    public function winGame($multiplicate, $devide): int
+    public function winGame($multiplicate, $devide): float
     {
         $this->status = 'win';
-        $this->profit = $this->betPeng * $multiplicate / $devide;
+        $this->profit = floatval($this->betPeng) * $multiplicate / $devide;
         return $this->profit;
     }
 
@@ -94,12 +87,12 @@ class Player extends Person
     *
     * @param int $multiplicate multiplicate bet
     * @param int $devide divide bet
-    * @return int $this->profit
+    * @return float $this->profit
     */
-    public function loosGame($multiplicate, $devide): int
+    public function loosGame($multiplicate, $devide): float
     {
         $this->setStatus('loos');
-        $this->profit = - $this->betPeng * $multiplicate / $devide;
+        $this->profit = - floatval($this->betPeng) * $multiplicate / $devide;
         return $this->profit;
     }
 

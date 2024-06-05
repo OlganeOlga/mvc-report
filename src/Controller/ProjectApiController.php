@@ -14,22 +14,22 @@ use App\BlackJack\CardGraphics;
 use App\BlackJack\Bank;
 use App\BlackJack\Desk;
 use App\BlackJack\Player;
-use App\BlackJack\Game;
+use App\BlackJack\WinstCounter;
 
 class ProjectApiController extends AbstractController
 {
     /**
-     * @var Game $game represents game used in the controller
+     * @var WinstCouten $game represents game used in the controller
      */
-    private Game $game;
+    private  $game;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->game = new Game();
-    }
+    // /**
+    //  * Constructor
+    //  */
+    // public function __construct()
+    // {
+    //     $this->game = new WinstCounter();
+    // }
 
     /**
      * Route is the start route for the project in cours MVC
