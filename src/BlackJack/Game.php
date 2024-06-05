@@ -7,7 +7,7 @@ use App\BlackJack\Player;
 use App\BlackJack\Bank;
 
 /**
- * Class BlacJack represents the game logic for Black Jack.
+ * Class Game contain basic game logic for Black Jack.
  *
  */
 class Game {

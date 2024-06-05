@@ -4,7 +4,8 @@ namespace App\BlackJack;
 
 
 /**
- * Class BlacJack represents the game logic for Black Jack.
+ * Class WinstCouter contain functions för endig of game and conting wins
+ * for Black Jack.
  *
  */
 class WinstCounter extends GameInterface 

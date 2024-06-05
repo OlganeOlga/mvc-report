@@ -6,7 +6,7 @@ use App\BlackJack\CardGraphics;
 use App\BlackJack\Hand;
 
 /**
- * Represents a player in the game.
+ * Represents a person playing the game.
  *
  * Each player has a hand of cards, a betPeng amount, and a profit value.
  */

@@ -4,7 +4,7 @@ namespace App\BlackJack;
 
 
 /**
- * Class BlacJack represents the game logic for Black Jack.
+ * Class BlacJack represents game logik (in the start of game) the game logic for Black Jack.
  *
  */
 class GameInterface extends Game 

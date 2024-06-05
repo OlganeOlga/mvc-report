@@ -18,6 +18,8 @@ use App\BlackJack\WinstCounter;
 
 class ProjectController extends AbstractController
 {
+    /** @var WinstCounter $game */
+    private WinstCounter $game;
     /**
      * Constructor
      */
