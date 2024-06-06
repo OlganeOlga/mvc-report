@@ -7,9 +7,24 @@
     <header class="headerMe">
         <h2>Om MVC projekt</h2>
     </header>
+    <div class="artickel">
     <p>
-        Här ska jag skriva om projectet
+        Här ska jag skriva om projectetProjektet för MVC kurs VT24 är skapad på Scrutinizer plattform och är ett studieprojekt o kursen Objektorientrad Programmering i PHP. Den är skriven med i stort del med PHP, jag använde några JavaScript funktioner i twig filar.
     </p>
-    
+        <p>    Projektet implementerar kortspel ’Black Jack’. Spelet kan spelas med 1-3 deltagare som spelar mot bank. Jag använde regels variant där alla spelare får två kort och bank en. Bank tar fera kort efter att alla spelare är färdiga med att få sina kort. Bank tar kort tills den får 17 eller flera poäng. Om bank får as och 6-an det räknas för 17 poäng. En spelare kan dela hand ifall den får kort med samma face.
+    </p>
+        <p>    Följande klasser används i projektet:<br>
+        Card, <br>
+        CardGraphics extends Card, <br>
+        Hand (använder CardGraphics), <br>
+        Desk (använder CardGraphics), <br>
+        Person (använder Hand)<br>
+        Player (använder Hand) extends Person,<br> 
+        Bank (använder Hand) extends Person, <br>
+        Game (skaffar egen Desk och Bank, kan få en eller flera Player)<br>
+        GameInterface extends Game<br>
+        WinstCouter extends GameInterface
+    </p>
+    </div>
 </main>
 {% endblock %}
