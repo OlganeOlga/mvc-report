@@ -144,6 +144,46 @@
         </p>
 
         <h2 class="kmom" id="kmom07-10">kmom07 - kmom10</h2>
+        <p>
+            För mitt projekt har jag skapad en route ”/proj” som render till projektens hemsida. Alla projektens sidor ligger i ”templates/project” folder. Projektens templates har egen base-template base.project.html.twig. Projektens base-template använder inte egen style-fil, men alla element har class project. 
+        </p>
+        <p>
+            På detta sätt kunde jag skapa annat style för projekten. Alla stylar ligger i assets/style/proj.css. I nävbara finns bara länkar till projektens hemsida och ’about-sidan’. Spelet börjar med knäppen ’SPELA’.
+        </p>
+        <p>
+            Det finns också en router ”/proj/about” som render till projektens ’about-sidan’. Där finns lite information om projektens upplag. För projektet väjde jag att implementera kortspem ’Black Jack’. Spelet kan spelas med 1-3 deltagare som spelar mot bank. Jag använde regels variant där alla spelare får två kort och bank en. Bank tar fera kort efter att alla spelare är färdiga med att få sina kort. Bank tar kort tills den får 17 eller flera poäng. Om bank får as och 6-an det räknas för 17 poäng. En spelare kan dela hand ifall den får kort med samma face.
+        </p>
+        <p>
+            Projektet sparad i samma gitrepo som andra kursens kmom. Jag har updaterad README.md så att första delen berätter om projektet. README har beskrivning av projektens klasser och upplag. Jag har bifogat instruktion för kloning av projekt. Scrutinazer badges är bifogat.
+        </p>
+        <p> 
+            Unittester tackar 100% av alla projektens klasser. Jag updaterar phpdocs och genererade phpmetrics som visas under ’/metrics/index.htmt’ och ’/coverage/index.html’
+        </p>
+        <p>
+            Det var intressant att arbeta med projektet. Jag har börjad med att skaffa landningssidan och stylar. Sedan har jag skaffat about-sidan. Efter det började jag med att skaffa spelets flödesshkäman på papper. Min flödesskäman blev ganska komplicerad och jag fick inte framför mig hur kan jag göra den enklare. Så började jag med att skaffa klasser. 
+        </p>
+        <p>
+            Det blev först 6 klasser: Card, CardGraphics extends Card, Hand (använder CardGraphics), Desk (använder CardGraphics), Player (använder Hand), Bank extends Player (använder Hand), Game som implicerar spelets logik.
+
+        </p>
+        <p>
+            Senare skaffade jag klass Person och omvandla Player och Bank till barnklass av Person. På sådant sätt kan både Player och Bank ha vissa egna funktioner.
+        </p>
+        <p>
+            Klass Game blev väldigt stor och komplicerad. Jag skaffade två extra klasser GameInterface barn klass för Game och WinstCounter barnklass för   GameInterface. Det var gjort för att minska cyklomatig komplexitet av Game klassen. Jag lukades att minska den något. WinstCounter har dock fortfarande för många beslutsmomenter och på detta sätt för stor cyklomatig komplexitet.
+        </p>
+        <p>
+            Det tog för mig ganska lång tid att få spelet fungera rätt. Den svåraste vara att få rätt med vinstberäkning. Jag tror nu att det skulle vara klok om jag återvänd till flödesshkäman på det punkten och försök förenkla den. I alla fall fick jag det på rätt sätt. Men då verkade det att Game klass är otroligt komplex. Jag börjar med att omorganisera klasser och det kostade mig 3 extra dagar.
+        </p>
+        <p>
+            Det var tur att jag skrev tester samtidigt med att jag skaffade nu klass-funktionalitet. Det hjälpte både med att vara säkert i funktions fungerande och jag var den inte skriva mycket att testa i slutet.
+        </p>
+        <p>
+            Det var lagom svårt projekt tycker jag. Jag skulle bara ville ha mera tid att jobba med den. 
+        </p>
+        <p>
+            Gällande kursen, jag tycker att den är bra och jag fick lära mig mycket nytt. Det enda som jag vill är att har mera tid för alla uppgifter.
+        </p>
     </div>
 </main>
 

@@ -1,5 +1,5 @@
 body.project {
-    background-color: #2f7513;
+    background-color: gray;
     display: grid;
     grid-template-rows: 270px 4fr 1fr;
     grid-template-columns: unset;
@@ -48,6 +48,11 @@ body.project header.site-header.project nav ul li a {
 }
 
 body.project main.main.project {
+    margin: unset;
+    background-color: green;
+    border: solid 10px gray;
+    border-image: linear-gradient(45deg, #012301, #4f4d4d) 1;
+    padding: 20px;
     grid-column: span 2;
     grid-template-columns: unset;
     grid-template-rows: unset;
@@ -191,4 +196,16 @@ body.project main.main.project div.play div.players div.a_player form.play-actio
 
 body.project main.main.project div.play div.players div.a_player form.play-actions button:hover {
     box-shadow: 0 5px 15px rgba(222, 238, 5, 0.979);
+}
+
+body.project footer {
+    border: unset;
+    display: grid;
+    background-color: gray;
+    padding-top: 20px;
+}
+
+body.project footer li,
+body.project footer p {
+    justify-self: center;
 }
